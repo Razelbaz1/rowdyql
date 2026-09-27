@@ -86,11 +86,7 @@ html.present .shell{grid-template-columns:minmax(0,1fr);max-width:1800px}
 html.present .rail{display:none}
 html.norail .shell{grid-template-columns:minmax(0,1fr)}
 html.norail .rail{display:none}
-/* side spine: one dot per section, pinned to the outer edge; labels slide in while scrolling or on hover */
-.spine{position:fixed;top:50%;transform:translateY(-50%);inset-inline-end:.85rem;z-index:40;display:none;flex-direction:column;gap:.7rem;align-items:flex-end;padding:.6rem .35rem;border-radius:999px}
-html.norail .spine{display:flex}
-html.present .spine{display:none!important}
-/* position pill: lives in the always-visible top bar; shown when the side dots are not (presenter mode, tablets) */
+/* position pill: lives in the top bar, so nothing floats over the page; shown while the contents rail is closed, and always on tablets and in presenter mode */
 .now{display:none;align-items:center;gap:.7rem;padding:.35rem .9rem;border:1px solid var(--line);border-radius:999px;background:var(--surface2);color:var(--ink);font:inherit;font-size:.9rem;cursor:pointer;min-height:40px;max-width:min(46vw,520px)}
 .now b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .now .pos{font-family:var(--mono);font-size:.78rem;color:var(--muted);white-space:nowrap}
@@ -98,25 +94,21 @@ html.present .spine{display:none!important}
 .now .dots i{width:.45rem;height:.45rem;border-radius:50%;background:var(--line)}
 .now .dots i.done{background:var(--good)}
 .now .dots i.cur{background:var(--accent);transform:scale(1.5);box-shadow:0 0 0 3px var(--accent-soft)}
-html.present .now{display:inline-flex;font-size:1rem}
+html.norail .now,html.present .now{display:inline-flex}
+html.present .now{font-size:1rem}
+.now{flex:0 1 auto;min-width:0;transition:box-shadow .35s ease,border-color .35s ease}
+.now b{min-width:0}
+/* desktop: the top bar stays one row; the pill gives way first (its title ends in "…"), and between 1025 and 1279 the extras step aside */
+@media (min-width:1025px){.top{flex-wrap:nowrap}.top>.brand,.top>.tabs,.top>.tools{flex:none}}
+@media (min-width:1025px) and (max-width:1279px){.now .dots,.brand>span:not(.logo),#userName{display:none}.top{gap:.7rem}}
+@media (min-width:1025px) and (max-width:1149px){#btnTocT{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
+.now.tick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 @media (max-width:1024px){.now{display:inline-flex;max-width:60vw}.now .dots{display:none}}
 .nowmenu{position:fixed;z-index:60;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:.4rem;display:flex;flex-direction:column;gap:.1rem;min-width:240px;max-height:70vh;overflow:auto}
 .nowmenu button{text-align:start;border:0;background:transparent;padding:.55rem .8rem;border-radius:8px;font:inherit;color:var(--ink);display:flex;gap:.6rem;align-items:center;min-height:42px}
 .nowmenu button:hover{background:var(--surface2)}
 .nowmenu button.cur{background:var(--accent-soft);font-weight:700}
 .nowmenu button .n{font-family:var(--mono);font-size:.78rem;color:var(--muted);width:1.6rem}
-html.norail:not(.present) .shell{padding-inline-end:3.6rem}
-.sp{display:flex;flex-direction:row-reverse;align-items:center;gap:.6rem;text-decoration:none;color:var(--muted);position:relative}
-.sp i{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none;transition:transform .3s,background .3s,box-shadow .3s;border:1px solid var(--surface)}
-.sp.done i{background:var(--good)}
-.sp.cur i{background:var(--accent);transform:scale(1.55);box-shadow:0 0 0 4px var(--accent-soft)}
-.sp .lbl{font-size:.82rem;line-height:1.2;white-space:nowrap;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.28rem .7rem;box-shadow:var(--shadow);opacity:0;transform:translateX(6px);transition:opacity .25s,transform .25s;pointer-events:none}
-html[dir="rtl"] .sp .lbl{transform:translateX(-6px)}
-.sp.cur .lbl{color:var(--ink);font-weight:700;border-color:var(--accent)}
-.spine.show .sp.cur .lbl,.spine:hover .sp .lbl,.sp:focus-visible .lbl{opacity:1;transform:none;pointer-events:auto}
-.spine:hover .sp i{transform:scale(1.2)}
-.spine:hover .sp.cur i{transform:scale(1.55)}
-@media (max-width:1024px){.spine{display:none!important}}
 .rail{position:sticky;top:5.2rem;align-self:start;display:flex;flex-direction:column;gap:.15rem}
 .rail a{display:flex;gap:.6rem;align-items:center;padding:.5rem .7rem;border-radius:8px;text-decoration:none;color:var(--muted);font-size:.92rem;min-height:44px}
 .rail a:hover{background:var(--surface2);color:var(--ink)}
@@ -184,10 +176,10 @@ html[dir="rtl"] .notice{--dir:-1}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center;padding:1.5rem 0 2.5rem}
 .hero h1{font-size:clamp(1.9rem,2.6vw,3rem)}
 .hero .sec-head{max-width:none}
-.hero-art{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.hero-art{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
 .tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.7rem .8rem;display:flex;flex-direction:column;gap:.15rem;min-height:5.2rem}
 .tile b{font-size:.8rem;color:var(--muted);font-weight:500}
-.tile span{font-family:var(--mono);font-size:.78rem;line-height:1.4;direction:ltr;text-align:left}
+.tile span{font-family:var(--mono);font-size:.78rem;line-height:1.4;direction:ltr;text-align:left;overflow-wrap:break-word}
 .tile.on{border-color:var(--accent);background:var(--accent-soft)}
 
 /* ---------- bench (interactive panels) ---------- */
@@ -432,7 +424,7 @@ html.js .gate.built canvas{opacity:1}
 /* ---------- gate: landing + sign-up wizard ---------- */
 .gate{position:fixed;inset:0;z-index:80;background:#0B1416;color:#E6EEEC;overflow-y:auto;overflow-x:hidden}
 html.gated,html.gated body{overflow:hidden;height:100%}
-html.gated .spine,html.gated .top,html.gated .shell{visibility:hidden}
+html.gated .top,html.gated .shell{visibility:hidden}
 .gate canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
 .gate .wrap{position:relative;max-width:1120px;margin:0 auto;padding:1rem 1.4rem 4rem}
 .gtop{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.4rem 0 1.4rem;flex-wrap:wrap}
@@ -1270,7 +1262,6 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
 </div>
 
 <div id="pop" hidden role="dialog"></div>
-<nav class="spine" id="spine" aria-label="Position"></nav>
 
 <script>
 /* =========================== I18N =========================== */
@@ -3237,7 +3228,7 @@ window.addEventListener('scroll', hidePop, {passive:true});
 function renderHero(){
   const h = $('#heroArt'); h.innerHTML = '';
   const items = [['hero_t1','Roads(road_id, name, speed_limit)'],['hero_t2','Transactions(tx_id, account, amount)'],['hero_t3','Enrollments(student_id, course_id)'],['hero_t4','Receipts(receipt_no, item, qty, price)'],['hero_t5','Sections(course_id, day, hour, room)'],['hero_t6','Messages(msg_id, chat_id, sent_at)']];
-  items.forEach((it, i) => { const d = el('div','tile' + (i===2?' on':'')); d.appendChild(el('b',null,t(it[0]))); d.appendChild(el('span',null,it[1])); d.addEventListener('mouseenter',()=>{$$('.tile').forEach(x=>x.classList.remove('on'));d.classList.add('on');}); h.appendChild(d); });
+  items.forEach((it, i) => { const d = el('div','tile' + (i===2?' on':'')); d.appendChild(el('b',null,t(it[0]))); d.appendChild(el('span',null,it[1].replace('(', '(​'))); d.addEventListener('mouseenter',()=>{$$('.tile').forEach(x=>x.classList.remove('on'));d.classList.add('on');}); h.appendChild(d); });
 }
 
 /* =========================== INTRO: ANOMALY DEMO =========================== */
@@ -3668,7 +3659,7 @@ function pickLesson(u){ const last = load('dbs_last_sec', null), mine = LESSONS.
 function openLesson(l, secId){
   if (!l) return; lesson = l; activeSec = null;
   $$('#u-' + l.unit + ' section.sec').forEach(s => s.hidden = !l.secs.includes(s.id));
-  renderLessonBar(); renderLessonEnd(); renderRail(); renderSpine();
+  renderLessonBar(); renderLessonEnd(); renderRail();
   window.scrollTo({ top: 0 });
   if (secId && secId !== l.secs[0]) setTimeout(() => { const s = document.getElementById(secId); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
   updateNav(false);
@@ -3706,14 +3697,13 @@ function setUnit(u, l, secId){
   unit = u; if (u === 'home') { lesson = null; if (typeof renderHome === 'function') renderHome(); }
   $$('.unit').forEach(x => x.hidden = x.id !== 'u-'+u); $$('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.unit===u))); store('dbs_unit', u);
   if (u !== 'home') { openLesson(l || pickLesson(u), secId); return; }
-  renderRail(); renderSpine(); window.scrollTo({top:0}); updateNav(false);
+  renderRail(); window.scrollTo({top:0}); updateNav(false);
 }
 $$('.tab').forEach(b => b.addEventListener('click', () => setUnit(b.dataset.unit)));
 
-/* position tracking: the rail and the side spine follow the scroll position (section whose top passed 35% of the viewport), within the open lesson */
-let activeSec = null, railOn = load('dbs_rail', false), spineTimer = null, navTick = false;
+/* position tracking: the rail and the position pill follow the scroll position (section whose top passed 35% of the viewport), within the open lesson */
+let activeSec = null, railOn = load('dbs_rail', false), nowTimer = null, navTick = false;
 function navSecs(){ return unit === 'home' || !lesson ? $$('#u-home section.sec') : lessonSecs(lesson); }
-function renderSpine(){ const sp = $('#spine'); sp.innerHTML = ''; navSecs().forEach(sec => { const a = el('a','sp'); a.href = '#'+sec.id; a.dataset.sec = sec.id; a.innerHTML = '<i></i><span class="lbl">'+t(sec.dataset.title)+'</span>'; a.addEventListener('click', e => { e.preventDefault(); sec.scrollIntoView({behavior:'smooth', block:'start'}); }); sp.appendChild(a); }); }
 function updateNav(flash){
   if (document.documentElement.classList.contains('gated')) return; /* nothing to track while the sign-in gate covers the page */
   const secs = navSecs(); if (!secs.length) return;
@@ -3723,10 +3713,9 @@ function updateNav(flash){
   const changed = cur.id !== activeSec; activeSec = cur.id; if (unit !== 'home') store('dbs_last_sec', { unit, id: cur.id });
   if (!visited[cur.id]) { visited[cur.id] = true; store('dbs_visited', visited); }
   railState();
-  $$('#spine .sp').forEach(a => { const id = a.dataset.sec; a.classList.toggle('cur', id === activeSec); a.classList.toggle('done', !!visited[id] && id !== activeSec); });
   const done = secs.filter(s => visited[s.id]).length; $('#prog').style.width = (100*done/secs.length) + '%';
   const idx = secs.findIndex(s => s.id === activeSec); $('#nowPill').hidden = false; $('#nowTitle').textContent = t(cur.dataset.title); $('#nowPos').textContent = (idx + 1) + ' / ' + secs.length; $('#nowDots').innerHTML = secs.map(s => '<i class="' + (s.id === activeSec ? 'cur' : visited[s.id] ? 'done' : '') + '"></i>').join('');
-  if (flash || changed) { const sp = $('#spine'); sp.classList.add('show'); clearTimeout(spineTimer); spineTimer = setTimeout(() => sp.classList.remove('show'), 1800); }
+  if (changed && flash) { const np = $('#nowPill'); np.classList.add('tick'); clearTimeout(nowTimer); nowTimer = setTimeout(() => np.classList.remove('tick'), 1200); }
 }
 window.addEventListener('scroll', () => { if (navTick) return; navTick = true; requestAnimationFrame(() => { navTick = false; updateNav(true); }); }, {passive:true});
 window.addEventListener('resize', () => updateNav(false));
@@ -3751,7 +3740,7 @@ function applyLang(){
   $('#btnTeacher').innerHTML = '🔑 ' + (teacher ? t('teacher_on') : t('teacher'));
   renderHero(); renderAnomaly(); renderSchema(); renderLists(); renderQuiz('quizIntro','intro');
   renderRaData(); renderSelect(); renderProject(); renderJoin(); renderDivide(); renderTree(); renderRaV2(); renderQuiz('quizRa','ra'); renderHome();
-  renderRail(); renderSpine(); renderLessonBar(); renderLessonEnd(); applyRail(); applyPrefs(); $('#btnMe').title = t('me_title'); store('dbs_lang', lang); updateNav(false);
+  renderRail(); renderLessonBar(); renderLessonEnd(); applyRail(); applyPrefs(); $('#btnMe').title = t('me_title'); store('dbs_lang', lang); updateNav(false);
   gateRefresh();
 }
 $('#btnLang').addEventListener('click', () => { lang = lang === 'he' ? 'en' : 'he'; applyLang(); });
