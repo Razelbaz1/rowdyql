@@ -90,16 +90,16 @@ html.norail .rail{display:none}
 .now{display:none;align-items:center;gap:.7rem;padding:.35rem .9rem;border:1px solid var(--line);border-radius:999px;background:var(--surface2);color:var(--ink);font:inherit;font-size:.9rem;cursor:pointer;min-height:40px;max-width:min(46vw,520px)}
 .now b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .now .pos{font-family:var(--mono);font-size:.78rem;color:var(--muted);white-space:nowrap}
-.now .dots{display:flex;gap:.3rem;align-items:center}
+.now .dots{display:flex;gap:.45rem;align-items:center;padding:0 .15rem}
 .now .dots i{width:.45rem;height:.45rem;border-radius:50%;background:var(--line)}
 .now .dots i.done{background:var(--good)}
-.now .dots i.cur{background:var(--accent);transform:scale(1.5);box-shadow:0 0 0 3px var(--accent-soft)}
+.now .dots i.cur{background:var(--accent);transform:scale(1.35);box-shadow:0 0 0 2px var(--accent-soft)}
 html.norail .now,html.present .now{display:inline-flex}
 html.present .now{font-size:1rem}
 .now{flex:0 1 auto;min-width:0;transition:box-shadow .35s ease,border-color .35s ease}
 .now b{min-width:0}
 /* desktop: the top bar stays one row; the pill gives way first (its title ends in "…"), and between 1025 and 1279 the extras step aside */
-@media (min-width:1025px){.top{flex-wrap:nowrap}.top>.brand,.top>.tabs,.top>.tools{flex:none}}
+@media (min-width:1025px){header.top{flex-wrap:nowrap}.top>.brand,.top>.tabs,.top>.tools{flex:none}}
 @media (min-width:1025px) and (max-width:1279px){.now .dots,.brand>span:not(.logo),#userName{display:none}.top{gap:.7rem}}
 @media (min-width:1025px) and (max-width:1149px){#btnTocT{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
 .now.tick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
@@ -144,7 +144,7 @@ section.sec:last-child{border-bottom:0}
 .sess:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--shadow)}
 .sess.soon{cursor:default;opacity:.72}
 .sess.soon:hover{transform:none;border-color:var(--line);box-shadow:none}
-.sess .top{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.sess .sess-top{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
 .sess .num{font-family:var(--mono);color:var(--accent);font-size:.85rem}
 .sess .date{font-family:var(--mono);color:var(--muted);font-size:.8rem;direction:ltr}
 .sess b{font-size:1rem;line-height:1.3}
@@ -3587,7 +3587,7 @@ function renderHome(){
 function meetingCards(grid){
   for (let i = 1; i <= 12; i++) { const ls = (CAMPUS.meetings[i] || []).map(lessonById).filter(Boolean); const secs = [].concat(...ls.map(l => l.secs)); const p = secs.length ? Math.round(100 * secs.filter(id => visited[id]).length / secs.length) : 0; const state = !ls.length ? 'soon' : p >= 100 ? 'done' : 'open';
     const c = el('button', 'sess reveal ' + state); c.type = 'button'; c.style.setProperty('--rd', ((i - 1) * 0.05) + 's'); c.style.setProperty('--p', p);
-    c.innerHTML = '<div class="top"><span class="num">' + String(i).padStart(2, '0') + '</span><span class="date">' + CAMPUS.dates[i - 1] + '</span></div><b>' + t('tl' + i).replace(/<span class="tag[^>]*>.*?<\/span>/g, '') + '</b><div class="st"><span class="pill">' + t('sx_' + state) + '</span>' + (ls.length ? '<span class="ring"><i>' + p + '%</i></span>' : '') + '</div>';
+    c.innerHTML = '<div class="sess-top"><span class="num">' + String(i).padStart(2, '0') + '</span><span class="date">' + CAMPUS.dates[i - 1] + '</span></div><b>' + t('tl' + i).replace(/<span class="tag[^>]*>.*?<\/span>/g, '') + '</b><div class="st"><span class="pill">' + t('sx_' + state) + '</span>' + (ls.length ? '<span class="ring"><i>' + p + '%</i></span>' : '') + '</div>';
     if (ls.length) c.addEventListener('click', () => { const l = ls.find(x => lessonPct(x) < 100) || ls[0]; setUnit(l.unit, l); }); else c.disabled = true; grid.appendChild(c); }
 }
 /* standalone course: the lessons of each chapter, then the chapters still to come */
@@ -3596,10 +3596,10 @@ function lessonCards(grid){
     grid.appendChild(el('h3', 'lsn-chh', t('ch_n', { n: ci + 1 }) + ' · ' + t('tab_' + ch.unit) + '<span>' + t('ls_count', { n: ch.lessons.length, m: ch.lessons.reduce((a, l) => a + l.min, 0) }) + '</span>'));
     ch.lessons.forEach((l, i) => { const p = lessonPct(l), state = p >= 100 ? 'done' : 'open';
       const c = el('button', 'sess reveal ' + state); c.type = 'button'; c.style.setProperty('--rd', (i * 0.05) + 's'); c.style.setProperty('--p', p);
-      c.innerHTML = '<div class="top"><span class="num">' + l.n + '</span><span class="lsn-dur">' + t('ls_min', { m: l.min }) + '</span></div><b>' + t('ls_' + l.id) + '</b><div class="st"><span class="pill">' + t('sx_' + state) + '</span><span class="ring"><i>' + p + '%</i></span></div>';
+      c.innerHTML = '<div class="sess-top"><span class="num">' + l.n + '</span><span class="lsn-dur">' + t('ls_min', { m: l.min }) + '</span></div><b>' + t('ls_' + l.id) + '</b><div class="st"><span class="pill">' + t('sx_' + state) + '</span><span class="ring"><i>' + p + '%</i></span></div>';
       c.addEventListener('click', () => setUnit(l.unit, l)); grid.appendChild(c); }); });
   grid.appendChild(el('h3', 'lsn-chh', t('ls_later')));
-  ['st2_b', 'st3_b', 'st4_b'].forEach((k, i) => { const c = el('button', 'sess reveal soon'); c.type = 'button'; c.disabled = true; c.innerHTML = '<div class="top"><span class="num">' + (COURSE.length + i + 1) + '</span></div><b>' + t(k) + '</b><div class="st"><span class="pill">' + t('sx_soon') + '</span></div>'; grid.appendChild(c); });
+  ['st2_b', 'st3_b', 'st4_b'].forEach((k, i) => { const c = el('button', 'sess reveal soon'); c.type = 'button'; c.disabled = true; c.innerHTML = '<div class="sess-top"><span class="num">' + (COURSE.length + i + 1) + '</span></div><b>' + t(k) + '</b><div class="st"><span class="pill">' + t('sx_soon') + '</span></div>'; grid.appendChild(c); });
 }
 let revealIO = null;
 function observeReveal(){
