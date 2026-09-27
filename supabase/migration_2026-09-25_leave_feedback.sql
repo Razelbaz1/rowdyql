@@ -26,6 +26,7 @@ as $$
 declare
   uid uuid := auth.uid();
   v_email text; v_first text; v_key text; v_hi text;
+  v_reply constant text := 'hello@rowdyql.com';  -- where replies to the goodbye email go (see supabase/email/README.md)
 begin
   if uid is null then
     raise exception 'not signed in';
@@ -50,7 +51,7 @@ begin
       perform net.http_post(
         url     := 'https://api.resend.com/emails',
         headers := jsonb_build_object('Authorization', 'Bearer ' || v_key, 'Content-Type', 'application/json'),
-        body    := jsonb_build_object('from', 'RowdyQL <noreply@rowdyql.com>', 'to', v_email, 'subject', 'להתראות מ-RowdyQL',
+        body    := jsonb_build_object('from', 'RowdyQL <noreply@rowdyql.com>', 'to', v_email, 'reply_to', v_reply, 'subject', 'להתראות מ-RowdyQL',
                                       'html', replace($html$<!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -61,7 +62,7 @@ begin
 <title>RowdyQL</title>
 </head>
 <body style="margin:0;padding:0;background:#F4F7F6;">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">החשבון נמחק. תודה שלמדתם איתנו.</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">החשבון נמחק. תודה שבחרתם ללמוד איתנו.</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F7F6;">
 <tr><td align="center" style="padding:32px 16px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#FFFFFF;border:1px solid #D5DEDB;border-radius:16px;overflow:hidden;">
@@ -70,8 +71,9 @@ begin
     </td></tr>
     <tr><td dir="rtl" style="padding:32px 32px 6px;font-family:Arial,Helvetica,sans-serif;text-align:right;color:#15201E;">
       <h1 style="margin:0 0 12px;font-size:24px;line-height:1.3;">להתראות, ותודה</h1>
-      <p style="margin:0 0 12px;font-size:16px;line-height:1.65;color:#3D4B48;">{{hi}}החשבון שלכם ב-RowdyQL נמחק, יחד עם ההתקדמות וכל מה שנשמר בו.</p>
-      <p style="margin:0;font-size:16px;line-height:1.65;color:#3D4B48;">תודה שלמדתם איתנו. אם תרצו לחזור, הדלת פתוחה: אפשר להירשם מחדש בכל רגע, גם עם אותו אימייל.</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.65;color:#3D4B48;">{{hi}}החשבון שלכם ב-RowdyQL נמחק.</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.65;color:#3D4B48;">תודה שבחרתם ללמוד איתנו. נשמח לשמוע מכם איך הייתה חוויית הלמידה, כדי שנוכל להשתפר. אפשר פשוט להשיב למייל הזה.</p>
+      <p style="margin:0;font-size:16px;line-height:1.65;color:#3D4B48;">אם תרצו לחזור, הדלת פתוחה: אפשר להירשם מחדש בכל רגע, גם עם אותו אימייל.</p>
     </td></tr>
     <tr><td align="center" style="padding:24px 32px 26px;">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#0E5566" style="border-radius:10px;">

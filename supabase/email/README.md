@@ -23,3 +23,7 @@ Supabase → Authentication → Emails → Templates. בוחרים תבנית, �
    - Host: `smtp.resend.com` · Port: `465` · Username: `resend` · Password: ה-API key
 5. ב-Authentication → Rate Limits בודקים את מגבלת המיילים לשעה ומתאימים למספר הנרשמים.
 6. בודקים: הרשמה עם אימייל חדש, ו"שכחתי סיסמה" בחלון הכניסה.
+
+## מייל הפרידה ותשובות אליו
+מייל הפרידה נשלח מהפונקציה `delete_my_account` (Resend דרך `pg_net`, המפתח ב-Vault בשם `resend_api_key`). התבנית: `goodbye.html`; ה-SQL נבנה ממנה ב-`python tools/gen_goodbye_sql.py`.
+תשובות למייל הולכות ל-`hello@rowdyql.com` (המשתנה `v_reply` בפונקציה). כדי שהכתובת תקלוט דואר: Cloudflare → `rowdyql.com` → Email → Email Routing → הפעלה (מוסיף רשומות MX שלא נוגעות באתר) → Routing rules → כתובת `hello` → Send to: תיבת הג'ימייל שלך (מאשרים את המייל שמגיע אליה).
