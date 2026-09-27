@@ -773,6 +773,17 @@ html[data-bg="sand"][data-theme="dark"]{--ground:#17140E}html[data-bg="sky"][dat
 .modal.terms h4{margin:.7rem 0 0;font-size:1rem;font-weight:700}
 .modal.terms p{margin:0;line-height:1.6}
 .modal.terms .pt-agree{margin-top:.6rem;font-weight:600}
+.scroll-cue{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:6;background:none;border:0;padding:0;color:#B8C6C3;font:inherit;font-size:.95rem;cursor:pointer;max-width:min(92vw,560px);text-align:center;opacity:0}
+.gate.built .scroll-cue{animation:cuein .9s ease 2.2s both}
+@keyframes cuein{from{opacity:0}to{opacity:1}}
+.cue-in{display:flex;flex-direction:column;align-items:center;gap:.3rem;transition:opacity .45s ease;padding:.6rem 1.4rem .3rem;background:radial-gradient(closest-side,rgba(11,20,22,.92),rgba(11,20,22,.6) 70%,rgba(11,20,22,0));border-radius:40px}
+.scroll-cue.gone{pointer-events:none}.scroll-cue.gone .cue-in{opacity:0}
+.scroll-cue:hover{color:#E6EEEC}
+.cue-arrow{display:flex;flex-direction:column;align-items:center}
+.cue-arrow svg{width:26px;height:16px;color:#5CC3D9;filter:drop-shadow(0 0 6px rgba(92,195,217,.85));animation:cuebob 1.8s ease-in-out infinite}
+.cue-arrow svg+svg{margin-top:-7px;opacity:.45;animation-delay:.18s}
+@keyframes cuebob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@media (prefers-reduced-motion: reduce){.cue-arrow svg{animation:none}.gate.built .scroll-cue{animation:none;opacity:1}}
 .gate .fp-link{align-self:flex-end;margin-top:-.5rem;padding:.2rem .4rem;min-height:36px;font-size:.88rem}
 /* LTR fields (email, password) in the RTL form: the check mark goes to the side the text does not start from */
 .gate[dir="rtl"] .f input[dir="ltr"]{padding-right:2.3rem}
@@ -802,6 +813,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
         </div>
         <div class="demo b" style="--d:.6s"><div class="dh"><i></i><i></i><i></i><span>rowdyql · live</span></div><pre class="live" id="demoLive"></pre><div id="demoViz" hidden></div><div class="out" id="demoOut"></div><div id="demoTable"></div></div>
       </div>
+      <button type="button" class="scroll-cue" id="scrollCue"><span class="cue-in"><span data-i18n="l_scroll"></span><span class="cue-arrow"><svg viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l10 10 10-10"/></svg><svg viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l10 10 10-10"/></svg></span></span></button>
       <section class="story" id="story" aria-label="RowdyQL story">
         <div class="story-track"><div class="story-stage"><div class="story-end"><button type="button" class="gbtn primary" id="ctaUp3" data-i18n="l_cta2"></button></div></div></div>
       </section>
@@ -1426,7 +1438,7 @@ e_email:"כתובת אימייל לא תקינה", e_pass:"לפחות 8 תווי
 g_working:"מריץ…", g_ok_up:"ההרשמה נקלטה. שלחנו קישור אימות לאימייל, לחצו עליו ואז היכנסו.", g_ok_up_demo:"ההרשמה נקלטה (מצב הדגמה).", g_ok_in:"ברוכים השבים, {n}.", g_err_in:"אימייל או סיסמה שגויים.", g_err_gen:"משהו השתבש. נסו שוב בעוד רגע.", g_err_exists:"האימייל הזה כבר רשום.", g_to_in:"לכניסה", su_h:"ברוכים הבאים, {n}!", su_h0:"ברוכים הבאים!", su_body:"ההרשמה נקלטה. שלחנו קישור אימות ל-{e}, לחצו עליו ואז היכנסו.", su_tip:"לא רואים את המייל? כדאי להציץ בספאם.", su_ok:"אישור", g_pass2:"אימות סיסמה", g_show:"הצגת הסיסמה", g_hide:"הסתרת הסיסמה", g_checking:"בודקים…", g_free:"האימייל פנוי.", g_err_domain:"יש להירשם עם אימייל של {d}.", g_err_captcha:"אשרו את בדיקת ה-CAPTCHA ונסו שוב.",
 l_h1:"עוד לא מבינים מילה? הגעתם בול בזמן.",
 l_sub:"ברוכים הבאים ל-RowdyQL. הג'יבריש שלמעלה יהיה בקרוב שפת האם שלכם: מתחילים מאפס, בלי להניח שום ידע קודם, ומתקדמים צעד אחר צעד עד לשאילתות שמשלבות כמה טבלאות, תת-שאילתות ופונקציות חלון, ועד לתכנון נכון של מסד נתונים. כל נושא מגיע עם ממחיש שאפשר לגעת בו, תרגיל שנבדק ברגע, ושאלות ברמת מבחן וברמת ראיונות עבודה.",
-l_cta:"מכאן מתחילים", l_cta2:"פותחים חשבון, דקה אחת", l_have:"כבר יש לי חשבון",
+l_cta:"מכאן מתחילים", l_cta2:"פותחים חשבון, דקה אחת", l_scroll:"גללו למטה וראו, צעד אחר צעד, איך עובד עולם מסדי הנתונים", l_have:"כבר יש לי חשבון",
 l_feat_h:"מה יש בפנים", l_how_h:"איך זה עובד",
 l_feat:[["≡","שיעורים מסודרים","כל נושא מחולק לשיעורים קצרים, מהבסיס ועד רמה מתקדמת."],["σ π ⋈","רואים איך זה עובד","כל פעולה מוצגת על טבלאות אמיתיות, ורואים בדיוק מה קורה לשורות."],["✓","תרגול ברמות שונות","תרגילים שנבדקים מיד, מהקל לקשה, עד שמרגישים שליטה."],["SELECT *","מסדי נתונים מוכנים","כותבים תשובה ורואים מיד את הטבלה שהיא מחזירה."]],
 l_how:[["פותחים חשבון","ותוך דקה אתם בפנים."],["לומדים שיעור אחרי שיעור","ובקצב שלכם, כמה שתרצו."],["מתרגלים עד שזה יושב","פותרים תרגילים ובחינות."]],
@@ -1667,7 +1679,7 @@ e_email:"Invalid email address", e_pass:"At least 8 characters", e_name:"Letters
 g_working:"Executing…", g_ok_up:"Registered. We sent a confirmation link to your email; click it, then sign in.", g_ok_up_demo:"Registered (demo mode).", g_ok_in:"Welcome back, {n}.", g_err_in:"Wrong email or password.", g_err_gen:"Something went wrong. Try again in a moment.", g_err_exists:"This email is already registered.", g_to_in:"Sign in", su_h:"Welcome, {n}!", su_h0:"Welcome!", su_body:"You are signed up. We sent a verification link to {e}; click it, then sign in.", su_tip:"Can't see it? Check the spam folder.", su_ok:"OK", g_pass2:"Confirm password", g_show:"Show password", g_hide:"Hide password", g_checking:"Checking…", g_free:"This email is available.", g_err_domain:"Please sign up with a {d} email address.", g_err_captcha:"Complete the CAPTCHA check and try again.",
 l_h1:"Don't understand a word yet? Perfect timing.",
 l_sub:"Welcome to RowdyQL. The jargon above will soon be your mother tongue: you start from zero, with no prior knowledge assumed, and move step by step up to queries that combine several tables, subqueries and window functions, and to designing a database properly. Every topic comes with a visualizer you can touch, an exercise checked on the spot, and questions at exam level and at job-interview level.",
-l_cta:"Start here", l_cta2:"Create an account, one minute", l_have:"I already have an account",
+l_cta:"Start here", l_cta2:"Create an account, one minute", l_scroll:"Scroll down to see, step by step, how the world of databases works", l_have:"I already have an account",
 l_feat_h:"What is inside", l_how_h:"How it works",
 l_feat:[["≡","Organized lessons","Each topic is split into short lessons, from the basics to an advanced level."],["σ π ⋈","See how it works","Every operation is shown on real tables, so you see exactly what happens to the rows."],["✓","Practice at every level","Exercises checked instantly, easy to hard, until you feel in control."],["SELECT *","Ready-made databases","Write an answer and see the table it returns right away."]],
 l_how:[["Create an account","and you're in within a minute."],["Learn lesson by lesson","at your own pace, as much as you like."],["Practice until it sticks","Solve exercises and tests."]],
@@ -3898,6 +3910,10 @@ $('#gateForm').addEventListener('submit', async e => {
   }
 });
 
+/* ---- scroll cue at the bottom of the first screen: a click goes to the story, and it fades as soon as the page scrolls ---- */
+(() => { const cue = $('#scrollCue'), g = $('#gate'); if (!cue || !g) return;
+  cue.addEventListener('click', () => { const st = $('#story'); if (st) st.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  g.addEventListener('scroll', () => cue.classList.toggle('gone', g.scrollTop > 60), { passive: true }); })();
 /* ---- landing demo: a query types itself, then its result appears ---- */
 const DEMOS = [
   { c: 'lq_d1', sql: "SELECT s.StudentName\nFROM Students AS s\nJOIN Ticket_Purchases AS tp ON s.StudentID = tp.StudentID\nJOIN Events AS e ON tp.EventID = e.EventID\nWHERE e.EventName = 'Spring Festival';", cols: ['StudentName'], rows: [['Dana'], ['Noa'], ['Tom']] },
