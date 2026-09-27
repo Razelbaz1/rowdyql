@@ -22,7 +22,7 @@
 
   STORY.register({
     id: 'client', layer: 'client', range: [0.68, 1],
-    captions: [{ at: [0.87, 0.93], he: '…והתשובה חוזרת אליכם, למסך שלכם.', en: '…and the answer comes back to you, on your screen.' }],
+    captions: [{ at: [0.87, 0.93], he: 'והתשובה חוזרת אליכם, למסך שלכם.', en: 'And the answer comes back to you, on your screen.' }],
 
     build(ctx, g) {
       const el = ctx.el, P = (x, y, z, o) => ctx.iso.P(x, y, z, o || O2);

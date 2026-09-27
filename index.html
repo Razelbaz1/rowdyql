@@ -430,7 +430,7 @@ html.js .gate.built canvas{opacity:1}
 @media (prefers-reduced-motion: reduce){#intro{display:none!important}html.js .gate .b{opacity:1;transform:none}html.js .gate canvas{opacity:1}#gateLogo{opacity:1}}
 
 /* ---------- gate: landing + sign-up wizard ---------- */
-.gate{position:fixed;inset:0;z-index:80;background:#0B1416;color:#E6EEEC;overflow:auto}
+.gate{position:fixed;inset:0;z-index:80;background:#0B1416;color:#E6EEEC;overflow-y:auto;overflow-x:hidden}
 html.gated,html.gated body{overflow:hidden;height:100%}
 html.gated .spine,html.gated .top,html.gated .shell{visibility:hidden}
 .gate canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
@@ -2850,7 +2850,7 @@ const STORY = (() => {
 
   STORY.register({
     id: 'client', layer: 'client', range: [0.68, 1],
-    captions: [{ at: [0.87, 0.93], he: '…והתשובה חוזרת אליכם, למסך שלכם.', en: '…and the answer comes back to you, on your screen.' }],
+    captions: [{ at: [0.87, 0.93], he: 'והתשובה חוזרת אליכם, למסך שלכם.', en: 'And the answer comes back to you, on your screen.' }],
 
     build(ctx, g) {
       const el = ctx.el, P = (x, y, z, o) => ctx.iso.P(x, y, z, o || O2);
