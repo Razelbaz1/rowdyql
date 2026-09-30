@@ -6,6 +6,8 @@ trigger: always_on
 
 RowdyQL is a databases and SQL course site for Israeli students, taught from zero. Raz, the course TA, owns every word. His wording always wins, and his own before/after pairs in `copy/examples.md` override everything in this file.
 
+**The official voice.** How the copy should sound is defined in `voice/voice-profile.md` (Hebrew, approved by Raz on 2026-09-30) and `voice/voice-profile-en.md` (English). Read the profile before you write anything. This file covers the mechanics. The profile covers the voice: concrete openings, a short line that lands, one idiom at most, the site takes the joke, and no colons used as slogans. Your proposals are checked against both, by script and by review, before Raz sees them.
+
 ## The one rule
 
 Write the Hebrew from the intent. Never translate the English sentence. The English column tells you what the string means; the context column tells you where it appears and who reads it. Ask how a good Israeli TA would say this out loud to a student in class, write that, then cut every word that adds nothing.
@@ -13,7 +15,7 @@ Write the Hebrew from the intent. Never translate the English sentence. The Engl
 ## Rules
 
 1. **Address the reader in plural** (אתם): לחצו, עברתם, תמצאו. Never mix singular and plural in one string. No slash forms (מסכים/ה): rephrase instead, for example with a gender-neutral past tense (קראתי ואישרתי).
-2. **Buttons and links use an action noun** (שם פעולה): הרשמה, כניסה, הרצה, בדיקה, איפוס, המשך. Not an imperative (הרץ, בדוק, דלג). First person is fine when the student is making a statement (שכחתי סיסמה, כבר יש לי חשבון). When a sentence mentions a button, quote its label: לחצו על 'בדיקה'.
+2. **Buttons and links use an action noun** (שם פעולה): הרשמה, כניסה, הרצה, בדיקה, איפוס, המשך. Not an imperative (הרץ, בדוק, דלג). First person is fine when the student is making a statement (שכחתי סיסמה, כבר יש לי חשבון). When a sentence mentions a button, quote its label: לחצו על 'בדיקה'. Exception (Raz, 2026-09-30): the one or two landing-page buttons that invite sign-up may be a short present-plural phrase, like the live "מכאן מתחילים" and "פותחים חשבון, דקה אחת".
 3. **One idea per sentence.** No comma splices: if two clauses could stand alone, use a period or a real connective (ו, אבל, כי, אז). Wrong: "היא נשמרת כגיבוב, אף אחד לא יכול לקרוא אותה, גם לא אנחנו."
 4. **No calques from English.** These came from translating and sound foreign: "ננסה לחיות איתה" (live with it), "הכל נשמר לחשבון" (saved to your account), "ענפים שלא הוטלו על אותן עמודות" (projected onto).
 5. **Normal Hebrew word order.** Wrong: "רואה את זה רק צוות הקורס". Right: "רק צוות הקורס רואה את זה".
@@ -26,7 +28,9 @@ Write the Hebrew from the intent. Never translate the English sentence. The Engl
 
 - SQL keywords, table names and column names stay in English (SELECT, JOIN, Students, StudentID).
 - Hebrew terms used on the site: טבלה, שורה, עמודה, שאילתה, סכמה, מופע, מפתח ראשי, מפתח זר, צירוף (join), הטלה (projection), בחירה (selection), גיבוב (hash), אלגברה רלציונית.
-- Open decisions, keep the site's current choice until Raz decides: אימייל vs מייל; how much slang (בול, המון).
+- Real terms stay, even in an intro: explain them, never drop them (Raz: "המילה רלציוני חשובה").
+- Slang (Raz, 2026-09-30): gentle slang is fine, one per string: בול, יושב, כיף, סבבה, על הדרך. Not יאללה, אחי, וואלה.
+- Open decision, keep the site's current choice until Raz decides: אימייל vs מייל.
 
 ## Format
 

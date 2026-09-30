@@ -1,5 +1,20 @@
-"""Wraps src/page.html (the artifact body) into a standalone index.html for GitHub Pages."""
-import re, pathlib
+"""Wraps src/page.html (the artifact body) into a standalone index.html for GitHub Pages.
+
+First runs the voice check (the site's official voice, voice/voice-profile.md) and stops on
+new voice errors. --allow-voice builds anyway; use it only when Raz approved that text.
+"""
+import re, pathlib, sys, importlib.util
+
+VOICE_CHECK = "voice/scripts/voice_check.py"   # update if the voice folder moves
+spec = importlib.util.spec_from_file_location("voice_check", VOICE_CHECK)
+if not spec or not pathlib.Path(VOICE_CHECK).exists():
+    sys.exit(f"build stopped: {VOICE_CHECK} not found (was the voice folder moved? update VOICE_CHECK)")
+voice = importlib.util.module_from_spec(spec); spec.loader.exec_module(voice)
+if not voice.gate(verbose=False):
+    if "--allow-voice" not in sys.argv:
+        sys.exit("build stopped: fix the voice errors above, or rerun with --allow-voice if Raz approved this text")
+    print("!!! --allow-voice: building with voice errors, because it was asked for explicitly")
+
 body = pathlib.Path("src/page.html").read_text(encoding="utf-8")
 m = re.search(r"<title>(.*?)</title>", body); title = m.group(1) if m else "RowdyQL"
 body = body.replace(m.group(0), "", 1) if m else body
