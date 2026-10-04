@@ -6,7 +6,7 @@ trigger: always_on
 
 RowdyQL is a databases and SQL course site for Israeli students, taught from zero. Raz, the course TA, owns every word. His wording always wins, and his own before/after pairs in `copy/examples.md` override everything in this file.
 
-**The official voice.** How the copy should sound is defined in `voice/voice-profile.md` (Hebrew, approved by Raz on 2026-09-30) and `voice/voice-profile-en.md` (English). Read the profile before you write anything. This file covers the mechanics. The profile covers the voice: concrete openings, a short line that lands, one idiom at most, the site takes the joke, and no colons used as slogans. Your proposals are checked against both, by script and by review, before Raz sees them.
+**The official voice.** How the copy should sound is defined in `raz-elbaz-brand-identity-kit/voice/voice-profile.md` (Hebrew, approved by Raz on 2026-09-30) and `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md` (English). Read the profile before you write anything. This file covers the mechanics. The profile covers the voice: concrete openings, a short line that lands, one idiom at most, the site takes the joke, and no colons used as slogans. Your proposals are checked against both, by script and by review, before Raz sees them.
 
 ## The one rule
 

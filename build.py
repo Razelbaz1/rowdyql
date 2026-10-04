@@ -1,11 +1,11 @@
 """Wraps src/page.html (the artifact body) into a standalone index.html for GitHub Pages.
 
-First runs the voice check (the site's official voice, voice/voice-profile.md) and stops on
+First runs the voice check (the site's official voice, raz-elbaz-brand-identity-kit/voice/voice-profile.md) and stops on
 new voice errors. --allow-voice builds anyway; use it only when Raz approved that text.
 """
 import re, pathlib, sys, importlib.util
 
-VOICE_CHECK = "voice/scripts/voice_check.py"   # update if the voice folder moves
+VOICE_CHECK = "raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py"   # update if the voice folder moves
 spec = importlib.util.spec_from_file_location("voice_check", VOICE_CHECK)
 if not spec or not pathlib.Path(VOICE_CHECK).exists():
     sys.exit(f"build stopped: {VOICE_CHECK} not found (was the voice folder moved? update VOICE_CHECK)")

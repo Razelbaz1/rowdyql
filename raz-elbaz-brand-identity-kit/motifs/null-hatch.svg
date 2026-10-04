@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="400" height="240" role="img" aria-labelledby="t-null-hatch d-null-hatch">
+<title id="t-null-hatch">NULL hatch (NULL מקווקו)</title>
+<desc id="d-null-hatch">NULL hatch: a soft 45 degree hatch at 14% ink (#E1E0DF) in a cell with no value, always with the word NULL; the hatch stops under the word (a surface knock-out), so the label keeps 5.61:1 light and 6.51:1 dark. Source: direction-board.html lines 17, 143, 447.</desc>
+<!-- RowdyQL motif "null-hatch", approved 2026-10-04 (Q6), emitted 2026-10-05. Colors are CSS custom properties with the rq- prefix; each fallback is the light-theme hex, and design-tokens.css maps --rq-* to the current theme (inline the SVG to get dark colors; as an img it shows the light fallbacks). The one blue is the neon: soft #5CC3D9, line #2999B1, text #20778A (dark #5CC3D9 for all). Glow is off in print. -->
+<defs><pattern id="rq-hz" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#E1E0DF" stroke-width="1.5" style="stroke:var(--rq-hatch,#E1E0DF)"/></pattern></defs>
+<g fill="#FDFBF8" stroke="#DDD7CF" stroke-width="1" style="fill:var(--rq-surface,#FDFBF8);stroke:var(--rq-rule,#DDD7CF)">
+<rect x="20" y="24" width="54" height="24"/>
+<rect x="74" y="24" width="54" height="24"/>
+<rect x="128" y="24" width="54" height="24"/>
+<rect x="20" y="48" width="54" height="24"/>
+<rect x="74" y="48" width="54" height="24"/>
+<rect x="128" y="48" width="54" height="24"/>
+<rect x="20" y="72" width="54" height="24"/>
+<rect x="74" y="72" width="54" height="24"/>
+<rect x="128" y="72" width="54" height="24"/>
+</g>
+<rect x="74.5" y="48.5" width="53" height="23" fill="url(#rq-hz)"/>
+<rect x="86" y="55.5" width="26" height="11" fill="#FDFBF8" style="fill:var(--rq-surface,#FDFBF8)"/>
+<path d="M89.47 58.71H89.4V64H88.72V57.72H89.79L91.93 63.01H92V57.72H92.68V64H91.61Z M94.88 57.72V61.49Q94.88 61.95 94.9 62.31Q94.93 62.67 95.05 62.92Q95.16 63.18 95.41 63.32Q95.66 63.45 96.1 63.45Q96.54 63.45 96.79 63.32Q97.04 63.18 97.15 62.92Q97.27 62.67 97.3 62.31Q97.32 61.95 97.32 61.49V57.72H98.08V61.31Q98.08 62.01 98.01 62.53Q97.95 63.05 97.73 63.41Q97.52 63.76 97.13 63.93Q96.74 64.11 96.1 64.11Q95.46 64.11 95.07 63.93Q94.68 63.76 94.47 63.41Q94.26 63.05 94.19 62.53Q94.12 62.01 94.12 61.31V57.72Z M99.88 64V57.72H100.64V63.34H103.61V64Z M105.28 64V57.72H106.04V63.34H109.02V64Z" fill="#5F6670" style="fill:var(--rq-muted,#5F6670)"/>
+</svg>

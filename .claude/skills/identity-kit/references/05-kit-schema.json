@@ -1,0 +1,135 @@
+{
+  "$comment": "kit.json schema for identity-kit. Extends the course design-system-web spec-schema JSON with motifs, illustration, photo, composition, logo, dodont, gate, meta. Every leaf may hold the literal string \"not defined\" except motifs (never empty). Keys stay English; free-text values are in the kit language.",
+  "meta": {
+    "brand": "string",
+    "language": "he | en | bilingual",
+    "direction": "rtl | ltr",
+    "style_classification": "string",
+    "evidence": ["string"],
+    "generated": "YYYY-MM-DD",
+    "source_files": ["source/<file>"],
+    "outputs": ["social-post | email | booklet-print | image | deck | carousel | web-page | document-pdf | icons | video | zoom-background | mascot"],
+    "quiet_tier": "true | false | not defined",
+    "generator": "nano-banana | gpt-image | recraft | midjourney | other | not defined",
+    "fonts_fetched": "YYYY-MM-DD"
+  },
+  "identity": {
+    "who": "string",
+    "what": "string",
+    "audience": "string",
+    "words": ["string", "string", "string"],
+    "never_looks_like": "string"
+  },
+  "color": {
+    "bg": "#hex",
+    "surface": "#hex",
+    "soft": "#hex | not defined",
+    "ink": "#hex",
+    "text": "#hex",
+    "muted": "#hex",
+    "border": "#hex",
+    "accent": "#hex",
+    "accent_strong": "#hex",
+    "accent_2": "#hex | not defined",
+    "accent_3": "#hex | not defined",
+    "accent_4": "#hex | not defined",
+    "accent_5": "#hex | not defined",
+    "accents_extended": [{ "name": "string", "hex": "#hex", "role": "charts and SVG fills only" }],
+    "depth": "#hex",
+    "success": "#hex | not defined",
+    "warning": "#hex | not defined",
+    "danger": "#hex | not defined",
+    "canvases": ["bg", "surface", "dark"],
+    "ratios": { "bg": 0.6, "surface": 0.25, "ink": 0.1, "accent": 0.05 },
+    "accent_rule": "string",
+    "forbidden_pairs": [{ "fg": "role", "bg": "role", "why": "string" }],
+    "contrast": [{ "fg": "role", "bg": "role", "ratio": 4.5, "pass": true }]
+  },
+  "typography": {
+    "heading": { "family": "string", "weights": [400, 700], "case": "sentence | uppercase-kickers | uppercase" },
+    "body": { "family": "string", "weight": 400 },
+    "mono": { "family": "string | none", "rule": "code only | none" },
+    "google_fonts_url": "string",
+    "scale": [14, 16, 18, 22, 28, 36, 48],
+    "ratio": 1.25,
+    "floors": { "slide": 26, "slide_absolute": 24, "web": 18, "print_pt": 11, "post_headline": 48, "caption": 14 },
+    "letter_spacing": "string",
+    "hebrew": { "supported": true, "notes": "string" }
+  },
+  "tokens": {
+    "spacing": { "base": 8, "scale": [4, 8, 12, 16, 24, 32, 48, 64] },
+    "radius": { "sm": 10, "md": 14, "lg": 20, "xl": 28, "pill": 999 },
+    "border": { "width_px": 2, "style": "solid", "color": "ink" },
+    "shadow": {
+      "model": "offset | blur | none",
+      "values": { "1": "string", "2": "string", "3": "string", "4": "string" },
+      "color": "depth | ink | rgba(...)"
+    },
+    "motion": { "character": "string", "ease": "cubic-bezier(...)", "idle": false, "reduced_motion": true },
+    "texture": "none | string"
+  },
+  "motifs": [
+    {
+      "name": "kebab-name",
+      "description": "string",
+      "zone": "corner | edge-rail | behind-text | between-sections | full-bleed | badge",
+      "scale": "s | m | l",
+      "frequency": "once | 2-3 | tiled",
+      "colors": ["#hex"],
+      "kind": "svg | css",
+      "file": "motifs/<name>.svg | null",
+      "css": "string | null",
+      "status": "extracted | proposed | approved"
+    }
+  ],
+  "motif_rules": { "max_per_composition": 2, "law": "zones, never scattered; few big shapes" },
+  "motif_library": { "file": "motifs/sprite.svg | null", "count": 0, "note": "optional: a larger approved library beyond the 5-8 named motifs" },
+  "illustration": {
+    "used": true,
+    "technique": "flat-vector | cel-shaded | line-art | isometric | hand-drawn | 3d | not defined",
+    "line": { "weight": "none | thin | thick", "color": "#hex" },
+    "fill": "flat | gradient | textured",
+    "shading": "none | hard-offset | soft",
+    "perspective": "flat | isometric | camera",
+    "subjects": "string",
+    "detail": "low | medium | high",
+    "palette_order": ["role"],
+    "forbidden": ["string"]
+  },
+  "photo": {
+    "used": false,
+    "subjects": "string",
+    "lighting": "string",
+    "treatment": "natural | warm | desaturated | duotone",
+    "duotone": ["#hex", "#hex"],
+    "crop": "string",
+    "overlay": "none | string",
+    "forbidden": ["string"]
+  },
+  "composition": {
+    "density": "generous | compact",
+    "whitespace": 0.4,
+    "alignment": "right | left | centered | grid",
+    "hierarchy": ["size", "weight", "color", "boxes"],
+    "structure": "string",
+    "decoration_text": "string",
+    "habits": ["string"]
+  },
+  "logo": {
+    "status": "file | rules-only | none",
+    "files": { "color": "source/<file> | null", "mono": "source/<file> | null" },
+    "clear_space": "string",
+    "min_size": "string",
+    "placement": { "post": "string", "email": "string", "print": "string", "deck": "string", "web": "string" },
+    "backgrounds_allowed": ["role"],
+    "forbidden": ["string"],
+    "name_protection": "string"
+  },
+  "mascot": { "exists": false, "canon": "source/<file> | null" },
+  "print": { "sizes": ["A4", "A5"] },
+  "dodont": [{ "do": "string", "dont": "string" }],
+  "gate": ["string x10"],
+  "assets": [
+    { "file": "assets/<name>.<ext>", "purpose": "string", "prompt": "string", "aspect": "16:9", "size": "2K", "status": "pending | done" }
+  ]
+}

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$CLAUDE_PROJECT_DIR/voice/scripts/voice_check.py\" --hook",
+            "command": "python \"$CLAUDE_PROJECT_DIR/raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py\" --hook",
             "timeout": 30,
             "statusMessage": "Checking the voice..."
           }

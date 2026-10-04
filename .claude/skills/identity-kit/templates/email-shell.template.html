@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}" dir="{{DIR}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<title>{{BRAND}}</title>
+<link href="{{GOOGLE_FONTS_URL}}" rel="stylesheet">
+<!--
+  identity-kit email shell. Recycled from the Benefits Mailer shell (720px table card) with every hex
+  replaced by a kit token at generation time. ONE render path for every message: chrome stays, the
+  BODY_HTML slot changes. Placeholders (no braces in this comment on purpose): LANG (he|en), DIR
+  (rtl|ltr), PREHEADER, HEADER_IMAGE_URL, BODY_HTML, FOOTER_LINE. Token slots below are filled from
+  kit.json when the kit is generated: T_BG, T_SURFACE, T_INK, T_TEXT, T_ACCENT, T_DEPTH,
+  T_BORDER_W, T_RADIUS_LG, T_SHADOW_EMAIL, T_FONT_HEAD.
+-->
+<style>
+  body { margin:0; padding:0; background:{{T_BG}}; -webkit-text-size-adjust:100%; }
+  table { border-collapse:collapse; }
+  img { border:0; line-height:100%; outline:none; text-decoration:none; }
+  a { color:{{T_ACCENT}}; }
+  @media (max-width:740px){ .container{ width:100% !important; } .pad{ padding-left:24px !important; padding-right:24px !important; } }
+</style>
+</head>
+<body style="margin:0; padding:0; background:{{T_BG}};">
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0;">{{PREHEADER}}</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{{T_BG}}" style="background:{{T_BG}};">
+    <tr>
+      <td align="center" style="padding:18px 10px;">
+        <table role="presentation" class="container" width="720" cellpadding="0" cellspacing="0" border="0" style="width:720px; max-width:720px; background:{{T_SURFACE}}; border:{{T_BORDER_W}}px solid {{T_INK}}; border-radius:{{T_RADIUS_LG}}px; box-shadow:{{T_SHADOW_EMAIL}}; overflow:hidden;">
+
+          <!-- HEADER (hosted branded image, 720px wide) -->
+          <tr>
+            <td style="padding:0; font-size:0; line-height:0; border-bottom:{{T_BORDER_W}}px solid {{T_INK}};">
+              <img src="{{HEADER_IMAGE_URL}}" width="720" alt="{{BRAND}}" style="display:block; width:100%; max-width:720px; height:auto;">
+            </td>
+          </tr>
+
+          <!-- BODY (single slot: inline-styled <p> and <table> blocks only) -->
+          <tr>
+            <td class="pad" dir="{{DIR}}" style="padding:34px 36px 30px 36px; font-family:'{{T_FONT_HEAD}}','Helvetica Neue',Arial,sans-serif; color:{{T_TEXT}}; font-size:16px; line-height:1.65;">
+{{BODY_HTML}}
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td bgcolor="{{T_BG}}" style="background:{{T_BG}}; border-top:{{T_BORDER_W}}px solid {{T_INK}}; padding:18px 36px;" align="center">
+              <div style="font-family:'{{T_FONT_HEAD}}','Helvetica Neue',Arial,sans-serif; font-size:13.5px; font-weight:600; color:{{T_DEPTH}};">{{FOOTER_LINE}}</div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -6,7 +6,7 @@
 - `src/page.html` — מקור הדף (גוף בלבד, בלי html/head/body).
 - `build.py` — עוטף את המקור ל-`index.html` העצמאי שמוגש ב-GitHub Pages.
 - `index.html` — הקובץ שמוגש. לא לערוך ידנית; לערוך את המקור ולהריץ `python build.py`.
-- `voice/` — הקול הרשמי של האתר: `voice/voice-profile.md` (עברית) ו-`voice/voice-profile-en.md` (אנגלית). `build.py` מריץ את בדיקת הקול ועוצר על הפרה חדשה.
+- `raz-elbaz-brand-identity-kit/voice/` — הקול הרשמי של האתר: `raz-elbaz-brand-identity-kit/voice/voice-profile.md` (עברית) ו-`raz-elbaz-brand-identity-kit/voice/voice-profile-en.md` (אנגלית). `build.py` מריץ את בדיקת הקול ועוצר על הפרה חדשה.
 
 ## מהדורות ושיעורים
 

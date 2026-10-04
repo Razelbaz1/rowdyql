@@ -1,0 +1,181 @@
+/*
+  Raz Elbaz / RowdyQL - design tokens (generated 2026-10-05 from kit.json)
+  Every hex is a literal from kit.json; a derived value says so in a comment.
+  Two themes. Light is the default (:root). Dark applies under prefers-color-scheme: dark unless the page sets
+  data-theme="light", and always under :root[data-theme="dark"] (the same mapping as source/direction-board.html).
+  Google Fonts (fetched 2026-10-05):
+  https://fonts.googleapis.com/css2?family=Rubik:wght@800;900&family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Math&display=swap
+*/
+
+/* ===== Block 1 - brand-studio compatible names (light, default) ===== */
+:root{
+  /* colors */
+  --bg:#F7F2EC;
+  --surface:#FDFBF8;
+  --ink:#373C44;
+  --muted:#5F6670;
+  --accent:#20778A;              /* neon, text tier: safe for type (4.64 on bg, 5.00 on surface) */
+  --accent-strong:var(--accent); /* not defined in kit.json (no hover or pressed shade); aliased to accent */
+  --border:#DDD7CF;
+  --success:#276B43;             /* state: correct */
+  --warning:#966212;             /* state: note */
+  --danger:#B23A2E;              /* state: wrong, delete, forbidden */
+  /* typography */
+  --font-head:'Rubik','Noto Sans Math',system-ui,sans-serif;
+  --font-body:'Heebo','Noto Sans Math',system-ui,sans-serif;
+  /* radius: square corners everywhere; the pill is only for a segmented toggle */
+  --radius-sm:0px;
+  --radius:0px;
+  --radius-lg:0px;
+  --radius-pill:999px;
+  /* shadow ramp, ONE model: none (flat and matte; glow is a separate data highlight, Block 3) */
+  --shadow-1:none;
+  --shadow-2:none;
+  --shadow-3:none;
+  --shadow-4:none;
+  /* layout */
+  --maxw:1180px;
+}
+
+/* ===== Block 2 - identity additions (light, default) ===== */
+:root{
+  --text:#373C44;
+  --depth:var(--ink);            /* not defined in kit.json (shadow model none); aliased to ink */
+  --accent-2:#C3401B;            /* coral, text tier */
+  --accent-3:#AD551B;            /* apricot, text tier */
+  --accent-4:#89682F;            /* sun, text tier */
+  --accent-5:#3F7392;            /* sky, text tier */
+  --font-mono:'IBM Plex Mono','Noto Sans Math',ui-monospace,monospace;  /* code, data, labels; Latin only */
+  --border-w:1px;
+  --border-line:var(--border-w) solid var(--border);
+  --radius-xl:0px;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
+  --ease:ease;                   /* not defined in kit.json: the CSS default, as on the board */
+  --focus-ring:2px solid var(--neon-l);  /* board line 80; 3.00 on bg, 3.23 on surface */
+  --floor-web:18px;
+  --floor-slide:26px;
+  --floor-caption:14px;
+}
+
+/* ===== Block 3 - RowdyQL extensions (kit.json x_ keys, light, default) ===== */
+:root{
+  --soft:#E7F2F4;                /* cool canvas (bg-cool) */
+  /* brand hues: soft (fills, tints, glow) / line (strokes, 3:1) / text (type, 4.5:1) */
+  --neon:#5CC3D9;    --neon-l:#2999B1;    --neon-t:#20778A;
+  --coral:#FD977A;   --coral-l:#E56541;   --coral-t:#C3401B;
+  --apricot:#FAA670; --apricot-l:#DD6D25; --apricot-t:#AD551B;
+  --sun:#E6C792;     --sun-l:#AF853C;     --sun-t:#89682F;
+  --sky:#8CBDDA;     --sky-l:#5793B7;     --sky-t:#3F7392;
+  /* neutrals */
+  --grid:#EDE9E4;                /* quiet grid, ink at 5%, always lighter than --border */
+  --hatch:#E1E0DF;               /* NULL hatch, ink at 14% */
+  --fill:#DBD7D4;                /* ring track, schema-map row stubs */
+  --bar:#DDDCDB;                 /* quiet bars */
+  /* states: reserved for marking, never decoration */
+  --good:#276B43;  --good-s:#DCEFE3;
+  --note:#966212;  --note-l:#C07D16; --note-s:#FFF1D6;
+  --bad:#B23A2E;   --bad-s:#FBE3E0;
+  --neutral:#5F6670; --neutral-s:#ECE8E3;
+  --sel-s:#E3F2F3;               /* selected tint = color-mix(in srgb,#5CC3D9 16%,surface); text on it is ink only */
+  --result-head:#CDEAEF;         /* derived: color-mix(in srgb,#5CC3D9 30%,surface); ink only */
+  --result-line:var(--neon-l);   /* 1px outline around the result table */
+  /* gradients */
+  --flow:linear-gradient(90deg,#FD977A 0%,#FAA670 28%,#E6C792 50%,#5CC3D9 74%,#8CBDDA 100%);
+  --wash-sky:linear-gradient(90deg,#F7F2EC 0%,#E7F2F4 100%);
+  --wash-coral:linear-gradient(90deg,#F7F2EC 0%,#F8E0D5 100%);
+  --wash-apricot:linear-gradient(90deg,#F7F2EC 0%,#F8E1D1 100%);
+  --wash-sun:linear-gradient(90deg,#F7F2EC 0%,#F2E6D3 100%);
+  --wash-cool:linear-gradient(90deg,#F7F2EC 0%,#DCEAE8 100%);
+  --wash-flow:linear-gradient(90deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%);  /* only with a source and a result */
+  /* glow: only on data points, active lines, progress; never behind text; off in print */
+  --glow-a:.55;
+  --glow-point:drop-shadow(0 0 2px rgba(92,195,217,var(--glow-a))) drop-shadow(0 0 7px rgba(92,195,217,calc(var(--glow-a)*.7)));
+  --glow-ring:drop-shadow(0 0 3px rgba(92,195,217,calc(var(--glow-a)*.9))) drop-shadow(0 0 10px rgba(250,166,112,calc(var(--glow-a)*.55)));
+  /* type */
+  --head-weight:800;
+  --wordmark-weight:900;
+  --lh-head:1.12;
+  --lh-body:1.6;
+  --floor-mono-label:12px;
+  --floor-print:11pt;
+  --floor-post-headline:48px;
+  /* motif bridge: motifs/*.svg read --rq-* (light hex fallbacks inside each file) */
+  --rq-bg:var(--bg); --rq-surface:var(--surface); --rq-ink:var(--ink); --rq-muted:var(--muted);
+  --rq-rule:var(--border); --rq-grid:var(--grid); --rq-hatch:var(--hatch); --rq-fill:var(--fill); --rq-bar:var(--bar);
+  --rq-neon:var(--neon); --rq-neon-l:var(--neon-l); --rq-neon-t:var(--neon-t);
+  --rq-coral:var(--coral); --rq-apricot:var(--apricot); --rq-sun:var(--sun); --rq-sky:var(--sky); --rq-sky-l:var(--sky-l);
+  --rq-good:var(--good); --rq-good-s:var(--good-s); --rq-note:var(--note); --rq-note-s:var(--note-s);
+  --rq-bad:var(--bad); --rq-bad-s:var(--bad-s);
+  --rq-glow-a:var(--glow-a);
+  --rq-band-a:.45;               /* schema-map header bands */
+  --rq-band-res-a:.5;            /* schema-map result band */
+  color-scheme:light;
+}
+
+/* ===== Dark theme (same values in both selectors) ===== */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161B; --surface:#182027; --ink:#E6EAEE; --muted:#9AA4AE; --border:#2E3943;
+    --accent:#5CC3D9;
+    --success:#6BD09A; --warning:#F2B75A; --danger:#F28B7E;
+    --text:#E6EAEE;
+    --accent-2:#FD977A; --accent-3:#FAA670; --accent-4:#E6C792; --accent-5:#8CBDDA;
+    --soft:#0F1A20;
+    --neon-l:#5CC3D9; --neon-t:#5CC3D9;
+    --coral-l:#FD977A; --coral-t:#FD977A;
+    --apricot-l:#FAA670; --apricot-t:#FAA670;
+    --sun-l:#E6C792; --sun-t:#E6C792;
+    --sky-l:#8CBDDA; --sky-t:#8CBDDA;
+    --grid:#1C2126; --hatch:#394047; --fill:#2A333C; --bar:#3D444B;
+    --good:#6BD09A; --good-s:#12321F;
+    --note:#F2B75A; --note-l:#F2B75A; --note-s:#3A2B0C;
+    --bad:#F28B7E; --bad-s:#3D1712;
+    --neutral:#9AA4AE; --neutral-s:#232B33;
+    --sel-s:#233A43;
+    --result-head:#2C515C;         /* derived: color-mix(in srgb,#5CC3D9 30%,#182027) */
+    --wash-sky:linear-gradient(90deg,#11161B 0%,#25313A 100%);
+    --wash-coral:linear-gradient(90deg,#11161B 0%,#322828 100%);
+    --wash-apricot:linear-gradient(90deg,#11161B 0%,#322A27 100%);
+    --wash-sun:linear-gradient(90deg,#11161B 0%,#2F2F2C 100%);
+    --wash-cool:linear-gradient(90deg,#11161B 0%,#1F2F35 100%);
+    --wash-flow:linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%);
+    --glow-a:.85;
+    --rq-band-a:.35; --rq-band-res-a:.35;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161B; --surface:#182027; --ink:#E6EAEE; --muted:#9AA4AE; --border:#2E3943;
+  --accent:#5CC3D9;
+  --success:#6BD09A; --warning:#F2B75A; --danger:#F28B7E;
+  --text:#E6EAEE;
+  --accent-2:#FD977A; --accent-3:#FAA670; --accent-4:#E6C792; --accent-5:#8CBDDA;
+  --soft:#0F1A20;
+  --neon-l:#5CC3D9; --neon-t:#5CC3D9;
+  --coral-l:#FD977A; --coral-t:#FD977A;
+  --apricot-l:#FAA670; --apricot-t:#FAA670;
+  --sun-l:#E6C792; --sun-t:#E6C792;
+  --sky-l:#8CBDDA; --sky-t:#8CBDDA;
+  --grid:#1C2126; --hatch:#394047; --fill:#2A333C; --bar:#3D444B;
+  --good:#6BD09A; --good-s:#12321F;
+  --note:#F2B75A; --note-l:#F2B75A; --note-s:#3A2B0C;
+  --bad:#F28B7E; --bad-s:#3D1712;
+  --neutral:#9AA4AE; --neutral-s:#232B33;
+  --sel-s:#233A43;
+  --result-head:#2C515C;           /* derived: color-mix(in srgb,#5CC3D9 30%,#182027) */
+  --wash-sky:linear-gradient(90deg,#11161B 0%,#25313A 100%);
+  --wash-coral:linear-gradient(90deg,#11161B 0%,#322828 100%);
+  --wash-apricot:linear-gradient(90deg,#11161B 0%,#322A27 100%);
+  --wash-sun:linear-gradient(90deg,#11161B 0%,#2F2F2C 100%);
+  --wash-cool:linear-gradient(90deg,#11161B 0%,#1F2F35 100%);
+  --wash-flow:linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%);
+  --glow-a:.85;
+  --rq-band-a:.35; --rq-band-res-a:.35;
+  color-scheme:dark;
+}
+
+/* Print: glow off. Pages that print also set body{background:#fff}. */
+@media print{
+  :root{ --glow-point:none; --glow-ring:none; }
+}

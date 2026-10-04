@@ -1,0 +1,3367 @@
+{
+  "$comment": "kit.json for the Raz Elbaz / RowdyQL identity kit, identity-kit Step E, 2026-10-05. Shape per references/05-kit-schema.json; keys starting with x_ are extensions this identity needs (brand hues in three tiers, states, neutrals, tables, washes, flow, glow, chart modes, rules, the dark mapping, contrast). Main color block = light theme (default); dark values in x_dark. Sources: source/reference.jpg, the approved direction board source/direction-board.html, the plan gate and RUN-LOG decisions (later rows override earlier ones). Free text is English; the owner's words stay in Hebrew.",
+  "meta": {
+    "brand": "Raz Elbaz / RowdyQL",
+    "language": "en",
+    "direction": "rtl",
+    "x_direction_note": "The kit files are written in English (LTR). Outputs are Hebrew first: RTL with LTR data islands (tables, expressions, SVG diagrams, code, mono labels). English outputs are LTR.",
+    "x_output_languages": [
+      "he",
+      "en"
+    ],
+    "style_classification": "Swiss data design: flat and matte, glow only on data, a sunrise-to-sea palette with one neon blue, light canvas by default (dark theme supported)",
+    "evidence": [
+      "Reference: a modular Swiss grid of hairline-bordered panels on an off-white canvas that drifts from warm to cool; about 70% of pixels sit nearest bg #F7F2EC (43%) or bg-cool #E7F2F4 (27%)",
+      "Reference: color lives only in thin data lines, node dots, rings and bars, about 1% of pixels; warm marks on the source side, cool marks on the result side",
+      "Flat and matte: no shadow anywhere on the approved board; the only depth effect is a small two-layer glow on data points, active lines and the progress ring",
+      "Hairline 1px rules #DDD7CF and square corners on every panel, table, card, post and cover",
+      "Type-led hierarchy: Rubik 800 headings, Heebo body, IBM Plex Mono for eyebrows, tables, labels and code",
+      "One blue: the neon #5CC3D9 from the logo and the site replaces the board aqua #72C8D7 (RUN-LOG 2026-10-04)"
+    ],
+    "generated": "2026-10-05",
+    "source_files": [
+      "source/reference.jpg",
+      "source/direction-board.html",
+      "source/direction-board-light.png",
+      "source/direction-board-dark.png"
+    ],
+    "x_existing_material": "source/site-screenshots/ (the old site; existing material only, not blended)",
+    "outputs": [
+      "web-page",
+      "email",
+      "social-post",
+      "deck",
+      "booklet-print",
+      "image"
+    ],
+    "x_outputs_note": "web page = the site (landing and lessons); social post includes the share image; deck = slides for class; booklet-print = A4 only; image generator Gemini (Nano Banana). Quiet tier on.",
+    "quiet_tier": "true",
+    "generator": "nano-banana",
+    "x_generator_note": "Gemini (Nano Banana). The kit writes ready prompts (skill rule 6); any automated generation needs Raz's approval per image.",
+    "fonts_fetched": "2026-10-05",
+    "x_landing": "The whole site (landing and lessons) aligns to this kit (replaces the 2026-09-30 note \"landing to follow the lesson page\")."
+  },
+  "identity": {
+    "who": "Raz Elbaz (the brand is the person; RowdyQL is his platform)",
+    "what": "RowdyQL, an interactive learning environment for the \"Database Design\" course (Ariel University, Industrial Engineering and Management): SQL, relational algebra with visualizers, exercises, a self test",
+    "audience": "the course's university students, and self-learners starting from zero",
+    "words": [
+      "ידידותי",
+      "קצר וקולע",
+      "בגובה העיניים"
+    ],
+    "x_words_en": [
+      "friendly",
+      "short and to the point",
+      "at eye level"
+    ],
+    "never_looks_like": "a form, a paper or a machine, or generic AI imagery (glowing network constellations, floating isometric servers)",
+    "voice": {
+      "profile_he": "voice/voice-profile.md",
+      "profile_en": "voice/voice-profile-en.md",
+      "check": "voice/scripts/voice_check.py",
+      "approved": "2026-09-30"
+    }
+  },
+  "color": {
+    "bg": "#F7F2EC",
+    "surface": "#FDFBF8",
+    "soft": "#E7F2F4",
+    "ink": "#373C44",
+    "text": "#373C44",
+    "muted": "#5F6670",
+    "border": "#DDD7CF",
+    "accent": "#20778A",
+    "accent_strong": "not defined",
+    "accent_2": "#C3401B",
+    "accent_3": "#AD551B",
+    "accent_4": "#89682F",
+    "accent_5": "#3F7392",
+    "x_accent_note": "accent = the neon at its text tier (safe for type, 4.64 on bg, 5.00 on surface). The neon soft #5CC3D9 and line #2999B1 live in x_hues.neon. accent_2..5 = coral, apricot, sun, sky at text tier. Five hues (one primary plus four secondary) are an approved owner decision.",
+    "accents_extended": [
+      {
+        "name": "neon soft",
+        "hex": "#5CC3D9",
+        "role": "charts and SVG fills only: decoration, chart fills, tints, glow; never text or thin lines on light canvases"
+      },
+      {
+        "name": "coral soft",
+        "hex": "#FD977A",
+        "role": "charts and SVG fills only: decoration, chart fills, tints, glow; never text or thin lines on light canvases"
+      },
+      {
+        "name": "apricot soft",
+        "hex": "#FAA670",
+        "role": "charts and SVG fills only: decoration, chart fills, tints, glow; never text or thin lines on light canvases"
+      },
+      {
+        "name": "sun soft",
+        "hex": "#E6C792",
+        "role": "charts and SVG fills only: decoration, chart fills, tints, glow; never text or thin lines on light canvases"
+      },
+      {
+        "name": "sky soft",
+        "hex": "#8CBDDA",
+        "role": "charts and SVG fills only: decoration, chart fills, tints, glow; never text or thin lines on light canvases"
+      }
+    ],
+    "depth": "not defined",
+    "x_depth_note": "The shadow model is none, so there is no shadow color. Glow colors are the soft tier (x_glow).",
+    "success": "#276B43",
+    "warning": "#966212",
+    "danger": "#B23A2E",
+    "x_status_note": "success = state correct, warning = state note, danger = state wrong (error, delete, forbidden). Full set with tints in x_states. Reserved for marking, never decoration.",
+    "canvases": [
+      "bg",
+      "surface",
+      "soft",
+      "washes (x_washes, six)",
+      "white (print only)"
+    ],
+    "ratios": {
+      "bg": 0.43,
+      "surface": 0.01,
+      "ink": 0.07,
+      "accent": 0.01,
+      "x_soft": 0.27,
+      "x_neutral_structure": 0.18,
+      "x_wash_ends": 0.03
+    },
+    "x_ratios_note": "Approximate, from a nearest-role pixel classification of source/reference.jpg: ink includes muted and antialiasing; accent is all five brand hues together; neutral structure is fill 11%, rule 4%, grid 4%. Color is about 1% of the reference.",
+    "accent_rule": "Color only where it means something. Neon marks the result, the selected row, focus and the one value that matters; warm hues mark the source; sun is the middle stage. A diagram line is one quiet color and changes only for a reason (the segment that reaches the result). The flow gradient lives in bands, washes and the progress ring, never on every line or bar. Brand hues never mean a state; states never decorate.",
+    "forbidden_pairs": [
+      {
+        "fg": "soft tier (any hue)",
+        "bg": "bg, surface, any light canvas",
+        "why": "1.46-1.98:1; the soft tier is for fills, tints and glow, never text or thin lines in light"
+      },
+      {
+        "fg": "line tier (any hue)",
+        "bg": "soft #E7F2F4, every wash end, neutral tint #ECE8E3",
+        "why": "2.93-2.95:1; charts sit on bg or surface; on a wash, strokes use the text tier (4.06 or more)"
+      },
+      {
+        "fg": "text tier (any hue)",
+        "bg": "wash ends #F8E0D5 #F8E1D1 #F2E6D3 #DCEAE8, result header #CDEAEF",
+        "why": "4.08-4.21:1; text on washes is ink or muted, the result header carries ink only"
+      },
+      {
+        "fg": "neon text #20778A",
+        "bg": "selected tint #E3F2F3",
+        "why": "4.49:1; text on a selected row is always ink"
+      },
+      {
+        "fg": "muted #9AA4AE (dark)",
+        "bg": "result header #2C515C (dark)",
+        "why": "3.40:1; the result header carries ink only"
+      },
+      {
+        "fg": "muted #5F6670 / #9AA4AE (NULL label)",
+        "bg": "hatch line #E1E0DF / #394047",
+        "why": "4.40 / 4.15:1; the hatch stops under the label (knock-out)"
+      },
+      {
+        "fg": "quiet bar #DDDCDB / #3D444B",
+        "bg": "bg #F7F2EC / #11161B",
+        "why": "1.23 / 1.84:1; every quiet bar gets a 1.5px muted top line (5.21 / 7.19) or a printed value"
+      },
+      {
+        "fg": "light line or text tier",
+        "bg": "any dark canvas",
+        "why": "in dark every tier is the soft tier"
+      },
+      {
+        "fg": "light logo blue #2999B1",
+        "bg": "soft #E7F2F4 or a wash",
+        "why": "below 3:1 (2.93); the light logo sits on bg, surface or white"
+      },
+      {
+        "fg": "rule #DDD7CF, grid #EDE9E4, hatch #E1E0DF, fill #DBD7D4 (and dark)",
+        "bg": "bg, surface",
+        "why": "1.02-1.57:1 by design; decorative structure, never the only carrier of meaning"
+      }
+    ],
+    "contrast": [
+      {
+        "fg": "ink #373C44",
+        "bg": "bg #F7F2EC",
+        "ratio": 9.97,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on bg"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "surface #FDFBF8",
+        "ratio": 10.74,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on surface"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "soft #E7F2F4",
+        "ratio": 9.73,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on soft"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 9.73,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_sky"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 8.78,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_coral"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "w-apricot #F8E1D1",
+        "ratio": 8.82,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_apricot"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "w-sun #F2E6D3",
+        "ratio": 9.0,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_sun"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "w-cool #DCEAE8",
+        "ratio": 8.97,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_cool"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "neutral-s #ECE8E3",
+        "ratio": 9.1,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on neutral_s"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "res-head #CDEAEF",
+        "ratio": 8.78,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on res_head"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "sel-s #E3F2F3",
+        "ratio": 9.65,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on sel_s"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "good-s #DCEFE3",
+        "ratio": 9.25,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on good_s"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "note-s #FFF1D6",
+        "ratio": 9.94,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on note_s"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "bad-s #FBE3E0",
+        "ratio": 9.07,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on bad_s"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "bg #F7F2EC",
+        "ratio": 5.21,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on bg"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "surface #FDFBF8",
+        "ratio": 5.61,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on surface"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "soft #E7F2F4",
+        "ratio": 5.08,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on soft"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 5.08,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_sky"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 4.59,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_coral"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "w-apricot #F8E1D1",
+        "ratio": 4.61,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_apricot"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "w-sun #F2E6D3",
+        "ratio": 4.7,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_sun"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "w-cool #DCEAE8",
+        "ratio": 4.69,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_cool"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "neutral-s #ECE8E3",
+        "ratio": 4.76,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on neutral_s"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "res-head #CDEAEF",
+        "ratio": 4.59,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on res_head"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "sel-s #E3F2F3",
+        "ratio": 5.04,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on sel_s"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "good-s #DCEFE3",
+        "ratio": 4.83,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on good_s"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "note-s #FFF1D6",
+        "ratio": 5.19,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on note_s"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "bad-s #FBE3E0",
+        "ratio": 4.74,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on bad_s"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "hatch #E1E0DF",
+        "ratio": 4.4,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "NULL label if it crossed a hatch line (forbidden: knock-out)"
+      },
+      {
+        "fg": "bg #F7F2EC",
+        "bg": "ink #373C44",
+        "ratio": 9.97,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "inverse (pressed toggle)"
+      },
+      {
+        "fg": "good #276B43",
+        "bg": "good-s #DCEFE3",
+        "ratio": 5.35,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "good #276B43",
+        "bg": "surface #FDFBF8",
+        "ratio": 6.22,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "good #276B43",
+        "bg": "bg #F7F2EC",
+        "ratio": 5.77,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "note #966212",
+        "bg": "note-s #FFF1D6",
+        "ratio": 4.64,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "note #966212",
+        "bg": "surface #FDFBF8",
+        "ratio": 5.02,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "note #966212",
+        "bg": "bg #F7F2EC",
+        "ratio": 4.66,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "bad #B23A2E",
+        "bg": "bad-s #FBE3E0",
+        "ratio": 4.85,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "bad #B23A2E",
+        "bg": "surface #FDFBF8",
+        "ratio": 5.75,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "bad #B23A2E",
+        "bg": "bg #F7F2EC",
+        "ratio": 5.33,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "neutral #5F6670",
+        "bg": "neutral-s #ECE8E3",
+        "ratio": 4.76,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "neutral #5F6670",
+        "bg": "surface #FDFBF8",
+        "ratio": 5.61,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "neutral #5F6670",
+        "bg": "bg #F7F2EC",
+        "ratio": 5.21,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "sel-s #E3F2F3",
+        "ratio": 4.49,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "neon text on selected tint (forbidden: ink only)"
+      },
+      {
+        "fg": "coral-t #C3401B",
+        "bg": "bg #F7F2EC",
+        "ratio": 4.64,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "coral text tier on bg"
+      },
+      {
+        "fg": "coral-t #C3401B",
+        "bg": "surface #FDFBF8",
+        "ratio": 5.0,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "coral text tier on surface"
+      },
+      {
+        "fg": "apricot-t #AD551B",
+        "bg": "bg #F7F2EC",
+        "ratio": 4.61,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier on bg"
+      },
+      {
+        "fg": "apricot-t #AD551B",
+        "bg": "surface #FDFBF8",
+        "ratio": 4.97,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier on surface"
+      },
+      {
+        "fg": "sun-t #89682F",
+        "bg": "bg #F7F2EC",
+        "ratio": 4.62,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sun text tier on bg"
+      },
+      {
+        "fg": "sun-t #89682F",
+        "bg": "surface #FDFBF8",
+        "ratio": 4.98,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sun text tier on surface"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "bg #F7F2EC",
+        "ratio": 4.64,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "neon text tier on bg"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "surface #FDFBF8",
+        "ratio": 5.0,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "neon text tier on surface"
+      },
+      {
+        "fg": "sky-t #3F7392",
+        "bg": "bg #F7F2EC",
+        "ratio": 4.63,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sky text tier on bg"
+      },
+      {
+        "fg": "sky-t #3F7392",
+        "bg": "surface #FDFBF8",
+        "ratio": 4.98,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sky text tier on surface"
+      },
+      {
+        "fg": "coral-t #C3401B",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 4.08,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "coral text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "apricot-t #AD551B",
+        "bg": "w-apricot #F8E1D1",
+        "ratio": 4.08,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "apricot text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "sun-t #89682F",
+        "bg": "w-sun #F2E6D3",
+        "ratio": 4.17,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "sun text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "w-cool #DCEAE8",
+        "ratio": 4.17,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "neon text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "sky-t #3F7392",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 4.51,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sky text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "res-head #CDEAEF",
+        "ratio": 4.08,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "neon text on result header (forbidden)"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "band-coral #FDCEBF",
+        "ratio": 7.8,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "band-apricot #FCD5BB",
+        "ratio": 8.12,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "band-sun #F3E4CA",
+        "ratio": 8.86,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "band-res #ACDFE8",
+        "ratio": 7.65,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "cta-text #FDFBF8",
+        "bg": "cta #20778A",
+        "ratio": 5.0,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "filled CTA (email, web)"
+      },
+      {
+        "fg": "coral-l #E56541",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.01,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral line tier on bg"
+      },
+      {
+        "fg": "coral-l #E56541",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.24,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral line tier on surface"
+      },
+      {
+        "fg": "coral-l #E56541",
+        "bg": "soft #E7F2F4",
+        "ratio": 2.94,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "coral line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "coral-t #C3401B",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 4.52,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "coral-t #C3401B",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 4.08,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "apricot-l #DD6D25",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.0,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot line tier on bg"
+      },
+      {
+        "fg": "apricot-l #DD6D25",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.23,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot line tier on surface"
+      },
+      {
+        "fg": "apricot-l #DD6D25",
+        "bg": "soft #E7F2F4",
+        "ratio": 2.93,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "apricot line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "apricot-t #AD551B",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 4.5,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "apricot-t #AD551B",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 4.06,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "sun-l #AF853C",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.02,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun line tier on bg"
+      },
+      {
+        "fg": "sun-l #AF853C",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.26,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun line tier on surface"
+      },
+      {
+        "fg": "sun-l #AF853C",
+        "bg": "soft #E7F2F4",
+        "ratio": 2.95,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sun line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "sun-t #89682F",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 4.51,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "sun-t #89682F",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 4.07,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "neon-l #2999B1",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.0,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon line tier on bg"
+      },
+      {
+        "fg": "neon-l #2999B1",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.23,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon line tier on surface"
+      },
+      {
+        "fg": "neon-l #2999B1",
+        "bg": "soft #E7F2F4",
+        "ratio": 2.93,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "neon line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 4.53,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 4.09,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "sky-l #5793B7",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.01,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky line tier on bg"
+      },
+      {
+        "fg": "sky-l #5793B7",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.25,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky line tier on surface"
+      },
+      {
+        "fg": "sky-l #5793B7",
+        "bg": "soft #E7F2F4",
+        "ratio": 2.94,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sky line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "sky-t #3F7392",
+        "bg": "w-sky #E7F2F4",
+        "ratio": 4.51,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "sky-t #3F7392",
+        "bg": "w-coral #F8E0D5",
+        "ratio": 4.07,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "note-l #C07D16",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.05,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "note line on bg"
+      },
+      {
+        "fg": "note-l #C07D16",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.29,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "note line on surface"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "bg #F7F2EC",
+        "ratio": 5.21,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet data line on bg"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "surface #FDFBF8",
+        "ratio": 5.61,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet data line on surface"
+      },
+      {
+        "fg": "neon-l #2999B1",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.23,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "focus ring, result outline"
+      },
+      {
+        "fg": "neon-l #2999B1",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.0,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "focus ring on bg"
+      },
+      {
+        "fg": "logo-blue #2999B1",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.0,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "logo neon parts on bg"
+      },
+      {
+        "fg": "logo-blue #2999B1",
+        "bg": "surface #FDFBF8",
+        "ratio": 3.23,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "logo neon parts on surface"
+      },
+      {
+        "fg": "logo-blue #2999B1",
+        "bg": "white #FFFFFF",
+        "ratio": 3.34,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "logo neon on white paper"
+      },
+      {
+        "fg": "ink #373C44",
+        "bg": "white #FFFFFF",
+        "ratio": 11.1,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on white paper (print)"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "white #FFFFFF",
+        "ratio": 5.8,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on white paper (print)"
+      },
+      {
+        "fg": "neon-t #20778A",
+        "bg": "white #FFFFFF",
+        "ratio": 5.16,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "neon text tier on white paper"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "bar #DDDCDB",
+        "ratio": 4.23,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet bar top line (fix 4) vs bar"
+      },
+      {
+        "fg": "muted #5F6670",
+        "bg": "bg #F7F2EC",
+        "ratio": 5.21,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet bar top line (fix 4) vs bg"
+      },
+      {
+        "fg": "bar #DDDCDB",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.23,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "quiet bar on bg (decorative; needs top line or value)"
+      },
+      {
+        "fg": "neon-l #2999B1",
+        "bg": "bar #DDDCDB",
+        "ratio": 2.44,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "highlighted bar vs quiet bar"
+      },
+      {
+        "fg": "seq22 #CCDEE0",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.25,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq38 #A9C9CE",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.58,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq54 #86B4BD",
+        "bg": "bg #F7F2EC",
+        "ratio": 2.03,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq70 #629FAB",
+        "bg": "bg #F7F2EC",
+        "ratio": 2.67,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq86 #3F8999",
+        "bg": "bg #F7F2EC",
+        "ratio": 3.59,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq100 #20778A",
+        "bg": "bg #F7F2EC",
+        "ratio": 4.64,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "neon-l #2999B1",
+        "bg": "seq22 #CCDEE0",
+        "ratio": 2.4,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sequence outline vs lightest step"
+      },
+      {
+        "fg": "apricot #FAA670",
+        "bg": "surface #FDFBF8",
+        "ratio": 1.89,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "progress arc soft stop (fix 6: ink percentage)"
+      },
+      {
+        "fg": "sun #E6C792",
+        "bg": "surface #FDFBF8",
+        "ratio": 1.57,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "progress arc soft stop (fix 6: ink percentage)"
+      },
+      {
+        "fg": "neon #5CC3D9",
+        "bg": "surface #FDFBF8",
+        "ratio": 1.98,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "progress arc soft stop (fix 6: ink percentage)"
+      },
+      {
+        "fg": "coral #FD977A",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.91,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "apricot #FAA670",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.75,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "sun #E6C792",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.46,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "neon #5CC3D9",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.84,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "sky #8CBDDA",
+        "bg": "bg #F7F2EC",
+        "ratio": 1.81,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "border #DDD7CF",
+        "bg": "surface #FDFBF8",
+        "ratio": 1.38,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      },
+      {
+        "fg": "grid #EDE9E4",
+        "bg": "surface #FDFBF8",
+        "ratio": 1.17,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      },
+      {
+        "fg": "hatch #E1E0DF",
+        "bg": "surface #FDFBF8",
+        "ratio": 1.28,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      },
+      {
+        "fg": "fill #DBD7D4",
+        "bg": "surface #FDFBF8",
+        "ratio": 1.38,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      }
+    ]
+  },
+  "typography": {
+    "heading": {
+      "family": "Rubik",
+      "weights": [
+        800,
+        900
+      ],
+      "case": "sentence",
+      "x_note": "800 for every heading, big number and title; 900 only for the wordmark (outlined in logo/). Line height 1.12."
+    },
+    "body": {
+      "family": "Heebo",
+      "weight": 400,
+      "x_weights": {
+        "400": "body",
+        "500": "buttons, toggles, table header text, Hebrew kickers, small UI",
+        "700": "strong"
+      }
+    },
+    "mono": {
+      "family": "IBM Plex Mono",
+      "rule": "labels and code",
+      "x_rule_detail": "code, data and labels (tables, expressions, eyebrows, captions, legends); Latin only, no Hebrew inside mono; always an LTR island",
+      "x_weights": {
+        "400": "tables, data, legends, captions",
+        "500": "eyebrows, table captions, the expression chip"
+      }
+    },
+    "x_fallback": {
+      "family": "Noto Sans Math",
+      "weight": 400,
+      "rule": "operator fallback in every stack: sigma, join, union, intersection, logical and, rho (missing from Rubik, Heebo, IBM Plex Mono); in graphics operators and marks are drawn as geometry"
+    },
+    "x_stacks": {
+      "head": "'Rubik','Noto Sans Math',system-ui,sans-serif",
+      "body": "'Heebo','Noto Sans Math',system-ui,sans-serif",
+      "mono": "'IBM Plex Mono','Noto Sans Math',ui-monospace,monospace"
+    },
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Rubik:wght@800;900&family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Math&display=swap",
+    "scale": [
+      13,
+      15,
+      18,
+      19,
+      23,
+      27,
+      29,
+      38,
+      61
+    ],
+    "x_scale_note": "Web px at an 18px root (the board rem values at the approved body floor): eyebrow .72rem, table .82rem, body 1rem, lede 1.08rem, small heading 1.3rem, h2 1.5rem, lesson heading 1.6rem, h1 clamp(2.1rem,4.8vw,3.4rem).",
+    "ratio": 1.25,
+    "floors": {
+      "slide": 26,
+      "slide_absolute": 24,
+      "web": 18,
+      "print_pt": 11,
+      "post_headline": 48,
+      "caption": 14,
+      "x_mono_label_web": 12,
+      "x_email_body": 16
+    },
+    "letter_spacing": "Headings -0.01em (also on Hebrew headings, as on the board); body 0. Latin mono eyebrows uppercase +0.14em, Latin table captions uppercase +0.12em. Hebrew is never uppercased and never gets positive letter-spacing.",
+    "hebrew": {
+      "supported": true,
+      "notes": "Rubik and Heebo carry Hebrew; IBM Plex Mono has none (rule: no Hebrew in mono). Numbers, Latin terms, SQL, table and column names sit in LTR islands. A Hebrew sentence never puts a number, a colon and inline code side by side (bidi flips them)."
+    }
+  },
+  "tokens": {
+    "spacing": {
+      "base": 4,
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    "radius": {
+      "sm": 0,
+      "md": 0,
+      "lg": 0,
+      "xl": 0,
+      "pill": 999,
+      "x_note": "Square corners everywhere; the pill only for a segmented theme toggle. Round line caps only on the progress arc and schema-map row stubs."
+    },
+    "border": {
+      "width_px": 1,
+      "style": "solid",
+      "color": "border",
+      "x_more": "Rule cards: 3px inline-start bar in the neon line tier #2999B1 or the apricot line tier #DD6D25. Result table: 1px neon line outline. Diagram strokes: quiet 1.5, active 2.5, leader 1."
+    },
+    "shadow": {
+      "model": "none",
+      "values": {
+        "1": "none",
+        "2": "none",
+        "3": "none",
+        "4": "none"
+      },
+      "color": "not defined",
+      "x_model_statement": "flat: no shadows; glow only on data points, active lines and progress, off in print (x_glow)"
+    },
+    "motion": {
+      "character": "Restrained: color and background transitions .3s on theme change; no idle motion; the glow is static. The logo has its own motion (logo.x_motion).",
+      "ease": "not defined",
+      "idle": false,
+      "reduced_motion": true
+    },
+    "texture": "none"
+  },
+  "motifs": [
+    {
+      "name": "quiet-grid",
+      "description": "A square grid at 5% ink (#EDE9E4), no numbers, no coordinates; always lighter than the table rule #DDD7CF; gives order without being seen.",
+      "zone": "full-bleed",
+      "scale": "l",
+      "frequency": "tiled",
+      "colors": [
+        "#EDE9E4",
+        "#DDD7CF",
+        "#FDFBF8"
+      ],
+      "kind": "css",
+      "file": "motifs/quiet-grid.svg",
+      "css": "background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px",
+      "x_dark_colors": [
+        "#1C2126",
+        "#2E3943",
+        "#182027"
+      ],
+      "x_use": "behind panels, slides and covers; never behind body text",
+      "status": "approved"
+    },
+    {
+      "name": "data-line",
+      "description": "One quiet line (muted, 1.5) with right-angle turns; only the segment that reaches the result turns neon line tier at 2.5, and its end point glows.",
+      "zone": "between-sections",
+      "scale": "m",
+      "frequency": "once",
+      "colors": [
+        "#5F6670",
+        "#2999B1",
+        "#5CC3D9",
+        "#FDFBF8"
+      ],
+      "kind": "svg",
+      "file": "motifs/data-line.svg",
+      "css": null,
+      "x_dark_colors": [
+        "#9AA4AE",
+        "#5CC3D9",
+        "#182027"
+      ],
+      "x_use": "section divider, or the explaining line inside a diagram",
+      "status": "approved"
+    },
+    {
+      "name": "annotation-leader",
+      "description": "A thin elbow line (muted, 1) from a clause to a small square end in the sky line tier; a margin note for one part of a query.",
+      "zone": "edge-rail",
+      "scale": "s",
+      "frequency": "2-3",
+      "colors": [
+        "#5F6670",
+        "#5793B7",
+        "#DDD7CF",
+        "#FDFBF8",
+        "#373C44"
+      ],
+      "kind": "svg",
+      "file": "motifs/annotation-leader.svg",
+      "css": null,
+      "x_dark_colors": [
+        "#9AA4AE",
+        "#8CBDDA",
+        "#2E3943",
+        "#182027",
+        "#E6EAEE"
+      ],
+      "status": "approved"
+    },
+    {
+      "name": "null-hatch",
+      "description": "A soft 45 degree hatch at 14% ink (#E1E0DF) in a cell with no value, always with the word NULL; the hatch stops under the word (knock-out).",
+      "zone": "badge",
+      "scale": "s",
+      "frequency": "2-3",
+      "colors": [
+        "#E1E0DF",
+        "#5F6670",
+        "#DDD7CF",
+        "#FDFBF8"
+      ],
+      "kind": "css",
+      "file": "motifs/null-hatch.svg",
+      "css": "td.null{background-image:repeating-linear-gradient(135deg,var(--hatch) 0 1px,transparent 1px 6px);color:var(--muted);font-style:italic} td.null>span{background:var(--cell-bg,var(--surface));padding:0 .25em}",
+      "x_dark_colors": [
+        "#394047",
+        "#9AA4AE",
+        "#2E3943",
+        "#182027"
+      ],
+      "x_use": "inside table cells only",
+      "status": "approved"
+    },
+    {
+      "name": "check-marks",
+      "description": "Correct, note, wrong marks on the checked row itself, each row on its state tint, marks drawn as geometry; the wrong row is struck through in muted.",
+      "zone": "badge",
+      "scale": "s",
+      "frequency": "2-3",
+      "colors": [
+        "#276B43",
+        "#DCEFE3",
+        "#966212",
+        "#FFF1D6",
+        "#B23A2E",
+        "#FBE3E0",
+        "#373C44",
+        "#5F6670",
+        "#DDD7CF"
+      ],
+      "kind": "svg",
+      "file": "motifs/check-marks.svg",
+      "css": null,
+      "x_dark_colors": [
+        "#6BD09A",
+        "#12321F",
+        "#F2B75A",
+        "#3A2B0C",
+        "#F28B7E",
+        "#3D1712",
+        "#E6EAEE",
+        "#9AA4AE",
+        "#2E3943"
+      ],
+      "x_use": "on checked rows only; state colors only",
+      "status": "approved"
+    },
+    {
+      "name": "legend-strip",
+      "description": "Named color squares under a hairline rule at the foot of an output; every square carries its name. Keying a compare chart, the squares use the line tier.",
+      "zone": "between-sections",
+      "scale": "s",
+      "frequency": "once",
+      "colors": [
+        "#DDD7CF",
+        "#FD977A",
+        "#FAA670",
+        "#E6C792",
+        "#5CC3D9",
+        "#5F6670"
+      ],
+      "kind": "svg",
+      "file": "motifs/legend-strip.svg",
+      "css": null,
+      "x_dark_colors": [
+        "#2E3943",
+        "#FD977A",
+        "#FAA670",
+        "#E6C792",
+        "#5CC3D9",
+        "#9AA4AE"
+      ],
+      "status": "approved"
+    },
+    {
+      "name": "progress-ring",
+      "description": "How much of a chapter is done: a ring, the arc a soft apricot-sun-neon gradient with the ring glow, the rest in fill gray, the percentage always printed inside in ink.",
+      "zone": "badge",
+      "scale": "m",
+      "frequency": "once",
+      "colors": [
+        "#FAA670",
+        "#E6C792",
+        "#5CC3D9",
+        "#DBD7D4",
+        "#373C44"
+      ],
+      "kind": "svg",
+      "file": "motifs/progress-ring.svg",
+      "css": null,
+      "x_dark_colors": [
+        "#FAA670",
+        "#E6C792",
+        "#5CC3D9",
+        "#2A333C",
+        "#E6EAEE"
+      ],
+      "status": "approved"
+    },
+    {
+      "name": "schema-map",
+      "description": "The big visual: tables as regions with soft header bands (.45, result .5; dark .35), relations as quiet muted routes, a join and a selection node, the result table outlined in neon with a glowing entry point.",
+      "zone": "full-bleed",
+      "scale": "l",
+      "frequency": "once",
+      "colors": [
+        "#FDFBF8",
+        "#DDD7CF",
+        "#FD977A",
+        "#FAA670",
+        "#E6C792",
+        "#5CC3D9",
+        "#2999B1",
+        "#5F6670",
+        "#DBD7D4",
+        "#E1E0DF",
+        "#5793B7",
+        "#373C44"
+      ],
+      "kind": "svg",
+      "file": "motifs/schema-map.svg",
+      "css": null,
+      "x_dark_colors": [
+        "#182027",
+        "#2E3943",
+        "#FD977A",
+        "#FAA670",
+        "#E6C792",
+        "#5CC3D9",
+        "#9AA4AE",
+        "#2A333C",
+        "#394047",
+        "#8CBDDA",
+        "#E6EAEE"
+      ],
+      "x_note": "Contains a data line, an annotation leader and a NULL hatch; counts as one motif.",
+      "status": "approved"
+    }
+  ],
+  "motif_rules": {
+    "max_per_composition": 2,
+    "law": "zones, never scattered; few big shapes; a motif used as content (the explaining diagram, NULL cells and check marks in a table, the legend that keys a chart) follows the data and does not count as decoration; the schema map counts as one motif"
+  },
+  "motif_library": {
+    "file": null,
+    "count": 0,
+    "note": "Charts are rules, not motifs (x_chart_modes); examples render in showcase.html."
+  },
+  "illustration": {
+    "used": true,
+    "technique": "flat-vector",
+    "line": {
+      "weight": "thin",
+      "color": "#5F6670",
+      "x_more": "quiet lines #5F6670 and rules #DDD7CF at 1-1.5px at 1080 wide; one active line in neon"
+    },
+    "fill": "flat",
+    "shading": "none",
+    "perspective": "flat",
+    "subjects": "The course itself as a Swiss infographic: tables and rows, primary and foreign keys, joins, relational algebra as shapes, query plans, ER notation, schema maps instead of world maps, charts, progress rings. People and characters: not defined (none in the reference).",
+    "detail": "medium",
+    "palette_order": [
+      "bg",
+      "soft",
+      "x_neutrals (fill, rule, grid)",
+      "accents_extended (soft tier: warm on the source side, cool toward the result)",
+      "neon soft #5CC3D9 for the one result element"
+    ],
+    "forbidden": [
+      "3D",
+      "photoreal",
+      "glossy highlights",
+      "node constellations and glowing network lines",
+      "floating isometric servers",
+      "holographic graphs",
+      "globes and world maps",
+      "text, letters, numbers or logos inside the image",
+      "drop shadows",
+      "green, red or amber as decoration",
+      "glow in printed images"
+    ],
+    "x_glow": "at most one small soft glow on the single result point, digital images only"
+  },
+  "photo": {
+    "used": false,
+    "subjects": "not defined",
+    "lighting": "not defined",
+    "treatment": "not defined",
+    "duotone": "not defined",
+    "crop": "not defined",
+    "overlay": "not defined",
+    "forbidden": "not defined"
+  },
+  "composition": {
+    "density": "generous",
+    "x_density_note": "Generous between sections (32-48px), compact inside data (table cells 4 by 8).",
+    "whitespace": 0.7,
+    "alignment": "right",
+    "x_alignment_note": "Hebrew outputs align right (start edge); English align left. Data islands stay LTR; data flows left to right, source to result, in both languages.",
+    "hierarchy": [
+      "size",
+      "weight",
+      "color",
+      "boxes"
+    ],
+    "structure": "Swiss modular grid: a title block at the start edge, content in hairline panels, a legend at the foot. Post 1080: mono eyebrow, Rubik 800 headline (max 15 characters per line), one big diagram on a surface panel, a foot rule with the url and a short line. A4 cover: eyebrow, headline, muted sub line, a 4px flow rule at 38% width, the schema map, a four-swatch legend band. Lesson: a panel on the quiet grid, an expression chip, the source table, a data line, the result table outlined in neon with check marks, notes with state marks, a legend.",
+    "decoration_text": "Glow never behind text. The quiet grid sits behind panels, never behind body text. An annotation leader ties a note to its clause. Motifs in zones.",
+    "habits": [
+      "Learning first: diagrams in one quiet color; only the segment reaching the result gets the accent and the glowing end point",
+      "Color only where it means something; every color is named in a legend or a label",
+      "One idea per composition",
+      "Hairline rules and square corners; no boxes inside boxes beyond panel and table",
+      "Quiet grid at 5% ink, always lighter than the table rules, no numbered coordinates; NULL hatch at 14% ink",
+      "Data islands (tables, expressions, diagrams, mono labels) LTR inside RTL",
+      "Hebrew sentences avoid a number, a colon and inline code side by side"
+    ]
+  },
+  "logo": {
+    "status": "file",
+    "files": {
+      "color": "logo/rowdyql-logo-light.svg",
+      "mono": null
+    },
+    "x_files": {
+      "light": "logo/rowdyql-logo-light.svg",
+      "dark_digital_glossy": "logo/rowdyql-logo-dark.svg",
+      "dark_flat_print": "logo/rowdyql-logo-dark-flat.svg",
+      "intro_dark": "logo/rowdyql-logo-intro-dark.svg",
+      "icon_light": "logo/rowdyql-icon-light.svg",
+      "icon_dark": "logo/rowdyql-icon-dark.svg",
+      "topbar_light": "logo/rowdyql-topbar-light.svg",
+      "topbar_dark": "logo/rowdyql-topbar-dark.svg",
+      "gif_light": "logo/rowdyql-topbar-light.gif",
+      "gif_dark": "logo/rowdyql-topbar-dark.gif"
+    },
+    "x_mono_note": "No single-color version exists: not defined.",
+    "x_concept": "\"The rowdy row\": three rounded rows of a table, the middle one kicked out (lockup translate(10,-7) rotate(-8)), with the wordmark Rowdy + QL in Rubik 900 outlines; the kicked row and QL carry the neon. Approved 2026-10-04.",
+    "x_colors": {
+      "light": {
+        "rows_and_rowdy": "#373C44",
+        "kicked_row_and_ql": "#2999B1",
+        "glow": "none"
+      },
+      "dark_digital": {
+        "rows_and_rowdy": "#E6EAEE",
+        "kicked_row_and_ql": "gloss gradient #CFF5FC, #5CC3D9, #2E9FB8 plus a 55% white highlight",
+        "glow": "drop-shadow(0 0 2.5px rgba(92,195,217,.8)) drop-shadow(0 0 9px rgba(92,195,217,.45)); Rowdy drop-shadow(0 0 4px rgba(230,234,238,.32))"
+      },
+      "dark_flat": {
+        "rows_and_rowdy": "#E6EAEE",
+        "kicked_row_and_ql": "#5CC3D9",
+        "glow": "none"
+      },
+      "note": "The gloss colors exist only inside the logo files; they are not palette colors."
+    },
+    "x_motion": {
+      "intro": "About 1.6 s, once: rows grow (.35s, 80ms stagger) and letters rise (.4s, 35ms stagger) in white; at .62s the middle row and QL ignite together in glossy neon with a bloom and the row kicks (.45s, cubic-bezier(.2,.8,.2,1.3)); a sunrise-to-sea sheen (#FD977A, #FAA670, #E6C792, #5CC3D9, #8CBDDA, white streak) sweeps Rowdy from R to y (.85s, keySplines .45 0 .25 1) and leaves it white with a soft glow. End frame = rowdyql-logo-dark.svg. Reduced motion: the end frame, no animation.",
+      "topbar": "The sheen plays once on load and again on hover or keyboard focus (beginElement() on the two animate elements, at least 1.1 s apart). Light: the sheen runs in the line tiers (#E56541, #DD6D25, #AF853C, #2999B1, #5793B7) and the letters return to ink. Reduced motion: still. Inline SVG only; suffix ids and scope styles when two copies share a page.",
+      "gif": "rowdyql-topbar-*.gif, 3.8 s loop, for email signatures, slides and social; never on the site."
+    },
+    "x_two_theme_inline": "One inline copy of rowdyql-logo-light.svg with fills var(--ink) and var(--neon-l) renders exactly the light version in light and the dark flat version in dark.",
+    "clear_space": "one row height on all sides, measured from the drawn shapes (13 units of the lockup's 96-unit-high frame, about 14% of the file height; 14 units of the icon's 100)",
+    "min_size": "lockup 28px tall on screen (file height) and 8mm in print; icon 16px (checked at 64, 32 and 16)",
+    "placement": {
+      "post": "bottom corner opposite the reading start (Hebrew: bottom-left), lockup height 6% of the short edge (65px at 1080), on the foot row with the url",
+      "email": "header cell on surface #FDFBF8, light lockup 240px wide (hosted PNG), a 1px #DDD7CF rule under it; footer name line in text",
+      "print": "header top start corner, 8-10mm tall (quiet tier 8mm), plus a footer name line",
+      "deck": "the icon as a corner mark at the physical top-left of every content slide, 5-6% of the canvas height; the full lockup on cover and closing slides",
+      "web": "top bar start edge, 32-40px tall, the top-bar SVG with its sheen; footer name line"
+    },
+    "backgrounds_allowed": [
+      "bg",
+      "surface",
+      "white (light logo)",
+      "dark bg #11161B",
+      "dark surface #182027"
+    ],
+    "forbidden": [
+      "Never redraw, re-space, recolor or approximate the logo",
+      "Never on washes, soft, a brand hue, the flow gradient or an image",
+      "No gloss or glow on the light logo or in print",
+      "Never rotate the lockup, move the kicked row, or separate QL from Rowdy",
+      "Never inside a generated image; composite the file afterwards"
+    ],
+    "name_protection": "\"RowdyQL\" is one word with capital R, Q and L, never translated, split or restyled. The person: \"Raz Elbaz\" (Hebrew: רז אלבז).",
+    "x_old_logo": {
+      "status": "replaced",
+      "note": "The old code-drawn isometric cube with a glowing lattice (src/page.html, favicon.svg, email-logo.png, og.png) is replaced by the files in logo/."
+    }
+  },
+  "mascot": {
+    "exists": false,
+    "canon": null
+  },
+  "print": {
+    "sizes": [
+      "A4"
+    ]
+  },
+  "dodont": [
+    {
+      "do": "Color only where it means something: neon #20778A / #2999B1 / #5CC3D9 for the result and the one value that matters, warm hues for the source",
+      "dont": "Coloring every line; the warm-to-cool gradient on thin lines or on every bar"
+    },
+    {
+      "do": "Diagram lines in one quiet color, muted #5F6670 (dark #9AA4AE) at 1.5; only the segment that reaches the result in neon at 2.5, with the glowing end point",
+      "dont": "Rainbow routes; a color change without a reason"
+    },
+    {
+      "do": "Glow (two-layer drop-shadow, alpha .55 light, .85 dark) only on data points, active lines and progress; off in print",
+      "dont": "Glow behind text, on panels or buttons; any drop shadow or elevation"
+    },
+    {
+      "do": "State colors only to mark: correct #276B43 on #DCEFE3, note #966212 on #FFF1D6, wrong #B23A2E on #FBE3E0, neutral #5F6670 on #ECE8E3, selected #E3F2F3 with ink text",
+      "dont": "States as decoration; a brand hue as a state (coral never means error)"
+    },
+    {
+      "do": "A one-hue wash from off-white #F7F2EC as the background",
+      "dont": "The full warm-to-cool wash unless the screen shows a source and a result"
+    },
+    {
+      "do": "Quiet grid #EDE9E4 (5% ink), always lighter than the table rule #DDD7CF; NULL hatch #E1E0DF (14% ink)",
+      "dont": "Numbered grids, coordinates, loud hatching"
+    },
+    {
+      "do": "Square corners, 1px hairline rules #DDD7CF, flat matte fills",
+      "dont": "Rounded cards, thick borders, shadows, glass or blur"
+    },
+    {
+      "do": "Brand hues by tier: soft for fills and glow, line for strokes and chart marks, text for type; dark uses the soft tier for all three",
+      "dont": "Soft tier as text or thin lines on light canvases; line tier on washes"
+    },
+    {
+      "do": "IBM Plex Mono for code, data and labels as LTR islands; operators as geometry in graphics, Noto Sans Math in live text",
+      "dont": "Hebrew in mono; uppercase or letter-spaced Hebrew; operators left to system fallback fonts"
+    },
+    {
+      "do": "The course itself as subject: tables, rows, keys, joins, relational algebra, query plans, schema maps",
+      "dont": "Glowing cyan networks, isometric server racks, holographic graphs, particle constellations, globes"
+    },
+    {
+      "do": "The logo files as they are: light flat with #2999B1, dark glossy on screen, dark flat in print",
+      "dont": "Redrawing, recoloring or approximating the logo; gloss or glow on the light logo or in print"
+    },
+    {
+      "do": "**Open on something concrete**: a number, an object, the question the student actually has. [R+W]",
+      "dont": "Don't open on a definition or an announcement. (not \"ברוכים הבאים לקורס המקיף...\")",
+      "x_source": "voice/voice-profile.md, Do 3 with its own don't (verbatim). The profile's old example was rejected by Raz on 2026-10-05 and will be replaced by an approved line"
+    },
+    {
+      "do": "**Turn with \"אבל\" or a dash, not a colon.** The dash ( - ) is Raz's natural joint between a setup and its point (13 per 1,000 words in his writing, 0 on the site today). \"אבל\" is the columnists' hinge. [R+W]\n\"כולם מדברים באותה שפה - SQL.\"",
+      "dont": "**Colons as slogan structure**: \"לומדים SQL כמו שכותבים אותו: חי, על טבלאות, עם תשובה מיד.\" (Raz rejected this one) and \"X: Y.\" explanations. The site uses 27 colons per 1,000 words, against 4 in the columns and 3 in Raz's writing. Keep colons for UI labels, before code, and before a quote.",
+      "x_source": "voice/voice-profile.md, Do 6 vs Don't 2 (verbatim)"
+    },
+    {
+      "do": "**Build, then land.** After a longer sentence, a short verdict of two to five words. This is the strongest instinct in both sources. [R+W]\nRaz: \"האדם הוא צוואר בקבוק בסיפור.\" / Walla technique: \"הוא הבוס.\" / site: \"אותו מספר עמודות, טיפוס אחר.\"",
+      "dont": "**Summary endings**: לסיכום, בשורה התחתונה, כפי שראינו, אם כך.",
+      "x_source": "voice/voice-profile.md, Do 4 vs Don't 7 (verbatim)"
+    },
+    {
+      "do": "**The site takes the joke, never the student.** Humor here is reassurance: the site pokes fun at itself, at the jargon or at the situation. [R+W]\n\"הג'יבריש שלמעלה יהיה בקרוב שפת האם שלכם.\" / \"פעם אחרונה, מבטיחים.\" (both live)",
+      "dont": "**Sarcasm or snark** at the student or anyone else. The columnists do it to celebrities. RowdyQL has no one to mock.",
+      "x_source": "voice/voice-profile.md, Do 8 vs Don't 8 (verbatim)"
+    },
+    {
+      "do": "**Cut every sentence the student wouldn't miss.** This is Raz's most repeated note. [R]",
+      "dont": "**Stating what the student already knows.** \"ההתקדמות נשמרת מכל מכשיר\" (Raz: \"זה ברור... הרי\").",
+      "x_source": "voice/voice-profile.md, Do 13 vs Don't 3 (verbatim)"
+    }
+  ],
+  "gate": [
+    "Every color on the output is a role from section 2, at the right tier for its job (soft, line, text). Yes / no.",
+    "Only the canvases listed in section 2 (bg, surface, soft, the six washes, white in print, or their dark equivalents). Yes / no.",
+    "Headings Rubik 800 (900 only in the wordmark), body Heebo, mono IBM Plex Mono for code, data and labels only, no Hebrew in mono. Yes / no.",
+    "Size floors of section 3 respected for this medium. Yes / no.",
+    "No shadows anywhere; glow only on data points, active lines and progress, off in print (the logo intro and top-bar sheen excepted). Yes / no.",
+    "Motifs from section 5 only, in zones, max 2 decorative motifs per composition. Yes / no.",
+    "Illustration follows section 6; no photos. Yes / no.",
+    "Logo untouched, the right file for the canvas, name intact (section 9). Yes / no.",
+    "Nothing from the Don't column; states only mark, brand hues never mean a state. Yes / no.",
+    "No emojis, no em-dashes, text legible at the medium's floor, every text pair at 4.5:1 and every meaningful graphic at 3:1. Yes / no.",
+    "Every text passes the quick test at the end of voice/voice-profile.md (English: voice/voice-profile-en.md), and text that goes to the site passes voice/scripts/voice_check.py. Yes / no."
+  ],
+  "assets": [
+    {
+      "file": "assets/cover-booklet.png",
+      "purpose": "Booklet cover illustration (adapters/booklet-print.md layout 1; the cover figure of templates/booklet-shell.html). Printed on A4, so no glow.",
+      "aspect": "3:2",
+      "size": "2K",
+      "prompt": "Flat vector illustration in a Swiss data design style, like a clean infographic panel: thin hairline rules in warm light gray #DDD7CF and quiet data lines in slate gray #5F6670, flat matte fills, no shadows of any kind, a perfectly flat straight-on view with no perspective, medium detail, and generous warm off-white #F7F2EC negative space.\n\nSubject: a calm data scene for a course on relational databases. On the left, three small near-white table cards with soft coral, apricot and sun header bands and short rounded gray bars for rows. Quiet thin gray right-angle routes lead from them to the right, through one small square node, into a single result table card on the right outlined in deep sea blue #2999B1, its rows tinted pale sea blue.\n\nColor palette: background warm off-white #F7F2EC; panels near-white #FDFBF8; a pale sea canvas #E7F2F4 where the result sits; structure in light warm grays #DBD7D4 and #DDD7CF; primary accent neon sea blue #5CC3D9 with its deeper line #2999B1, used only on the one result element; secondary accents used sparingly as small marks, at most two per image: coral #FD977A and apricot #FAA670 on the source side, sky blue #8CBDDA toward the result, soft sun #E6C792 only for a middle stage; outlines and dark elements slate #373C44.\n\nComposition organized in clear zones like a Swiss grid, not scattered: hairline panels, data that flows left to right from the warm source side to the cool result side, compact detail inside the panels and calm space between them; at most two large shapes; about 70% of the frame left as quiet off-white negative space; the subject anchored to one side so the other side stays empty for text that is added later. Wide 3:2 cover: the scene fills the lower two thirds; the top third stays empty off-white for the title added later; data flows left to right.\n\nMotifs, at most two: schema map: three small table cards with soft colored header bands, joined by quiet gray right-angle routes into one result table outlined in neon sea blue (the one big visual); quiet grid: a very faint square grid, barely darker than the background, with no numbers, behind the panels (full-bleed background).\n\nNo text, letters, numbers, labels or logos anywhere in the image; table rows are drawn as short rounded gray bars instead of words. Flat and matte: no 3D, no photorealism, no glossy highlights, no gradients except one soft background wash of a single hue fading from the off-white. Glow: at most one small soft glow on the single result point in digital images, and none in images meant for print. Green, red and amber never appear (they are reserved for marking answers). Friendly and professional, calm and clear, never childish, never generic stock. This image is printed: no glow at all.\n\nFormat: wide 3:2 cover illustration, set the aspect ratio to 3:2 in Gemini, 2K, PNG.\n\nAvoid: glowing network constellations, node-and-link webs, particle fields, floating isometric servers or cubes, holographic graphs, globes and world maps, 3D render, isometric perspective, photorealism, glossy or glowing tubes, lens flare, drop shadows, bevels, green, red or amber marks, people and characters, hands and fingers, text artifacts, letters, numbers, watermark, logos, gradients beyond the one background wash, decorative clutter, a second style.",
+      "status": "pending"
+    },
+    {
+      "file": "assets/hero-landing.png",
+      "purpose": "Landing hero illustration (adapters/web-page.md layout 1), digital, light theme.",
+      "aspect": "16:9",
+      "size": "2K",
+      "prompt": "Flat vector illustration in a Swiss data design style, like a clean infographic panel: thin hairline rules in warm light gray #DDD7CF and quiet data lines in slate gray #5F6670, flat matte fills, no shadows of any kind, a perfectly flat straight-on view with no perspective, medium detail, and generous warm off-white #F7F2EC negative space.\n\nSubject: a student's first look inside a database. A large near-white panel holds one source table card with a soft coral header band and short rounded gray row bars; one quiet thin gray line with right-angle turns leaves it, passes one small square filter node, and its last segment turns neon sea blue and enters a result table card outlined in sea blue; the entry point is one small dot with a soft glow.\n\nColor palette: background warm off-white #F7F2EC; panels near-white #FDFBF8; a pale sea canvas #E7F2F4 where the result sits; structure in light warm grays #DBD7D4 and #DDD7CF; primary accent neon sea blue #5CC3D9 with its deeper line #2999B1, used only on the one result element; secondary accents used sparingly as small marks, at most two per image: coral #FD977A and apricot #FAA670 on the source side, sky blue #8CBDDA toward the result, soft sun #E6C792 only for a middle stage; outlines and dark elements slate #373C44.\n\nComposition organized in clear zones like a Swiss grid, not scattered: hairline panels, data that flows left to right from the warm source side to the cool result side, compact detail inside the panels and calm space between them; at most two large shapes; about 70% of the frame left as quiet off-white negative space; the subject anchored to one side so the other side stays empty for text that is added later. Wide 16:9 banner: the scene is anchored on the left 55% of the frame; the right 45% stays empty off-white for the Hebrew headline added later.\n\nMotifs, at most two: schema map: three small table cards with soft colored header bands, joined by quiet gray right-angle routes into one result table outlined in neon sea blue (the one big visual); quiet grid: a very faint square grid, barely darker than the background, with no numbers, behind the panels (full-bleed background).\n\nNo text, letters, numbers, labels or logos anywhere in the image; table rows are drawn as short rounded gray bars instead of words. Flat and matte: no 3D, no photorealism, no glossy highlights, no gradients except one soft background wash of a single hue fading from the off-white. Glow: at most one small soft glow on the single result point in digital images, and none in images meant for print. Green, red and amber never appear (they are reserved for marking answers). Friendly and professional, calm and clear, never childish, never generic stock.\n\nFormat: wide 16:9 banner, set the aspect ratio to 16:9 in Gemini, 2K, PNG.\n\nAvoid: glowing network constellations, node-and-link webs, particle fields, floating isometric servers or cubes, holographic graphs, globes and world maps, 3D render, isometric perspective, photorealism, glossy or glowing tubes, lens flare, drop shadows, bevels, green, red or amber marks, people and characters, hands and fingers, text artifacts, letters, numbers, watermark, logos, gradients beyond the one background wash, decorative clutter, a second style.",
+      "status": "pending"
+    },
+    {
+      "file": "assets/share-bg.png",
+      "purpose": "Social share background (og image, adapters/social-post.md layout 4): the headline, the logo and the url are set in HTML on top, then exported at 1200x630.",
+      "aspect": "16:9 (crop to 1200x630)",
+      "size": "2K",
+      "prompt": "Flat vector illustration in a Swiss data design style, like a clean infographic panel: thin hairline rules in warm light gray #DDD7CF and quiet data lines in slate gray #5F6670, flat matte fills, no shadows of any kind, a perfectly flat straight-on view with no perspective, medium detail, and generous warm off-white #F7F2EC negative space.\n\nSubject: a quiet field: a very faint square grid over warm off-white, and in the left third a small group of two near-white table cards with soft warm header bands, joined by one thin quiet gray line whose last segment turns neon sea blue and ends in a small dot with a soft glow.\n\nColor palette: background warm off-white #F7F2EC; panels near-white #FDFBF8; a pale sea canvas #E7F2F4 where the result sits; structure in light warm grays #DBD7D4 and #DDD7CF; primary accent neon sea blue #5CC3D9 with its deeper line #2999B1, used only on the one result element; secondary accents used sparingly as small marks, at most two per image: coral #FD977A and apricot #FAA670 on the source side, sky blue #8CBDDA toward the result, soft sun #E6C792 only for a middle stage; outlines and dark elements slate #373C44.\n\nComposition organized in clear zones like a Swiss grid, not scattered: hairline panels, data that flows left to right from the warm source side to the cool result side, compact detail inside the panels and calm space between them; at most two large shapes; about 70% of the frame left as quiet off-white negative space; the subject anchored to one side so the other side stays empty for text that is added later. Wide 16:9, later cropped to 1200x630 from the center: the right 60% and the bottom 15% stay empty for the headline, the logo and the url added later.\n\nMotifs, at most two: quiet grid: a very faint square grid, barely darker than the background, with no numbers, behind the panels (full-bleed background); data line: one thin quiet gray line with right-angle turns; only its last segment turns neon sea blue and ends in a small dot (between zones).\n\nNo text, letters, numbers, labels or logos anywhere in the image; table rows are drawn as short rounded gray bars instead of words. Flat and matte: no 3D, no photorealism, no glossy highlights, no gradients except one soft background wash of a single hue fading from the off-white. Glow: at most one small soft glow on the single result point in digital images, and none in images meant for print. Green, red and amber never appear (they are reserved for marking answers). Friendly and professional, calm and clear, never childish, never generic stock.\n\nFormat: wide 16:9 background, set the aspect ratio to 16:9 in Gemini, 2K, PNG.\n\nAvoid: glowing network constellations, node-and-link webs, particle fields, floating isometric servers or cubes, holographic graphs, globes and world maps, 3D render, isometric perspective, photorealism, glossy or glowing tubes, lens flare, drop shadows, bevels, green, red or amber marks, people and characters, hands and fingers, text artifacts, letters, numbers, watermark, logos, gradients beyond the one background wash, decorative clutter, a second style.",
+      "status": "pending"
+    },
+    {
+      "file": "assets/email-logo-light.png",
+      "purpose": "Email header logo (templates/email-shell.html, HEADER_IMAGE_URL). Not a generator job: rendered from the approved SVG so the letters stay exact.",
+      "aspect": "423:96 (480x109)",
+      "size": "480px wide, shown at 240px",
+      "prompt": "Not a generator job (skill rule 6: never generate a logo). Render logo/rowdyql-logo-light.svg to PNG at 480px wide on a solid #FDFBF8 background (the email header cell color), for example with headless Chrome: an HTML page whose body is #FDFBF8 and holds the SVG at width 480px, screenshot at 480x109. Host it at an absolute https URL and put that URL in HEADER_IMAGE_URL.",
+      "status": "pending"
+    }
+  ],
+  "x_hues": {
+    "tiers": {
+      "soft": "decoration, chart fills, tints, glow",
+      "line": "strokes, outlines, chart marks; 3:1 on bg and surface",
+      "text": "type; 4.5:1 on bg and surface"
+    },
+    "hues": {
+      "neon": {
+        "soft": "#5CC3D9",
+        "line": "#2999B1",
+        "text": "#20778A",
+        "role": "result, selected, focus, the one value that matters, the logo",
+        "role_he": "תוצאה, נבחר",
+        "dark": {
+          "soft": "#5CC3D9",
+          "line": "#5CC3D9",
+          "text": "#5CC3D9"
+        }
+      },
+      "coral": {
+        "soft": "#FD977A",
+        "line": "#E56541",
+        "text": "#C3401B",
+        "role": "source, charts",
+        "role_he": "מקור, גרפים",
+        "dark": {
+          "soft": "#FD977A",
+          "line": "#FD977A",
+          "text": "#FD977A"
+        }
+      },
+      "apricot": {
+        "soft": "#FAA670",
+        "line": "#DD6D25",
+        "text": "#AD551B",
+        "role": "source, join",
+        "role_he": "מקור, צירוף",
+        "dark": {
+          "soft": "#FAA670",
+          "line": "#FAA670",
+          "text": "#FAA670"
+        }
+      },
+      "sun": {
+        "soft": "#E6C792",
+        "line": "#AF853C",
+        "text": "#89682F",
+        "role": "middle stage, filter",
+        "role_he": "ביניים, סינון",
+        "dark": {
+          "soft": "#E6C792",
+          "line": "#E6C792",
+          "text": "#E6C792"
+        }
+      },
+      "sky": {
+        "soft": "#8CBDDA",
+        "line": "#5793B7",
+        "text": "#3F7392",
+        "role": "result, margin notes",
+        "role_he": "תוצאה, הערות שוליים",
+        "dark": {
+          "soft": "#8CBDDA",
+          "line": "#8CBDDA",
+          "text": "#8CBDDA"
+        }
+      }
+    },
+    "x_one_blue": "The neon #5CC3D9 replaced the board aqua #72C8D7 everywhere (RUN-LOG 2026-10-04); line #2999B1 replaced #4298A7, text #20778A replaced #337681."
+  },
+  "x_flow": {
+    "css": "linear-gradient(90deg,#FD977A 0%,#FAA670 28%,#E6C792 50%,#5CC3D9 74%,#8CBDDA 100%)",
+    "meaning": "warm = source and raw data, cool = result; read left to right like a relational expression",
+    "where": "bands (the 4px rule, a legend band), backgrounds and the progress ring; never on thin lines or on every bar"
+  },
+  "x_states": {
+    "rule": "Reserved for marking. Never decoration. Brand hues never mean a state.",
+    "good": {
+      "meaning": "correct answer, convention",
+      "mark": "check",
+      "text": "#276B43",
+      "tint": "#DCEFE3",
+      "dark": {
+        "text": "#6BD09A",
+        "tint": "#12321F"
+      }
+    },
+    "note": {
+      "meaning": "note, attention",
+      "mark": "!",
+      "text": "#966212",
+      "line": "#C07D16",
+      "tint": "#FFF1D6",
+      "dark": {
+        "text": "#F2B75A",
+        "line": "#F2B75A",
+        "tint": "#3A2B0C"
+      }
+    },
+    "bad": {
+      "meaning": "error, delete, forbidden",
+      "mark": "cross",
+      "text": "#B23A2E",
+      "tint": "#FBE3E0",
+      "dark": {
+        "text": "#F28B7E",
+        "tint": "#3D1712"
+      },
+      "row": "wrong rows: text muted, struck through in the wrong color"
+    },
+    "neutral": {
+      "meaning": "not checked, disabled",
+      "mark": "short bar (U+2013)",
+      "text": "#5F6670",
+      "tint": "#ECE8E3",
+      "dark": {
+        "text": "#9AA4AE",
+        "tint": "#232B33"
+      }
+    },
+    "selected": {
+      "meaning": "selected row, result row",
+      "mark": "dot",
+      "text": "#373C44 (ink only)",
+      "line": "#2999B1",
+      "tint": "#E3F2F3",
+      "tint_css": "color-mix(in srgb,#5CC3D9 16%,#FDFBF8)",
+      "dark": {
+        "text": "#E6EAEE (ink only)",
+        "line": "#5CC3D9",
+        "tint": "#233A43"
+      },
+      "note": "Text on a selected row is always ink: the neon text tier is 4.49 there."
+    }
+  },
+  "x_neutrals": {
+    "bg_cool": {
+      "light": "#E7F2F4",
+      "dark": "#0F1A20",
+      "role": "soft canvas, the end of the sky wash"
+    },
+    "rule": {
+      "light": "#DDD7CF",
+      "dark": "#2E3943",
+      "role": "table and panel outlines"
+    },
+    "grid": {
+      "light": "#EDE9E4",
+      "dark": "#1C2126",
+      "role": "quiet background grid, ink at 5%, always lighter than rule"
+    },
+    "hatch": {
+      "light": "#E1E0DF",
+      "dark": "#394047",
+      "role": "NULL hatch, ink at 14%"
+    },
+    "fill": {
+      "light": "#DBD7D4",
+      "dark": "#2A333C",
+      "role": "progress ring track, schema-map row stubs"
+    },
+    "bar": {
+      "light": "#DDDCDB",
+      "dark": "#3D444B",
+      "role": "quiet bars in highlight mode"
+    }
+  },
+  "x_tables": {
+    "source_header": {
+      "light": "#ECE8E3",
+      "dark": "#232B33"
+    },
+    "result_header": {
+      "light": "#CDEAEF",
+      "dark": "#2C515C",
+      "css": "color-mix(in srgb,#5CC3D9 30%,surface)",
+      "note": "derived from the board recipe with the neon; ink only"
+    },
+    "result_outline": {
+      "light": "#2999B1",
+      "dark": "#5CC3D9",
+      "width": "1px"
+    },
+    "selected_row": {
+      "light": "#E3F2F3",
+      "dark": "#233A43",
+      "text": "ink"
+    },
+    "cells": "1px rule, square, IBM Plex Mono .82rem, padding 4px 8px"
+  },
+  "x_washes": {
+    "rule": "A background is one hue fading from off-white; the full warm-to-cool wash only where a screen has a source and a result. Text on every wash is ink or muted (ink at least 8.78:1, muted at least 4.59:1 light; 11.00 / 5.25 dark).",
+    "list": [
+      {
+        "name": "wash-sky",
+        "light": "linear-gradient(90deg,#F7F2EC 0%,#E7F2F4 100%)",
+        "dark": "linear-gradient(90deg,#11161B 0%,#25313A 100%)",
+        "use": "default one-hue wash, cool"
+      },
+      {
+        "name": "wash-coral",
+        "light": "linear-gradient(90deg,#F7F2EC 0%,#F8E0D5 100%)",
+        "dark": "linear-gradient(90deg,#11161B 0%,#322828 100%)",
+        "use": "warm"
+      },
+      {
+        "name": "wash-apricot",
+        "light": "linear-gradient(90deg,#F7F2EC 0%,#F8E1D1 100%)",
+        "dark": "linear-gradient(90deg,#11161B 0%,#322A27 100%)",
+        "use": "warm"
+      },
+      {
+        "name": "wash-sun",
+        "light": "linear-gradient(90deg,#F7F2EC 0%,#F2E6D3 100%)",
+        "dark": "linear-gradient(90deg,#11161B 0%,#2F2F2C 100%)",
+        "use": "middle"
+      },
+      {
+        "name": "wash-cool",
+        "light": "linear-gradient(90deg,#F7F2EC 0%,#DCEAE8 100%)",
+        "dark": "linear-gradient(90deg,#11161B 0%,#1F2F35 100%)",
+        "use": "cool; the board sea wash (end #DCEAE8), kept as approved and renamed"
+      },
+      {
+        "name": "wash-flow",
+        "light": "linear-gradient(90deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%)",
+        "dark": "linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%)",
+        "use": "only when the screen has a source and a result"
+      }
+    ],
+    "x_not_carried": "The board's near-neutral --wash (its post background, line 28) is not one of the six approved recipes."
+  },
+  "x_glow": {
+    "statement": "flat: no shadows; glow only on data points, active lines and progress, off in print",
+    "alpha": {
+      "light": 0.55,
+      "dark": 0.85
+    },
+    "css_point": "filter:drop-shadow(0 0 2px rgba(92,195,217,A)) drop-shadow(0 0 7px rgba(92,195,217,A*.7))",
+    "css_ring": "filter:drop-shadow(0 0 3px rgba(92,195,217,A*.9)) drop-shadow(0 0 10px rgba(250,166,112,A*.55))",
+    "colors_rgb": {
+      "neon": "92,195,217",
+      "coral": "253,151,122",
+      "apricot": "250,166,112",
+      "sky": "140,189,218"
+    },
+    "print": "@media print{ filter:none }",
+    "rules": [
+      "only on a data point, an active line or progress",
+      "small radius (2px and 7px; ring 3px and 10px)",
+      "never behind text",
+      "stronger in dark (.85)",
+      "off in print"
+    ],
+    "exception": "The logo intro and the top-bar sheen may be glossy (digital, dark only)."
+  },
+  "x_chart_modes": {
+    "rule": "Choose the mode by the question the chart answers. Charts sit on bg or surface, never on a wash. Never force the warm-to-cool flow into a chart.",
+    "highlight": {
+      "when": "one or a few values matter",
+      "how": "quiet bars #DDDCDB / #3D444B, each with a 1.5px muted top line or a printed value; the important ones in neon line #2999B1 / #5CC3D9 with their value in neon text #20778A / #5CC3D9 and a glowing cap; muted baseline"
+    },
+    "compare": {
+      "when": "every category matters equally",
+      "how": "each category its own brand hue at line tier (light) or soft (dark), up to five; a legend below in the same line tier with names; no glow"
+    },
+    "sequence": {
+      "when": "values ordered small to large",
+      "how": "one hue darkening with the value: color-mix(in srgb,#20778A p%,surface) at 22/38/54/70/86/100; a 1px neon line-tier outline on every bar",
+      "light": [
+        "#CCDEE0",
+        "#A9C9CE",
+        "#86B4BD",
+        "#629FAB",
+        "#3F8999",
+        "#20778A"
+      ],
+      "dark": [
+        "#27444E",
+        "#325E6B",
+        "#3D7887",
+        "#4892A4",
+        "#52ACC0",
+        "#5CC3D9"
+      ]
+    }
+  },
+  "x_rules": [
+    {
+      "name": "learning first",
+      "rule": "A diagram must read first. Lines are one quiet color; color changes only with a real reason (the segment that reaches the result gets the accent and the glowing end point). The concept is never forced."
+    },
+    {
+      "name": "glow on data only",
+      "rule": "Around a data point, an active line or progress. Never behind text; off in print; stronger in dark."
+    },
+    {
+      "name": "the gradient means something",
+      "rule": "Warm is the source, cool is the result. It lives in bands, backgrounds and the ring, not in every line and bar."
+    },
+    {
+      "name": "states are reserved",
+      "rule": "Green correct, amber note, red wrong or forbidden, blue selected. Never decoration; brand hues never mean a state."
+    },
+    {
+      "name": "one-hue background",
+      "rule": "The default background is one hue fading to off-white. Sunrise and sea together only when the screen has a source and a result."
+    },
+    {
+      "name": "chart by question",
+      "rule": "Highlight when one or a few things matter; compare when all categories matter; sequence when values run small to large."
+    },
+    {
+      "name": "quiet grid",
+      "rule": "5% only, always lighter than the table rule. No numbers, no coordinates."
+    },
+    {
+      "name": "soft NULL",
+      "rule": "Hatch at 14% ink. The cell reads empty without shouting; the hatch stops under the word."
+    },
+    {
+      "name": "bidi",
+      "rule": "Hebrew sentences avoid a number, a colon and inline code side by side."
+    }
+  ],
+  "x_dark": {
+    "selectors": "@media (prefers-color-scheme:dark){:root:not([data-theme=\"light\"])} and :root[data-theme=\"dark\"]",
+    "bg": "#11161B",
+    "surface": "#182027",
+    "soft": "#0F1A20",
+    "ink": "#E6EAEE",
+    "text": "#E6EAEE",
+    "muted": "#9AA4AE",
+    "border": "#2E3943",
+    "grid": "#1C2126",
+    "hatch": "#394047",
+    "fill": "#2A333C",
+    "bar": "#3D444B",
+    "accent": "#5CC3D9",
+    "accent_2": "#FD977A",
+    "accent_3": "#FAA670",
+    "accent_4": "#E6C792",
+    "accent_5": "#8CBDDA",
+    "tiers": "line and text tiers of every hue = the soft tier",
+    "success": "#6BD09A",
+    "success_tint": "#12321F",
+    "warning": "#F2B75A",
+    "warning_tint": "#3A2B0C",
+    "danger": "#F28B7E",
+    "danger_tint": "#3D1712",
+    "neutral": "#9AA4AE",
+    "neutral_tint": "#232B33",
+    "selected_tint": "#233A43",
+    "result_header": "#2C515C",
+    "schema_band_alpha": 0.35,
+    "glow_alpha": 0.85,
+    "contrast": [
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "bg #11161B",
+        "ratio": 15.05,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on bg"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "surface #182027",
+        "ratio": 13.63,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on surface"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "soft #0F1A20",
+        "ratio": 14.61,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on soft"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "w-sky #25313A",
+        "ratio": 11.0,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_sky"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "w-coral #322828",
+        "ratio": 11.82,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_coral"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "w-apricot #322A27",
+        "ratio": 11.61,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_apricot"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "w-sun #2F2F2C",
+        "ratio": 11.11,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_sun"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "w-cool #1F2F35",
+        "ratio": 11.45,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on w_cool"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "neutral-s #232B33",
+        "ratio": 11.86,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on neutral_s"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "res-head #2C515C",
+        "ratio": 7.12,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on res_head"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "sel-s #233A43",
+        "ratio": 9.88,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on sel_s"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "good-s #12321F",
+        "ratio": 11.57,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on good_s"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "note-s #3A2B0C",
+        "ratio": 11.35,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on note_s"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "bad-s #3D1712",
+        "ratio": 13.06,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "ink on bad_s"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "bg #11161B",
+        "ratio": 7.19,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on bg"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "surface #182027",
+        "ratio": 6.51,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on surface"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "soft #0F1A20",
+        "ratio": 6.98,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on soft"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "w-sky #25313A",
+        "ratio": 5.25,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_sky"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "w-coral #322828",
+        "ratio": 5.64,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_coral"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "w-apricot #322A27",
+        "ratio": 5.54,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_apricot"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "w-sun #2F2F2C",
+        "ratio": 5.3,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_sun"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "w-cool #1F2F35",
+        "ratio": 5.47,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on w_cool"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "neutral-s #232B33",
+        "ratio": 5.66,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on neutral_s"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "res-head #2C515C",
+        "ratio": 3.4,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "muted on res_head"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "sel-s #233A43",
+        "ratio": 4.72,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on sel_s"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "good-s #12321F",
+        "ratio": 5.52,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on good_s"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "note-s #3A2B0C",
+        "ratio": 5.42,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on note_s"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "bad-s #3D1712",
+        "ratio": 6.24,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "muted on bad_s"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "hatch #394047",
+        "ratio": 4.15,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "NULL label if it crossed a hatch line (forbidden: knock-out)"
+      },
+      {
+        "fg": "bg #11161B",
+        "bg": "ink #E6EAEE",
+        "ratio": 15.05,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "inverse (pressed toggle)"
+      },
+      {
+        "fg": "good #6BD09A",
+        "bg": "good-s #12321F",
+        "ratio": 7.4,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "good #6BD09A",
+        "bg": "surface #182027",
+        "ratio": 8.72,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "good #6BD09A",
+        "bg": "bg #11161B",
+        "ratio": 9.63,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "note #F2B75A",
+        "bg": "note-s #3A2B0C",
+        "ratio": 7.64,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "note #F2B75A",
+        "bg": "surface #182027",
+        "ratio": 9.18,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "note #F2B75A",
+        "bg": "bg #11161B",
+        "ratio": 10.13,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "bad #F28B7E",
+        "bg": "bad-s #3D1712",
+        "ratio": 6.6,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "bad #F28B7E",
+        "bg": "surface #182027",
+        "ratio": 6.88,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "bad #F28B7E",
+        "bg": "bg #11161B",
+        "ratio": 7.6,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "neutral #9AA4AE",
+        "bg": "neutral-s #232B33",
+        "ratio": 5.66,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on its tint"
+      },
+      {
+        "fg": "neutral #9AA4AE",
+        "bg": "surface #182027",
+        "ratio": 6.51,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on surface"
+      },
+      {
+        "fg": "neutral #9AA4AE",
+        "bg": "bg #11161B",
+        "ratio": 7.19,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "state mark on bg"
+      },
+      {
+        "fg": "neon-t #5CC3D9",
+        "bg": "sel-s #233A43",
+        "ratio": 5.84,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "neon text on selected tint (forbidden: ink only)"
+      },
+      {
+        "fg": "coral-t #FD977A",
+        "bg": "bg #11161B",
+        "ratio": 8.56,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "coral text tier on bg"
+      },
+      {
+        "fg": "coral-t #FD977A",
+        "bg": "surface #182027",
+        "ratio": 7.75,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "coral text tier on surface"
+      },
+      {
+        "fg": "apricot-t #FAA670",
+        "bg": "bg #11161B",
+        "ratio": 9.31,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier on bg"
+      },
+      {
+        "fg": "apricot-t #FAA670",
+        "bg": "surface #182027",
+        "ratio": 8.44,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier on surface"
+      },
+      {
+        "fg": "sun-t #E6C792",
+        "bg": "bg #11161B",
+        "ratio": 11.22,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sun text tier on bg"
+      },
+      {
+        "fg": "sun-t #E6C792",
+        "bg": "surface #182027",
+        "ratio": 10.16,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sun text tier on surface"
+      },
+      {
+        "fg": "neon-t #5CC3D9",
+        "bg": "bg #11161B",
+        "ratio": 8.89,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "neon text tier on bg"
+      },
+      {
+        "fg": "neon-t #5CC3D9",
+        "bg": "surface #182027",
+        "ratio": 8.05,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "neon text tier on surface"
+      },
+      {
+        "fg": "sky-t #8CBDDA",
+        "bg": "bg #11161B",
+        "ratio": 9.01,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sky text tier on bg"
+      },
+      {
+        "fg": "sky-t #8CBDDA",
+        "bg": "surface #182027",
+        "ratio": 8.16,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sky text tier on surface"
+      },
+      {
+        "fg": "coral-t #FD977A",
+        "bg": "w-coral #322828",
+        "ratio": 6.72,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "coral text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "apricot-t #FAA670",
+        "bg": "w-apricot #322A27",
+        "ratio": 7.19,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "sun-t #E6C792",
+        "bg": "w-sun #2F2F2C",
+        "ratio": 8.28,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sun text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "neon-t #5CC3D9",
+        "bg": "w-cool #1F2F35",
+        "ratio": 6.77,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "neon text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "sky-t #8CBDDA",
+        "bg": "w-sky #25313A",
+        "ratio": 6.59,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "sky text tier on its wash end (forbidden)"
+      },
+      {
+        "fg": "neon-t #5CC3D9",
+        "bg": "res-head #2C515C",
+        "ratio": 4.21,
+        "pass": false,
+        "x_kind": "text",
+        "x_verdict": "pass large text only",
+        "x_where": "neon text on result header (forbidden)"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "band-coral #684A44",
+        "ratio": 6.55,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "band-apricot #674F41",
+        "ratio": 6.27,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "band-sun #605A4C",
+        "ratio": 5.67,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "ink #E6EAEE",
+        "bg": "band-res #305965",
+        "ratio": 6.33,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "schema-map table name on header band"
+      },
+      {
+        "fg": "cta-text #11161B",
+        "bg": "cta #5CC3D9",
+        "ratio": 8.89,
+        "pass": true,
+        "x_kind": "text",
+        "x_verdict": "pass",
+        "x_where": "filled CTA (email, web)"
+      },
+      {
+        "fg": "coral-l #FD977A",
+        "bg": "bg #11161B",
+        "ratio": 8.56,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral line tier on bg"
+      },
+      {
+        "fg": "coral-l #FD977A",
+        "bg": "surface #182027",
+        "ratio": 7.75,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral line tier on surface"
+      },
+      {
+        "fg": "coral-l #FD977A",
+        "bg": "soft #0F1A20",
+        "ratio": 8.31,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "coral-t #FD977A",
+        "bg": "w-sky #25313A",
+        "ratio": 6.26,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "coral-t #FD977A",
+        "bg": "w-coral #322828",
+        "ratio": 6.72,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "coral text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "apricot-l #FAA670",
+        "bg": "bg #11161B",
+        "ratio": 9.31,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot line tier on bg"
+      },
+      {
+        "fg": "apricot-l #FAA670",
+        "bg": "surface #182027",
+        "ratio": 8.44,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot line tier on surface"
+      },
+      {
+        "fg": "apricot-l #FAA670",
+        "bg": "soft #0F1A20",
+        "ratio": 9.04,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "apricot-t #FAA670",
+        "bg": "w-sky #25313A",
+        "ratio": 6.81,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "apricot-t #FAA670",
+        "bg": "w-coral #322828",
+        "ratio": 7.32,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "apricot text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "sun-l #E6C792",
+        "bg": "bg #11161B",
+        "ratio": 11.22,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun line tier on bg"
+      },
+      {
+        "fg": "sun-l #E6C792",
+        "bg": "surface #182027",
+        "ratio": 10.16,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun line tier on surface"
+      },
+      {
+        "fg": "sun-l #E6C792",
+        "bg": "soft #0F1A20",
+        "ratio": 10.89,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "sun-t #E6C792",
+        "bg": "w-sky #25313A",
+        "ratio": 8.2,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "sun-t #E6C792",
+        "bg": "w-coral #322828",
+        "ratio": 8.81,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sun text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "neon-l #5CC3D9",
+        "bg": "bg #11161B",
+        "ratio": 8.89,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon line tier on bg"
+      },
+      {
+        "fg": "neon-l #5CC3D9",
+        "bg": "surface #182027",
+        "ratio": 8.05,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon line tier on surface"
+      },
+      {
+        "fg": "neon-l #5CC3D9",
+        "bg": "soft #0F1A20",
+        "ratio": 8.63,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "neon-t #5CC3D9",
+        "bg": "w-sky #25313A",
+        "ratio": 6.5,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "neon-t #5CC3D9",
+        "bg": "w-coral #322828",
+        "ratio": 6.98,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "neon text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "sky-l #8CBDDA",
+        "bg": "bg #11161B",
+        "ratio": 9.01,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky line tier on bg"
+      },
+      {
+        "fg": "sky-l #8CBDDA",
+        "bg": "surface #182027",
+        "ratio": 8.16,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky line tier on surface"
+      },
+      {
+        "fg": "sky-l #8CBDDA",
+        "bg": "soft #0F1A20",
+        "ratio": 8.75,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky line tier on soft (forbidden for charts)"
+      },
+      {
+        "fg": "sky-t #8CBDDA",
+        "bg": "w-sky #25313A",
+        "ratio": 6.59,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky text tier as stroke on sky wash end (fix 3)"
+      },
+      {
+        "fg": "sky-t #8CBDDA",
+        "bg": "w-coral #322828",
+        "ratio": 7.08,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sky text tier as stroke on coral wash end (fix 3)"
+      },
+      {
+        "fg": "note-l #F2B75A",
+        "bg": "bg #11161B",
+        "ratio": 10.13,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "note line on bg"
+      },
+      {
+        "fg": "note-l #F2B75A",
+        "bg": "surface #182027",
+        "ratio": 9.18,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "note line on surface"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "bg #11161B",
+        "ratio": 7.19,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet data line on bg"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "surface #182027",
+        "ratio": 6.51,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet data line on surface"
+      },
+      {
+        "fg": "neon-l #5CC3D9",
+        "bg": "surface #182027",
+        "ratio": 8.05,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "focus ring, result outline"
+      },
+      {
+        "fg": "neon-l #5CC3D9",
+        "bg": "bg #11161B",
+        "ratio": 8.89,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "focus ring on bg"
+      },
+      {
+        "fg": "logo-blue #5CC3D9",
+        "bg": "bg #11161B",
+        "ratio": 8.89,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "logo neon parts on bg"
+      },
+      {
+        "fg": "logo-blue #5CC3D9",
+        "bg": "surface #182027",
+        "ratio": 8.05,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "logo neon parts on surface"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "bar #3D444B",
+        "ratio": 3.9,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet bar top line (fix 4) vs bar"
+      },
+      {
+        "fg": "muted #9AA4AE",
+        "bg": "bg #11161B",
+        "ratio": 7.19,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "quiet bar top line (fix 4) vs bg"
+      },
+      {
+        "fg": "bar #3D444B",
+        "bg": "bg #11161B",
+        "ratio": 1.84,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "quiet bar on bg (decorative; needs top line or value)"
+      },
+      {
+        "fg": "neon-l #5CC3D9",
+        "bg": "bar #3D444B",
+        "ratio": 4.83,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "highlighted bar vs quiet bar"
+      },
+      {
+        "fg": "seq22 #27444E",
+        "bg": "bg #11161B",
+        "ratio": 1.75,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq38 #325E6B",
+        "bg": "bg #11161B",
+        "ratio": 2.55,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq54 #3D7887",
+        "bg": "bg #11161B",
+        "ratio": 3.67,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq70 #4892A4",
+        "bg": "bg #11161B",
+        "ratio": 5.13,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq86 #52ACC0",
+        "bg": "bg #11161B",
+        "ratio": 6.95,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "seq100 #5CC3D9",
+        "bg": "bg #11161B",
+        "ratio": 8.89,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sequence step on bg (fix 5: line-tier outline)"
+      },
+      {
+        "fg": "neon-l #5CC3D9",
+        "bg": "seq22 #27444E",
+        "ratio": 5.07,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "sequence outline vs lightest step"
+      },
+      {
+        "fg": "apricot #FAA670",
+        "bg": "surface #182027",
+        "ratio": 8.44,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "progress arc soft stop (fix 6: ink percentage)"
+      },
+      {
+        "fg": "sun #E6C792",
+        "bg": "surface #182027",
+        "ratio": 10.16,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "progress arc soft stop (fix 6: ink percentage)"
+      },
+      {
+        "fg": "neon #5CC3D9",
+        "bg": "surface #182027",
+        "ratio": 8.05,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "progress arc soft stop (fix 6: ink percentage)"
+      },
+      {
+        "fg": "coral #FD977A",
+        "bg": "bg #11161B",
+        "ratio": 8.56,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "apricot #FAA670",
+        "bg": "bg #11161B",
+        "ratio": 9.31,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "sun #E6C792",
+        "bg": "bg #11161B",
+        "ratio": 11.22,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "neon #5CC3D9",
+        "bg": "bg #11161B",
+        "ratio": 8.89,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "sky #8CBDDA",
+        "bg": "bg #11161B",
+        "ratio": 9.01,
+        "pass": true,
+        "x_kind": "graphic",
+        "x_verdict": "pass",
+        "x_where": "soft swatch on bg (legend carries names)"
+      },
+      {
+        "fg": "border #2E3943",
+        "bg": "surface #182027",
+        "ratio": 1.4,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      },
+      {
+        "fg": "grid #1C2126",
+        "bg": "surface #182027",
+        "ratio": 1.02,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      },
+      {
+        "fg": "hatch #394047",
+        "bg": "surface #182027",
+        "ratio": 1.57,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      },
+      {
+        "fg": "fill #2A333C",
+        "bg": "surface #182027",
+        "ratio": 1.28,
+        "pass": false,
+        "x_kind": "graphic",
+        "x_verdict": "FAIL",
+        "x_where": "decorative structure"
+      }
+    ]
+  },
+  "x_wcag_fixes_applied": [
+    "NULL label on a knock-out: no hatch under the word (motifs/null-hatch.svg, CSS recipe)",
+    "Schema-map header bands .35 in dark (--rq-band-a, --rq-band-res-a); light stays .45 / .5",
+    "Charts on bg or surface; on a wash the line tier switches to the text tier",
+    "Quiet bars get a 1.5px muted top line or a printed value",
+    "Sequence bars get a 1px neon line-tier outline",
+    "The progress ring always prints its percentage in ink",
+    "Compare-chart legends use the line tier, with names",
+    "Brand-colored text on washes or on the result header is forbidden (ink, or muted on washes)",
+    "Selected tint is the rendered color-mix value, now with the neon: #E3F2F3 / #233A43, ink text only"
+  ]
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="400" height="240" role="img" aria-labelledby="t-quiet-grid d-quiet-grid">
+<title id="t-quiet-grid">Quiet grid (גריד שקט)</title>
+<desc id="d-quiet-grid">Quiet grid: a 5% ink grid (#EDE9E4) with no numbers or coordinates, behind panels, slides and covers; always lighter than the table rule (#DDD7CF). In pages use the CSS recipe in core.md section 5 (48px cells). Source: direction-board.html lines 16, 70, 444.</desc>
+<!-- RowdyQL motif "quiet-grid", approved 2026-10-04 (Q6), emitted 2026-10-05. Colors are CSS custom properties with the rq- prefix; each fallback is the light-theme hex, and design-tokens.css maps --rq-* to the current theme (inline the SVG to get dark colors; as an img it shows the light fallbacks). The one blue is the neon: soft #5CC3D9, line #2999B1, text #20778A (dark #5CC3D9 for all). Glow is off in print. -->
+<g stroke="#EDE9E4" stroke-width="1" style="stroke:var(--rq-grid,#EDE9E4)">
+<line x1="0" y1="0" x2="0" y2="120"/>
+<line x1="25" y1="0" x2="25" y2="120"/>
+<line x1="50" y1="0" x2="50" y2="120"/>
+<line x1="75" y1="0" x2="75" y2="120"/>
+<line x1="100" y1="0" x2="100" y2="120"/>
+<line x1="125" y1="0" x2="125" y2="120"/>
+<line x1="150" y1="0" x2="150" y2="120"/>
+<line x1="175" y1="0" x2="175" y2="120"/>
+<line x1="200" y1="0" x2="200" y2="120"/>
+<line x1="0" y1="0" x2="200" y2="0"/>
+<line x1="0" y1="25" x2="200" y2="25"/>
+<line x1="0" y1="50" x2="200" y2="50"/>
+<line x1="0" y1="75" x2="200" y2="75"/>
+<line x1="0" y1="100" x2="200" y2="100"/>
+<line x1="0" y1="125" x2="200" y2="125"/>
+</g><g fill="#FDFBF8" stroke="#DDD7CF" stroke-width="1" style="fill:var(--rq-surface,#FDFBF8);stroke:var(--rq-rule,#DDD7CF)">
+<rect x="50" y="35" width="40" height="18"/>
+<rect x="90" y="35" width="40" height="18"/>
+<rect x="50" y="53" width="40" height="18"/>
+<rect x="90" y="53" width="40" height="18"/>
+<rect x="50" y="71" width="40" height="18"/>
+<rect x="90" y="71" width="40" height="18"/>
+</g>
+</svg>

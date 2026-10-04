@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}" dir="{{DIR}}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{BRAND}} - {{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{GOOGLE_FONTS_URL}}" rel="stylesheet">
+<!--
+  identity-kit booklet shell. Recycled from the Benefits T4 reading booklet (shell + hero + article)
+  and the T11 A4 print recipe. Tokens are inlined from design-tokens.css at generation time. Slots:
+  LANG, DIR, BRAND, TITLE, KICKER, HIGHLIGHT_WORD, DECK, AUTHOR, DATE, COVER_PATH, ARTICLE_HTML,
+  TAKEAWAYS_HTML, FOOTER_LINE, LOGO_SVG (inline svg or empty), MOTIF_1_SVG / MOTIF_2_SVG (inline svg or empty).
+  Print gotcha (T19): every responsive breakpoint MUST be "@media screen and", otherwise Chromium prints the mobile layout.
+-->
+<style>
+  {{DESIGN_TOKENS_CSS}}
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:var(--font-body); font-size:var(--floor-web); line-height:1.75; color:var(--text); background:var(--bg); overflow-x:hidden; }
+  :is(a,button,[tabindex]):focus-visible{ outline:var(--focus-ring); outline-offset:2px; border-radius:8px; }
+  @media (prefers-reduced-motion: reduce){ *,*::before,*::after{ transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+  .ltr{ direction:ltr; unicode-bidi:isolate; }
+
+  /* top bar */
+  .top{ position:sticky; top:0; z-index:50; background:var(--surface); border-bottom:var(--border-line); padding:12px 22px; display:flex; align-items:center; gap:14px; }
+  .brand{ display:flex; align-items:center; gap:11px; }
+  .brand__logo{ width:40px; height:40px; flex:none; display:grid; place-items:center; color:var(--accent); }
+  .brand__logo svg{ width:32px; height:32px; display:block; }
+  .brand__name{ font-family:var(--font-head); font-weight:700; font-size:19px; color:var(--ink); line-height:1; }
+  .top__title{ margin-inline-start:auto; font-family:var(--font-head); font-size:15px; color:var(--muted); }
+
+  /* reading progress */
+  .progress{ position:fixed; top:65px; inset-inline-start:0; height:4px; width:var(--p,0%); background:var(--accent); z-index:49; transition:width .1s linear; }
+
+  /* hero */
+  .hero{ max-width:860px; margin:46px auto 22px; padding:0 22px; position:relative; }
+  .hero__kicker{ display:inline-block; background:var(--surface); color:var(--accent-strong); border:var(--border-line); border-radius:var(--radius-pill); padding:6px 15px; font-family:var(--font-head); font-size:14px; font-weight:700; margin-bottom:20px; }
+  .hero__title{ font-family:var(--font-head); font-weight:700; font-size:clamp(34px,5.4vw,58px); color:var(--depth); margin:0 0 18px; line-height:1.08; }
+  .hero__title strong{ background:var(--accent-2); color:var(--ink); padding:0 12px; border-radius:var(--radius-sm); display:inline-block; box-shadow:var(--shadow-2); }
+  .hero__deck{ font-size:20px; color:var(--muted); max-width:640px; margin:0 0 18px; }
+  .hero__meta{ display:flex; gap:14px; flex-wrap:wrap; font-family:var(--font-head); font-size:14px; color:var(--muted); }
+  .hero__deco{ position:absolute; inset-inline-end:-10px; top:-20px; width:120px; height:120px; opacity:.9; pointer-events:none; }
+
+  /* cover */
+  .cover{ max-width:860px; margin:0 auto 34px; padding:0 22px; }
+  .cover img{ width:100%; aspect-ratio:3/2; object-fit:cover; border:var(--border-line); border-radius:var(--radius-lg); box-shadow:var(--shadow-3); display:block; background:var(--surface); }
+
+  /* article */
+  .article{ max-width:760px; margin:0 auto; padding:0 22px 40px; }
+  .article p{ margin:0 0 20px; }
+  .article p.lead .lead-in{ font-family:var(--font-head); font-weight:700; font-size:1.16em; color:var(--accent); }
+  .article h2{ font-family:var(--font-head); font-weight:700; font-size:clamp(26px,3.4vw,32px); color:var(--depth); margin:38px 0 14px; display:flex; align-items:center; gap:10px; }
+  .article h2::before{ content:""; width:12px; height:12px; background:var(--accent); border-radius:2px; transform:rotate(45deg); flex:none; }
+  .article h3{ font-family:var(--font-head); font-weight:600; font-size:21px; color:var(--ink); margin:30px 0 10px; }
+  .article strong{ color:var(--ink); }
+  .callout{ background:var(--surface); border:var(--border-line); border-radius:var(--radius); padding:18px 20px; margin:22px 0; }
+  .callout__title{ font-family:var(--font-head); font-weight:700; font-size:17px; margin:0 0 5px; color:var(--ink); }
+  .pullquote{ background:var(--depth); color:var(--bg); border-radius:var(--radius-lg); padding:32px 30px; margin:30px 0; box-shadow:var(--shadow-3); }
+  .pullquote p{ font-family:var(--font-head); font-weight:600; font-size:clamp(22px,3vw,30px); line-height:1.32; margin:0; color:var(--bg); }
+  .pullquote cite{ display:block; margin-top:16px; font-style:normal; font-size:14px; color:var(--accent-2); }
+  .takeaways{ max-width:760px; margin:0 auto 40px; padding:0 22px; }
+  .takeaways__card{ background:var(--surface); border:var(--border-line); border-radius:var(--radius-lg); padding:24px 26px; box-shadow:var(--shadow-2); }
+  .takeaways h3{ margin:0 0 14px; font-family:var(--font-head); font-weight:700; font-size:20px; color:var(--depth); }
+  .divider{ max-width:760px; margin:0 auto; padding:0 22px; height:40px; display:flex; align-items:center; justify-content:center; color:var(--accent); }
+  .divider svg{ height:24px; }
+
+  /* footer */
+  .foot{ border-top:var(--border-line); background:var(--surface); padding:22px; text-align:center; font-family:var(--font-head); font-size:14px; color:var(--depth); }
+  .no-print{ }
+
+  /* ======== PRINT (A4) ======== */
+  @page{ size:A4; margin:8mm 16mm; }
+  @media print{
+    body{ background:#fff; font-size:11pt; line-height:1.55; }
+    .top, .progress, .no-print{ display:none !important; }
+    .hero{ margin:0 0 6mm; padding:0; }
+    .hero__deco{ display:none; }
+    .hero__title{ font-size:24pt; }
+    .hero__title strong{ box-shadow:none; }
+    .cover{ padding:0; margin:0 0 6mm; }
+    .cover img{ box-shadow:none; border-radius:0; border-width:1px; }
+    .article, .takeaways{ padding:0; max-width:none; }
+    .article h2{ font-size:16pt; }
+    .article h3{ font-size:13pt; }
+    .callout, .pullquote, .takeaways__card{ box-shadow:none; border:1px solid var(--ink); break-inside:avoid; }
+    .pullquote{ background:#fff; color:var(--ink); }
+    .pullquote p{ color:var(--ink); }
+    .divider{ display:none; }
+    .foot{ background:#fff; border-top:1px solid var(--ink); font-size:9pt; }
+    img{ max-width:100%; }
+  }
+  /* "screen and" is REQUIRED on every breakpoint (T19 lesson). */
+  @media screen and (max-width:720px){
+    .hero__deco{ display:none; }
+    .hero__title{ font-size:32px; }
+    .top__title{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="brand__logo" aria-hidden="true">{{LOGO_SVG}}</div>
+    <div class="brand__name">{{BRAND}}</div>
+  </div>
+  <div class="top__title">{{TITLE}}</div>
+</header>
+<div class="progress" aria-hidden="true"></div>
+
+<main>
+  <header class="hero">
+    <div class="hero__deco" aria-hidden="true">{{MOTIF_1_SVG}}</div>
+    <span class="hero__kicker">{{KICKER}}</span>
+    <h1 class="hero__title">{{TITLE_WITH_HIGHLIGHT}}</h1>
+    <p class="hero__deck">{{DECK}}</p>
+    <div class="hero__meta"><span>{{AUTHOR}}</span><span class="ltr">{{DATE}}</span></div>
+  </header>
+
+  <section class="cover">
+    <img src="{{COVER_PATH}}" alt="{{TITLE}}">
+  </section>
+
+  <article class="article">
+{{ARTICLE_HTML}}
+  </article>
+
+  <div class="divider" aria-hidden="true">{{MOTIF_2_SVG}}</div>
+
+  <section class="takeaways">
+    <div class="takeaways__card">
+      <h3>{{TAKEAWAYS_TITLE}}</h3>
+{{TAKEAWAYS_HTML}}
+    </div>
+  </section>
+</main>
+
+<footer class="foot">{{FOOTER_LINE}}</footer>
+
+<script>
+  (function(){
+    var p=document.querySelector('.progress'); if(!p) return;
+    function u(){ var h=document.documentElement; var s=h.scrollTop||document.body.scrollTop; var m=h.scrollHeight-h.clientHeight; p.style.setProperty('--p',(m>0?(s/m*100):0)+'%'); }
+    window.addEventListener('scroll',u,{passive:true}); u();
+  })();
+</script>
+</body>
+</html>

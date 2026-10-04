@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--
+  identity-kit showcase template. Recycled from the brand-studio design-system showcase (structure,
+  swatches, type rows, spacing bars, shadow ramp) with the UI sections (buttons, components) removed
+  and five identity sections added: identity summary, motifs rendered, illustration style + ready
+  prompt, imagery mood, composition mocks, Do/Don't, gate. Self-contained: tokens inlined, Google
+  Fonts only, no JavaScript required. Slots are {{...}}; repeatable blocks are marked with
+  "repeat:" comments. LANG/DIR from kit.json meta.
+-->
+<html lang="{{LANG}}" dir="{{DIR}}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{BRAND}} - Identity showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{GOOGLE_FONTS_URL}}" rel="stylesheet">
+<style>
+  {{DESIGN_TOKENS_CSS}}
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:var(--font-body); color:var(--text); background:var(--bg); line-height:1.6; font-size:var(--floor-web); }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 24px; }
+  h1,h2,h3{ font-family:var(--font-head); color:var(--ink); margin:0; }
+  h1{ font-size:44px; line-height:1.1; }
+  h2{ font-size:26px; line-height:1.15; margin:0 0 18px; display:flex; align-items:center; gap:10px; }
+  h2 .n{ font-size:14px; color:var(--muted); font-weight:400; }
+  .ltr{ direction:ltr; unicode-bidi:isolate; }
+  .lead{ color:var(--muted); font-size:18px; max-width:60ch; margin:10px 0 0; }
+  .tag{ display:inline-block; font-family:var(--font-head); font-weight:700; font-size:13px; color:var(--accent-strong); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-pill); padding:6px 14px; margin-bottom:14px; }
+  section{ padding:36px 0; border-top:1px solid var(--border); }
+  .muted{ color:var(--muted); font-size:14px; }
+  code{ font-family:{{MONO_STACK_OR_INHERIT}}; font-size:13px; }
+  table{ border-collapse:collapse; width:100%; font-size:15px; }
+  th,td{ text-align:start; padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th{ font-family:var(--font-head); font-weight:700; color:var(--ink); }
+
+  /* identity */
+  .identity{ display:grid; grid-template-columns:2fr 1fr; gap:24px; }
+  .identity .words{ display:flex; gap:10px; flex-wrap:wrap; }
+  .identity .word{ font-family:var(--font-head); font-weight:700; padding:8px 16px; background:var(--accent); color:var(--bg); border-radius:var(--radius-pill); }
+  .identity .never{ border:var(--border-line); border-radius:var(--radius); padding:14px 16px; background:var(--surface); }
+
+  /* colors */
+  .swatches{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; }
+  .swatch{ border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--surface); }
+  .swatch .chip{ height:72px; }
+  .swatch .meta{ padding:10px 12px; }
+  .swatch .role{ font-weight:600; font-size:14px; font-family:var(--font-head); }
+  .swatch .hex{ direction:ltr; unicode-bidi:isolate; text-align:left; color:var(--muted); font-size:12px; }
+  .swatch .ratio{ color:var(--muted); font-size:12px; }
+
+  /* typography */
+  .type-row{ display:flex; align-items:baseline; gap:16px; padding:12px 0; border-bottom:1px dashed var(--border); }
+  .type-row:last-child{ border-bottom:0; }
+  .type-row .label{ width:170px; flex:none; color:var(--muted); font-size:13px; }
+  .t-display{ font-family:var(--font-head); font-weight:{{HEAD_WEIGHT_MAX}}; font-size:48px; line-height:1.05; }
+  .t-slide{ font-family:var(--font-head); font-weight:700; font-size:var(--floor-slide); line-height:1.2; }
+  .t-h2{ font-family:var(--font-head); font-size:32px; line-height:1.1; }
+  .t-h3{ font-family:var(--font-head); font-size:22px; line-height:1.15; }
+  .t-body{ font-size:var(--floor-web); line-height:1.6; }
+  .t-caption{ font-size:var(--floor-caption); color:var(--muted); }
+
+  /* tokens */
+  .spaces{ display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end; }
+  .space{ text-align:center; }
+  .space .bar{ background:var(--accent); border-radius:var(--radius-sm); width:28px; }
+  .space .n{ font-size:12px; color:var(--muted); margin-top:6px; direction:ltr; }
+  .radii{ display:flex; gap:18px; flex-wrap:wrap; margin-top:18px; }
+  .radius{ width:80px; height:80px; background:var(--surface); border:var(--border-line); display:grid; place-items:center; font-size:12px; color:var(--muted); }
+  .shadows{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:22px; margin-top:18px; }
+  .elev{ background:var(--surface); border-radius:var(--radius-lg); padding:22px; text-align:center; border:var(--border-line); }
+  .elev.s1{ box-shadow:var(--shadow-1); } .elev.s2{ box-shadow:var(--shadow-2); } .elev.s3{ box-shadow:var(--shadow-3); } .elev.s4{ box-shadow:var(--shadow-4); }
+
+  /* motifs */
+  .motifs{ display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; }
+  .motif{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); overflow:hidden; }
+  .motif .stage{ height:130px; display:grid; place-items:center; background:var(--bg); }
+  .motif .stage svg{ max-width:80%; max-height:80%; }
+  .motif .meta{ padding:10px 12px; font-size:13px; }
+  .motif .name{ font-family:var(--font-head); font-weight:700; }
+
+  /* imagery */
+  .imagery{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .prompt{ background:var(--surface); border:var(--border-line); border-radius:var(--radius); padding:14px 16px; font-size:14px; white-space:pre-wrap; direction:ltr; text-align:left; }
+  .asset{ aspect-ratio:3/2; border:var(--border-line); border-radius:var(--radius); background:var(--surface); display:grid; place-items:center; color:var(--muted); font-size:13px; overflow:hidden; }
+  .asset img{ width:100%; height:100%; object-fit:cover; }
+
+  /* composition mocks */
+  .mocks{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; }
+  .mock{ border:var(--border-line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow-2); overflow:hidden; position:relative; }
+  .mock .cap{ font-size:12px; color:var(--muted); padding:8px 10px; border-top:1px solid var(--border); background:var(--bg); }
+  .mock-post{ aspect-ratio:1/1; }
+  .mock-post .body{ position:absolute; inset:0; padding:12%; display:flex; flex-direction:column; justify-content:center; background:var(--bg); }
+  .mock-post .h{ font-family:var(--font-head); font-weight:700; font-size:22px; color:var(--ink); }
+  .mock-post .deco{ position:absolute; inset-inline-end:6%; bottom:6%; width:28%; color:var(--accent); }
+  .mock-email{ aspect-ratio:3/2; }
+  .mock-email .head{ height:34%; background:var(--accent-strong); border-bottom:var(--border-line); position:relative; }
+  .mock-email .head .deco{ position:absolute; inset-inline-start:6%; top:20%; width:22%; color:var(--accent-2); }
+  .mock-email .line{ height:8px; background:var(--border); border-radius:4px; margin:10px 8%; }
+  .mock-email .line.short{ width:50%; }
+  .mock-page{ aspect-ratio:1/1.414; background:#fff; }
+  .mock-page .rule{ height:2px; background:var(--accent); margin:10% 10% 4%; }
+  .mock-page .title{ font-family:var(--font-head); font-weight:700; font-size:16px; color:var(--depth); margin:0 10%; }
+  .mock-page .line{ height:6px; background:var(--border); border-radius:3px; margin:8px 10%; }
+
+  /* do / don't */
+  .dodont td:first-child{ color:var(--accent-strong); }
+  .dodont td:last-child{ color:var(--muted); }
+  .gate ol{ padding-inline-start:22px; }
+  .gate li{ margin:6px 0; }
+
+  @media (max-width:720px){ h1{ font-size:34px; } .type-row{ flex-direction:column; gap:4px; } .identity, .imagery{ grid-template-columns:1fr; } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="tag">{{STYLE_CLASSIFICATION}}</span>
+    <h1>{{BRAND}} - {{T_SHOWCASE_TITLE}}</h1>
+    <p class="lead">{{IDENTITY_ONE_LINE}}</p>
+  </header>
+
+  <section>
+    <h2><span class="n">1</span>{{T_IDENTITY}}</h2>
+    <div class="identity">
+      <div>
+        <p>{{IDENTITY_PARAGRAPH}}</p>
+        <div class="words"><span class="word">{{WORD_1}}</span><span class="word">{{WORD_2}}</span><span class="word">{{WORD_3}}</span></div>
+      </div>
+      <div class="never"><strong>{{T_NEVER}}</strong><br>{{NEVER_LOOKS_LIKE}}</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>{{T_COLORS}}</h2>
+    <div class="swatches">
+      <!-- repeat: one swatch per color role in Core 2 -->
+      <div class="swatch"><div class="chip" style="background:{{HEX}}"></div><div class="meta"><div class="role">{{ROLE}}</div><div class="hex">{{HEX}}</div><div class="ratio">{{RATIO_OR_USE}}</div></div></div>
+    </div>
+    <p class="muted" style="margin-top:14px">{{ACCENT_RULE}} {{FORBIDDEN_PAIRS}}</p>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>{{T_TYPOGRAPHY}}</h2>
+    <div class="type-row"><span class="label">Display · 48</span><span class="t-display">{{BRAND}}</span></div>
+    <div class="type-row"><span class="label">{{T_SLIDE_FLOOR}} · {{FLOOR_SLIDE}}</span><span class="t-slide">{{SAMPLE_HEADLINE}}</span></div>
+    <div class="type-row"><span class="label">H2 · 32</span><span class="t-h2">{{SAMPLE_H2}}</span></div>
+    <div class="type-row"><span class="label">H3 · 22</span><span class="t-h3">{{SAMPLE_H3}}</span></div>
+    <div class="type-row"><span class="label">{{T_BODY_FLOOR}} · {{FLOOR_WEB}}</span><span class="t-body">{{SAMPLE_BODY}}</span></div>
+    <div class="type-row"><span class="label">{{T_CAPTION_FLOOR}} · {{FLOOR_CAPTION}}</span><span class="t-caption">{{SAMPLE_CAPTION}}</span></div>
+    <p class="muted" style="margin-top:14px">{{T_HEADING}}: <span class="ltr">{{FONT_HEAD}} {{HEAD_WEIGHTS}}</span> · {{T_BODY}}: <span class="ltr">{{FONT_BODY}}</span> · {{T_MONO}}: <span class="ltr">{{MONO_RULE}}</span></p>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>{{T_TOKENS}}</h2>
+    <div class="spaces">
+      <div class="space"><div class="bar" style="height:4px"></div><div class="n">4</div></div>
+      <div class="space"><div class="bar" style="height:8px"></div><div class="n">8</div></div>
+      <div class="space"><div class="bar" style="height:12px"></div><div class="n">12</div></div>
+      <div class="space"><div class="bar" style="height:16px"></div><div class="n">16</div></div>
+      <div class="space"><div class="bar" style="height:24px"></div><div class="n">24</div></div>
+      <div class="space"><div class="bar" style="height:32px"></div><div class="n">32</div></div>
+      <div class="space"><div class="bar" style="height:48px"></div><div class="n">48</div></div>
+      <div class="space"><div class="bar" style="height:64px"></div><div class="n">64</div></div>
+    </div>
+    <div class="radii">
+      <div class="radius" style="border-radius:var(--radius-sm)">sm</div>
+      <div class="radius" style="border-radius:var(--radius)">md</div>
+      <div class="radius" style="border-radius:var(--radius-lg)">lg</div>
+      <div class="radius" style="border-radius:var(--radius-xl)">xl</div>
+      <div class="radius" style="border-radius:var(--radius-pill)">pill</div>
+    </div>
+    <div class="shadows">
+      <div class="elev s1">1</div><div class="elev s2">2</div><div class="elev s3">3</div><div class="elev s4">4</div>
+    </div>
+    <p class="muted" style="margin-top:14px">{{T_SHADOW_MODEL}}: {{SHADOW_MODEL}} · {{T_BORDER}}: {{BORDER_DESC}} · {{T_MOTION}}: {{MOTION_DESC}}</p>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span>{{T_MOTIFS}} ({{MOTIF_COUNT}})</h2>
+    <div class="motifs">
+      <!-- repeat: one card per approved motif; SVG inline or a CSS-shape div -->
+      <div class="motif"><div class="stage">{{MOTIF_SVG_OR_CSS_DIV}}</div><div class="meta"><div class="name">{{MOTIF_NAME}}</div><div class="muted">{{MOTIF_ZONE}} · {{MOTIF_SCALE}} · {{MOTIF_FREQUENCY}}</div></div></div>
+    </div>
+    <p class="muted" style="margin-top:14px">{{MOTIF_LAW}}</p>
+  </section>
+
+  <section>
+    <h2><span class="n">6</span>{{T_ILLUSTRATION}}</h2>
+    <div class="imagery">
+      <div>
+        <p>{{ILLUSTRATION_DESCRIPTION_OR_NOT_USED}}</p>
+        <div class="prompt">{{ILLUSTRATION_READY_PROMPT}}</div>
+      </div>
+      <div class="asset">{{ILLUSTRATION_SAMPLE_IMG_OR_PLACEHOLDER}}</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">7</span>{{T_IMAGERY}}</h2>
+    <div class="imagery">
+      <div>
+        <p>{{PHOTO_DESCRIPTION_OR_NOT_USED}}</p>
+        <div class="prompt">{{PHOTO_READY_PROMPT_OR_EMPTY}}</div>
+      </div>
+      <div class="asset">{{PHOTO_SAMPLE_IMG_OR_PLACEHOLDER}}</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">8</span>{{T_COMPOSITION}}</h2>
+    <p>{{COMPOSITION_RULES_PARAGRAPH}}</p>
+    <div class="mocks">
+      <div class="mock mock-post"><div class="body"><div class="h">{{SAMPLE_HEADLINE}}</div><div class="deco">{{MOTIF_1_SVG}}</div></div><div class="cap" style="position:absolute;bottom:0;left:0;right:0">{{T_MOCK_POST}}</div></div>
+      <div class="mock mock-email"><div class="head"><div class="deco">{{MOTIF_2_SVG}}</div></div><div class="line"></div><div class="line short"></div><div class="line"></div><div class="cap">{{T_MOCK_EMAIL}}</div></div>
+      <div class="mock mock-page"><div class="rule"></div><div class="title">{{SAMPLE_H3}}</div><div class="line"></div><div class="line"></div><div class="line" style="width:60%"></div><div class="cap" style="position:absolute;bottom:0;left:0;right:0">{{T_MOCK_PAGE}}</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">9</span>{{T_LOGO}}</h2>
+    <p>{{LOGO_RULES_OR_NO_LOGO}}</p>
+  </section>
+
+  <section>
+    <h2><span class="n">10</span>{{T_DODONT}}</h2>
+    <table class="dodont">
+      <tr><th>{{T_DO}}</th><th>{{T_DONT}}</th></tr>
+      <!-- repeat: one row per Do/Don't pair -->
+      <tr><td>{{DO}}</td><td>{{DONT}}</td></tr>
+    </table>
+  </section>
+
+  <section class="gate">
+    <h2><span class="n">11</span>{{T_GATE}}</h2>
+    <ol>
+      <!-- repeat: one li per gate check -->
+      <li>{{GATE_CHECK}}</li>
+    </ol>
+  </section>
+
+  <p class="muted" style="margin-top:30px">{{T_GENERATED}} {{DATE}} · core.md · kit.json · design-tokens.css</p>
+</div>
+</body>
+</html>
