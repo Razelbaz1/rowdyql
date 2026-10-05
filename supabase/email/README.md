@@ -1,6 +1,6 @@
 # המיילים של RowdyQL
 
-שלוש תבניות מוכנות להדבקה ב-Supabase. תצוגה מקדימה: לפתוח את `preview.html` בדפדפן (לבנות מחדש: `node tools/emailpreview.js`).
+חמשת המיילים בנויים על תבנית המייל של הערכה (`raz-elbaz-brand-identity-kit/templates/email-shell.html`). לא עורכים אותם ביד: משנים את `tools/build_emails.py` ומריצים `python tools/build_emails.py`. שלושה מודבקים ב-Supabase (הטבלה למטה), ושניים יושבים בתוך פונקציות SQL (מייל הפרידה ומייל ההודעות, בהמשך). תצוגה מקדימה: לפתוח את `preview.html` בדפדפן (לבנות מחדש: `node tools/emailpreview.js`).
 
 | תבנית ב-Supabase | קובץ | נושא (Subject) |
 |---|---|---|
@@ -10,7 +10,7 @@
 
 ## הדבקה
 Supabase → Authentication → Emails → Templates. בוחרים תבנית, מדביקים את הנושא, ואת כל תוכן הקובץ בגוף ההודעה (Message body), ושומרים.
-הלוגו נטען מ-`https://rowdyql.com/email-logo.png` (הקובץ בשורש הריפו, נוצר ב-`node tools/emaillogo.js`). הברכה בשם הפרטי מגיעה מ-`first_name` שנשמר בהרשמה.
+הלוגו נטען מ-`https://rowdyql.com/email-logo-light.png` (הקובץ בשורש הריפו, נוצר ב-`node tools/emaillogolight.js`). הלוגו הכהה הישן, `email-logo.png`, נשאר בשרת בשביל מיילים שכבר נשלחו. הברכה בשם הפרטי מגיעה מ-`first_name` שנשמר בהרשמה.
 
 ## שם השולח: RowdyQL
 שירות המייל המובנה של Supabase לא מאפשר לשנות את השולח, אז צריך SMTP משלנו. ההמלצה: Resend (יש תוכנית חינמית).

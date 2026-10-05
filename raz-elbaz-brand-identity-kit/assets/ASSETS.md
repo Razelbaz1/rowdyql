@@ -7,7 +7,7 @@ The kit never generates raster images (skill rule 6). Each entry below has its p
 | `assets/cover-booklet.png` | Booklet cover illustration | 3:2 | 2K | pending |
 | `assets/hero-landing.png` | Landing hero illustration | 16:9 | 2K | pending |
 | `assets/share-bg.png` | Social share background | 16:9 (crop to 1200x630) | 2K | pending |
-| `assets/email-logo-light.png` | Email header logo | 423:96 (480x109) | 480px wide, shown at 240px | pending |
+| `assets/email-logo-light.png` | Email header logo | 457:112, the light logo's own viewBox (480x118) | 480px wide, shown at 240px | done 2026-10-05 |
 
 ## 1. `assets/cover-booklet.png`
 
@@ -94,8 +94,8 @@ Avoid: glowing network constellations, node-and-link webs, particle fields, floa
 
 - Purpose: Email header logo (templates/email-shell.html, HEADER_IMAGE_URL). Not a generator job: rendered from the approved SVG so the letters stay exact.
 - Target path: `assets/email-logo-light.png`
-- Aspect ratio: 423:96 (480x109) · Size: 480px wide, shown at 240px
-- Status: pending
+- Aspect ratio: 457:112, the light logo's own viewBox (480x118) · Size: 480px wide, shown at 240px
+- Status: done 2026-10-05. Rendered by `rowdyql/tools/emaillogolight.js` and hosted at https://rowdyql.com/email-logo-light.png
 
 How to make it:
 
