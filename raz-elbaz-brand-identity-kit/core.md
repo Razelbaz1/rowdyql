@@ -92,7 +92,17 @@ A background is one hue fading from off-white, left to right. The full warm-to-c
 
 ### The flow gradient
 
-`linear-gradient(90deg,#FD977A 0%,#FAA670 28%,#E6C792 50%,#5CC3D9 74%,#8CBDDA 100%)`, the same in both themes. Warm is the source, cool is the result, read left to right like a relational expression. It lives in bands (a 4px rule, a legend band), backgrounds and the progress ring. Never on a thin line, never on every bar.
+`linear-gradient(90deg,#FD977A 0%,#FAA670 28%,#E6C792 50%,#5CC3D9 74%,#8CBDDA 100%)`, the same in both themes. Warm is the source, cool is the result, read left to right like a relational expression.
+
+**Where it lives:**
+- Bands: a 4px rule, a legend band.
+- Backgrounds: the washes.
+- A few deliberate thin accents (Raz, 2026-10-05): the 3px track under the site's top bar and the 56 × 3px accent under section headings. On a thin line the flow can be elegant, but only as a considered accent. Never on a hairline (1px), and never on a line that carries data.
+
+**Progress:**
+- The progress ring is one solid neon #5CC3D9, with no flow.
+- Some progress bars carry the flow, as approved: the top-bar track and the "My progress" stat bars. The onboarding and sign-up bars run neon to good.
+- A gradient fill on a gradient track can stop reading as progress. So a new progress element is one solid neon on a neutral track, unless Raz approves otherwise.
 
 ### The light flow wash: Raz's tone (approved 2026-10-05)
 
@@ -110,13 +120,29 @@ wash-flow, `#F8E0D5` (peach) to `#F7F2EC` (cream) to `#E7F2F4` (pale sky), is th
 
 New landing sections follow the same approach.
 
-**An open direction for the next kit round:** the flow does not have to be a horizontal band with two ends. Raz suggests richer washes:
-- several stops, or four hues, one per corner or placed in space (a mesh);
-- kept soft by mixing a light tint into every meeting of hues, so contrasting colors still never meet with a hard edge.
+### Wash tools: supporting tools for future content (Raz, 2026-10-05)
 
-Until that round, use wash-flow as written above.
+Four washes, chosen by Raz from a board of six (`--wash-flow`, `--wash-flow-diag`, `--wash-mesh`, `--wash-mesh-calm` in design-tokens.css). They are tools for creativity that still follow everything above:
+- the same pale tints (peach #F8E0D5, sand #F2E6D3, pale sky #E7F2F4, mint #DCEAE8);
+- every meeting of hues passes through cream #F7F2EC, or a near-white center, so no hue takes over and no two hues meet with a hard edge;
+- text on them is ink or muted, and content sits on the light tokens.
 
-Canvases allowed: bg, surface, soft, the six washes; white paper in print; the dark equivalents in the dark theme. Never invent another.
+| Tool | What it is | Good for |
+|---|---|---|
+| wash-flow | horizontal, warm to cool | long scroll sections (in use: the light part of the landing) |
+| wash-flow-diag | diagonal, warm at the reading-start top corner, cool at the opposite one | a banner, a panel that leads to a CTA, a slider |
+| wash-mesh | four hues, one per corner, met in cream | a central block, a banner, a booklet cover |
+| wash-mesh-calm | the four corners around a near-white center | a block with a lot of content, a slide |
+
+**Where to use them:** small blocks, secondary and tile buttons, banners, sliders, dividers, and more.
+- On a button the text is ink. The filled CTA stays #20778A.
+- A divider is a band, never a hairline.
+
+The values are written for LTR. Mirror them in RTL so the warm corner sits at the reading start. The landing is one look for every visitor; the dark values exist only for the app's night mode (home and lessons).
+
+Looked at and not taken: soft spots placed freely in space, and a vertical wash with several stops.
+
+Canvases allowed: bg, surface, soft, the six washes and the wash tools above; white paper in print; the dark equivalents in the dark theme. Never invent another.
 Accent rule: color only where it means something. Neon marks the result, the selected row, focus and the one value that matters; warm hues mark the source; sun is the middle stage. A diagram line is one quiet color and changes only for a reason (the segment that reaches the result). At most one neon element that glows per composition.
 Forbidden pairs:
 - soft tier as text or thin lines on any light canvas (1.46-1.98:1).
@@ -246,7 +272,7 @@ The logo is "the rowdy row": three rounded rows of a table, the middle one kicke
 
 | Do | Don't |
 |---|---|
-| Color only where it means something: neon #20778A / #2999B1 / #5CC3D9 for the result and the one value that matters, warm hues for the source | Coloring every line; the warm-to-cool gradient on thin lines or on every bar |
+| Color only where it means something: neon #20778A / #2999B1 / #5CC3D9 for the result and the one value that matters, warm hues for the source | Coloring every line; the warm-to-cool gradient on hairlines or data lines, or on a new progress bar without approval |
 | Diagram lines in one quiet color, muted #5F6670 (dark #9AA4AE) at 1.5; only the segment that reaches the result in neon at 2.5, with the glowing end point | Rainbow routes; a color change without a reason |
 | Glow (two-layer drop-shadow, alpha .55 light, .85 dark) only on data points, active lines and progress; off in print | Glow behind text, on panels or buttons; any drop shadow or elevation |
 | State colors only to mark: correct #276B43 on #DCEFE3, note #966212 on #FFF1D6, wrong #B23A2E on #FBE3E0, neutral #5F6670 on #ECE8E3, selected #E3F2F3 with ink text | States as decoration; a brand hue as a state (coral never means error) |

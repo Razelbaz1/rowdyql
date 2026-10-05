@@ -88,6 +88,10 @@
   --wash-sun:linear-gradient(90deg,#F7F2EC 0%,#F2E6D3 100%);
   --wash-cool:linear-gradient(90deg,#F7F2EC 0%,#DCEAE8 100%);
   --wash-flow:linear-gradient(90deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%);  /* only with a source and a result */
+  /* wash tools (Raz, 2026-10-05): the same pale tints, every meeting through cream; written for LTR, mirror in RTL (warm at the reading start) */
+  --wash-flow-diag:linear-gradient(135deg,#F8E0D5 0%,#F7F2EC 52%,#E7F2F4 100%);
+  --wash-mesh:radial-gradient(circle at 0% 0%,#F8E0D5 0,rgba(248,224,213,0) 58%),radial-gradient(circle at 100% 0%,#F2E6D3 0,rgba(242,230,211,0) 55%),radial-gradient(circle at 100% 100%,#E7F2F4 0,rgba(231,242,244,0) 60%),radial-gradient(circle at 0% 100%,#DCEAE8 0,rgba(220,234,232,0) 55%),#F7F2EC;
+  --wash-mesh-calm:radial-gradient(ellipse 62% 58% at 50% 50%,#FDFBF8 0,rgba(253,251,248,.85) 35%,rgba(253,251,248,0) 100%),radial-gradient(circle at 0% 0%,#F8E0D5 0,rgba(248,224,213,0) 62%),radial-gradient(circle at 100% 0%,#F2E6D3 0,rgba(242,230,211,0) 58%),radial-gradient(circle at 100% 100%,#E7F2F4 0,rgba(231,242,244,0) 64%),radial-gradient(circle at 0% 100%,#DCEAE8 0,rgba(220,234,232,0) 58%),#F7F2EC;
   /* glow: only on data points, active lines, progress; never behind text; off in print */
   --glow-a:.55;
   --glow-point:drop-shadow(0 0 2px rgba(92,195,217,var(--glow-a))) drop-shadow(0 0 7px rgba(92,195,217,calc(var(--glow-a)*.7)));
@@ -140,6 +144,9 @@
     --wash-sun:linear-gradient(90deg,#11161B 0%,#2F2F2C 100%);
     --wash-cool:linear-gradient(90deg,#11161B 0%,#1F2F35 100%);
     --wash-flow:linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%);
+    --wash-flow-diag:linear-gradient(135deg,#322828 0%,#11161B 52%,#25313A 100%);
+    --wash-mesh:radial-gradient(circle at 0% 0%,#322828 0,rgba(50,40,40,0) 58%),radial-gradient(circle at 100% 0%,#2F2F2C 0,rgba(47,47,44,0) 55%),radial-gradient(circle at 100% 100%,#25313A 0,rgba(37,49,58,0) 60%),radial-gradient(circle at 0% 100%,#1F2F35 0,rgba(31,47,53,0) 55%),#11161B;
+    --wash-mesh-calm:radial-gradient(ellipse 62% 58% at 50% 50%,#11161B 0,rgba(17,22,27,.85) 35%,rgba(17,22,27,0) 100%),radial-gradient(circle at 0% 0%,#322828 0,rgba(50,40,40,0) 62%),radial-gradient(circle at 100% 0%,#2F2F2C 0,rgba(47,47,44,0) 58%),radial-gradient(circle at 100% 100%,#25313A 0,rgba(37,49,58,0) 64%),radial-gradient(circle at 0% 100%,#1F2F35 0,rgba(31,47,53,0) 58%),#11161B;
     --glow-a:.85;
     --rq-band-a:.35; --rq-band-res-a:.35;
     color-scheme:dark;
@@ -170,6 +177,9 @@
   --wash-sun:linear-gradient(90deg,#11161B 0%,#2F2F2C 100%);
   --wash-cool:linear-gradient(90deg,#11161B 0%,#1F2F35 100%);
   --wash-flow:linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%);
+  --wash-flow-diag:linear-gradient(135deg,#322828 0%,#11161B 52%,#25313A 100%);
+  --wash-mesh:radial-gradient(circle at 0% 0%,#322828 0,rgba(50,40,40,0) 58%),radial-gradient(circle at 100% 0%,#2F2F2C 0,rgba(47,47,44,0) 55%),radial-gradient(circle at 100% 100%,#25313A 0,rgba(37,49,58,0) 60%),radial-gradient(circle at 0% 100%,#1F2F35 0,rgba(31,47,53,0) 55%),#11161B;
+  --wash-mesh-calm:radial-gradient(ellipse 62% 58% at 50% 50%,#11161B 0,rgba(17,22,27,.85) 35%,rgba(17,22,27,0) 100%),radial-gradient(circle at 0% 0%,#322828 0,rgba(50,40,40,0) 62%),radial-gradient(circle at 100% 0%,#2F2F2C 0,rgba(47,47,44,0) 58%),radial-gradient(circle at 100% 100%,#25313A 0,rgba(37,49,58,0) 64%),radial-gradient(circle at 0% 100%,#1F2F35 0,rgba(31,47,53,0) 58%),#11161B;
   --glow-a:.85;
   --rq-band-a:.35; --rq-band-res-a:.35;
   color-scheme:dark;

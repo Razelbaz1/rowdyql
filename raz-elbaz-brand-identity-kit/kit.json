@@ -1799,7 +1799,7 @@
   "dodont": [
     {
       "do": "Color only where it means something: neon #20778A / #2999B1 / #5CC3D9 for the result and the one value that matters, warm hues for the source",
-      "dont": "Coloring every line; the warm-to-cool gradient on thin lines or on every bar"
+      "dont": "Coloring every line; the warm-to-cool gradient on hairlines or data lines, or on a new progress bar without approval"
     },
     {
       "do": "Diagram lines in one quiet color, muted #5F6670 (dark #9AA4AE) at 1.5; only the segment that reaches the result in neon at 2.5, with the glowing end point",
@@ -1987,7 +1987,7 @@
   "x_flow": {
     "css": "linear-gradient(90deg,#FD977A 0%,#FAA670 28%,#E6C792 50%,#5CC3D9 74%,#8CBDDA 100%)",
     "meaning": "warm = source and raw data, cool = result; read left to right like a relational expression",
-    "where": "bands (the 4px rule, a legend band), backgrounds and the progress ring; never on thin lines or on every bar"
+    "where": "bands (the 4px rule, a legend band), backgrounds (the washes) and a few deliberate thin accents (the 3px top-bar track, the 56x3px heading accent); never on a hairline or a data line; the progress ring is solid neon; new progress bars are one solid neon unless approved"
   },
   "x_states": {
     "rule": "Reserved for marking. Never decoration. Brand hues never mean a state.",
@@ -2141,7 +2141,7 @@
         "name": "wash-flow",
         "light": "linear-gradient(90deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%)",
         "dark": "linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%)",
-        "use": "only when the screen has a source and a result"
+        "use": "a screen with a source and a result; the light part of the landing, painted in on scroll"
       }
     ],
     "x_not_carried": "The board's near-neutral --wash (its post background, line 28) is not one of the six approved recipes."
@@ -3363,5 +3363,36 @@
     "Compare-chart legends use the line tier, with names",
     "Brand-colored text on washes or on the result header is forbidden (ink, or muted on washes)",
     "Selected tint is the rendered color-mix value, now with the neon: #E3F2F3 / #233A43, ink text only"
-  ]
+  ],
+  "x_wash_tools": {
+    "rule": "Supporting tools for future content (Raz, 2026-10-05), all aligned with the kit: the same pale tints (peach #F8E0D5, sand #F2E6D3, pale sky #E7F2F4, mint #DCEAE8), every meeting of hues through cream #F7F2EC (or a near-white center), so no hue takes over and no two hues meet with a hard edge. Text on them is ink or muted; content sits on the light tokens. Written for LTR; mirror in RTL so the warm corner is at the reading start. The landing is one look; the dark values serve the app's night mode only.",
+    "ideas": "small blocks, secondary and tile buttons (ink text; the filled CTA stays #20778A), banners, sliders, dividers (a band, never a hairline), and more",
+    "list": [
+      {
+        "name": "wash-flow",
+        "light": "linear-gradient(90deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%)",
+        "dark": "linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%)",
+        "use": "horizontal, warm to cool: long scroll sections (in use: the light part of the landing)"
+      },
+      {
+        "name": "wash-flow-diag",
+        "light": "linear-gradient(135deg,#F8E0D5 0%,#F7F2EC 52%,#E7F2F4 100%)",
+        "dark": "linear-gradient(135deg,#322828 0%,#11161B 52%,#25313A 100%)",
+        "use": "diagonal, from the reading-start top corner: a banner, a panel that leads to a CTA, a slider"
+      },
+      {
+        "name": "wash-mesh",
+        "light": "radial-gradient(circle at 0% 0%,#F8E0D5 0,rgba(248,224,213,0) 58%),radial-gradient(circle at 100% 0%,#F2E6D3 0,rgba(242,230,211,0) 55%),radial-gradient(circle at 100% 100%,#E7F2F4 0,rgba(231,242,244,0) 60%),radial-gradient(circle at 0% 100%,#DCEAE8 0,rgba(220,234,232,0) 55%),#F7F2EC",
+        "dark": "radial-gradient(circle at 0% 0%,#322828 0,rgba(50,40,40,0) 58%),radial-gradient(circle at 100% 0%,#2F2F2C 0,rgba(47,47,44,0) 55%),radial-gradient(circle at 100% 100%,#25313A 0,rgba(37,49,58,0) 60%),radial-gradient(circle at 0% 100%,#1F2F35 0,rgba(31,47,53,0) 55%),#11161B",
+        "use": "four hues, one per corner, met in cream: a central block, a banner, a booklet cover"
+      },
+      {
+        "name": "wash-mesh-calm",
+        "light": "radial-gradient(ellipse 62% 58% at 50% 50%,#FDFBF8 0,rgba(253,251,248,.85) 35%,rgba(253,251,248,0) 100%),radial-gradient(circle at 0% 0%,#F8E0D5 0,rgba(248,224,213,0) 62%),radial-gradient(circle at 100% 0%,#F2E6D3 0,rgba(242,230,211,0) 58%),radial-gradient(circle at 100% 100%,#E7F2F4 0,rgba(231,242,244,0) 64%),radial-gradient(circle at 0% 100%,#DCEAE8 0,rgba(220,234,232,0) 58%),#F7F2EC",
+        "dark": "radial-gradient(ellipse 62% 58% at 50% 50%,#11161B 0,rgba(17,22,27,.85) 35%,rgba(17,22,27,0) 100%),radial-gradient(circle at 0% 0%,#322828 0,rgba(50,40,40,0) 62%),radial-gradient(circle at 100% 0%,#2F2F2C 0,rgba(47,47,44,0) 58%),radial-gradient(circle at 100% 100%,#25313A 0,rgba(37,49,58,0) 64%),radial-gradient(circle at 0% 100%,#1F2F35 0,rgba(31,47,53,0) 58%),#11161B",
+        "use": "four corners around a near-white center: a block with a lot of content, a slide"
+      }
+    ],
+    "x_not_chosen": "Looked at on 2026-10-05 and not taken: soft spots placed freely in space, and a vertical wash with several stops."
+  }
 }

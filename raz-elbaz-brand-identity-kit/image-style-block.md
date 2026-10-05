@@ -21,7 +21,7 @@ Composition organized in clear zones like a Swiss grid, not scattered: hairline 
 - annotation leader: a thin gray elbow line ending in a tiny sky-blue square, pointing into the margin (edge rail)
 - null hatch: a soft diagonal hatch filling one empty table cell (inside a table)
 - legend strip: a short row of small flat color squares under a hairline (foot of the image)
-- progress ring: a thick ring, part of it a soft apricot to sun to sea-blue arc, the rest light gray (badge)
+- progress ring: a thick ring, part of it a solid light sea-blue arc (one color, no gradient), the rest light gray (badge)
 - schema map: three small table cards with soft colored header bands, joined by quiet gray right-angle routes into one result table outlined in neon sea blue (the one big visual)
 
 ## Constraints

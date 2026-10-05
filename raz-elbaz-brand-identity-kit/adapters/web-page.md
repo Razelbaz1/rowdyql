@@ -34,6 +34,14 @@ The RowdyQL site, landing and lessons alike (the whole site follows this kit), p
   - Every section after the story sits on the light flow wash, painted in as it scrolls into view (Core, "The light flow wash"). This is the one motion longer than .4s on the page, and it is off under reduced motion.
   - Its content uses the light tokens (cards on surface with a 1px rule, ink, muted, the neon text tier for icons and step numbers, the filled CTA #20778A).
   - A new landing section goes inside the same painted area. It does not get a new color.
+  - The landing is one look for every visitor, with no light/dark switch (Raz, 2026-10-05). Small parts inside the painted area may use the wash tools (Core, "Wash tools"): a banner, a slider, a tile button or a divider band.
+- Section headings carry a short flow accent under them: 56px wide, 3px tall, radius 1.5px, the flow mirrored in RTL (Raz thinned it from 4px on 2026-10-05).
+- Progress: the ring is solid neon #5CC3D9. These progress bars are approved and keep their colors:
+  - the flow track under the top bar (filled by chapter progress over a faded flow track);
+  - the "My progress" stat bars (flow);
+  - the onboarding and sign-up bars (neon to good).
+
+  A new progress element is one solid neon on a neutral track unless Raz approves otherwise (Core, "The flow gradient").
 - Images: `loading="lazy"` below the fold, width and height attributes, alt text always.
 - The fallback stack is system-ui; never Inter, Roboto or Arial as the visible face.
 
