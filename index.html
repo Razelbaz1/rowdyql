@@ -71,7 +71,10 @@ html[lang="he"] .eyebrow{letter-spacing:.04em;text-transform:none}
 /* ---------- top bar ---------- */
 /* the top bar: row 1 is who and tools, row 2 is where (topic tabs, and the position pill at the far end); more topics scroll sideways in row 2 */
 .top{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--line)}
-.top::after{content:"";position:absolute;inset-inline:0;bottom:-1px;height:3px;background:var(--flow);pointer-events:none}
+/* one line under the header: the sunrise-to-sea track, filled in full color as far as the chapter's progress goes (--unitp, set with #prog) */
+.top::after{content:"";position:absolute;inset-inline:0;bottom:-1px;height:3px;background:var(--flow);opacity:.4;pointer-events:none}
+.top::before{content:"";position:absolute;z-index:1;inset-inline-start:0;bottom:-1px;height:3px;width:var(--unitp,0%);background:var(--flow);background-size:100vw 100%;background-position:left;transition:width .4s;pointer-events:none}
+html[dir="rtl"] .top::after{background:var(--flow-rtl)}html[dir="rtl"] .top::before{background:var(--flow-rtl);background-size:100vw 100%;background-position:right}
 .top-main{display:flex;align-items:center;gap:1rem;padding:.35rem 1.25rem;flex-wrap:wrap}
 .top-main .brand{flex-direction:row;align-items:center;gap:.8rem}
 .top-main .brand>span:not(.logo){padding-inline-start:.8rem;border-inline-start:1px solid var(--line);line-height:1.3}
@@ -114,7 +117,7 @@ html:not(.subhide) .navmini,html.gated .navmini,html.present .navmini{display:no
 .btn.small{min-height:36px;padding:.3rem .7rem;font-size:.9rem}
 .btn.ghost{background:transparent}
 .btn[disabled]{opacity:.45;cursor:not-allowed}
-.progress{height:3px;background:var(--line);position:relative}
+.progress{display:none}
 .progress i{position:absolute;inset-inline-start:0;top:0;bottom:0;background:var(--accent);width:0;transition:width .4s}
 
 /* ---------- shell ---------- */
@@ -159,6 +162,7 @@ html[dir="rtl"] .sec-head h2::after{background:var(--flow-rtl)}
 
 /* ---------- home ---------- */
 .home-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center;padding:2rem clamp(1rem,3vw,2.2rem) 2.2rem;margin-top:1rem;background:var(--wash-flow);border:1px solid var(--line);border-radius:18px}
+section.sec.home-hero{padding:2rem clamp(1.1rem,3vw,2.4rem) 2.2rem}
 html[dir="rtl"] .home-hero{background:linear-gradient(270deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%)}
 @media (prefers-color-scheme:dark){html[dir="rtl"]:not([data-theme="light"]) .home-hero{background:linear-gradient(270deg,#322828 0%,#11161B 50%,#25313A 100%)}}
 html[dir="rtl"][data-theme="dark"] .home-hero{background:linear-gradient(270deg,#322828 0%,#11161B 50%,#25313A 100%)}
@@ -3737,7 +3741,7 @@ function updateNav(flash){
   const changed = cur.id !== activeSec; activeSec = cur.id; if (unit !== 'home') store('dbs_last_sec', { unit, id: cur.id });
   if (!visited[cur.id]) { visited[cur.id] = true; store('dbs_visited', visited); }
   railState();
-  const done = secs.filter(s => visited[s.id]).length; $('#prog').style.width = (100*done/secs.length) + '%';
+  const done = secs.filter(s => visited[s.id]).length; $('#prog').style.width = (100*done/secs.length) + '%'; document.documentElement.style.setProperty('--unitp', (100*done/secs.length) + '%');
   const idx = secs.findIndex(s => s.id === activeSec); $('#nowPill').hidden = false; $('#nowTitle').textContent = t(cur.dataset.title); $('#nowPos').textContent = (idx + 1) + ' / ' + secs.length; $('#nowDots').innerHTML = secs.map(s => '<i class="' + (s.id === activeSec ? 'cur' : visited[s.id] ? 'done' : '') + '"></i>').join('');
   $('#nmTitle').textContent = $('#nowTitle').textContent; $('#nmPos').textContent = $('#nowPos').textContent; $('#nmDots').innerHTML = $('#nowDots').innerHTML; if (flash) nmShow();
   if (changed && flash) { const np = $('#nowPill'); np.classList.add('tick'); clearTimeout(nowTimer); nowTimer = setTimeout(() => np.classList.remove('tick'), 1200); }
