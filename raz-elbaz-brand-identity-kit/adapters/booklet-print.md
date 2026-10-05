@@ -13,7 +13,7 @@ Long-form reading and anything that goes to paper or PDF: a practice booklet, a 
 ## Core in this medium
 - Colors: page bg #F7F2EC on screen, white #FFFFFF in print; text and headings ink #373C44; muted #5F6670 for meta and captions; neon text tier #20778A for links and the one key figure; the flow gradient only as the 4px rule under the title; rule cards with a 3px inline-start bar in #2999B1. Dark theme on screen follows `design-tokens.css`; print is always light.
 - Type: Rubik 800 headings, Heebo 400 body, IBM Plex Mono for code, tables and Latin eyebrows. The lead paragraph opens with its first words in Rubik 800 ink (no drop caps; they break Hebrew).
-- Tokens: radius 0; borders 1px #DDD7CF; shadow none; glow off in print.
+- Tokens: radius sm 6px on boxes and callouts (table cells square); borders 1px #DDD7CF; shadow none; glow off in print.
 - Motifs: screen, the schema map (or the cover illustration) on the cover and the data line as the one section divider; print, at most 1 small motif per page, none behind text; quiet tier 0 (the quiet grid at most).
 - Logo: screen top bar, lockup 28px tall; print header top start corner, 8mm tall, plus the footer name line. One inline copy of `logo/rowdyql-logo-light.svg` with fills `var(--ink)` and `var(--neon-l)` serves both themes; print shows the light version.
 - Imagery: the cover illustration at 3:2 from `assets/cover-booklet.png` (pending in `assets/ASSETS.md`), or the schema map motif in its place; inside pages, images at column width with a 9pt caption.

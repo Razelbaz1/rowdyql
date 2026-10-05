@@ -14,7 +14,7 @@ Every branded email: account emails (confirm, reset, reauthentication, goodbye),
 ## Core in this medium
 - Colors: outer canvas #F7F2EC; card #FDFBF8 with a 1px solid #DDD7CF border; body text #373C44; secondary text and footer #5F6670; links #20778A; the CTA cell fill #20778A with text #FDFBF8 (5.00:1); inner boxes on #F7F2EC with a 1px #DDD7CF border. State colors only when the email marks something (a note: #966212 on #FFF1D6).
 - Type: Rubik 800 for the one h1, Heebo for everything else; weights 400, 500, 700 only.
-- Tokens: radius 0 everywhere (card, boxes, CTA); shadow none; borders 1px.
+- Tokens: radius 8px on the card, boxes and CTA (Outlook on Windows shows them square, which is fine); shadow none; borders 1px.
 - Motifs: none in email bodies (no inline SVG, no CSS gradients; mail clients drop them).
 - Logo: the header cell, light lockup 240px wide on surface, a 1px #DDD7CF rule under it; the footer carries the name line in text ("RowdyQL · rowdyql.com").
 - Imagery: optional body image 600px wide with alt text, per Core 6; usually none.
@@ -42,7 +42,7 @@ Read core.md, adapters/email.md, voice/voice-profile.md and templates/email-shel
 ```
 
 ## Done-check
-1. Every color in the HTML is one of the shell's values; no gradient, no shadow, radius 0.
+1. Every color in the HTML is one of the shell's values; no gradient, no shadow, radius 8px.
 2. Tables only; every style inline; no `<button>`, no script, no SVG.
 3. Body 16px, h1 24px, kickers 13px bold; preheader present.
 4. Direction correct on `<html>` and the body cell; Latin and numbers in `dir="ltr"` islands.

@@ -43,10 +43,10 @@ var v=q||t;if(v==='dark'||v==='light'){document.documentElement.setAttribute('da
   /* typography */
   --font-head:'Rubik','Noto Sans Math',system-ui,sans-serif;
   --font-body:'Heebo','Noto Sans Math',system-ui,sans-serif;
-  /* radius: square corners everywhere; the pill is only for a segmented toggle */
-  --radius-sm:0px;
-  --radius:0px;
-  --radius-lg:0px;
+  /* radius: softly rounded (Raz, 2026-10-05): sm chips and inputs, md buttons and cards, lg panels and dialogs; pill for toggles and status pills */
+  --radius-sm:6px;
+  --radius:10px;
+  --radius-lg:14px;
   --radius-pill:999px;
   /* shadow ramp, ONE model: none (flat and matte; glow is a separate data highlight, Block 3) */
   --shadow-1:none;
@@ -68,7 +68,7 @@ var v=q||t;if(v==='dark'||v==='light'){document.documentElement.setAttribute('da
   --font-mono:'IBM Plex Mono','Noto Sans Math',ui-monospace,monospace;  /* code, data, labels; Latin only */
   --border-w:1px;
   --border-line:var(--border-w) solid var(--border);
-  --radius-xl:0px;
+  --radius-xl:18px;            /* large frames: the hero panel, covers */
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
   --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
   --ease:ease;                   /* not defined in kit.json: the CSS default, as on the board */
@@ -237,6 +237,15 @@ var v=q||t;if(v==='dark'||v==='light'){document.documentElement.setAttribute('da
   .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr))}
   .grid.wide{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
   .panel{background:var(--surface);border:var(--border-line)}
+  /* corners: softly rounded from the radius tokens (Raz, 2026-10-05); no overflow:hidden, so a glow inside is never clipped */
+  .panel,.motif,.post,.cover,.lesson,.stage-intro,.tile,.wash,.prompt,.asset{border-radius:var(--radius-lg)}
+  .rule-card,.elev,.word,.tbars,.post .map,.legend i{border-radius:var(--radius)}
+  .legend i{border-radius:3px}
+  .chip-code,.expr,.replay{border-radius:var(--radius-sm)}
+  .hue,.state,.neu{border-radius:var(--radius)}
+  .tiers i,.neu i{border-radius:4px}
+  .motif .stage{border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+  .email .card,.email .cta{border-radius:8px}
   /* identity */
   .identity{display:grid;gap:24px}
   @media screen and (min-width:860px){.identity{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
@@ -493,9 +502,9 @@ var v=q||t;if(v==='dark'||v==='light'){document.documentElement.setAttribute('da
   </section>
 
   <section id="tokens">
-    <div class="sh"><span class="n">4</span><h2>Foundation tokens</h2><span class="eyebrow">4px base · square · flat</span></div>
+    <div class="sh"><span class="n">4</span><h2>Foundation tokens</h2><span class="eyebrow">4px base · rounded · flat</span></div>
     <div class="spaces"><div class="space"><div class="bar" style="height:4px"></div><div class="n">4</div></div><div class="space"><div class="bar" style="height:8px"></div><div class="n">8</div></div><div class="space"><div class="bar" style="height:12px"></div><div class="n">12</div></div><div class="space"><div class="bar" style="height:16px"></div><div class="n">16</div></div><div class="space"><div class="bar" style="height:24px"></div><div class="n">24</div></div><div class="space"><div class="bar" style="height:32px"></div><div class="n">32</div></div><div class="space"><div class="bar" style="height:48px"></div><div class="n">48</div></div><div class="space"><div class="bar" style="height:64px"></div><div class="n">64</div></div></div>
-    <div class="radii"><div class="radius">sm 0</div><div class="radius">md 0</div><div class="radius">lg 0</div><div class="radius">xl 0</div><div class="radius" style="border-radius:var(--radius-pill)">pill 999</div></div>
+    <div class="radii"><div class="radius" style="border-radius:var(--radius-sm)">sm 6</div><div class="radius" style="border-radius:var(--radius)">md 10</div><div class="radius" style="border-radius:var(--radius-lg)">lg 14</div><div class="radius" style="border-radius:var(--radius-xl)">xl 18</div><div class="radius" style="border-radius:var(--radius-pill)">pill 999</div></div>
     <h3 class="sub">Shadow model: none</h3>
     <div class="grid"><div class="elev">--shadow-1: none</div><div class="elev">--shadow-2: none</div><div class="elev">--shadow-3: none</div><div class="elev">--shadow-4: none</div></div>
     <h3 class="sub">Borders</h3>
@@ -835,7 +844,7 @@ Avoid: glowing network constellations, node-and-link webs, particle fields, floa
             <div class="ft ltr">RowdyQL · rowdyql.com</div>
           </div>
         </div>
-        <div class="cap">email · 600px card, light only, radius 0, no shadow</div>
+        <div class="cap">email · 600px card, light only, radius 8px, no shadow</div>
       </div>
     </div>
 
@@ -937,7 +946,7 @@ Avoid: glowing network constellations, node-and-link webs, particle fields, floa
 
   <section id="dodont">
     <div class="sh"><span class="n">10</span><h2>Do / Don't</h2></div>
-    <div class="tablewrap"><table class="plain dodont"><tr><th>Do</th><th>Don't</th></tr><tr><td>Color only where it means something: neon #20778A / #2999B1 / #5CC3D9 for the result and the one value that matters, warm hues for the source</td><td>Coloring every line; the warm-to-cool gradient on thin lines or on every bar</td></tr><tr><td>Diagram lines in one quiet color, muted #5F6670 (dark #9AA4AE) at 1.5; only the segment that reaches the result in neon at 2.5, with the glowing end point</td><td>Rainbow routes; a color change without a reason</td></tr><tr><td>Glow (two-layer drop-shadow, alpha .55 light, .85 dark) only on data points, active lines and progress; off in print</td><td>Glow behind text, on panels or buttons; any drop shadow or elevation</td></tr><tr><td>State colors only to mark: correct #276B43 on #DCEFE3, note #966212 on #FFF1D6, wrong #B23A2E on #FBE3E0, neutral #5F6670 on #ECE8E3, selected #E3F2F3 with ink text</td><td>States as decoration; a brand hue as a state (coral never means error)</td></tr><tr><td>A one-hue wash from off-white #F7F2EC as the background</td><td>The full warm-to-cool wash unless the screen shows a source and a result</td></tr><tr><td>Quiet grid #EDE9E4 (5% ink), always lighter than the table rule #DDD7CF; NULL hatch #E1E0DF (14% ink)</td><td>Numbered grids, coordinates, loud hatching</td></tr><tr><td>Square corners, 1px hairline rules #DDD7CF, flat matte fills</td><td>Rounded cards, thick borders, shadows, glass or blur</td></tr><tr><td>Brand hues by tier: soft for fills and glow, line for strokes and chart marks, text for type; dark uses the soft tier for all three</td><td>Soft tier as text or thin lines on light canvases; line tier on washes</td></tr><tr><td>IBM Plex Mono for code, data and labels as LTR islands; operators as geometry in graphics, Noto Sans Math in live text</td><td>Hebrew in mono; uppercase or letter-spaced Hebrew; operators left to system fallback fonts</td></tr><tr><td>The course itself as subject: tables, rows, keys, joins, relational algebra, query plans, schema maps</td><td>Glowing cyan networks, isometric server racks, holographic graphs, particle constellations, globes</td></tr><tr><td>The logo files as they are: light flat with #2999B1, dark glossy on screen, dark flat in print</td><td>Redrawing, recoloring or approximating the logo; gloss or glow on the light logo or in print</td></tr></table></div>
+    <div class="tablewrap"><table class="plain dodont"><tr><th>Do</th><th>Don't</th></tr><tr><td>Color only where it means something: neon #20778A / #2999B1 / #5CC3D9 for the result and the one value that matters, warm hues for the source</td><td>Coloring every line; the warm-to-cool gradient on thin lines or on every bar</td></tr><tr><td>Diagram lines in one quiet color, muted #5F6670 (dark #9AA4AE) at 1.5; only the segment that reaches the result in neon at 2.5, with the glowing end point</td><td>Rainbow routes; a color change without a reason</td></tr><tr><td>Glow (two-layer drop-shadow, alpha .55 light, .85 dark) only on data points, active lines and progress; off in print</td><td>Glow behind text, on panels or buttons; any drop shadow or elevation</td></tr><tr><td>State colors only to mark: correct #276B43 on #DCEFE3, note #966212 on #FFF1D6, wrong #B23A2E on #FBE3E0, neutral #5F6670 on #ECE8E3, selected #E3F2F3 with ink text</td><td>States as decoration; a brand hue as a state (coral never means error)</td></tr><tr><td>A one-hue wash from off-white #F7F2EC as the background</td><td>The full warm-to-cool wash unless the screen shows a source and a result</td></tr><tr><td>Quiet grid #EDE9E4 (5% ink), always lighter than the table rule #DDD7CF; NULL hatch #E1E0DF (14% ink)</td><td>Numbered grids, coordinates, loud hatching</td></tr><tr><td>Softly rounded corners, 1px hairline rules #DDD7CF, flat matte fills</td><td>Big pill-shaped cards, thick borders, shadows, glass or blur</td></tr><tr><td>Brand hues by tier: soft for fills and glow, line for strokes and chart marks, text for type; dark uses the soft tier for all three</td><td>Soft tier as text or thin lines on light canvases; line tier on washes</td></tr><tr><td>IBM Plex Mono for code, data and labels as LTR islands; operators as geometry in graphics, Noto Sans Math in live text</td><td>Hebrew in mono; uppercase or letter-spaced Hebrew; operators left to system fallback fonts</td></tr><tr><td>The course itself as subject: tables, rows, keys, joins, relational algebra, query plans, schema maps</td><td>Glowing cyan networks, isometric server racks, holographic graphs, particle constellations, globes</td></tr><tr><td>The logo files as they are: light flat with #2999B1, dark glossy on screen, dark flat in print</td><td>Redrawing, recoloring or approximating the logo; gloss or glow on the light logo or in print</td></tr></table></div>
     <h3 class="sub">Voice rows, verbatim from voice/voice-profile.md</h3>
     <div class="tablewrap"><table class="plain dodont"><tr><th>Do</th><th>Don't</th></tr><tr><td><span class="src ltr">Do 3 with its own don&#x27;t. The profile&#x27;s old example was rejected by Raz on 2026-10-05 and will be replaced by an approved line</span><span><b>Open on something concrete</b>: a number, an object, the question the student actually has. [R+W]</span></td><td><span>Don't open on a definition or an announcement. (not <bdi>"ברוכים הבאים לקורס המקיף..."</bdi>)</span></td></tr><tr><td><span class="src ltr">Do 6 vs Don&#x27;t 2</span><span><b>Turn with <bdi>"אבל"</bdi> or a dash, not a colon.</b> The dash ( - ) is Raz's natural joint between a setup and its point (13 per 1,000 words in his writing, 0 on the site today). <bdi>"אבל"</bdi> is the columnists' hinge. [R+W]<br><bdi>"כולם מדברים באותה שפה - SQL."</bdi></span></td><td><span><b>Colons as slogan structure</b>: <bdi>"לומדים SQL כמו שכותבים אותו: חי, על טבלאות, עם תשובה מיד."</bdi> (Raz rejected this one) and "X: Y." explanations. The site uses 27 colons per 1,000 words, against 4 in the columns and 3 in Raz's writing. Keep colons for UI labels, before code, and before a quote.</span></td></tr><tr><td><span class="src ltr">Do 4 vs Don&#x27;t 7</span><span><b>Build, then land.</b> After a longer sentence, a short verdict of two to five words. This is the strongest instinct in both sources. [R+W]<br>Raz: <bdi>"האדם הוא צוואר בקבוק בסיפור."</bdi> / Walla technique: <bdi>"הוא הבוס."</bdi> / site: <bdi>"אותו מספר עמודות, טיפוס אחר."</bdi></span></td><td><span><b>Summary endings</b>: <bdi>לסיכום, בשורה התחתונה, כפי שראינו, אם כך.</bdi></span></td></tr><tr><td><span class="src ltr">Do 8 vs Don&#x27;t 8</span><span><b>The site takes the joke, never the student.</b> Humor here is reassurance: the site pokes fun at itself, at the jargon or at the situation. [R+W]<br><bdi>"הג'יבריש שלמעלה יהיה בקרוב שפת האם שלכם."</bdi> / <bdi>"פעם אחרונה, מבטיחים."</bdi> (both live)</span></td><td><span><b>Sarcasm or snark</b> at the student or anyone else. The columnists do it to celebrities. RowdyQL has no one to mock.</span></td></tr><tr><td><span class="src ltr">Do 13 vs Don&#x27;t 3</span><span><b>Cut every sentence the student wouldn't miss.</b> This is Raz's most repeated note. [R]</span></td><td><span><b>Stating what the student already knows.</b> <bdi>"ההתקדמות נשמרת מכל מכשיר"</bdi> (Raz: <bdi>"זה ברור... הרי"</bdi>).</span></td></tr></table></div>
   </section>

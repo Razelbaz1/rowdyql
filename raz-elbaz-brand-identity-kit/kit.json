@@ -14,7 +14,7 @@
       "Reference: a modular Swiss grid of hairline-bordered panels on an off-white canvas that drifts from warm to cool; about 70% of pixels sit nearest bg #F7F2EC (43%) or bg-cool #E7F2F4 (27%)",
       "Reference: color lives only in thin data lines, node dots, rings and bars, about 1% of pixels; warm marks on the source side, cool marks on the result side",
       "Flat and matte: no shadow anywhere on the approved board; the only depth effect is a small two-layer glow on data points, active lines and the progress ring",
-      "Hairline 1px rules #DDD7CF and square corners on every panel, table, card, post and cover",
+      "Hairline 1px rules #DDD7CF and softly rounded corners (6 to 18px) on panels, tables, cards, posts and covers",
       "Type-led hierarchy: Rubik 800 headings, Heebo body, IBM Plex Mono for eyebrows, tables, labels and code",
       "One blue: the neon #5CC3D9 from the logo and the site replaces the board aqua #72C8D7 (RUN-LOG 2026-10-04)"
     ],
@@ -1383,12 +1383,12 @@
       ]
     },
     "radius": {
-      "sm": 0,
-      "md": 0,
-      "lg": 0,
-      "xl": 0,
+      "sm": 6,
+      "md": 10,
+      "lg": 14,
+      "xl": 18,
       "pill": 999,
-      "x_note": "Square corners everywhere; the pill only for a segmented theme toggle. Round line caps only on the progress arc and schema-map row stubs."
+      "x_note": "Softly rounded (Raz, 2026-10-05): chips, tags and inputs sm; buttons and cards md; panels and dialogs lg; large frames xl; a table has a rounded outer frame and square cells; the rowdy row keeps the logo's small rounding; the pill for toggles and status pills. Print boxes sm, quiet tier 4, email 8. Round line caps only on the progress arc and schema-map row stubs."
     },
     "border": {
       "width_px": 1,
@@ -1708,7 +1708,7 @@
       "Learning first: diagrams in one quiet color; only the segment reaching the result gets the accent and the glowing end point",
       "Color only where it means something; every color is named in a legend or a label",
       "One idea per composition",
-      "Hairline rules and square corners; no boxes inside boxes beyond panel and table",
+      "Hairline rules and softly rounded corners; no boxes inside boxes beyond panel and table",
       "Quiet grid at 5% ink, always lighter than the table rules, no numbered coordinates; NULL hatch at 14% ink",
       "Data islands (tables, expressions, diagrams, mono labels) LTR inside RTL",
       "Hebrew sentences avoid a number, a colon and inline code side by side"
@@ -1822,8 +1822,8 @@
       "dont": "Numbered grids, coordinates, loud hatching"
     },
     {
-      "do": "Square corners, 1px hairline rules #DDD7CF, flat matte fills",
-      "dont": "Rounded cards, thick borders, shadows, glass or blur"
+      "do": "Softly rounded corners, 1px hairline rules #DDD7CF, flat matte fills",
+      "dont": "Big pill-shaped cards, thick borders, shadows, glass or blur"
     },
     {
       "do": "Brand hues by tier: soft for fills and glow, line for strokes and chart marks, text for type; dark uses the soft tier for all three",

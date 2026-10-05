@@ -12,7 +12,7 @@ Slides for class (presented live, with presenter mode), workshops and talks; HTM
 ## Core in this medium
 - Colors: slide canvas bg #F7F2EC, or a one-hue wash on section openers; cover and closing slides on the dark canvas #11161B with ink #E6EAEE and the dark tiers (#5CC3D9); diagrams, tables and code on surface panels #FDFBF8 with a 1px #DDD7CF rule; neon for the one emphasized value, row or result per slide.
 - Type: Rubik 800 headings, Heebo 400 body, Heebo 500 for Hebrew kickers; IBM Plex Mono 400/500 for code, tables and Latin eyebrows only. Hebrew slides are RTL; SQL, tables, expressions and diagrams are LTR islands.
-- Tokens: radius 0; border 1px; shadow none; glow only on the one data point, active line or progress ring of a slide (projected, so allowed; off in printed handouts). Spacing on the 4px scale.
+- Tokens: radius md 10 on cards and chips, lg 14 on large panels; border 1px; shadow none; glow only on the one data point, active line or progress ring of a slide (projected, so allowed; off in printed handouts). Spacing on the 4px scale.
 - Motifs: at most 2 decorative per slide (the quiet grid behind a panel counts as one), in corners, a foot rail or as the big visual; never behind text; none on dense slides. Diagrams that explain are content.
 - Logo: the icon as a corner mark at the physical top-left of every content slide (fixed with `left`, not `inset-inline-start`, so RTL does not push it onto the kicker); the full lockup on cover and closing. Dark slides on screen: `logo/rowdyql-logo-dark.svg`; light slides: `rowdyql-logo-light.svg`; a printed or PDF handout uses the flat files. The top-bar GIF may sit on a closing slide.
 - Imagery: one visual per slide at most (a diagram, a number, a table or an illustration per Core 6 at 2K, 16:9).
@@ -34,7 +34,7 @@ Slides for class (presented live, with presenter mode), workshops and talks; HTM
 - A running example (the same tables, for example Students, Enroll, Courses) stays the same across a multi-step explanation.
 - Charts follow the chart modes in Core 5 and sit on bg or surface.
 - Entrance and exit animation only, short, staggered; nothing idle; off under `prefers-reduced-motion`.
-- PowerPoint and Google Slides: map tokens to roles (background bg, titles Rubik 800, accents neon, dividers #DDD7CF) and override the tool's default theme; set square corners and remove default shadows.
+- PowerPoint and Google Slides: map tokens to roles (background bg, titles Rubik 800, accents neon, dividers #DDD7CF) and override the tool's default theme; set a 10px corner radius and remove default shadows.
 
 ## Drop from Core here
 - The web body floor (slides use the slide floor), print rules, email constraints.

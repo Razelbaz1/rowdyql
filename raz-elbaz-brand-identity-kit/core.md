@@ -127,7 +127,7 @@ Mono sample, an LTR island: `SELECT name FROM Students WHERE year >= 2;`
 ## 4 - Foundation tokens
 
 - Spacing base 4px. Scale: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64. Generous between sections (32-48), compact inside data (table cell padding 4 by 8).
-- Radius: sm 0 · md 0 · lg 0 · xl 0 · pill 999. Square corners on every panel, table, card, chip, post and cover. The pill is only for a segmented toggle. Round line caps only on the progress arc and schema-map row stubs.
+- Radius (softly rounded, Raz 2026-10-05): sm 6 · md 10 · lg 14 · xl 18 · pill 999. Chips, tags and inputs sm; buttons and cards md; panels, dialogs and post panels lg; large frames (the hero panel, covers) xl. A table gets a rounded outer frame and square cells inside. The rowdy row keeps the logo's own small rounding (about 15% of its height). The pill is for segmented toggles and status pills. Print boxes sm; quiet-tier documents 4px; email 8px. Round line caps only on the progress arc and schema-map row stubs.
 - Borders: 1px solid #DDD7CF (dark #2E3943) on every panel, table cell, card and frame. Rule cards: a 3px inline-start bar in the neon line tier (#2999B1) or the apricot line tier (#DD6D25); a state rule card uses the correct color. Result table: 1px neon line outline. Diagram strokes: quiet 1.5, active 2.5, leader 1.
 - Shadow model: **none**. Values: 1 none · 2 none · 3 none · 4 none. Flat and matte: no drop shadows, no elevation, no glass, no blur. Only this model exists in this identity.
 - Glow is never clipped: a glow must fade out freely and never look boxed in an invisible square. Give every glowing element room: an SVG viewBox or filter region with at least 3 times the blur radius on every side (the logo intro: 30 units around the ignition bloom), and no `overflow:hidden` on a parent that cuts a glow. A glow with a hard edge is a bug.
@@ -230,7 +230,7 @@ The logo is "the rowdy row": three rounded rows of a table, the middle one kicke
 | State colors only to mark: correct #276B43 on #DCEFE3, note #966212 on #FFF1D6, wrong #B23A2E on #FBE3E0, neutral #5F6670 on #ECE8E3, selected #E3F2F3 with ink text | States as decoration; a brand hue as a state (coral never means error) |
 | A one-hue wash from off-white #F7F2EC as the background | The full warm-to-cool wash unless the screen shows a source and a result |
 | Quiet grid #EDE9E4 (5% ink), always lighter than the table rule #DDD7CF; NULL hatch #E1E0DF (14% ink) | Numbered grids, coordinates, loud hatching |
-| Square corners, 1px hairline rules #DDD7CF, flat matte fills | Rounded cards, thick borders, shadows, glass or blur |
+| Softly rounded corners (6 to 18px), 1px hairline rules #DDD7CF, flat matte fills | Big pill-shaped cards, thick borders, shadows, glass or blur |
 | Brand hues by tier: soft for fills and glow, line for strokes and chart marks, text for type; dark uses the soft tier for all three | Soft tier as text or thin lines on light canvases; line tier on washes |
 | IBM Plex Mono for code, data and labels as LTR islands; operators as geometry in graphics, Noto Sans Math in live text | Hebrew in mono; uppercase or letter-spaced Hebrew; operators left to system fallback fonts |
 | The course itself as subject: tables, rows, keys, joins, relational algebra, query plans, schema maps | Glowing cyan networks, isometric server racks, holographic graphs, particle constellations, globes |

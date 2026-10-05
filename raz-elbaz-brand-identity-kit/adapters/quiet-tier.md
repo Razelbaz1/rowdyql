@@ -10,7 +10,7 @@ Formal outputs: official letters, certificates, official documents (syllabus, gr
 ## Core in this medium
 - Colors: page white #FFFFFF in print or bg #F7F2EC on screen; text and headings ink #373C44; muted #5F6670 for meta; the one blue only: neon text tier #20778A for one key figure, the page number or a link, and the line tier #2999B1 for a single hairline rule or a frame. No other brand hue, no state colors, no tints except the neutral table header #ECE8E3.
 - Type: unchanged families and floors: Rubik 800 headings, Heebo 400/500/700 body, IBM Plex Mono for amounts, codes and dates (tabular by design, LTR). No highlighted words, no stamps.
-- Tokens: radius 0; borders 1px #DDD7CF, or 1px ink for a signature line; shadow none; glow none.
+- Tokens: radius 4px; borders 1px #DDD7CF, or 1px ink for a signature line; shadow none; glow none.
 - Motifs: none. The quiet grid #EDE9E4 at most, behind a certificate field or a cover, never behind body text.
 - Logo: flat files only: `logo/rowdyql-logo-light.svg` (on white or bg) or `logo/rowdyql-logo-dark-flat.svg` (on a dark canvas). Small: 8mm tall in print, 28px on screen. Never the glossy file, the intro, the top-bar sheen or a GIF.
 - Imagery: none.
@@ -38,7 +38,7 @@ Read core.md, adapters/<booklet-print | email | web-page>.md, adapters/quiet-tie
 ## Done-check
 1. Zero motifs (the quiet grid at most); no washes, no flow gradient, no glow.
 2. Colors are ink, muted, the page color and the one blue (#20778A text, #2999B1 hairline) only.
-3. Borders 1px; radius 0; shadow none.
+3. Borders 1px; radius 4px; shadow none.
 4. Logo is a flat file at 8mm print or 28px screen.
 5. Amounts, dates and IDs in mono LTR islands; whitespace visibly larger than the regular tier.
 6. Every line passed the voice quick test.

@@ -12,7 +12,7 @@ Single-image posts (Instagram, LinkedIn, Facebook, WhatsApp status) and the site
 ## Core in this medium
 - Colors: canvas bg #F7F2EC or one one-hue wash (wash-sky by default; wash-flow only when the post shows a source and a result); dark posts on #11161B or a dark wash. Diagrams sit on a surface panel #FDFBF8 (dark #182027) with a 1px #DDD7CF rule, never straight on a wash. Neon on at most 10% of the area, on the result only. Text on a wash is ink #373C44 or muted #5F6670.
 - Type: headline Rubik 800, at most 15 characters per line in Hebrew; body Heebo 400; a Latin eyebrow in IBM Plex Mono 500 uppercase +0.14em as an LTR island ("RowdyQL · 01 / 12"). Hebrew aligns right; diagrams and the url stay LTR.
-- Tokens: radius 0; border 1px #DDD7CF; shadow none; glow only on the one result point (digital).
+- Tokens: radius lg 14 on panels, md 10 on cards and chips; border 1px #DDD7CF; shadow none; glow only on the one result point (digital).
 - Motifs: 1-2 from Core 5: the schema map as the big visual, a data line, a progress ring, or a legend strip at the foot. Never behind the headline.
 - Logo: bottom corner opposite the reading start (Hebrew post: bottom-left), lockup height 65px at 1080 (6% of the short edge), on the foot row. Light canvas: `logo/rowdyql-logo-light.svg`; dark canvas: `logo/rowdyql-logo-dark.svg` (digital, glossy). The url `rowdyql.com` in mono on the same foot row.
 - Imagery: optional; a generated illustration (Core 6) takes one half of the canvas, text the other (layout 3).

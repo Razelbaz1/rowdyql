@@ -53,10 +53,10 @@
   /* typography */
   --font-head:'Rubik','Noto Sans Math',system-ui,sans-serif;
   --font-body:'Heebo','Noto Sans Math',system-ui,sans-serif;
-  /* radius: square corners everywhere; the pill is only for a segmented toggle */
-  --radius-sm:0px;
-  --radius:0px;
-  --radius-lg:0px;
+  /* radius: softly rounded (Raz, 2026-10-05): sm chips and inputs, md buttons and cards, lg panels and dialogs; pill for toggles and status pills */
+  --radius-sm:6px;
+  --radius:10px;
+  --radius-lg:14px;
   --radius-pill:999px;
   /* shadow ramp, ONE model: none (flat and matte; glow is a separate data highlight, Block 3) */
   --shadow-1:none;
@@ -78,7 +78,7 @@
   --font-mono:'IBM Plex Mono','Noto Sans Math',ui-monospace,monospace;  /* code, data, labels; Latin only */
   --border-w:1px;
   --border-line:var(--border-w) solid var(--border);
-  --radius-xl:0px;
+  --radius-xl:18px;            /* large frames: the hero panel, covers */
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
   --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
   --ease:ease;                   /* not defined in kit.json: the CSS default, as on the board */
