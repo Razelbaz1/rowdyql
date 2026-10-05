@@ -88,11 +88,33 @@ A background is one hue fading from off-white, left to right. The full warm-to-c
 | wash-apricot | `linear-gradient(90deg,#F7F2EC 0%,#F8E1D1 100%)` | `linear-gradient(90deg,#11161B 0%,#322A27 100%)` | warm |
 | wash-sun | `linear-gradient(90deg,#F7F2EC 0%,#F2E6D3 100%)` | `linear-gradient(90deg,#11161B 0%,#2F2F2C 100%)` | middle |
 | wash-cool | `linear-gradient(90deg,#F7F2EC 0%,#DCEAE8 100%)` | `linear-gradient(90deg,#11161B 0%,#1F2F35 100%)` | cool; the board's sea wash, kept as approved |
-| wash-flow | `linear-gradient(90deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%)` | `linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%)` | only when the screen has a source and a result |
+| wash-flow | `linear-gradient(90deg,#F8E0D5 0%,#F7F2EC 50%,#E7F2F4 100%)` | `linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%)` | when the screen has a source and a result, and the light part of the landing (see "The light flow wash" below) |
 
 ### The flow gradient
 
 `linear-gradient(90deg,#FD977A 0%,#FAA670 28%,#E6C792 50%,#5CC3D9 74%,#8CBDDA 100%)`, the same in both themes. Warm is the source, cool is the result, read left to right like a relational expression. It lives in bands (a 4px rule, a legend band), backgrounds and the progress ring. Never on a thin line, never on every bar.
+
+### The light flow wash: Raz's tone (approved 2026-10-05)
+
+wash-flow, `#F8E0D5` (peach) to `#F7F2EC` (cream) to `#E7F2F4` (pale sky), is the tone Raz chose for large light areas. It works for three reasons:
+- Its two ends are pale tints of the flow's warm and cool hues, so neither end takes over.
+- The cream in the middle softens the meeting of two contrasting hues.
+- The content stays on the kit's light tokens: cards #FDFBF8 with a 1px #DDD7CF rule, ink #373C44, muted #5F6670, neon text tier #20778A, and the filled CTA #20778A.
+
+**On the landing:** the hero and the story stay dark. Every section after them lives on this wash, horizontal and warm at the reading start (right in Hebrew, left in English). It is painted in as it scrolls into view:
+- The sweep starts once the section's top passes about 72% of the screen.
+- It is a soft-edged sweep from the reading start that takes 1.7s.
+- The content turns from the dark colors to the light ones 0.5s later.
+- It resets once the section is below the screen again.
+- There is no sweep under reduced motion.
+
+New landing sections follow the same approach.
+
+**An open direction for the next kit round:** the flow does not have to be a horizontal band with two ends. Raz suggests richer washes:
+- several stops, or four hues, one per corner or placed in space (a mesh);
+- kept soft by mixing a light tint into every meeting of hues, so contrasting colors still never meet with a hard edge.
+
+Until that round, use wash-flow as written above.
 
 Canvases allowed: bg, surface, soft, the six washes; white paper in print; the dark equivalents in the dark theme. Never invent another.
 Accent rule: color only where it means something. Neon marks the result, the selected row, focus and the one value that matters; warm hues mark the source; sun is the middle stage. A diagram line is one quiet color and changes only for a reason (the segment that reaches the result). At most one neon element that glows per composition.

@@ -29,6 +29,11 @@ The RowdyQL site, landing and lessons alike (the whole site follows this kit), p
 - Every color is a token; no raw hex in component CSS outside `:root`.
 - Tables: header on the neutral tint (source) or the result header (result, 1px neon line outline); a selected row on #E3F2F3 with ink text; NULL cells with the hatch and a knock-out label.
 - Motion: theme transitions .3s; optional entrance (opacity and transform, under .4s); nothing idle, nothing blinking; none under reduced motion.
+- The RowdyQL landing (Raz, 2026-10-05):
+  - The top bar, the hero and the story stay dark for every visitor.
+  - Every section after the story sits on the light flow wash, painted in as it scrolls into view (Core, "The light flow wash"). This is the one motion longer than .4s on the page, and it is off under reduced motion.
+  - Its content uses the light tokens (cards on surface with a 1px rule, ink, muted, the neon text tier for icons and step numbers, the filled CTA #20778A).
+  - A new landing section goes inside the same painted area. It does not get a new color.
 - Images: `loading="lazy"` below the fold, width and height attributes, alt text always.
 - The fallback stack is system-ui; never Inter, Roboto or Arial as the visible face.
 
