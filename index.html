@@ -87,7 +87,7 @@ html.subhide .top-sub{max-height:0;padding-block:0;opacity:0;border-top-color:tr
 .subclose svg,.subopen svg{width:18px;height:18px;flex:none}
 .subopen{display:inline-flex;align-items:center;gap:.35rem;border:1px solid var(--line);border-radius:999px;background:var(--surface2);color:var(--ink);font:inherit;font-size:.88rem;padding:.25rem .55rem .25rem .8rem;min-height:34px;max-width:260px;cursor:pointer}
 .subopen b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.subopen:hover{border-color:var(--accent)}
+
 html:not(.subhide) .subopen{display:none}
 /* while folded, scrolling shows where you are, small, under the bar; it never takes a click, and it fades 3 s after the scroll or when the mouse comes near */
 .navmini{position:fixed;top:calc(var(--toph,60px) + 10px);left:50%;transform:translate(-50%,-4px);z-index:29;pointer-events:none;display:flex;align-items:center;gap:.5rem;padding:.22rem .7rem;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-size:.76rem;color:var(--muted);max-width:min(70vw,320px);opacity:0;transition:opacity .35s ease,transform .35s ease}
@@ -112,7 +112,6 @@ html:not(.subhide) .navmini,html.gated .navmini,html.present .navmini{display:no
 .tab[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
 .tools{margin-inline-start:auto;display:flex;gap:.5rem;align-items:center}
 .btn{border:1px solid var(--line);background:var(--surface);padding:.45rem .9rem;border-radius:8px;font-weight:500;min-height:44px;display:inline-flex;align-items:center;gap:.4rem}
-.btn:hover{border-color:var(--accent)}
 .btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .btn.small{min-height:36px;padding:.3rem .7rem;font-size:.9rem}
 .btn.ghost{background:transparent}
@@ -172,7 +171,7 @@ html[dir="rtl"][data-theme="dark"] .home-hero{background:linear-gradient(270deg,
 .hello-art .mark{height:7.5rem;width:auto;color:var(--ink);opacity:.9}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.5rem;transition:transform .25s,border-color .25s,box-shadow .25s}
-.stat:hover{border-color:var(--accent)}
+
 .stat .v{font-family:var(--mono);font-size:1.7rem;color:var(--accent);line-height:1.1}
 .stat .v small{font-size:.9rem;color:var(--muted)}
 .stat .l{font-size:.9rem;color:var(--muted)}
@@ -183,22 +182,23 @@ html[dir="rtl"] .stat .bar i{background:var(--flow-rtl)}
 .sess{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem 1.1rem;display:flex;flex-direction:column;gap:.5rem;text-align:start;font:inherit;color:inherit;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
 .sess::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--line)}
 .sess.open::after{background:var(--flow)}html[dir="rtl"] .sess.open::after{background:var(--flow-rtl)}
-.sess:hover{border-color:var(--accent)}
+
 .sess.soon{cursor:default;opacity:.72}
 .sess.soon:hover{transform:none;border-color:var(--line);box-shadow:none}
+.sess.done .ring{filter:drop-shadow(0 0 3px rgba(92,195,217,.5)) drop-shadow(0 0 8px rgba(92,195,217,.25))}
 .sess .sess-top{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
 .sess .num{font-family:var(--mono);color:var(--accent);font-size:.85rem}
 .sess .date{font-family:var(--mono);color:var(--muted);font-size:.8rem;direction:ltr}
 .sess b{font-size:1rem;line-height:1.3}
 .sess .st{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--muted);margin-top:.2rem}
-.sess .ring{width:2.2rem;height:2.2rem;border-radius:50%;background:conic-gradient(#FD977A 0%,#FAA670 calc(var(--p,0)*.28%),#E6C792 calc(var(--p,0)*.5%),#5CC3D9 calc(var(--p,0)*.74%),#8CBDDA calc(var(--p,0)*1%),var(--surface2) 0);display:grid;place-items:center;font-family:var(--mono);font-size:.62rem;color:var(--ink)}
+.sess .ring{width:2.2rem;height:2.2rem;border-radius:50%;background:conic-gradient(#2999B1 0%,#5CC3D9 calc(var(--p,0)*.55%),#8FE0EF calc(var(--p,0)*1%),var(--surface2) 0);display:grid;place-items:center;font-family:var(--mono);font-size:.62rem;color:var(--ink)}
 .sess .ring i{width:1.6rem;height:1.6rem;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-style:normal}
 .sess .pill{font-size:.72rem;border-radius:999px;padding:.1rem .55rem;background:var(--accent-soft);color:var(--accent);font-weight:500}
 .sess.soon .pill{background:var(--surface2);color:var(--muted)}
 .sess.done .pill{background:var(--good-bg);color:var(--good)}
 .quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem}
 .quick button{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;text-align:start;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.3rem;transition:transform .25s,border-color .25s,box-shadow .25s}
-.quick button:hover{border-color:var(--accent)}
+
 .quick button .ic{font-family:var(--mono);color:var(--accent);font-size:1.3rem}
 .quick button span{color:var(--muted);font-size:.9rem}
 /* scroll reveal (opt-in per element); disabled for reduced motion */
@@ -251,8 +251,9 @@ table.data tr.good td{background:var(--good-bg)}
 table.data tr.badrow td{background:var(--bad-bg)}
 .spot{box-shadow:0 0 0 3px var(--amber) inset!important;background:var(--amber-soft)!important;opacity:1!important}
 /* pointer highlight: click any pinnable item to mark it for the room */
-.pinnable{cursor:pointer;transition:opacity .25s,box-shadow .25s,background .25s}
-.pinnable:hover{box-shadow:0 0 0 2px var(--amber)}
+.pinnable{transition:opacity .25s,box-shadow .25s,background .25s}
+html.present .pinnable{cursor:pointer}
+html.present .pinnable:hover{box-shadow:0 0 0 2px #5CC3D9}
 .pinned{box-shadow:0 0 0 3px var(--amber),0 0 26px rgba(232,163,58,.45)!important;background:var(--amber-soft)!important;border-radius:8px;opacity:1!important}
 .has-pin>.pinnable:not(.pinned){opacity:.38}
 html.present .pinned{transform:scale(1.02)}
@@ -327,7 +328,7 @@ pre.sql .k{color:var(--accent);font-weight:500}
 .q .qn{font-size:.75rem;color:var(--muted);font-family:var(--mono)}
 .opts{display:flex;flex-direction:column;gap:.4rem}
 .opt{text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:.55rem .8rem;display:flex;gap:.6rem;align-items:flex-start;min-height:44px;line-height:1.45}
-.opt:hover{border-color:var(--accent)}
+
 .opt .l{font-family:var(--mono);color:var(--muted);flex:none;width:1.4rem}
 .opt.correct{border-color:var(--good);background:var(--good-bg)}
 .opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
@@ -502,7 +503,7 @@ html.gated .top,html.gated .shell{visibility:hidden}
 .gtop::after{content:"";position:absolute;inset-inline:0;bottom:.55rem;height:2px;background:var(--flow);opacity:.85;pointer-events:none}
 .gtop .links{display:flex;gap:.5rem;flex-wrap:wrap}
 .gbtn{border:1px solid #2E3943;background:transparent;color:#E6EAEE;border-radius:10px;padding:.55rem 1rem;min-height:44px;font-weight:500;transition:border-color .2s,transform .15s}
-.gbtn:hover{border-color:#5CC3D9}
+.gbtn{transition:border-color .3s ease,box-shadow .4s ease,transform .3s ease}.gbtn:hover{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 16px rgba(92,195,217,.3)}
 .gbtn.primary{background:#5CC3D9;color:#11161B;border-color:#5CC3D9;font-weight:700}
 .gbtn.primary:hover{transform:translateY(-1px)}
 .gbtn.ghost{border-color:transparent;color:#9AA4AE}
@@ -602,7 +603,7 @@ html.present .shell{will-change:transform}
 .ustat{display:inline-block;border-radius:999px;padding:.1rem .6rem;font-size:.78rem;background:var(--good-bg);color:var(--good);cursor:pointer;white-space:nowrap}.ustat.bad{background:var(--bad-bg);color:var(--bad)}
 .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;padding:0 0 2.4rem}
 .feat div{background:rgba(24,32,39,.72);border:1px solid #2E3943;border-radius:14px;padding:1rem 1.1rem;transition:border-color .2s}
-.feat div:hover{border-color:#5CC3D9}
+
 .feat .ic{font-family:var(--mono);color:#5CC3D9;font-size:1.25rem;display:block;margin-bottom:.45rem;direction:ltr;text-align:start}
 .feat b{display:block;color:#fff;margin-bottom:.25rem}
 .feat span{color:#9AA4AE;font-size:.92rem}
@@ -639,7 +640,7 @@ html.present .shell{will-change:transform}
 textarea.gt{min-height:6.5rem;resize:vertical;width:100%}
 .gate .seg{display:flex;gap:.4rem;flex-wrap:wrap}
 .gate .seg label{flex:1;min-width:6rem;border:1px solid #2E3943;border-radius:10px;padding:.7rem;text-align:center;cursor:pointer;color:#E6EAEE;min-height:52px;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s}
-.gate .seg label:hover{border-color:#5CC3D9}
+.gate .seg label{transition:border-color .3s ease,box-shadow .4s ease}.gate .seg label:hover{border-color:#5CC3D9;box-shadow:0 0 12px rgba(92,195,217,.25)}
 .gate .seg input{position:absolute;opacity:0;pointer-events:none}
 .gate .seg label:has(input:checked){border-color:#5CC3D9;background:rgba(92,195,217,.15);font-weight:700;box-shadow:0 0 16px rgba(92,195,217,.25)}
 .tsum{margin:0;padding-inline-start:1.1rem;color:#E6EAEE;font-size:.93rem;display:flex;flex-direction:column;gap:.35rem}
@@ -819,7 +820,7 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 .modal.lv>div{max-width:520px;max-height:90vh}
 .lv-opts{display:flex;flex-direction:column;gap:.4rem}
 .lv-opt{display:flex;align-items:center;gap:.6rem;padding:.5rem .75rem;border:1px solid var(--line);border-radius:10px;cursor:pointer;min-height:44px;font-size:.95rem;transition:border-color .2s,background .2s}
-.lv-opt:hover{border-color:var(--accent)}
+
 .lv-opt.on{border-color:var(--accent);background:var(--accent-soft)}
 .lv-opt input{accent-color:var(--accent);width:1.05rem;height:1.05rem;margin:0;flex:none}
 .lv-trans{font-size:.8rem}
@@ -834,7 +835,7 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 .ob-opts{display:grid;gap:.5rem}
 .ob-opts.two{grid-template-columns:1fr 1fr}
 .ob-opt{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:.75rem 1rem;min-height:48px;font:inherit;color:var(--ink);text-align:start;cursor:pointer;transition:border-color .2s,background .2s}
-.ob-opt:hover{border-color:var(--accent)}
+
 .ob-opt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
 .ob-opts.two .ob-opt{text-align:center;font-size:1.05rem}
 .ob-nav{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-top:.2rem}
@@ -858,7 +859,7 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 .ob-inst-o[aria-selected="true"]::after{content:"  ✓";color:var(--accent)}
 .ob-inst-o.add{color:var(--accent)}
 .nt-bell{position:relative;display:inline-grid;place-items:center;width:34px;height:34px;flex:none;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink);cursor:pointer;padding:0}
-.nt-bell:hover,.nt-bell[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.nt-bell[aria-expanded="true"]{border-color:#5CC3D9;color:var(--accent)}
 .nt-bell svg{width:18px;height:18px;transform-origin:50% 14%}
 .nt-bell.ring svg{animation:ntring .9s ease 1}
 @keyframes ntring{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-4deg)}}
@@ -945,6 +946,11 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 /* LTR fields (email, password) in the RTL form: the check mark goes to the side the text does not start from */
 .gate[dir="rtl"] .f input[dir="ltr"]{padding-right:2.3rem}
 .gate[dir="rtl"] .f input[dir="ltr"]~.tick{inset-inline-end:auto;inset-inline-start:.85rem}
+/* hover on a clickable block: the frame turns neon and a soft glow fades in; nothing that is not clickable reacts */
+.sess:not(.soon),.quick button,.opt,.lv-opt,.ob-opt,.btn:not(.primary),.subopen,.nt-bell{transition:border-color .3s ease,box-shadow .4s ease,background-color .3s ease,color .3s ease}
+.sess:not(.soon):hover,.quick button:hover,.opt:not(:disabled):hover,.lv-opt:hover,.ob-opt:hover,.sess:not(.soon):focus-visible,.quick button:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px #5CC3D9,0 0 18px rgba(92,195,217,.32)}
+.btn:not(.primary):hover,.subopen:hover,.nt-bell:hover{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25)}
+@media (prefers-reduced-motion:reduce){.sess,.quick button,.opt,.lv-opt,.ob-opt,.btn,.subopen,.nt-bell{transition:none}}
 </style>
 
 <script>/* diagnostics: on-screen error banner only when the URL contains ?debug (otherwise errors go to the console as usual) */
@@ -3237,6 +3243,7 @@ const spotOn = sel => { $$('.spot').forEach(e => e.classList.remove('spot')); if
 const spotOff = () => $$('.spot').forEach(e => e.classList.remove('spot'));
 function unpinAll(){ $$('.pinned').forEach(e => e.classList.remove('pinned')); $$('.has-pin').forEach(e => e.classList.remove('has-pin')); spotOff(); }
 document.addEventListener('click', e => {
+  if (!document.documentElement.classList.contains('present')) return; /* the pointer is a presenter tool */
   const p = e.target.closest('.pinnable'); if (!p) { if (!e.target.closest('#pop,#scTables')) unpinAll(); return; }
   const was = p.classList.contains('pinned'); unpinAll(); if (was) return;
   p.classList.add('pinned'); p.parentElement.classList.add('has-pin'); if (p.dataset.spot) spotOn(p.dataset.spot);

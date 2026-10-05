@@ -91,7 +91,7 @@
   /* glow: only on data points, active lines, progress; never behind text; off in print */
   --glow-a:.55;
   --glow-point:drop-shadow(0 0 2px rgba(92,195,217,var(--glow-a))) drop-shadow(0 0 7px rgba(92,195,217,calc(var(--glow-a)*.7)));
-  --glow-ring:drop-shadow(0 0 3px rgba(92,195,217,calc(var(--glow-a)*.9))) drop-shadow(0 0 10px rgba(250,166,112,calc(var(--glow-a)*.55)));
+  --glow-ring:drop-shadow(0 0 3px rgba(92,195,217,calc(var(--glow-a)*.9))) drop-shadow(0 0 10px rgba(92,195,217,calc(var(--glow-a)*.45)));
   /* type */
   --head-weight:800;
   --wordmark-weight:900;

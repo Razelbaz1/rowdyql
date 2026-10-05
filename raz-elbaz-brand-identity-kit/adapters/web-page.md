@@ -13,7 +13,7 @@ The RowdyQL site, landing and lessons alike (the whole site follows this kit), p
 ## Core in this medium
 - Colors: page bg; sections separated by a 1px top rule; panels on surface with a 1px rule; the hero on a one-hue wash (wash-sky by default; wash-flow only when the hero shows a source and a result); neon for links, focus, the result, the selected row and the one value that matters. Filled call to action: fill #20778A, text #FDFBF8 (dark: fill #5CC3D9, text #11161B), md corners (10px).
 - Type: Rubik 800 for h1-h3; Heebo for paragraphs, buttons and UI (500 for buttons); IBM Plex Mono for code, tables, expressions and Latin eyebrows, always as LTR islands.
-- Tokens: radius from the scale (sm 6 chips and inputs, md 10 buttons and cards, lg 14 panels and dialogs, xl 18 the hero panel, pill for toggles and status pills; table cells square inside a rounded frame); borders 1px; shadow none (hover changes color or underline only, never a lift or a shadow); glow only on data points, active lines and progress.
+- Tokens: radius from the scale (sm 6 chips and inputs, md 10 buttons and cards, lg 14 panels and dialogs, xl 18 the hero panel, pill for toggles and status pills; table cells square inside a rounded frame); borders 1px; shadow none; hover on a clickable block (card, option, outline button): the frame turns neon #5CC3D9 and a soft neon glow (0 0 18px at 30%) fades in over .3-.4s, never a lift; anything that is not clickable does not react to hover (Raz, 2026-10-05); glow only on data points, active lines and progress.
 - Motifs: the hero gets one big visual (the schema map or a data-line diagram, inline SVG; `role="img"` with a label when it explains, `aria-hidden` when it decorates); the quiet grid behind lesson panels; body text areas get none.
 - Logo: top bar start edge, 32-40px tall, the top-bar SVG inline with its sheen once on load and on hover or keyboard focus (light file in light, dark file in dark; suffix the ids of both copies). Optional: the intro (`logo/rowdyql-logo-intro-dark.svg`) once on first load in dark. Footer name line.
 - Imagery: the landing hero illustration from `assets/hero-landing.png` (16:9, pending), or the schema map in its place; never both.
@@ -43,7 +43,7 @@ Read core.md, adapters/web-page.md, voice/voice-profile.md and design-tokens.css
 ## Done-check
 1. Every color used is a token from `:root`; both themes work; fonts from the Core stacks only.
 2. Body 18px at every width; h1 within the clamp; contrast passes in both themes.
-3. One big visual in the hero; motifs only in their zones; none behind body text; no shadows or hover lifts.
+3. One big visual in the hero; motifs only in their zones; none behind body text; no shadows or hover lifts; the neon hover glow only on clickable blocks, and nothing else reacts to hover.
 4. Direction and logical CSS correct; focus ring visible; reduced motion honored; no horizontal scroll at 360px.
 5. Logo at the top bar start edge with the right file per theme; footer name line present.
 6. Every string passed the voice quick test (and `voice_check.py` for site strings).

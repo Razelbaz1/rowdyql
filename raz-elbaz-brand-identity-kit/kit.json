@@ -1573,7 +1573,7 @@
     },
     {
       "name": "progress-ring",
-      "description": "How much of a chapter is done: a ring, the arc a soft apricot-sun-neon gradient with the ring glow, the rest in fill gray, the percentage always printed inside in ink.",
+      "description": "How much of a chapter is done: a ring, the arc a neon-blue gradient (deep to light neon) with the neon ring glow, the rest in fill gray, the percentage always printed inside in ink.",
       "zone": "badge",
       "scale": "m",
       "frequency": "once",
@@ -2153,7 +2153,7 @@
       "dark": 0.85
     },
     "css_point": "filter:drop-shadow(0 0 2px rgba(92,195,217,A)) drop-shadow(0 0 7px rgba(92,195,217,A*.7))",
-    "css_ring": "filter:drop-shadow(0 0 3px rgba(92,195,217,A*.9)) drop-shadow(0 0 10px rgba(250,166,112,A*.55))",
+    "css_ring": "filter:drop-shadow(0 0 3px rgba(92,195,217,A*.9)) drop-shadow(0 0 10px rgba(92,195,217,A*.45))",
     "colors_rgb": {
       "neon": "92,195,217",
       "coral": "253,151,122",
