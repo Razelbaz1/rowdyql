@@ -55,7 +55,7 @@ def raz():
 
 def site():
     src = open(os.path.join(REPO, "src", "page.html"), encoding="utf-8").read()
-    blk = src[src.index("const I18N = {"):src.index("const I18N_CAMPUS = {")]
+    blk = src[src.index("const I18N = {"):src.index("/* =========================== STATE & HELPERS")]
     he = blk[blk.index("he: {"):blk.index("en: {")]
     pair = re.compile(r'([A-Za-z_0-9]+)\s*:\s*"((?:[^"\\]|\\.)*)"')
     out = []

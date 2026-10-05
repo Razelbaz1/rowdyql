@@ -19,7 +19,7 @@ Read the profile for the language you write in before every copy task, including
 2. Write it the way the profile says: spoken, present tense, plural in Hebrew and "you" in English. Start from something concrete. Build, then land on a short line. Use one idiom at most. The site takes the joke. Keep real terms and make them clear.
 3. Cut every sentence the student wouldn't miss.
 4. Run the quick test at the bottom of the profile on every string.
-5. For site strings: edit `src/page.html` (and the matching `I18N_CAMPUS` override, if one exists), then run `python build.py`. The build runs `raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py` and stops on a new error. Fix the text, don't work around the check.
+5. For site strings: edit `src/page.html`, then run `python build.py`. The build runs `raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py` and stops on a new error. Fix the text, don't work around the check.
 6. For emails in `supabase/email/`: run `python raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py`, which scans them too.
 7. For text that doesn't go into the repo (a post, a notice Raz sends from the dashboard, a message): run the quick test and show Raz the text.
 

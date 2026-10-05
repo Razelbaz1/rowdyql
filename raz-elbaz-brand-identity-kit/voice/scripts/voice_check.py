@@ -10,7 +10,7 @@ Usage (from anywhere in the repo):
 
 build.py calls gate() and stops on new errors unless run with --allow-voice.
 
-Scanned: the he/en strings of I18N and I18N_CAMPUS in src/page.html, the visible text of
+Scanned: the he/en strings of I18N in src/page.html, the visible text of
 supabase/email/*.html, and the meta descriptions in build.py.
 
 A violation is new when its (source, key, check) is not in voice-baseline.json, or when the
@@ -72,10 +72,9 @@ def _arrays(block):
 
 
 def page_strings(src):
-    """{(lang, 'TABLE.lang.key'): raw JS string body} for the I18N and I18N_CAMPUS tables."""
+    """{(lang, 'TABLE.lang.key'): raw JS string body} for the I18N table."""
     out = {}
-    for name, start, end in (("I18N", "const I18N = {", "const I18N_CAMPUS = {"),
-                             ("I18N_CAMPUS", "const I18N_CAMPUS = {", "const CAMPUS = {")):
+    for name, start, end in (("I18N", "const I18N = {", "/* =========================== STATE & HELPERS"),):
         if start not in src or end not in src:
             continue
         blk = src[src.index(start):src.index(end)]

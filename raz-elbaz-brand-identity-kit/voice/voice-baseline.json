@@ -28,7 +28,6 @@
 "I18N.en.rn_msg1|stiff-en": "6a857b5fce",
 "I18N.en.sc_tnote|stiff-en": "a99a89ab33",
 "I18N.en.st_msg_x|stiff-en": "7a0f908895",
-"I18N.en.t_body|stiff-en": "8681732524",
 "I18N.en.t_s2|stiff-en": "df79ca91b7",
 "I18N.en.term_relation|stiff-en": "af18293987",
 "I18N.en.tm_why|please-en": "f8752bf1b5",
@@ -56,7 +55,6 @@
 "I18N.he.in_lede|colon-slogan": "2cd6785fdf",
 "I18N.he.ind6_p|colon-slogan": "ac307869ea",
 "I18N.he.jn_lede|colon-slogan": "927f10d2de",
-"I18N.he.l_sub|colon-slogan": "28dd0a6256",
 "I18N.he.lq_d4|colon-slogan": "6e5f965f97",
 "I18N.he.lv_easy|colon-slogan": "5be23af220",
 "I18N.he.lv_hard|colon-slogan": "eeedf94eb8",
@@ -90,16 +88,7 @@
 "I18N.he.sel_msg0|singular-imperative": "298d095c70",
 "I18N.he.st2_p|colon-slogan": "0ca04fb4fc",
 "I18N.he.st4_p|colon-slogan": "61c96d0eb0",
-"I18N.he.t_good|colon-slogan": "4a15334b25",
 "I18N.he.tm_why|form-register": "c56d034f66",
 "I18N.he.tour_me|colon-slogan": "80ec916f48",
-"I18N.he.w_skip|singular-imperative": "80a413c554",
-"I18N_CAMPUS.en.mp_lede|stiff-en": "23c89c6872",
-"I18N_CAMPUS.en.mp_tl_note|formal-en": "ca03c17f5b",
-"I18N_CAMPUS.en.mp_tl_note|please-en": "ca03c17f5b",
-"I18N_CAMPUS.en.mp_tl_note|stiff-en": "ca03c17f5b",
-"I18N_CAMPUS.he.an_msg_split|colon-slogan": "4475cf9396",
-"I18N_CAMPUS.he.l_sub|colon-slogan": "2d3643d930",
-"I18N_CAMPUS.he.mp_lede|colon-slogan": "7407c05943",
-"I18N_CAMPUS.he.mp_tl_note|form-register": "2e0ad3d50a"
+"I18N.he.w_skip|singular-imperative": "80a413c554"
 }
