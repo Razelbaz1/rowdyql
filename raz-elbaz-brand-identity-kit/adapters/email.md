@@ -7,6 +7,7 @@ Every branded email: account emails (confirm, reset, reauthentication, goodbye),
 - Container 600px wide, centered on a full-width canvas table; 100% under 640px.
 - Table-based layout, every style inline, `role="presentation"` on every table. No flexbox, no grid, no external CSS, no script. Light only (`color-scheme: light`).
 - Fonts: web fonts often do not load in mail clients. Body stack `'Heebo','Rubik',Arial,Helvetica,sans-serif`; headings `'Rubik',Arial,Helvetica,sans-serif` weight 800 (Arial falls back to bold).
+- Fixed titles are images (Raz, 2026-10-05). Gmail and Outlook never load web fonts, so a text h1 shows up in Arial. A title that does not change (for example "איפוס סיסמה") is rendered in Rubik 800, 24px, ink on the card color #FDFBF8, as a 2x PNG (`rowdyql/tools/emailtitles.js`, hosted at rowdyql.com/email-titles/). It sits inside the `<h1>` with the title as its alt text. A title that changes per message (a notice title, a greeting with a name) stays text, and the name moves to the first paragraph.
 - Header: the light logo as a hosted PNG (`assets/email-logo-light.png`, 480px wide, shown at 240px), absolute https URL in HEADER_IMAGE_URL, alt "RowdyQL".
 - Body text 16px, line-height 1.65; h1 24px; section kickers 13px weight 700 (letter-spacing only in Latin); footer 13px.
 - One call to action, as a table cell (never `<button>`).
