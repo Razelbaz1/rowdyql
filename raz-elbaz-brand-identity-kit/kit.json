@@ -1573,7 +1573,7 @@
     },
     {
       "name": "progress-ring",
-      "description": "How much of a chapter is done: a ring, the arc a neon-blue gradient (deep to light neon) with the neon ring glow, the rest in fill gray, the percentage always printed inside in ink.",
+      "description": "How much of a chapter is done: a ring, the arc solid light neon #5CC3D9, no gradient, with the neon ring glow, the rest in fill gray, the percentage always printed inside in ink.",
       "zone": "badge",
       "scale": "m",
       "frequency": "once",

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="400" height="240" role="img" aria-labelledby="t-null-hatch d-null-hatch">
 <title id="t-null-hatch">NULL hatch (NULL מקווקו)</title>
 <desc id="d-null-hatch">NULL hatch: a soft 45 degree hatch at 14% ink (#E1E0DF) in a cell with no value, always with the word NULL; the hatch stops under the word (a surface knock-out), so the label keeps 5.61:1 light and 6.51:1 dark. Source: direction-board.html lines 17, 143, 447.</desc>
-<!-- RowdyQL motif "null-hatch", approved 2026-10-04 (Q6), emitted 2026-10-05. Colors are CSS custom properties with the rq- prefix; each fallback is the light-theme hex, and design-tokens.css maps --rq-* to the current theme (inline the SVG to get dark colors; as an img it shows the light fallbacks). The one blue is the neon: soft #5CC3D9, line #2999B1, text #20778A (dark #5CC3D9 for all). Glow is off in print. -->
+<!-- RowdyQL motif "null-hatch", approved 2026-10-04 (Q6), emitted 2026-10-05. Colors are CSS custom properties with the rq- prefix; each fallback is the light-theme hex, and design-tokens.css maps the rq- custom properties to the current theme (inline the SVG to get dark colors; as an img it shows the light fallbacks). The one blue is the neon: soft #5CC3D9, line #2999B1, text #20778A (dark #5CC3D9 for all). Glow is off in print. -->
 <defs><pattern id="rq-hz" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#E1E0DF" stroke-width="1.5" style="stroke:var(--rq-hatch,#E1E0DF)"/></pattern></defs>
 <g fill="#FDFBF8" stroke="#DDD7CF" stroke-width="1" style="fill:var(--rq-surface,#FDFBF8);stroke:var(--rq-rule,#DDD7CF)">
 <rect x="20" y="24" width="54" height="24"/>
