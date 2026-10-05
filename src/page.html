@@ -535,21 +535,39 @@ html[dir="rtl"] .hero-l .kicker{text-align:end}
 .demo .dh i:nth-child(1){background:#F28B7E}.demo .dh i:nth-child(2){background:#F2B75A}.demo .dh i:nth-child(3){background:#6BD09A}
 .demo .dh span{margin-inline-start:.5rem}
 .lh{color:#fff;font-size:1.4rem;margin:.4rem 0 .9rem}
-/* ==STORY-CSS== scroll story section */
+/* ==STORY-CSS== story section: a title, then a stage that plays itself */
 .story{position:relative;background:#11161B;color:#E6EAEE;direction:ltr}
-.story-track{height:520vh;position:relative}
-.story-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#131B22 0%,#11161B 70%)}
-.story-stage svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:hidden}
+.story-track{position:relative}
+.story-stage{position:relative;height:min(100vh,56.25vw);height:min(100vh,56.25cqw);overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#131B22 0%,#11161B 70%)}
+.story-stage>svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:hidden}
 .story-stage canvas.story-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.story-cap{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:max-content;max-width:min(54ch,88vw);text-align:center;font-family:"Heebo","Segoe UI",Arial,sans-serif;font-size:clamp(1.05rem,1.6vw,1.45rem);font-weight:500;line-height:1.45;color:#E6EAEE;text-wrap:balance;opacity:0;text-shadow:0 2px 16px rgba(0,0,0,.8);pointer-events:none;direction:rtl}
+.story-cap{position:absolute;left:50%;bottom:max(3.6rem,11%);transform:translateX(-50%);width:max-content;max-width:min(54ch,88vw);text-align:center;font-family:"Heebo","Segoe UI",Arial,sans-serif;font-size:clamp(1.05rem,1.6vw,1.45rem);font-weight:500;line-height:1.45;color:#E6EAEE;text-wrap:balance;opacity:0;text-shadow:0 2px 16px rgba(0,0,0,.8);pointer-events:none;direction:rtl}
 html[lang="en"] .story-cap{direction:ltr}
-.story-end{position:absolute;left:50%;bottom:7vh;transform:translateX(-50%);opacity:0;pointer-events:none;display:flex;justify-content:center}
+.story-end{position:absolute;left:50%;bottom:max(3.4rem,9%);transform:translateX(-50%);z-index:3;opacity:0;pointer-events:none;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.9rem 1.1rem;width:max-content;max-width:calc(100% - 32px)}
 .story-caps{display:none}
-.story.static .story-track{height:auto}
 .story.static .story-stage{position:relative;height:auto;aspect-ratio:16/9}
 .story.static .story-caps{display:flex;flex-direction:column;gap:.6rem;max-width:60ch;margin:1rem auto 2rem;padding:0 1rem;text-align:center;direction:rtl;font-family:"Heebo","Segoe UI",Arial,sans-serif}
 .story.static .story-caps p{margin:0;color:#9AA4AE}
 html[lang="en"] .story.static .story-caps{direction:ltr}
+/* the title above the stage: once in view (.in, set by the page) its words rise one by one, then the neon bar runs under the highlight */
+.story-h{direction:rtl;text-align:center;font-family:var(--display);font-weight:900;font-size:clamp(2.1rem,5.4vw,4.4rem);line-height:1.1;letter-spacing:-.01em;color:#fff;max-width:26ch;margin:0 auto;padding:clamp(3.5rem,14vh,8rem) 16px clamp(2rem,7vh,4rem);text-wrap:balance}
+html[lang="en"] .story-h{direction:ltr}
+html[dir="rtl"] .story-end{direction:rtl}
+.story-h .w{display:inline-block;opacity:0;transform:translateY(.55em);filter:blur(10px)}
+.story-h.in .w{opacity:1;transform:none;filter:none;transition:opacity 1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1),filter 1s ease;transition-delay:calc(.25s + var(--i,0) * .32s)}
+.story-h .hl{position:relative;z-index:0;display:inline-block;padding-inline:.12em}
+.story-h .hl::before{content:"";position:absolute;z-index:-1;inset-inline:0;bottom:.08em;height:.4em;border-radius:4px;background:rgba(92,195,217,.55);box-shadow:0 0 14px rgba(92,195,217,.6),0 0 34px rgba(92,195,217,.3);transform:scaleX(0);transform-origin:right}
+.story-h.in .hl::before{transform:scaleX(1);transition:transform .8s cubic-bezier(.3,.7,.2,1) calc(.75s + var(--n,3) * .32s)}
+html[lang="en"] .story-h .hl::before{transform-origin:left}
+/* phones: the picture on top at full width, the caption and the end buttons under it */
+@media (max-width:760px){
+  .story-stage{height:calc(56.25vw + 12.5rem);height:calc(56.25cqw + 12.5rem)}
+  .story-stage>svg,.story-stage canvas.story-fx,.story-stage::after{height:56.25vw;height:56.25cqw;bottom:auto}
+  .story-stage::before{height:10vw;height:10cqw}
+  .story-cap{top:calc(56.25cqw + 1.2rem);bottom:auto;left:16px;right:16px;width:auto;max-width:none;transform:none;font-size:1.02rem}
+  .story-end{top:calc(56.25cqw + 1.2rem);bottom:auto;flex-direction:column}
+  .st-osd{top:10px;inset-inline-start:12px;font-size:.8rem}
+}
 /* shared shape classes (all story svg classes start with s-) */
 .story svg .s-lf{fill:#141B21;stroke:#2E3943;stroke-width:1}
 .story svg .s-rt{fill:#182027;stroke:#2E3943;stroke-width:1}
@@ -891,35 +909,46 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 @keyframes cuein{from{opacity:0}to{opacity:1}}
 .cue-in{border:0;color:inherit;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem;transition:opacity .45s ease;padding:.6rem 1.4rem .3rem;background:radial-gradient(closest-side,rgba(17,22,27,.92),rgba(17,22,27,.6) 70%,rgba(17,22,27,0));border-radius:40px}
 .scroll-cue{display:flex;flex-direction:column;align-items:center}
-.scroll-cue.gone{pointer-events:none}.scroll-cue.gone .cue-in,.scroll-cue.gone .cue-skip{opacity:0}
-.cue-skip{background:none;border:0;color:#9AA4AE;font:inherit;font-size:.8rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:.15rem .6rem;transition:opacity .45s ease,color .2s}
-.cue-skip:hover,.cue-skip:focus-visible{color:#E6EAEE}
-/* story HUD: what this is and which step (top), step buttons and dots (bottom), skip; the stage keeps its look */
-.st-hud{position:absolute;inset:0;pointer-events:none;font-family:"Heebo","Segoe UI",Arial,sans-serif;color:#B9C2CB;z-index:3;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s .4s}
-.st-hud.live{opacity:1;visibility:visible;transition:opacity .4s ease}
-.story-stage .st-hud svg{position:static;inset:auto;display:block;overflow:visible}
-.st-top{position:absolute;top:16px;left:20px;right:20px;display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:1rem}
-.st-hint{grid-column:2;justify-self:center;display:flex;align-items:center;gap:.6rem;padding:.45rem .95rem;border:1px solid #2E3943;border-radius:999px;background:rgba(17,22,27,.78);font-size:.88rem;color:#E6EAEE;opacity:0;transform:translateY(-4px);transition:opacity .45s ease,transform .45s ease}
-.st-hud.first .st-hint{opacity:1;transform:none}
-.st-mouse{width:16px;height:24px;border:2px solid #5CC3D9;border-radius:9px;position:relative;flex:none}
-.st-mouse i{position:absolute;left:50%;top:4px;width:3px;height:6px;margin-left:-1.5px;border-radius:2px;background:#5CC3D9;animation:stwheel 1.6s ease-in-out infinite}
-@keyframes stwheel{0%{transform:translateY(0);opacity:1}60%{transform:translateY(7px);opacity:0}100%{transform:translateY(0);opacity:0}}
-.st-skip{grid-column:3;justify-self:end;pointer-events:auto;display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .6rem .4rem .9rem;border:1px solid #2E3943;border-radius:999px;background:rgba(17,22,27,.6);color:#B9C2CB;font:inherit;font-size:.86rem;cursor:pointer}
-.st-skip svg{width:16px;height:16px}
-.st-skip:hover,.st-skip:focus-visible,.st-arrow:hover,.st-arrow:focus-visible{color:#5CC3D9;border-color:#5CC3D9}
-.st-nav{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;align-items:center;gap:.4rem;pointer-events:auto}
-.st-arrow{width:34px;height:34px;border-radius:50%;border:1px solid #2E3943;background:rgba(17,22,27,.6);color:#B9C2CB;display:grid;place-items:center;cursor:pointer;padding:0}
-.st-arrow svg{width:16px;height:16px}
-.st-dots{display:flex;align-items:center}
-.st-dot{width:22px;height:30px;display:grid;place-items:center;background:none;border:0;padding:0;cursor:pointer}
-.st-dot i{width:7px;height:7px;border-radius:50%;background:rgba(230,238,236,.22);transition:background .3s,transform .3s,box-shadow .3s}
-.st-dot.done i{background:rgba(92,195,217,.5)}
-.st-dot.cur i{background:#5CC3D9;transform:scale(1.45);box-shadow:0 0 10px rgba(92,195,217,.8)}
-.st-dot:hover i,.st-dot:focus-visible i{background:#8FE0EF}
-.story.has-hud .story-cap{bottom:calc(9vh + 1.4rem)}
-.story.has-hud .story-end{bottom:calc(7vh + 2rem)}
-@media (max-width:760px){.st-top{grid-template-columns:1fr auto;left:14px;right:14px}.st-hint{grid-column:1/-1;grid-row:2;justify-self:center;font-size:.8rem}.st-skip{grid-column:2;grid-row:1}}
-@media (prefers-reduced-motion: reduce){.st-mouse i{animation:none}}
+.scroll-cue.gone{pointer-events:none}.scroll-cue.gone .cue-in{opacity:0}
+/* story player: play / pause and a thin progress line at the bottom of the stage */
+.st-ctl{position:absolute;left:16px;right:16px;bottom:12px;z-index:3;display:flex;align-items:center;gap:.7rem}
+.st-pp{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid #2E3943;background:rgba(17,22,27,.7);color:#B9C2CB;display:grid;place-items:center;cursor:pointer;padding:0;transition:color .2s,border-color .3s,box-shadow .4s}
+.story-stage .st-pp svg{width:16px;height:16px;display:block}
+.st-pp:hover,.st-pp:focus-visible{color:#5CC3D9;border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25)}
+.st-pp:disabled{opacity:.5;cursor:default}
+.st-bar{flex:1;height:3px;border-radius:3px;background:rgba(230,234,238,.12);overflow:hidden}
+.st-bar i{display:block;height:100%;border-radius:3px;background:#5CC3D9;transform:scaleX(0);transform-origin:left}
+.st-ctl[dir="rtl"] .st-bar i{transform-origin:right}
+/* ROLLBACK under the scene: a terminal line that runs like a query, then everything rewinds */
+.st-rb{display:inline-flex;flex-direction:column;align-items:flex-start;gap:.2rem;padding:.5rem .9rem .55rem;border:1px solid #2E3943;border-radius:10px;background:rgba(17,22,27,.88);color:#E6EAEE;font:500 .95rem/1.25 "IBM Plex Mono",Consolas,"Courier New",monospace;cursor:pointer;text-align:left;transition:border-color .3s ease,box-shadow .4s ease}
+.st-rb:hover,.st-rb:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px #5CC3D9,0 0 18px rgba(92,195,217,.32)}
+.st-rb-c{color:#7D8994;font-size:.8rem}
+.st-rb-c span{font-family:"Heebo","Segoe UI",Arial,sans-serif}
+.st-rb-q{display:block;white-space:nowrap}
+.st-rb-p{color:#7D8994}
+.st-rb-q b{color:#5CC3D9;font-weight:600}
+.st-rb-cur{display:inline-block;width:.55em;height:1.05em;vertical-align:-.18em;margin-inline-start:.2em;background:#5CC3D9;animation:rbcur 1.05s steps(1) infinite}
+@keyframes rbcur{50%{opacity:0}}
+.story-stage .st-rb-run{display:inline-block;width:13px;height:13px;vertical-align:-.1em;margin-inline-start:.7rem;color:#5CC3D9}
+.st-rb.run{border-color:#5CC3D9;box-shadow:0 0 0 1px #5CC3D9,0 0 28px rgba(92,195,217,.55)}
+.st-rb.run b{color:#fff;text-shadow:0 0 10px #5CC3D9}
+.st-rb.run .st-rb-cur{animation:none;opacity:0}
+.st-rb.run .st-rb-run{animation:rbrun .3s ease-in-out infinite alternate}
+@keyframes rbrun{to{transform:scale(1.35);filter:drop-shadow(0 0 6px #5CC3D9)}}
+/* the rewind: a tape-style badge, scan lines, a tracking band running up and a slight jitter */
+.st-osd{position:absolute;top:18px;inset-inline-start:22px;z-index:3;display:flex;align-items:center;gap:.5rem;font:600 .95rem "IBM Plex Mono",Consolas,monospace;letter-spacing:.14em;color:#5CC3D9;text-shadow:0 0 10px rgba(92,195,217,.8);opacity:0;pointer-events:none;transition:opacity .2s}
+.story-stage .st-osd svg{width:20px;height:20px;display:block;filter:drop-shadow(0 0 6px rgba(92,195,217,.8))}
+.story.rewinding .st-osd{opacity:1;animation:osdblink .5s steps(1) infinite}
+@keyframes osdblink{50%{opacity:.35}}
+.story-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .25s;background:repeating-linear-gradient(0deg,rgba(92,195,217,.07) 0 1px,transparent 1px 4px)}
+.story-stage::before{content:"";position:absolute;left:0;right:0;top:0;height:18%;z-index:2;pointer-events:none;opacity:0;background:linear-gradient(180deg,transparent,rgba(92,195,217,.16) 45%,rgba(230,234,238,.1) 50%,transparent)}
+.story.rewinding .story-stage::after{opacity:1}
+.story.rewinding .story-stage::before{opacity:1;animation:rwband .5s linear infinite}
+@keyframes rwband{from{transform:translateY(560%)}to{transform:translateY(-100%)}}
+.story.rewinding .story-stage>svg,.story.rewinding canvas.story-fx{animation:rwjit .14s steps(2) infinite}
+@keyframes rwjit{50%{transform:translateX(-3px) skewX(-.6deg)}}
+.story.static .st-ctl,.story.static .st-osd,.story.static .st-rb{display:none}
+@media (prefers-reduced-motion: reduce){.story-h .w{opacity:1;transform:none;filter:none}.story-h .hl::before{transform:none}}
 .to-top{position:fixed;bottom:16px;inset-inline-end:16px;z-index:7;display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .95rem .5rem .8rem;border-radius:999px;border:1px solid #2E3943;background:rgba(17,22,27,.88);color:#E6EAEE;font:inherit;font-size:.88rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease,border-color .2s}
 .to-top svg{width:16px;height:16px;color:#5CC3D9}
 .to-top.on{opacity:1;pointer-events:auto;transform:none}
@@ -964,10 +993,15 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
         </div>
         <div class="demo b" style="--d:.6s"><div class="dh"><i></i><i></i><i></i><span>rowdyql · live</span></div><pre class="live" id="demoLive"></pre><div id="demoViz" hidden></div><div class="out" id="demoOut"></div><div id="demoTable"></div></div>
       </div>
-      <div class="scroll-cue" id="scrollCue"><button type="button" class="cue-in"><span data-i18n="l_scroll"></span><span class="cue-arrow"><svg viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l10 10 10-10"/></svg><svg viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l10 10 10-10"/></svg></span></button><button type="button" class="cue-skip" id="cueSkip" data-i18n="l_st_skip"></button></div>
+      <div class="scroll-cue" id="scrollCue"><button type="button" class="cue-in"><span data-i18n="l_scroll"></span><span class="cue-arrow"><svg viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l10 10 10-10"/></svg><svg viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l10 10 10-10"/></svg></span></button></div>
       <button type="button" class="to-top" id="toTop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg><span data-i18n="l_st_top"></span></button>
-      <section class="story" id="story" aria-label="RowdyQL story">
-        <div class="story-track"><div class="story-stage"><div class="story-end"><button type="button" class="gbtn primary" id="ctaUp3" data-i18n="l_cta2"></button></div></div></div>
+      <section class="story" id="story" aria-labelledby="storyH">
+        <h2 class="story-h" id="storyH" data-i18n="l_story_h"></h2>
+        <div class="story-track"><div class="story-stage">
+          <div class="st-osd" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 6v12l-8-6zM21 6v12l-8-6z" fill="currentColor"/></svg>ROLLBACK</div>
+          <div class="st-ctl" id="stCtl"><button type="button" class="st-pp" id="stPP"></button><div class="st-bar" aria-hidden="true"><i id="stBar"></i></div></div>
+          <div class="story-end"><button type="button" class="gbtn primary" id="ctaUp3" data-i18n="l_cta2"></button><button type="button" class="st-rb" id="stReplay" dir="ltr"><span class="st-rb-c">-- <span data-i18n="l_st_replay"></span></span><span class="st-rb-q"><span class="st-rb-p">rowdyql&gt;</span> <b>ROLLBACK</b>;<i class="st-rb-cur"></i><svg class="st-rb-run" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></button></div>
+        </div></div>
       </section>
       <h2 class="lh b" style="--d:1.05s" data-i18n="l_feat_h"></h2>
       <div class="feat" id="feat"></div>
@@ -1584,10 +1618,10 @@ g_working:"מריץ…", g_ok_up:"ההרשמה נקלטה. שלחנו קישור
 l_h1:"SQL בגובה <span class=\"stk\">העיניים</span>",
 l_sub:"הקורס שהופך את SQL <span class=\"hl\">לשפה שלכם</span>.",
 l_body:"אתם משתמשים במסדי נתונים בכל יום&nbsp;- מהקניות באינטרנט ועד בחירת סדרה לערב. בקורס תגלו מה קורה מאחורי הקלעים: איך מארגנים נתונים, מחברים ביניהם ושולפים את המידע שצריך. תרכשו את הידע והכלים <b>לתכנן מסדי נתונים ולכתוב שאילתות SQL מורכבות</b>, עם <b>תרגול מעשי ומשוב מיידי</b> לאורך הדרך.",
-l_cta:"מכאן מתחילים", l_cta2:"פותחים חשבון, דקה אחת", l_scroll:"גללו למטה וראו, צעד אחר צעד, איך עובד עולם מסדי הנתונים", l_st_hint:"גלילה למטה: צעד קדימה. גלילה למעלה: צעד אחורה.", l_st_hint_t:"החלקה למעלה: צעד קדימה. החלקה למטה: צעד אחורה.", l_st_skip:"דילוג על הסיפור", l_st_more:"להמשך הדף", l_st_prev:"הצעד הקודם", l_st_next:"הצעד הבא", l_st_top:"חזרה למעלה", l_st_dot:"צעד {n}", l_st_nav:"ניווט בסיפור", l_have:"כבר יש לי חשבון",
+l_cta:"מכאן מתחילים", l_cta2:"פותחים חשבון ומתחילים", l_scroll:"מסדי נתונים בפחות מדקה. גללו למטה", l_story_h:"עולם מסדי&nbsp;הנתונים, <span class=\"hl\">מבפנים</span>", l_st_pause:"השהיה", l_st_play:"המשך", l_st_replay:"צפייה חוזרת", l_st_top:"חזרה למעלה", l_have:"כבר יש לי חשבון",
 l_feat_h:"מה יש בפנים", l_how_h:"איך זה עובד",
 l_feat:[["≡","שיעורים מסודרים","כל נושא מחולק לשיעורים קצרים, מהבסיס ועד רמה מתקדמת."],["σ π ⋈","רואים איך זה עובד","כל פעולה מוצגת על טבלאות אמיתיות, ורואים בדיוק מה קורה לשורות."],["✓","תרגול ברמות שונות","תרגילים שנבדקים מיד, מהקל לקשה, עד שמרגישים שליטה."],["SELECT *","מסדי נתונים מוכנים","כותבים תשובה ורואים מיד את הטבלה שהיא מחזירה."]],
-l_how:[["פותחים חשבון","ותוך דקה אתם בפנים."],["לומדים שיעור אחרי שיעור","ובקצב שלכם, כמה שתרצו."],["מתרגלים עד שזה יושב","פותרים תרגילים ובחינות."]],
+l_how:[["פותחים חשבון",""],["לומדים בקצב שלכם",""],["מתרגלים עד שזה יושב",""]],
 lq_d1:"מי קנה כרטיס לפסטיבל האביב?", lq_d2:"מי הזמין הכי הרבה כרטיסים?", lq_d3:"אותה שאלה, באלגברה רלציונית", lq_d4:"איך טבלאות מוצאות זו את זו: מפתח זר פוגש מפתח ראשי", lq_d5:"אלגברה רלציונית: סטודנטים מהנדסת תעשייה", lq_d6:"חילוק: ספקים שעבדו בכל הפסטיבלים", lq_d7:"הפרש: סטודנטים שלא קנו אף כרטיס", lq_pw:"הסיסמה לעולם לא נשמרת כטקסט, רק כגיבוב",
 ch_details:"פרטים", ch_terms:"תנאים", ch_meet:"היכרות", ch_done:"סיום",
 dt_h:"בואו נכיר", d_email_why:"האימייל הוא המזהה שלכם. אליו יגיע קישור האימות.", d_pass_why:"8 תווים לפחות. היא נשמרת כגיבוב, אף אחד לא יכול לקרוא אותה, גם לא אנחנו.", d_name_why:"כמו שתרצו שנפנה אליכם.", d_first_why:"כמו שתרצו שנפנה אליכם. אותיות בלבד, בעברית או באנגלית.", d_last_why:"ועכשיו שם המשפחה.", d_birth_why:"רק צוות האתר רואה אותו.",
@@ -1826,10 +1860,10 @@ g_working:"Executing…", g_ok_up:"Registered. We sent a confirmation link to yo
 l_h1:"SQL that finally <span class=\"stk\">clicks</span>",
 l_sub:"The course that makes SQL <span class=\"hl\">your language</span>.",
 l_body:"You use databases every day&nbsp;- from online shopping to picking what to watch tonight. In this course you'll find out what happens behind the scenes: how data is organized, how it's connected, and how you pull out exactly what you need. You'll gain the knowledge and tools to <b>design databases and write complex SQL queries</b>, with <b>hands-on practice and instant feedback</b> along the way.",
-l_cta:"Start here", l_cta2:"Create an account, one minute", l_scroll:"Scroll down to see, step by step, how the world of databases works", l_st_hint:"Scroll down: one step forward. Scroll up: one step back.", l_st_hint_t:"Swipe up: one step forward. Swipe down: one step back.", l_st_skip:"Skip the story", l_st_more:"Continue down", l_st_prev:"Previous step", l_st_next:"Next step", l_st_top:"Back to top", l_st_dot:"Step {n}", l_st_nav:"Story navigation", l_have:"I already have an account",
-l_feat_h:"What is inside", l_how_h:"How it works",
+l_cta:"Start here", l_cta2:"Create your account", l_scroll:"Databases in under a minute. Scroll down", l_story_h:"The world of databases, <span class=\"hl\">from the inside</span>", l_st_pause:"Pause", l_st_play:"Play", l_st_replay:"Watch again", l_st_top:"Back to top", l_have:"I already have an account",
+l_feat_h:"What's inside", l_how_h:"How it works",
 l_feat:[["≡","Organized lessons","Each topic is split into short lessons, from the basics to an advanced level."],["σ π ⋈","See how it works","Every operation is shown on real tables, so you see exactly what happens to the rows."],["✓","Practice at every level","Exercises checked instantly, easy to hard, until you feel in control."],["SELECT *","Ready-made databases","Write an answer and see the table it returns right away."]],
-l_how:[["Create an account","and you're in within a minute."],["Learn lesson by lesson","at your own pace, as much as you like."],["Practice until it sticks","Solve exercises and tests."]],
+l_how:[["Create an account",""],["Learn at your own pace",""],["Practice until it sticks",""]],
 lq_d1:"Who bought a ticket to the Spring Festival?", lq_d2:"Who ordered the most tickets?", lq_d3:"The same question, in relational algebra", lq_d4:"How tables find each other: a foreign key meets a primary key", lq_d5:"Relational algebra: Industrial Engineering students", lq_d6:"Division: suppliers who worked every festival", lq_d7:"Difference: students who never bought a ticket", lq_pw:"The password is never stored as text, only as a hash",
 ch_details:"Details", ch_terms:"Terms", ch_meet:"Meet", ch_done:"Done",
 dt_h:"Let us meet", d_email_why:"Your email is your identifier. The confirmation link goes there.", d_pass_why:"At least 8 characters. Stored as a hash: nobody can read it, not even us.", d_name_why:"What we should call you.", d_first_why:"What we should call you. Letters only, Hebrew or English.", d_last_why:"And now the last name.", d_birth_why:"Only the site team sees it.",
@@ -1941,15 +1975,15 @@ const HOLO = (() => {
   return { mount, mountAll, play };
 })();
 /* ==/HOLO== */
-/* ==STORY-ENGINE== RowdyQL scroll story: a sticky 1600x900 stage driven by scroll progress p in [0,1].
+/* ==STORY-ENGINE== RowdyQL story: a 1600x900 stage driven by progress p in [0,1], which a clock plays once the stage is on screen.
    Chapters register with STORY.register({id, layer, range:[a,b], captions:[{at:[a,b], he, en}], build(ctx, g), update(p, ctx, dt, time)}).
-   The engine owns: DOM, camera, particle flows (canvas), captions, the end box, reduced-motion/static mode. */
+   The engine owns: DOM, camera, particle flows (canvas), captions, the end box, the player clock and its rewind, reduced-motion/static mode. */
 const STORY = (() => {
   const W = 1600, H = 900, NS = 'http://www.w3.org/2000/svg';
   const LAYERS = ['bg', 'floor', 'farm', 'cables', 'pcs', 'queries', 'client', 'fx'];
   const chapters = [], flows = [];
   let root, stage, svg, defs, world, layers = {}, canvas, c2d, capBox, endBox, forced = null, isStatic = false, running = false, lastT = 0, dpr = 1, ctx, building = null;
-  let beats = null, onBeat = null, bi = 0, pShown = 0, tw = null, scroller = null, expectTop = null, armed = true, lastWheelT = 0, lastAbs = 0, touchY = null, touchDir = 0;
+  let beats = null, plan = null, total = 0, T = 0, t0 = 0, playing = false, started = false, autoHeld = false, rew = null, vt = 0, capS = null, endO = 0, onState = null, onTick = null, host = null;
 
   /* ---- math ---- */
   const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
@@ -1988,7 +2022,7 @@ const STORY = (() => {
 
   /* ---- particle flows on the canvas (stage coords; the engine applies the camera) ---- */
   function flow(points, opts){
-    const fl = Object.assign({ color: '#5CC3D9', speed: 160, count: 12, size: 2.2, tail: 18, intensity: 0 }, opts || {}); fl.ps = []; if (!fl.range && building) fl.range = building.range.slice();
+    const fl = Object.assign({ color: '#5CC3D9', speed: 160, count: 12, size: 2.2, tail: 18, intensity: 0, fade: 0 }, opts || {}); fl.ps = []; if (!fl.range && building) fl.range = building.range.slice();
     const setPoints = arr => { fl.points = arr; fl.seg = []; fl.len = 0; for (let i = 1; i < arr.length; i++) { const d = Math.hypot(arr[i][0] - arr[i - 1][0], arr[i][1] - arr[i - 1][1]); fl.seg.push(d); fl.len += d; } };
     setPoints(points); for (let i = 0; i < fl.count; i++) fl.ps.push({ s: Math.random() * fl.len, v: fl.speed * (.7 + Math.random() * .6), a: .4 + Math.random() * .6 });
     flows.push(fl); return { set: v => { fl.intensity = clamp(v); }, setPoints, fl };
@@ -2000,8 +2034,8 @@ const STORY = (() => {
     const s = Math.min(r.width / W, r.height / H), ox = (r.width - W * s) / 2, oy = (r.height - H * s) / 2;
     c2d.setTransform(1, 0, 0, 1, 0, 0); c2d.clearRect(0, 0, cw, chh); c2d.scale(dpr, dpr); c2d.translate(ox + s * cam.tx, oy + s * cam.ty); c2d.scale(s * cam.k, s * cam.k); c2d.lineCap = 'round';
     flows.forEach(fl => { const w = fl.range ? Math.min(seg(p, fl.range[0] - .06, fl.range[0] - .01), 1 - seg(p, fl.range[1] + .03, fl.range[1] + .09)) : 1; const I = fl.intensity * w; if (I <= 0 || fl.len <= 0) return;
-      fl.ps.forEach(q => { q.s += q.v * dt; if (q.s > fl.len) q.s -= fl.len; const h = posAt(fl, q.s), tl = posAt(fl, Math.max(0, q.s - fl.tail));
-        c2d.globalAlpha = I * q.a; c2d.strokeStyle = fl.color; c2d.lineWidth = fl.size; c2d.beginPath(); c2d.moveTo(tl[0], tl[1]); c2d.lineTo(h[0], h[1]); c2d.stroke();
+      fl.ps.forEach(q => { q.s += q.v * dt; if (q.s > fl.len) q.s -= fl.len; else if (q.s < 0) q.s += fl.len; const h = posAt(fl, q.s), tl = posAt(fl, Math.max(0, q.s - fl.tail));
+        c2d.globalAlpha = I * q.a * (fl.fade ? clamp((fl.len - q.s) / fl.fade) : 1); c2d.strokeStyle = fl.color; c2d.lineWidth = fl.size; c2d.beginPath(); c2d.moveTo(tl[0], tl[1]); c2d.lineTo(h[0], h[1]); c2d.stroke();
         c2d.fillStyle = fl.color; c2d.shadowColor = fl.color; c2d.shadowBlur = 10; c2d.beginPath(); c2d.arc(h[0], h[1], fl.size * 1.1, 0, 6.2832); c2d.fill(); c2d.shadowBlur = 0; }); });
     c2d.globalAlpha = 1;
   }
@@ -2014,49 +2048,46 @@ const STORY = (() => {
   /* ---- captions ---- */
   const curLang = () => (typeof lang !== 'undefined' && lang === 'en') ? 'en' : 'he';
   const capOf = b => { if (!b || !b.cap) return ''; const ch = chapters.find(c => c.id === b.cap); const c = ch && ch.captions && ch.captions[0]; return c ? (c[curLang()] || c.he) : ''; };
-  function beatCaptions(){ const to = capOf(beats[bi]); let txt = to, o = to ? 1 : 0;
-    if (tw) { const from = tw.cap, t = tw.k; if (from !== to) { if (t < .35) { txt = from; o = from ? 1 - t / .35 : 0; } else if (t < .55) { txt = ''; o = 0; } else { txt = to; o = to ? (t - .55) / .45 : 0; } } }
-    if (txt && capBox.textContent !== txt) capBox.textContent = txt; capBox.style.opacity = o; }
-  function updateCaptions(p){ if (beats) { beatCaptions(); return; } let best = null; chapters.forEach(ch => (ch.captions || []).forEach(c => { if (p >= c.at[0] && p <= c.at[1]) best = c; })); if (!best) { capBox.style.opacity = 0; return; }
+  /* a move between two rest points with different captions: the old one fades out, a short gap, the new one fades in */
+  function planCaptions(c){ let txt = c.to, o = c.to ? 1 : 0; const k = c.k;
+    if (c.from !== c.to) { if (k < .35) { txt = c.from; o = c.from ? 1 - k / .35 : 0; } else if (k < .55) { txt = ''; o = 0; } else { o = c.to ? (k - .55) / .45 : 0; } }
+    if (txt && capBox.textContent !== txt) capBox.textContent = txt; capBox.style.opacity = o * c.o; }
+  function updateCaptions(p){ if (capS) { planCaptions(capS); return; } let best = null; chapters.forEach(ch => (ch.captions || []).forEach(c => { if (p >= c.at[0] && p <= c.at[1]) best = c; })); if (!best) { capBox.style.opacity = 0; return; }
     const txt = best[curLang()] || best.he; if (capBox.textContent !== txt) capBox.textContent = txt; capBox.style.opacity = Math.min(seg(p, best.at[0], best.at[0] + .035), 1 - seg(p, best.at[1] - .035, best.at[1])); }
 
-  /* ---- progress + loop ---- */
-  /* ---- beat scroll: while the stage is pinned, a scroll gesture moves one rest point; the page is released at both ends ---- */
-  function findScroller(n){ for (let x = n.parentElement; x && x !== document.body; x = x.parentElement) { const oy = getComputedStyle(x).overflowY; if ((oy === 'auto' || oy === 'scroll') && x.scrollHeight > x.clientHeight) return x; } return null; }
-  const viewH = () => scroller ? scroller.clientHeight : innerHeight;
-  const viewTop = () => scroller ? scroller.getBoundingClientRect().top : 0;
-  const curTop = () => scroller ? scroller.scrollTop : scrollY;
-  function rawP(){ const r = root.getBoundingClientRect(); const d = r.height - viewH(); return d > 0 ? clamp(-(r.top - viewTop()) / d) : 1; }
-  function pinned(){ const r = root.getBoundingClientRect(), t = viewTop(); return r.top - t <= 2 && r.bottom - t >= viewH() - 2; }
-  function scrollToBeat(p){ const r = root.getBoundingClientRect(); const top = curTop() + (r.top - viewTop()) + p * (r.height - viewH()); expectTop = Math.round(top); (scroller || window).scrollTo({ top, behavior: 'instant' }); }
-  function goto(i){ i = Math.max(0, Math.min(beats.length - 1, i)); const prev = bi, to = beats[i].p; const cap = tw ? capBox.textContent : capOf(beats[bi]); bi = i; scrollToBeat(to); if (onBeat) onBeat(bi, beats.length);
-    if (Math.abs(to - pShown) < 1e-4) { tw = null; return; } const segB = beats[Math.max(prev, i)], custom = Math.abs(i - prev) === 1 && segB.dur;
-    tw = { from: pShown, to, t0: performance.now(), dur: custom || Math.max(900, Math.min(2800, Math.abs(to - pShown) * 11000)), even: !!custom, k: 0, cap }; }
-  /* a long step (beat.dur) runs at an even pace with soft ends, so the middle does not rush */
+  /* ---- player: once half the stage is on screen the story plays itself on a clock. The page scrolls freely, and the clock keeps running off screen.
+     The timeline comes from the rest points (beats): a move into each one (beat.dur, or a pace from the distance) and a hold on it (beat.hold) ---- */
+  /* a long move runs at an even pace with soft ends, so the middle does not rush */
   const even = (t, a = .12) => { const v = 1 / (1 - a); return t < a ? v * t * t / (2 * a) : t > 1 - a ? 1 - v * (1 - t) * (1 - t) / (2 * a) : v * (a / 2 + t - a); };
-  /* set a beat at once, without the tween (used while the stage is off screen, after a skip or a jump to the top) */
-  function jump(i){ if (!beats) return; bi = Math.max(0, Math.min(beats.length - 1, i)); tw = null; pShown = beats[bi].p; armed = false; if (onBeat) onBeat(bi, beats.length); }
-  const nearest = p => beats.reduce((b, x, i) => Math.abs(x.p - p) < Math.abs(beats[b].p - p) ? i : b, 0);
-  const atEdge = dir => !tw && ((dir < 0 && bi === 0) || (dir > 0 && bi === beats.length - 1));
-  /* a gesture = wheel events closer than 200 ms (event timestamps, not handler time); only a gesture that starts while the stage is pinned may step,
-     and at an end only a fresh gesture releases the page, so the momentum of the gesture that got there does not carry the page away */
-  function onWheel(ev){ const now = ev.timeStamp || performance.now(), abs = Math.abs(ev.deltaY), gap = now - lastWheelT; lastWheelT = now; const pin = running && pinned(); if (gap > 200 || abs > lastAbs * 1.8 + 4) armed = pin; lastAbs = abs;
-    if (!pin || !ev.deltaY) return; const dir = Math.sign(ev.deltaY); if (atEdge(dir)) { if (!armed) ev.preventDefault(); return; } ev.preventDefault(); if (armed) { armed = false; goto(bi + dir); } }
-  function onKey(ev){ if (!running || !pinned() || ev.ctrlKey || ev.metaKey || ev.altKey) return; const tg = ev.target; if (tg && (/^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(tg.tagName) || tg.isContentEditable)) return;
-    const k = ev.key; const dir = (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !ev.shiftKey)) ? 1 : (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && ev.shiftKey)) ? -1 : 0; if (!dir || atEdge(dir)) return; ev.preventDefault(); goto(bi + dir); }
-  function onTouchStart(ev){ touchY = pinned() ? ev.touches[0].clientY : null; touchDir = 0; }
-  function onTouchMove(ev){ if (touchY == null) return; const dy = touchY - ev.touches[0].clientY; if (Math.abs(dy) < 6) return; touchDir = Math.sign(dy); if (atEdge(touchDir)) { touchY = null; return; } ev.preventDefault(); }
-  function onTouchEnd(ev){ if (touchY == null) return; const dy = touchY - (ev.changedTouches[0] || {}).clientY; touchY = null; if (Math.abs(dy) > 40) goto(bi + Math.sign(dy)); }
-  /* scrolls the engine did not make (scrollbar drag, in-page jumps, the entering gesture) are left alone while they run;
-     once scrolling has settled for 160 ms inside the pinned range, the stage aligns to the nearest rest point */
-  let snapT = 0;
-  function onScroll(){ clearTimeout(snapT); snapT = setTimeout(() => { if (tw || !pinned()) return; const top = curTop(); if (expectTop != null && Math.abs(top - expectTop) < 3) return; armed = false; goto(nearest(rawP())); }, 160); }
-  function progress(){ if (forced != null) return forced; if (beats) return pShown; const r = root.getBoundingClientRect(); const d = r.height - innerHeight; return d > 0 ? clamp(-r.top / d) : 1; }
+  function buildPlan(bs){ plan = []; total = 0; const add = s => { s.t0 = total; total += s.dur; plan.push(s); };
+    bs.forEach((b, i) => { if (i) { const a = bs[i - 1]; add({ a, b, dur: b.dur || Math.max(900, Math.min(2800, Math.abs(b.p - a.p) * 11000)), even: (b.dur || 0) >= 2400 }); } if (b.hold) add({ a: b, b, dur: b.hold }); }); }
+  const now = () => performance.now();
+  const clock = () => playing ? Math.min(total, now() - t0) : T;
+  /* the timeline at time t: the progress p, and the caption pair with how far the move between them has gone */
+  function at(t){ let s = plan[plan.length - 1]; for (const x of plan) if (t < x.t0 + x.dur) { s = x; break; }
+    const hold = s.a === s.b, k = hold ? 1 : clamp((t - s.t0) / s.dur); return { p: hold ? s.b.p : lerp(s.a.p, s.b.p, s.even ? even(k) : ease.inOut(k)), from: capOf(s.a), to: capOf(s.b), k }; }
+  function state(){ const t = plan ? clock() : 0; return { started, playing, done: started && !rew && t >= total, rewinding: !!rew, t, total }; }
+  const emit = () => { if (onState) onState(state()); };
+  function play(){ if (!plan || rew || playing || (started && T >= total)) return; started = true; playing = true; t0 = now() - T; emit(); }
+  function pause(){ if (!playing) return; T = clock(); playing = false; emit(); }
+  /* ROLLBACK: everything runs backwards fast (camera, chapters, particles and their clock), then the story plays again from the top */
+  function replay(){ if (!plan || rew) return; T = clock(); playing = false; started = true; rew = { s: now(), dur: Math.max(700, 2000 * T / total), p: at(T).p, f: T / total }; if (host) host.classList.add('rewinding'); start(); emit(); }
+  /* a background tab holds the story and picks it up when the tab comes back */
+  function onVis(){ if (document.hidden) { if (playing) { pause(); autoHeld = true; } } else if (autoHeld) { autoHeld = false; play(); } }
+  function progress(){ if (forced != null) return forced; const r = root.getBoundingClientRect(); const d = r.height - innerHeight; return d > 0 ? clamp(-r.top / d) : 1; }
   function applyCam(cam){ world.setAttribute('transform', 'translate(' + cam.tx.toFixed(1) + ' ' + cam.ty.toFixed(1) + ') scale(' + cam.k.toFixed(3) + ')'); }
-  function tick(p, dt, time){ const cam = camera(p); applyCam(cam); chapters.forEach(ch => { try { ch.update(p, ctx, dt, time); } catch (e) { console.error('story chapter ' + ch.id, e); } }); updateCaptions(p); if (endBox) { const o = seg(p, .9, .97); endBox.style.opacity = o; endBox.style.pointerEvents = o > .5 ? 'auto' : 'none'; } drawParticles(dt, cam, p); }
-  function frame(t){ if (!running) return; const dt = Math.min(.05, lastT ? (t - lastT) / 1000 : .016); lastT = t;
-    if (tw) { tw.k = clamp((performance.now() - tw.t0) / tw.dur); pShown = tw.from + (tw.to - tw.from) * (tw.even ? even(tw.k) : ease.inOut(tw.k)); if (tw.k >= 1) { pShown = tw.to; tw = null; } }
-    tick(progress(), dt, t / 1000); requestAnimationFrame(frame); }
+  function tick(p, dt, time){ const cam = camera(p); applyCam(cam); chapters.forEach(ch => { try { ch.update(p, ctx, dt, time); } catch (e) { console.error('story chapter ' + ch.id, e); } }); updateCaptions(p); if (endBox) { const o = plan ? endO : seg(p, .9, .97); endBox.style.opacity = o; endBox.style.pointerEvents = o > .5 ? 'auto' : 'none'; } drawParticles(dt, cam, p); }
+  function frame(ts){ if (!running) return; const dt = Math.min(.05, lastT ? (ts - lastT) / 1000 : .016); lastT = ts;
+    if (!plan) { vt += dt; tick(progress(), dt, vt); requestAnimationFrame(frame); return; }
+    if (rew) { const k = clamp((now() - rew.s) / rew.dur), e = ease.inOut(k); vt -= dt * 3; capS = { from: '', to: '', k: 1, o: 0 }; endO = Math.max(0, 1 - k * 4);
+      tick(rew.p * (1 - e), -dt * 3, vt); if (onTick) onTick(rew.f * (1 - e));
+      if (k >= 1) { rew = null; T = 0; if (host) host.classList.remove('rewinding'); emit(); setTimeout(play, 350); } }
+    else { const t = clock(); if (playing && t >= total) { T = total; playing = false; emit(); }
+      /* paused in the middle: the frame stands still; before the start and after the end the scene stays alive */
+      const d = started && !playing && t < total ? 0 : dt, a = at(t); vt += d;
+      capS = { from: a.from, to: a.to, k: a.k, o: started ? clamp(t / 600) : 0 }; endO = started ? seg(t, total - 800, total) : 0;
+      tick(started ? a.p : 0, d, vt); if (onTick) onTick(t / total); }
+    requestAnimationFrame(frame); }
   function start(){ if (running || isStatic) return; running = true; lastT = 0; requestAnimationFrame(frame); }
   function stop(){ running = false; if (c2d && canvas) { c2d.setTransform(1, 0, 0, 1, 0, 0); c2d.clearRect(0, 0, canvas.width, canvas.height); } }
 
@@ -2080,14 +2111,14 @@ const STORY = (() => {
     chapters.forEach(ch => { ch.g = el('g', { class: 's-ch', 'data-ch': ch.id }, layers[ch.layer] || layers.fx); building = ch; try { ch.build(ctx, ch.g); } catch (e) { console.error('story build ' + ch.id, e); } building = null; });
     if (isStatic) { section.classList.add('static'); const list = document.createElement('div'); list.className = 'story-caps'; chapters.forEach(ch => (ch.captions || []).forEach(c => { const p = document.createElement('p'); p.textContent = c[curLang()] || c.he; list.appendChild(p); })); section.appendChild(list); tick(1, 0, 0); if (endBox) { endBox.style.opacity = 1; endBox.style.pointerEvents = 'auto'; } return; }
     if (forced != null) { for (let i = 0; i < 90; i++) tick(forced, .016, i * .016); start(); return; }
-    if (opts.beats && opts.beats.length > 1) { beats = opts.beats.slice().sort((a, b) => a.p - b.p); onBeat = opts.onBeat || null; scroller = findScroller(root); bi = nearest(rawP()); pShown = beats[bi].p; capBox.setAttribute('aria-live', 'polite');
-      addEventListener('wheel', onWheel, { passive: false }); addEventListener('keydown', onKey); (scroller || window).addEventListener('scroll', onScroll, { passive: true });
-      stage.addEventListener('touchstart', onTouchStart, { passive: true }); addEventListener('touchmove', onTouchMove, { passive: false }); addEventListener('touchend', onTouchEnd, { passive: true }); }
+    if (opts.beats && opts.beats.length > 1) { host = section; beats = opts.beats.slice().sort((a, b) => a.p - b.p); buildPlan(beats); onState = opts.onState || null; onTick = opts.onTick || null; capS = { from: '', to: '', k: 1, o: 0 }; capBox.setAttribute('aria-live', 'polite');
+      new IntersectionObserver(es => es.forEach(e => { if (!started && e.intersectionRatio >= .5) play(); }), { threshold: [0, .25, .5, .75, 1] }).observe(stage);
+      document.addEventListener('visibilitychange', onVis); }
     const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), { rootMargin: '120px 0px' }); io.observe(root);
-    tick(progress(), .016, 0);
+    vt = now() / 1000 + 1000; tick(plan ? 0 : progress(), .016, vt);
   }
   function register(ch){ if (!ch || !ch.id || typeof ch.build !== 'function' || typeof ch.update !== 'function') throw new Error('bad chapter'); ch.layer = ch.layer || 'fx'; ch.range = ch.range || [0, 1]; chapters.push(ch); return ch; }
-  return { init, register, go: i => { if (beats) goto(i); }, jump, force: p => { forced = p == null ? null : clamp(p); }, chapters, W, H, state: () => ({ bi, pShown, tweening: !!tw, beats: beats && beats.length }) };
+  return { init, register, play, pause, toggle: () => playing ? pause() : play(), replay, force: p => { forced = p == null ? null : clamp(p); }, chapters, W, H, state };
 })();
 /* ==/STORY-ENGINE== */
 
@@ -2194,8 +2225,8 @@ const STORY = (() => {
   STORY.register({
     id: 'farm', layer: 'farm', range: [0, .25],
     captions: [{ at: [.03, .22],
-      he: 'ברוכים הבאים לעולם של מסדי הנתונים. הכול מתחיל בחוות שרתים.',
-      en: 'Welcome to the world of databases. It all starts in a server farm.' }],
+      he: 'הכול מתחיל בחוות שרתים - שם יושבים הנתונים.',
+      en: 'It all starts in a server farm, where the data lives.' }],
     build(ctx, g){
       P = (x, y, z) => ctx.iso.P(x, y, z, O);
       f = q => q[0].toFixed(1) + ',' + q[1].toFixed(1);
@@ -2878,8 +2909,7 @@ const STORY = (() => {
 
 /* ch5_client.js — RowdyQL scroll story · chapter "client" (p 0.68 – 1.00)
    The last cable leaves the farm, sweeps under the desks and lands on a small client dock. A screen unfolds above the
-   dock (flat, camera-facing for legibility), the query types itself, a result table prints the welcome sentence
-   row by row, and particles keep streaming along the cable into the screen. All coordinates are stage px. */
+   dock (flat, camera-facing for legibility), the query types itself, a result table prints the welcome sentence, and particles keep streaming along the cable, fading out before the port. All coordinates are stage px. */
 (function () {
   'use strict';
   const S = {};
@@ -2887,8 +2917,8 @@ const STORY = (() => {
   const QLEN = QUERY.reduce((n, t) => n + t[0].length, 0);
   const PROMPT = 'rowdyql> ';
   const TXT = {
-    he: ['ברוכים הבאים לעולם של מסדי הנתונים.', 'מכאן זה רק נהיה מעניין.'],
-    en: ['Welcome to the world of databases.', 'From here it only gets interesting.']
+    he: ['ברוכים הבאים לעולם של מסדי הנתונים.'],
+    en: ['Welcome to the world of databases.']
   };
   /* screen panel */
   const PX = 800, PY = 400, PW = 520, PH = 300, PR = PX + PW, PB = PY + PH, CX = 1060, CY = PY + PH / 2;
@@ -2942,8 +2972,8 @@ const STORY = (() => {
         return N;
       });
       const pts = ctx.sample(S.cab, 60);
-      /* particle stream: along the cable, across the dock, up the neck into the screen */
-      S.flow = ctx.flow(pts.concat([[CX, O2[1] - 10], [CX, PB], [CX, PB - 16]]), { color: '#5CC3D9', speed: 175, count: 18, size: 2.2, tail: 22 });
+      /* particle stream: along the cable to the port; each particle fades out over the last stretch instead of running on into the screen */
+      S.flow = ctx.flow(pts, { color: '#5CC3D9', speed: 175, count: 18, size: 2.2, tail: 22, fade: 130 });
 
       /* ---------- client layer ---------- */
       S.halo = el('ellipse', { cx: CX, cy: CY + 10, rx: 400, ry: 250, fill: 'url(#stHalo)', style: 'opacity:0' }, g);
@@ -2994,10 +3024,10 @@ const STORY = (() => {
       S.hdr = el('g', { style: 'opacity:0' }, SG);
       el('rect', { x: TX, y: TY, width: TW, height: 26, fill: 'rgba(92,195,217,.10)', stroke: '#2E3943' }, S.hdr);
       el('text', { x: CX, y: TY + 18, class: 's-mono s-cyan', 'font-size': 13, 'text-anchor': 'middle' }, S.hdr).textContent = 'result';
-      S.body = el('rect', { x: TX, y: TY + 26, width: TW, height: 62, fill: 'rgba(255,255,255,.02)', stroke: '#2E3943', style: 'opacity:0' }, SG);
-      S.line = [0, 1].map(i => el('text', { y: TY + 26 + 25 + i * 25, class: 's-text s-ink', 'font-size': 17, style: 'opacity:0' }, SG));
-      S.cnt = el('text', { x: TX, y: TY + 110, class: 's-mono s-muted', 'font-size': 13, style: 'opacity:0' }, SG); S.cnt.textContent = '(1 row)';
-      S.q2 = el('text', { x: TX, y: TY + 146, class: 's-mono s-muted', 'font-size': 15, style: 'white-space:pre;opacity:0' }, SG); S.q2.textContent = PROMPT;
+      S.body = el('rect', { x: TX, y: TY + 26, width: TW, height: 38, fill: 'rgba(255,255,255,.02)', stroke: '#2E3943', style: 'opacity:0' }, SG);
+      S.line = [0].map(i => el('text', { y: TY + 26 + 25 + i * 25, class: 's-text s-ink', 'font-size': 17, style: 'opacity:0' }, SG));
+      S.cnt = el('text', { x: TX, y: TY + 86, class: 's-mono s-muted', 'font-size': 13, style: 'opacity:0' }, SG); S.cnt.textContent = '(1 row)';
+      S.q2 = el('text', { x: TX, y: TY + 122, class: 's-mono s-muted', 'font-size': 15, style: 'white-space:pre;opacity:0' }, SG); S.q2.textContent = PROMPT;
       /* footer strip */
       S.foot = el('g', { style: 'opacity:0' }, SG);
       el('line', { x1: PX, y1: PB - 24, x2: PR, y2: PB - 24, stroke: '#2E3943' }, S.foot);
@@ -3052,14 +3082,14 @@ const STORY = (() => {
         if (n !== S.n) { S.n = n; let off = 0; S.tok.forEach((ts, i) => { const t = QUERY[i][0], k = Math.max(0, Math.min(t.length, n - off)); ts.textContent = t.slice(0, k); off += t.length; }); S.measureAt = -1; }
         /* cursor: 0 hidden, 1 blinking, 2 solid (while typing) */
         S.curMode = l < .43 ? 0 : l < .63 ? (n < QLEN && l >= .46 ? 2 : 1) : l < .89 ? 0 : 1;
-        const line = l < .63 ? 0 : 1; if (line !== S.curLine) { S.curLine = line; S.cur.setAttribute('y', line ? TY + 132 : PY + 50); S.measureAt = -1; }
+        const line = l < .63 ? 0 : 1; if (line !== S.curLine) { S.curLine = line; S.cur.setAttribute('y', line ? TY + 108 : PY + 50); S.measureAt = -1; }
         /* execute: a sweep down the screen */
         const sw = seg(l, .63, .69);
         S.sweep.setAttribute('transform', 'translate(0 ' + f1((PB - 50 - (PY + 78)) * E.inOut(sw)) + ')');
         S.sweep.style.opacity = (sw > 0 && sw < 1) ? Math.sin(sw * Math.PI) * .6 : 0;
         /* rows print one by one */
         const rev = (node, t) => { const e = E.out(t); node.style.opacity = e; node.setAttribute('transform', 'translate(0 ' + f1((1 - e) * 8) + ')'); };
-        rev(S.hdr, seg(l, .68, .72)); rev(S.body, seg(l, .72, .76)); rev(S.line[0], seg(l, .73, .78)); rev(S.line[1], seg(l, .78, .83));
+        rev(S.hdr, seg(l, .68, .72)); rev(S.body, seg(l, .72, .76)); rev(S.line[0], seg(l, .73, .78));
         rev(S.cnt, seg(l, .84, .88)); rev(S.q2, seg(l, .89, .92)); ctx.show(S.footR, seg(l, .85, .89));
         /* settle: ring pulse + sparks */
         const pu = seg(l, .87, .97), k = 1 + .14 * E.out(pu);
@@ -3093,9 +3123,12 @@ const STORY = (() => {
   });
 })();
 
-/* the story starts observing as soon as the page exists; it only animates while on screen */
-/* rest points of the landing story: one scroll gesture moves one step, each step owns its caption */
-try { STORY.init($('#story'), { onBeat: (i, n) => { SH.i = i; SH.n = n; storyHudSync(); }, beats: [{ p: 0, cap: 'farm' }, { p: .21, cap: 'farm' }, { p: .366, cap: 'links' }, { p: .431, cap: 'links' }, { p: .505, cap: 'queries' }, { p: .6636, cap: 'queries', dur: 5200 }, { p: .675, cap: 'ambient' }, { p: .88, cap: 'client' }, { p: 1, cap: null }] }); } catch (e) { console.error('story init', e); }
+/* the story waits off screen and plays itself once half of it is in view; it only draws while on screen.
+   Rest points: a move into each (dur, ms) and a hold on it (hold, ms) long enough to read its caption, under a minute in all */
+try { STORY.init($('#story'), { onState: storyCtlSync, onTick: f => { const b = $('#stBar'); if (b) b.style.transform = 'scaleX(' + f.toFixed(4) + ')'; },
+  beats: [{ p: 0, cap: 'farm', hold: 800 }, { p: .21, cap: 'farm', dur: 3200, hold: 900 }, { p: .366, cap: 'links', dur: 2400, hold: 1200 }, { p: .431, cap: 'links', dur: 1400, hold: 1800 },
+    { p: .505, cap: 'queries', dur: 1200, hold: 800 }, { p: .6636, cap: 'queries', dur: 5200, hold: 600 }, { p: .675, cap: 'ambient', dur: 1400, hold: 5600 },
+    { p: .88, cap: 'client', dur: 4200, hold: 1200 }, { p: 1, cap: null, dur: 3600 }] }); } catch (e) { console.error('story init', e); }
 
 /* ==PTOOLS== presenter toolkit: laser pointer with a trail, pen/eraser annotations that follow the content, camera zoom (scale + pan, no reflow) */
 const PT = (() => {
@@ -3969,38 +4002,29 @@ $('#gateForm').addEventListener('submit', async e => {
   }
 });
 
-/* ---- scroll cue at the bottom of the first screen: a click goes to the story, and it fades as soon as the page scrolls ---- */
+/* ---- scroll cue at the bottom of the first screen: a click brings the player to the middle of the screen, and the cue fades as soon as the page scrolls ---- */
 (() => { const cue = $('#scrollCue'), g = $('#gate'); if (!cue || !g) return;
-  cue.querySelector('.cue-in').addEventListener('click', () => { const st = $('#story'); if (st) st.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-  $('#cueSkip').addEventListener('click', storySkip); $('#toTop').addEventListener('click', storyTop);
+  cue.querySelector('.cue-in').addEventListener('click', () => { const st = $('#story .story-stage'); if (st) st.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+  $('#toTop').addEventListener('click', () => g.scrollTo({ top: 0, behavior: 'smooth' }));
+  $('#stPP').addEventListener('click', () => { const st = STORY.state(); if (st.done) storyRollback(); else STORY.toggle(); });
+  $('#stReplay').addEventListener('click', storyRollback);
   g.addEventListener('scroll', () => { cue.classList.toggle('gone', g.scrollTop > 60);
-    $('#toTop').classList.toggle('on', !$('#landing').hidden && $('#story').getBoundingClientRect().bottom < innerHeight * .5); storyHudLive(); }, { passive: true }); })();
-function storyHudLive(){ const hud = $('#stHud'); if (!hud) return; const r = $('#story .story-stage').getBoundingClientRect(); hud.classList.toggle('live', r.top > -2 && r.top < 2 && r.bottom >= innerHeight - 2); }
-/* ---- story HUD: built once, then synced on every beat (the engine calls onBeat); skip sets the story to its end and "top" to its start, so coming back never replays a jump ---- */
-const SH = { i: 0, n: 0 };
-setTimeout(() => { const st = STORY.state(); SH.i = st.bi; SH.n = st.beats || 0; storyHudSync(); }, 0);
-const ST_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>', ST_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
-function storySkip(){ STORY.jump(SH.n - 1); const nx = $('#story').nextElementSibling; if (nx) nx.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-function storyTop(){ STORY.jump(0); $('#gate').scrollTo({ top: 0, behavior: 'smooth' }); }
-function storyHudSync(){
-  const sec = $('#story'), stage = sec && sec.querySelector('.story-stage'); if (!stage || sec.classList.contains('static') || !SH.n) return;
-  let hud = $('#stHud');
-  if (!hud) { hud = el('div', 'st-hud'); hud.id = 'stHud'; hud.setAttribute('role', 'group');
-    hud.innerHTML = '<div class="st-top"><div class="st-hint" id="stHint"><span class="st-mouse" aria-hidden="true"><i></i></span><span id="stHintT"></span></div><button type="button" class="st-skip" id="stSkip"><span id="stSkipT"></span>' + ST_DOWN + '</button></div>'
-      + '<div class="st-nav"><button type="button" class="st-arrow" id="stPrev">' + ST_UP + '</button><div class="st-dots" id="stDots">' + Array.from({ length: SH.n }, (_, i) => '<button type="button" class="st-dot" data-go="' + i + '"><i></i></button>').join('') + '</div><button type="button" class="st-arrow" id="stNext">' + ST_DOWN + '</button></div>';
-    stage.appendChild(hud); sec.classList.add('has-hud');
-    hud.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const last = SH.n - 1;
-      if (b.dataset.go != null) STORY.go(+b.dataset.go);
-      else if (b.id === 'stPrev') { if (SH.i === 0) storyTop(); else STORY.go(SH.i - 1); }
-      else if (b.id === 'stNext') { if (SH.i >= last) storySkip(); else STORY.go(SH.i + 1); }
-      else if (b.id === 'stSkip') storySkip(); }); }
-  const last = SH.n - 1, coarse = matchMedia('(pointer: coarse)').matches;
-  hud.dir = document.documentElement.dir; hud.setAttribute('aria-label', t('l_st_nav')); hud.classList.toggle('first', SH.i === 0);
-  $('#stHintT').textContent = t(coarse ? 'l_st_hint_t' : 'l_st_hint'); $('#stHint').setAttribute('aria-hidden', String(SH.i !== 0));
-  $('#stSkipT').textContent = t(SH.i >= last ? 'l_st_more' : 'l_st_skip');
-  $('#stPrev').setAttribute('aria-label', t(SH.i === 0 ? 'l_st_top' : 'l_st_prev')); $('#stNext').setAttribute('aria-label', t(SH.i >= last ? 'l_st_more' : 'l_st_next'));
-  hud.querySelectorAll('.st-dot').forEach((d, i) => { d.classList.toggle('cur', i === SH.i); d.classList.toggle('done', i < SH.i); d.setAttribute('aria-label', t('l_st_dot', { n: i + 1 })); if (i === SH.i) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
-}
+    $('#toTop').classList.toggle('on', !$('#landing').hidden && $('#story').getBoundingClientRect().bottom < innerHeight * .5); storyTitleReveal(); }, { passive: true }); })();
+/* ---- the big title above the story: once it is in view its words rise one by one, then the neon bar runs under the highlight (about 2.5 s) ---- */
+function storyTitleSplit(){ const h = $('#storyH'); if (!h) return;
+  const walk = n => [...n.childNodes].forEach(c => { if (c.nodeType === 1) { walk(c); return; } if (c.nodeType !== 3) return; const f = document.createDocumentFragment();
+    c.textContent.split(/([ \t\n]+)/).forEach(w => { if (!w) return; if (/^[ \t\n]+$/.test(w)) { f.appendChild(document.createTextNode(w)); return; } const s = document.createElement('span'); s.className = 'w'; s.textContent = w; f.appendChild(s); }); n.replaceChild(f, c); });
+  walk(h); h.querySelectorAll('.w').forEach((w, i) => w.style.setProperty('--i', i)); h.style.setProperty('--n', h.querySelectorAll('.w').length); storyTitleReveal(); }
+function storyTitleReveal(){ const h = $('#storyH'); if (!h || $('#landing').hidden) return; const w = h.querySelector('.w'), r = (w || h).getBoundingClientRect();
+  if (!h.classList.contains('in') && r.top < innerHeight * .82 && r.bottom > 0) h.classList.add('in'); else if (h.classList.contains('in') && r.top > innerHeight * .92) h.classList.remove('in'); }
+/* ---- story player controls: play / pause, a thin progress line, and at the end the same button replays.
+   ROLLBACK (the button under the scene) runs like a query for a moment, then the engine rewinds everything and plays again ---- */
+function storyCtlSync(st){ const b = $('#stPP'); if (!b) return; st = st || STORY.state();
+  const k = st.rewinding || st.playing ? 'pause' : st.done ? 'replay' : 'play', sv = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+  if (b.dataset.k !== k) { b.dataset.k = k; b.innerHTML = sv(k === 'pause' ? '<path d="M9 6v12M15 6v12"/>' : k === 'play' ? '<path d="M8 5.5v13l11-6.5z" fill="currentColor"/>' : '<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4.5v4h4"/>'); }
+  b.setAttribute('aria-label', t(k === 'pause' ? 'l_st_pause' : k === 'play' ? 'l_st_play' : 'l_st_replay')); b.disabled = !!st.rewinding; $('#stCtl').dir = document.documentElement.dir;
+  $('#stReplay').setAttribute('aria-label', t('l_st_replay') + ' (ROLLBACK)'); }
+function storyRollback(){ const rb = $('#stReplay'); if (rb.classList.contains('run')) return; rb.classList.add('run'); setTimeout(() => { STORY.replay(); setTimeout(() => rb.classList.remove('run'), 700); }, 450); }
 /* ---- landing demo: a query types itself, then its result appears ---- */
 const DEMOS = [
   { c: 'lq_d1', sql: "SELECT s.StudentName\nFROM Students AS s\nJOIN Ticket_Purchases AS tp ON s.StudentID = tp.StudentID\nJOIN Events AS e ON tp.EventID = e.EventID\nWHERE e.EventName = 'Spring Festival';", cols: ['StudentName'], rows: [['Dana'], ['Noa'], ['Tom']] },
@@ -4037,7 +4061,7 @@ function startDemo(){
 function renderLanding(){ if (built) $('#gate').classList.add('built');
   const f = $('#feat'); f.innerHTML = ''; tv('l_feat').forEach((x, i) => { const d = el('div','b'); d.style.setProperty('--d', (1.15 + i * 0.14) + 's'); d.innerHTML = '<span class="ic">' + esc(x[0]) + '</span><b>' + esc(x[1]) + '</b><span>' + esc(x[2]) + '</span>'; f.appendChild(d); });
   const hw = $('#how'); hw.innerHTML = ''; tv('l_how').forEach((x, i) => { const d = el('div','b'); d.style.setProperty('--d', (1.85 + i * 0.16) + 's'); d.innerHTML = '<b>' + esc(x[0]) + '</b>' + (x[1] ? '<span>' + esc(x[1]) + '</span>' : ''); hw.appendChild(d); });
-  $('#lnkLang').textContent = lang === 'he' ? 'EN' : 'עב'; if (typeof storyHudSync === 'function') storyHudSync();
+  $('#lnkLang').textContent = lang === 'he' ? 'EN' : 'עב'; storyTitleSplit(); if (typeof STORY !== 'undefined' && STORY.state) storyCtlSync();
 }
 function gateRefresh(){ renderLanding(); if (W.view === 'wizard') { wizRender(); if (footTyped) { footTyped = ''; typeFoot(); } } }
 
