@@ -43,8 +43,8 @@
   },
   "identity": {
     "who": "Raz Elbaz (the brand is the person; RowdyQL is his platform)",
-    "what": "RowdyQL, an interactive learning environment for the \"Database Design\" course (Ariel University, Industrial Engineering and Management): SQL, relational algebra with visualizers, exercises, a self test",
-    "audience": "the course's university students, and self-learners starting from zero",
+    "what": "RowdyQL, an interactive learning environment for databases and SQL, from zero: SQL, relational algebra with visualizers, exercises, a self test",
+    "audience": "students and self-learners who start from zero",
     "words": [
       "ידידותי",
       "קצר וקולע",

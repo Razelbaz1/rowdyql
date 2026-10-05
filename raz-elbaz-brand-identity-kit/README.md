@@ -21,7 +21,7 @@ Your visual identity as files any LLM can read. Attach one or two files to any r
 | `adapters/booklet-print.md` | booklet and print (A4) | with core.md |
 | `adapters/deck.md` | slides for class | with core.md |
 | `adapters/web-page.md` | the site (landing and lessons) and one-off pages | with core.md |
-| `adapters/quiet-tier.md` | formal letters, certificates, university documents, invoices | with core.md and the medium's adapter |
+| `adapters/quiet-tier.md` | formal letters, certificates, official documents, invoices | with core.md and the medium's adapter |
 | `templates/` | ready HTML shells with your tokens: `email-shell.html`, `booklet-shell.html` (A4) | when building an email or booklet |
 | `source/` | your original references (reference image, direction board, old site screenshots), untouched | never attach |
 

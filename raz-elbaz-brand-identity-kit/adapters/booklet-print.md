@@ -1,7 +1,7 @@
 # Adapter - booklet and print
 
 ## Purpose and when to attach
-Long-form reading and anything that goes to paper or PDF: a practice booklet, a guide, a handout, a summary sheet. Attach with `core.md`, `voice/voice-profile.md` and `templates/booklet-shell.html` when the request is "make a booklet / handout / PDF ...". Formal documents (letters, certificates, university documents, invoices) also attach `adapters/quiet-tier.md`.
+Long-form reading and anything that goes to paper or PDF: a practice booklet, a guide, a handout, a summary sheet. Attach with `core.md`, `voice/voice-profile.md` and `templates/booklet-shell.html` when the request is "make a booklet / handout / PDF ...". Formal documents (letters, certificates, official documents, invoices) also attach `adapters/quiet-tier.md`.
 
 ## Format specs
 - Print size: A4 only. Portrait `@page{size:A4;margin:8mm 16mm}`; a certificate is `A4 landscape; margin:12mm`. 16mm sides is the safe office margin; printers need 3-5mm of non-printable clearance.

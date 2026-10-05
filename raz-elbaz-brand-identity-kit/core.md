@@ -5,7 +5,7 @@
 
 ## 1 - Identity
 
-Raz Elbaz builds RowdyQL, an interactive learning environment for the "Database Design" course (Ariel University, Industrial Engineering and Management): SQL, relational algebra with visualizers, exercises and a self test. For the course's university students and for self-learners starting from zero.
+Raz Elbaz builds RowdyQL, an interactive learning environment for databases and SQL, from zero: SQL, relational algebra with visualizers, exercises and a self test. For students and self-learners who start from zero.
 Personality: **friendly** (ידידותי), **short and to the point** (קצר וקולע), **at eye level** (בגובה העיניים).
 Never looks like: a form, a paper or a machine, or generic AI imagery (glowing network constellations, floating isometric servers).
 Language: the kit files are English. Outputs are Hebrew first (direction RTL, with LTR islands for tables, expressions, SVG diagrams, code and mono labels) or English (LTR).

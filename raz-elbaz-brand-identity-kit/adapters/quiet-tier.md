@@ -1,7 +1,7 @@
 # Adapter - quiet tier (formal variant)
 
 ## Purpose and when to attach
-Formal outputs: official letters, certificates, university documents (syllabus, grade sheets, course forms), invoices and receipts. Attach with `core.md`, `voice/voice-profile.md`, this file AND the medium's adapter (`booklet-print.md`, `email.md` or `web-page.md`) when the request says "formal", "official", "certificate", "for the university", "invoice". This adapter overrides the medium adapter's decoration rules; everything else stays.
+Formal outputs: official letters, certificates, official documents (syllabus, grade sheets, forms), invoices and receipts. Attach with `core.md`, `voice/voice-profile.md`, this file AND the medium's adapter (`booklet-print.md`, `email.md` or `web-page.md`) when the request says "formal", "official", "certificate", "invoice". This adapter overrides the medium adapter's decoration rules; everything else stays.
 
 ## Format specs
 - Same formats and floors as the medium adapter it modifies (print A4, certificates A4 landscape with a 12mm margin).
@@ -22,7 +22,7 @@ Formal outputs: official letters, certificates, university documents (syllabus, 
 4. **Invoice or receipt** - logo and sender block, a table with 1px borders and a neutral header, amounts in IBM Plex Mono aligned to one edge, the total with one #2999B1 hairline above it, payment details in muted.
 
 ## Rules and gotchas
-- All copy follows voice/voice-profile.md; run its quick test before calling it done. Formal does not mean form register: Don't 1 of the voice (נקלט, הנך, ניתן, במידה ו) still applies. University or legal wording that must stay exact is quoted as given.
+- All copy follows voice/voice-profile.md; run its quick test before calling it done. Formal does not mean form register: Don't 1 of the voice (נקלט, הנך, ניתן, במידה ו) still applies. Official or legal wording that must stay exact is quoted as given.
 - Numbers, amounts, dates and IDs are LTR islands with one decimal convention.
 - Never mix tiers in one document.
 - Keep the Core gate; the checks that change are motif count (0, or the quiet grid only), glow (none) and gradients (none).
@@ -32,7 +32,7 @@ Formal outputs: official letters, certificates, university documents (syllabus, 
 
 ## Usage prompt (copy-paste, attach with core.md, voice/voice-profile.md, adapters/<medium>.md and this file)
 ```text
-Read core.md, adapters/<booklet-print | email | web-page>.md, adapters/quiet-tier.md and voice/voice-profile.md. Build <the output: letter | certificate | university document | invoice> as in the medium adapter, but apply the quiet tier: logo flat and small, ink and one blue only, no glow, no gradients, no motifs except the quiet grid at most, 20-30% more whitespace. Use quiet layout <1 Document | 2 Email | 3 Certificate | 4 Invoice>. Copy in Hebrew in the official voice; wording that must stay exact: <paste>. Run the voice profile's quick test on every line, then the medium's done-check, this file's done-check and the gate in core.md section 11, and list the results.
+Read core.md, adapters/<booklet-print | email | web-page>.md, adapters/quiet-tier.md and voice/voice-profile.md. Build <the output: letter | certificate | official document | invoice> as in the medium adapter, but apply the quiet tier: logo flat and small, ink and one blue only, no glow, no gradients, no motifs except the quiet grid at most, 20-30% more whitespace. Use quiet layout <1 Document | 2 Email | 3 Certificate | 4 Invoice>. Copy in Hebrew in the official voice; wording that must stay exact: <paste>. Run the voice profile's quick test on every line, then the medium's done-check, this file's done-check and the gate in core.md section 11, and list the results.
 ```
 
 ## Done-check
