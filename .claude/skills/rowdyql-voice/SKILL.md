@@ -15,6 +15,8 @@ Read the profile for the language you write in before every copy task, including
 
 ## Write mode
 
+New or long copy (a lesson, an email, a post, a set of site strings): first offer Raz to hand it to Antigravity with the `ag-handoff` skill. If he agrees, AG writes the draft and this skill reviews it in Review mode. Small edits are written here as usual.
+
 1. Work out the intent: what the student needs from this text, where it appears, and what comes right before and after it. Write each language from the intent. Never translate one language's sentence into the other.
 2. Write it the way the profile says: spoken, present tense, plural in Hebrew and "you" in English. Start from something concrete. Build, then land on a short line. Use one idiom at most. The site takes the joke. Keep real terms and make them clear.
 3. Cut every sentence the student wouldn't miss.
