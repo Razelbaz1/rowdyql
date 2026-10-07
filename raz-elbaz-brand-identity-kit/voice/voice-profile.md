@@ -85,7 +85,7 @@ A TA who is a step ahead of you and remembers what it was like not to understand
 - **Slang.** Gentle slang is allowed, one per unit (Do 7).
 - **Real terms stay.** "רלציוני" and every other real term is kept and made clear, never dropped (Do 9).
 - **English.** The English site has its own profile, `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md`, derived from this one.
-- **Exclamation marks in greetings** are fine. Raz approved "ברוכים הבאים!" as the title of the confirmation email (2026-10-07).
+- **Exclamation marks:** only in a greeting ("ברוכים הבאים!") or a real win ("נכון!"), never as decoration (Don't 9). Raz confirmed this on 2026-10-07, for now.
 
 ## Before and after
 
