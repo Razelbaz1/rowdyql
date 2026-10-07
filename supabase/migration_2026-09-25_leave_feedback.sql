@@ -71,7 +71,7 @@ begin
 </style>
 </head>
 <body style="margin:0; padding:0; background:#F7F2EC;">
-  <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:transparent;">החשבון נמחק. תודה שבחרתם ללמוד איתנו.</div>
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:transparent;">החשבון נמחק. תודה שלמדתם איתנו.</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F7F2EC" style="background:#F7F2EC;">
     <tr>
       <td align="center" style="padding:28px 12px;">
@@ -85,14 +85,14 @@ begin
             <td class="pad" dir="rtl" style="padding:32px 32px 24px 32px; font-family:'Heebo','Rubik',Arial,Helvetica,sans-serif; color:#373C44; font-size:16px; line-height:1.65; text-align:right;">
               <h1 style="margin:0 0 12px;font-size:24px;line-height:1.3;"><img src="https://rowdyql.com/email-titles/goodbye.png" width="176" height="32" alt="להתראות, ותודה" style="display:inline-block;vertical-align:top;border:0;width:176px;height:32px;max-width:100%;font-family:'Rubik',Arial,Helvetica,sans-serif;font-weight:800;font-size:24px;color:#373C44;"></h1>
               <p style="margin:0 0 14px;font-size:16px;line-height:1.65;color:#373C44;">{{hi}}החשבון שלכם ב-RowdyQL נמחק.</p>
-              <p style="margin:0 0 14px;font-size:16px;line-height:1.65;color:#373C44;">תודה שבחרתם ללמוד איתנו. נשמח לשמוע מכם איך הייתה חוויית הלמידה, כדי שנוכל להשתפר. אפשר פשוט להשיב למייל הזה.</p>
-              <p style="margin:0 0 14px;font-size:16px;line-height:1.65;color:#373C44;">אם תרצו לחזור בעתיד, תמיד אפשר להירשם מחדש. נשמח לראות אתכם שוב.</p>
+              <p style="margin:0 0 14px;font-size:16px;line-height:1.65;color:#373C44;">תודה שלמדתם איתנו. איך היה? אפשר פשוט להשיב למייל הזה ולספר לנו, כל מילה עוזרת לנו להשתפר.</p>
+              <p style="margin:0 0 14px;font-size:16px;line-height:1.65;color:#373C44;">ואם תרצו לחזור, תמיד אפשר להירשם מחדש. נשמח לראות אתכם שוב.</p>
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 22px;"><tr><td bgcolor="#20778A" style="background:#20778A;border-radius:8px;"><a href="https://rowdyql.com" style="display:inline-block;border-radius:8px;padding:14px 28px;font-family:'Heebo',Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#FDFBF8;text-decoration:none;">RowdyQL</a></td></tr></table>
             </td>
           </tr>
           <tr>
             <td class="pad" dir="rtl" bgcolor="#F7F2EC" style="background:#F7F2EC; border-top:1px solid #DDD7CF; padding:18px 32px; text-align:right;">
-              <div style="font-family:'Heebo',Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:#5F6670;">המייל הזה נשלח פעם אחת, כאישור למחיקה. לא יישלחו אליכם מיילים נוספים.</div>
+              <div style="font-family:'Heebo',Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:#5F6670;">המייל הזה נשלח פעם אחת, ואחריו לא יגיעו מיילים נוספים.</div>
               <div dir="ltr" style="font-family:'Heebo',Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:#5F6670;">RowdyQL · <a href="https://rowdyql.com" style="color:#20778A; text-decoration:none;">rowdyql.com</a></div>
             </td>
           </tr>
