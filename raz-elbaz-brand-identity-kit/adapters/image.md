@@ -29,6 +29,8 @@ Any single raster image: booklet cover, landing hero, share-image background, ar
 - Theme sets: lock the whole style block and the composition rule; vary only the subject. Generate one, judge it, then the rest.
 - Judge results by family of colors and style, not exact hex. Reject any image with text artifacts, a globe, a network web, isometric objects or a glossy look.
 - Any automated generation needs Raz's approval per image.
+- Symbols such as σ π ⋈ γ ÷ may be drawn by the generator when they come out clean (Raz, 2026-10-07). Use the Nano Banana Pro wording and check every symbol.
+- The area kept free for text that is added later (the headline, the logo, the url) stays empty. Say so in the prompt, and reject an image that puts anything there, or that piles on elements nobody asked for. Example: version B of the share background added a second result panel under the headline.
 
 ## Drop from Core here
 - Type scale and floors, logo rendering, motion, the voice (no words in images), states, layout grids.

@@ -26,7 +26,7 @@ Composition organized in clear zones like a Swiss grid, not scattered: hairline 
 
 ## Constraints
 
-No text, letters, numbers, labels or logos anywhere in the image; table rows are drawn as short rounded gray bars instead of words. Flat and matte: no 3D, no photorealism, no glossy highlights, no gradients except one soft background wash of a single hue fading from the off-white. Glow: at most one small soft glow on the single result point in digital images, and none in images meant for print. Green, red and amber never appear (they are reserved for marking answers). Friendly and professional, calm and clear, never childish, never generic stock.
+No text, letters, numbers, labels or logos anywhere in the image; table rows are drawn as short rounded gray bars instead of words. Flat and matte: no 3D, no photorealism, no glossy highlights, no gradients except one soft background wash: either a single pale hue fading from the off-white, or the kit's light flow wash (pale peach #F8E0D5 through cream #F7F2EC to pale sky #E7F2F4, so pale that no hue takes over and the hues meet only through the cream). Glow: at most one small soft glow on the single result point in digital images, and none in images meant for print. Green, red and amber never appear (they are reserved for marking answers). Friendly and professional, calm and clear, never childish, never generic stock.
 
 ## Avoid line (always last)
 
