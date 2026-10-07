@@ -1,6 +1,14 @@
 # RowdyQL voice profile
 
-**Status: approved by Raz, 2026-09-30. Version 1. This is the official voice of the site.** English version: `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md`.
+**Status: approved by Raz, 2026-09-30. Version 1.1 (2026-10-07). This is the official voice of the site.** English version: `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md`.
+
+**Version 1.1, 2026-10-07 (Raz):**
+- Do 3 has a new example.
+- New Do 14: simple and confident beats clever.
+- Don't 2 allows a colon before a short concrete list.
+- New Don't 11: robotic or lecturing.
+- Exclamation marks in greetings are decided.
+- The campus note is gone from before/after 4.
 
 How RowdyQL should sound in Hebrew: Raz's own voice, sharpened by the craft of good Walla columnists. It covers site copy, lesson text, emails, notices and posts. It sits next to the copy rules in `.agents/rules/hebrew-copy.md`, which handle the mechanics (plural address, button nouns, terms, placeholders). This file handles how the copy sounds. Raz's before/after pairs in `copy/examples.md` still outrank both.
 
@@ -24,7 +32,7 @@ A TA who is a step ahead of you and remembers what it was like not to understand
 2. **Let subjectless present-plural verbs carry the action**: פותחים, לומדים, מתרגלים, ממשיכים, מתחילים. The student is inside the action, not told about it. [R]
    "פותחים חשבון, דקה אחת." / "עצרתם ב-X. ממשיכים משם?"
 3. **Open on something concrete**: a number, an object, the question the student actually has. Don't open on a definition or an announcement. [R+W]
-   "עוד לא מבינים מילה? הגעתם בול בזמן." (not "ברוכים הבאים לקורס המקיף...")
+   "SQL בגובה העיניים" (the landing headline; not "ברוכים הבאים לקורס המקיף..."). Raz rejected the older example, "עוד לא מבינים מילה? הגעתם בול בזמן.", as hard to hear (copy/examples.md).
 4. **Build, then land.** After a longer sentence, a short verdict of two to five words. This is the strongest instinct in both sources. [R+W]
    Raz: "האדם הוא צוואר בקבוק בסיפור." / Walla technique: "הוא הבוס." / site: "אותו מספר עמודות, טיפוס אחר."
 5. **Answer the student's question before they ask it.** "למה? כי...", "ומה עם X? ...". At most one per paragraph. [W, and Raz asks questions this way himself]
@@ -41,11 +49,14 @@ A TA who is a step ahead of you and remembers what it was like not to understand
     Raz: "מצאנו הוכחנו ותיקנו." / "לוחצים עליו, נכנסים ומתחילים."
 12. **Admit it when something is really hard.** "זה החלק שכולם נתקעים בו" does more than "זה פשוט". [R, medium evidence]
 13. **Cut every sentence the student wouldn't miss.** This is Raz's most repeated note. [R]
+14. **Simple and confident beats clever.** Write the way a confident person talks. A plain "זה לא עוד X, זה Y" turn is welcome. Don't use metaphors the reader has to decode, or literary lines. [R, 2026-10-05]
+    Approved: "SQL בגובה העיניים", "הקורס שהופך את SQL לשפה שלכם."
+    Rejected: "כל המדרגות שבין הדוגמה הקטנה לשאלה הגדולה" (Raz: "לא נשמע אנושי").
 
 ## Don't
 
 1. **Form or office register.** Everything already banned in the copy rules (נקלט/ה, יש ל..., אנא, הנך, ניתן, במידה ו, על מנת, בוצע בהצלחה), plus the academic register Raz rejected ("עברית רגילה ולא אקדמית מסורבלת"): מהווה, הינו, אשר, לפיכך, כמו כן, נוסף לכך, בהתאם לזאת, הרצוי/ה, אינו/אינה.
-2. **Colons as slogan structure**: "לומדים SQL כמו שכותבים אותו: חי, על טבלאות, עם תשובה מיד." (Raz rejected this one) and "X: Y." explanations. The site uses 27 colons per 1,000 words, against 4 in the columns and 3 in Raz's writing. Keep colons for UI labels, before code, and before a quote.
+2. **Colons as slogan structure**: "לומדים SQL כמו שכותבים אותו: חי, על טבלאות, עם תשובה מיד." (Raz rejected this one) and "X: Y." explanations. The site uses 27 colons per 1,000 words, against 4 in the columns and 3 in Raz's writing. Keep colons for UI labels, before code, before a quote, and before a short list of concrete things (Raz's own landing paragraph does this, 2026-10-05).
 3. **Stating what the student already knows.** "ההתקדמות נשמרת מכל מכשיר" (Raz: "זה ברור... הרי").
 4. **Phrases nobody says**: "ממחישים חיים" (Raz: "אף אחד לא מדבר ככה"). Say it out loud. If you wouldn't say it, rewrite it.
 5. **True but boring details**: "יחד עם ההתקדמות וכל מה שנשמר בו" (Raz: "זה לא מעניין תסיר את זה").
@@ -54,6 +65,9 @@ A TA who is a step ahead of you and remembers what it was like not to understand
 8. **Sarcasm or snark** at the student or anyone else. The columnists do it to celebrities. RowdyQL has no one to mock.
 9. **Exclamation marks as decoration.** Keep them for a greeting or a real win ("נכון!"). Both sources use them rarely.
 10. **Raz's chat habits.** אוקיי, בעצם, לגבי, "מה שאני רוצה זה..." and long comma-joined lines are how Raz talks to a tool. They are his most frequent words and they don't belong in copy. The profile is his voice sharpened, not transcribed.
+11. **Robotic or lecturing.** RowdyQL gives a service, so the copy should feel human. It shouldn't sound like a terse system message, or like a lecturer. [R, 2026-10-07]
+    - Example: "תמיד אפשר לחזור." as its own line read as cut off and odd. Raz approved "ואם תרצו לחזור, תמיד אפשר להירשם מחדש. נשמח לראות אתכם שוב."
+    - This is not a length rule. Don't clip everything short, and don't pile on words. Say it out loud and trust good taste.
 
 ## Where the sources disagreed (Raz's voice won)
 
@@ -71,7 +85,7 @@ A TA who is a step ahead of you and remembers what it was like not to understand
 - **Slang.** Gentle slang is allowed, one per unit (Do 7).
 - **Real terms stay.** "רלציוני" and every other real term is kept and made clear, never dropped (Do 9).
 - **English.** The English site has its own profile, `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md`, derived from this one.
-- **Still open:** exclamation marks in greetings ("ברוכים הבאים, {n}!"). Keep the site's current choice until Raz decides.
+- **Exclamation marks in greetings** are fine. Raz approved "ברוכים הבאים!" as the title of the confirmation email (2026-10-07).
 
 ## Before and after
 
@@ -137,7 +151,6 @@ Headline above it: "כל מערכת שהשתמשתם בה היום יושבת ע
 - "הרצויה" is gone [Don't 1].
 - The second paragraph now opens with the question a student would ask, which also links the two paragraphs [Do 5].
 - The best sentence in the original ("בלעדיה, SQL נשאר אוסף של דפוסים לשינון") now stands alone at the end [Do 10].
-- The campus edition says "שני המפגשים הבאים" instead of "הפרק הבא". The same change applies: "עליה נדבר בשני המפגשים הבאים."
 
 ## Quick test before a line ships
 

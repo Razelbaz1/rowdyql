@@ -1,6 +1,12 @@
 # RowdyQL voice profile: English
 
-**Status: approved by Raz, 2026-09-30. Version 1.** This is the official English voice of the site. The Hebrew profile is `raz-elbaz-brand-identity-kit/voice/voice-profile.md`. Mechanical checks: `raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py`.
+**Status: approved by Raz, 2026-09-30. Version 1.1 (2026-10-07).** This is the official English voice of the site. The Hebrew profile is `raz-elbaz-brand-identity-kit/voice/voice-profile.md`. Mechanical checks: `raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py`.
+
+**Version 1.1, 2026-10-07 (Raz):**
+- New examples in Do 1, 3 and 7.
+- New Do 16: simple and confident beats clever.
+- Don't 3 allows a colon before a short concrete list.
+- New Don't 11: robotic or lecturing.
 
 ## Where this comes from (read first)
 
@@ -15,14 +21,15 @@ The same TA as in Hebrew, speaking English: a step ahead of you, and still remem
 ## Do
 
 1. **Write it the way you'd say it to a student after class.** Contractions are the default: you're, don't, it's, that's, let's. [from HE Do 1]
-   "Don't understand a word yet? Perfect timing."
+   "What's inside"
 2. **Talk to "you", in the present tense.** Avoid "users", "the student", or the future "you will learn". [from HE Do 2]
 3. **Open on something concrete**: a number, a thing, the question the student actually has. Don't open on a definition or an announcement. [HE Do 3]
+   "SQL that finally clicks" (the landing headline)
 4. **Build, then land.** After a longer sentence, a short verdict of two to five words. [HE Do 4]
    "Same number of columns, different type."
 5. **Answer the student's question before they ask it.** "Why? Because...", "And the loops? There aren't any." At most one per paragraph. [HE Do 5]
 6. **Turn with "but" or a spaced hyphen ( - ), not a colon.** Never an em dash. [HE Do 6]
-7. **One plain English idiom per unit, at most.** Don't translate Hebrew idioms word for word. Find the English one or go plain: "הגעתם בול בזמן" is "Perfect timing", and "עד שזה יושב" is "until it sticks". [HE Do 7]
+7. **One plain English idiom per unit, at most.** Don't translate Hebrew idioms word for word. Find the English one or go plain: "בגובה העיניים" is not "at eye level" but "that finally clicks", and "עד שזה יושב" is "until it sticks". [HE Do 7]
 8. **The site takes the joke, never the student.** "The jargon above will soon be your mother tongue." [HE Do 8]
 9. **Meet jargon out loud.** Give the idea in plain words, then the term, and never drop a real term to make a line simpler ("relational" stays). [HE Do 9]
 10. **End on something that lands**: the short verdict, or a callback to the headline or a recurring phrase ("Start here", "until it sticks"). [HE Do 10]
@@ -34,12 +41,13 @@ English-only rules:
 13. **Buttons are short verb phrases**, which is what English readers expect: "Start here", "Check", "Send link", "Delete for good". Three words at most. (Hebrew buttons use action nouns; the languages differ here on purpose.)
 14. **Sentence case** for headings and buttons: "What's inside", not "What's Inside".
 15. **Gentle slang only**, the English equivalent of the Hebrew rule: "you're in", "off you go", "that's it". Not "awesome", "super", "gonna", "hey there".
+16. **Simple and confident beats clever.** Write the way a confident person talks. A plain "it's not another X, it's Y" turn is welcome. Don't use metaphors to decode, or literary lines. [HE Do 14]
 
 ## Don't
 
 1. **Form and office English**: kindly, successfully ("saved successfully"), utilize, in order to, prior to, hereby, aforementioned, "please note". Use "please" only for a real request, never in front of every instruction.
 2. **Startup and AI-marketing words**: unlock, empower, seamless, leverage, journey, delve, "dive in", "level up", "supercharge". Raz rejects copy that "looks very AI". These are the English giveaways.
-3. **Colons as slogan structure**: "Learn SQL the way it's written: live, on tables, instantly." Keep colons for UI labels, before code, and before a list the reader asked for.
+3. **Colons as slogan structure**: "Learn SQL the way it's written: live, on tables, instantly." Keep colons for UI labels, before code, and before a short list of concrete things.
 4. **Stating what the student already knows**: "Your progress is saved to your account" right after they signed in.
 5. **Condescending ease words**: simply, just (as in "just write a query"), obviously, easily.
 6. **Summary endings**: in summary, to sum up, in conclusion, as we've seen.
@@ -47,6 +55,7 @@ English-only rules:
 8. **Exclamation marks as decoration.** Keep them for a greeting or a real win ("Correct!").
 9. **Emoji and text emoticons.**
 10. **Stiff uncontracted English** in UI strings: "If you do not know yet", "That is it", "You have not filled in". The current English strings are full of these. They read as translated.
+11. **Robotic or lecturing.** RowdyQL gives a service, so the copy should feel human. It shouldn't sound like a terse system message, or like a lecturer. It isn't a length rule either: don't clip everything short, and don't pile on words. Say it out loud and trust good taste. [HE Don't 11]
 
 ## Before and after (proposals, not applied)
 
