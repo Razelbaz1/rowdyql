@@ -654,6 +654,59 @@ html .gate .lower .cta .gbtn.primary{transition:background-color .9s ease .5s,bo
 .lower.lit .how div{border-inline-start-color:#20778A}
 .lower.lit .cta .gbtn.primary{background-color:#20778A;border-color:#20778A;color:#FDFBF8}
 @media (prefers-reduced-motion: reduce){.lower::before{transition:none}}
+/* the closing banner of the landing: the slogan and the CTA beside a pocket dictionary whose rows turn from an SQL word to its meaning (.on, set by the page).
+   Background: the kit's wash-mesh-calm, mirrored so the warm corner is at the reading start */
+.dict-bn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2rem;align-items:center;margin:.6rem 0 2.4rem;padding:clamp(1.4rem,3vw,2.6rem);border:1px solid #DDD7CF;border-radius:18px;
+  background:radial-gradient(ellipse 62% 58% at 50% 50%,#FDFBF8 0,rgba(253,251,248,.85) 35%,rgba(253,251,248,0) 100%),radial-gradient(circle at 100% 0%,#F8E0D5 0,rgba(248,224,213,0) 62%),radial-gradient(circle at 0% 0%,#F2E6D3 0,rgba(242,230,211,0) 58%),radial-gradient(circle at 0% 100%,#E7F2F4 0,rgba(231,242,244,0) 64%),radial-gradient(circle at 100% 100%,#DCEAE8 0,rgba(220,234,232,0) 58%),#F7F2EC}
+html[dir="ltr"] .dict-bn{background:radial-gradient(ellipse 62% 58% at 50% 50%,#FDFBF8 0,rgba(253,251,248,.85) 35%,rgba(253,251,248,0) 100%),radial-gradient(circle at 0% 0%,#F8E0D5 0,rgba(248,224,213,0) 62%),radial-gradient(circle at 100% 0%,#F2E6D3 0,rgba(242,230,211,0) 58%),radial-gradient(circle at 100% 100%,#E7F2F4 0,rgba(231,242,244,0) 64%),radial-gradient(circle at 0% 100%,#DCEAE8 0,rgba(220,234,232,0) 58%),#F7F2EC}
+.dict-tx{display:flex;flex-direction:column;align-items:flex-start;gap:1.2rem}
+.dict-tx h3{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.25;color:#373C44;text-wrap:balance}
+.dict-tx h3 .hl{position:relative;z-index:0;display:inline-block;padding-inline:.12em}
+.dict-tx h3 .hl::before{content:"";position:absolute;z-index:-1;inset-inline:0;bottom:.1em;height:.42em;border-radius:3px;background:rgba(92,195,217,.5)}
+.lower .dict-tx .gbtn.primary{background:#20778A;border-color:#20778A;color:#FDFBF8}
+/* one card, two faces: the dictionary and the chat take turns in a loop (the page sets .cur and the card's height) */
+.bn-stage{display:flex;align-items:center}
+.bn-card{position:relative;width:100%;background:#FDFBF8;border:1px solid #DDD7CF;border-radius:14px;overflow:hidden;transition:height .6s cubic-bezier(.4,0,.2,1)}
+.face{position:absolute;top:0;left:0;right:0;opacity:0;visibility:hidden;transform:translateY(10px) scale(.985);filter:blur(4px);transition:opacity .5s ease,transform .6s ease,filter .5s ease,visibility 0s .6s}
+.face.cur{opacity:1;visibility:visible;transform:none;filter:none;transition:opacity .5s ease .3s,transform .6s ease .3s,filter .5s ease .3s,visibility 0s}
+.dict{padding:.4rem 1.2rem .4rem}
+.dict .dr:first-child{border-top:0}
+.dr{display:grid;grid-template-columns:7.2rem 1.2rem minmax(0,1fr);align-items:center;gap:.4rem;padding:.62rem 0;border-top:1px solid #EDE9E4}
+.dr code{font-family:var(--mono);font-size:.95rem;font-weight:500;color:#20778A;direction:ltr;text-align:start;white-space:nowrap}
+.dr .ar{color:#9AA4AE;text-align:center}
+.dr .fl{position:relative;height:1.7em;perspective:600px}
+.dr .fl i{position:absolute;inset:0;display:flex;align-items:center;font-style:normal;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .7s cubic-bezier(.3,.7,.2,1);transition-delay:calc(var(--i,0) * .42s + .2s)}
+.dr .f0{color:#9AA4AE;letter-spacing:.3em}
+.dr .f1{color:#373C44;font-size:1.02rem;font-weight:500;white-space:nowrap;transform:rotateX(-180deg)}
+.dict-bn.flip .dr .f0{transform:rotateX(180deg)}
+.dict-bn.flip .dr .f1{transform:rotateX(0)}
+.dict-bn.still .dr .fl i{transition:none}
+@media (max-width:760px){.dict-bn{grid-template-columns:1fr;gap:1.4rem}.dict{padding:.3rem .9rem .3rem}.dr{grid-template-columns:5.5rem .9rem minmax(0,1fr)}.dr code{font-size:.84rem}.dr .f1{font-size:.95rem}}
+@media (prefers-reduced-motion: reduce){.dr .fl i{transition:none}.dr .f0{display:none}.dr .f1{transform:none}.face,.bn-card{transition:none;filter:none}}
+/* pilot B of the closing banner: a short chat with the database. You ask in Hebrew, it answers in SQL with a small table, then you ask in SQL yourself (.in on each message, set by the page) */
+.ch-top{display:flex;align-items:center;gap:.55rem;padding:.6rem .9rem;border-bottom:1px solid #EDE9E4;font-size:.92rem;font-weight:700;color:#373C44}
+.ch-av{width:30px;height:30px;border-radius:50%;background:#E7F2F4;display:grid;place-items:center;flex:none}
+.ch-av svg{width:16px;height:16px;color:#20778A;display:block}
+.ch-on{width:7px;height:7px;border-radius:50%;background:#5CC3D9;margin-inline-start:.1rem}
+.ch-body{display:flex;flex-direction:column;gap:.55rem;padding:.9rem .9rem 1rem}
+.cm{position:relative;max-width:88%;border-radius:12px;padding:.5rem .75rem;font-size:.95rem;line-height:1.45;color:#373C44;opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease}
+.cm.in{opacity:1;transform:none}
+.cm.me{align-self:flex-end;background:#E3F2F3;border-end-end-radius:4px}
+.cm.db{align-self:flex-start;background:#F7F2EC;border:1px solid #EDE9E4;border-start-start-radius:4px}
+.cm pre{margin:0;font-family:var(--mono);font-size:.8rem;line-height:1.5;direction:ltr;text-align:left;white-space:pre;color:#373C44}
+.cm pre b{color:#20778A;font-weight:500}
+.cm table{margin-top:.45rem;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;direction:ltr}
+.cm th{background:#CDEAEF;font-weight:500;text-align:left;padding:.15rem .6rem;border:1px solid #DDD7CF}
+.cm td{padding:.12rem .6rem;border:1px solid #DDD7CF;background:#FDFBF8}
+.cm .num{font-family:var(--mono);font-size:1.35rem;font-weight:500;color:#20778A;direction:ltr;display:block}
+.cm .ty{position:absolute;top:0;inset-inline-start:0;display:flex;gap:4px;align-items:center;padding:.55rem .75rem;background:#F7F2EC;border:1px solid #EDE9E4;border-radius:12px;border-start-start-radius:4px;opacity:0;transition:opacity .2s}
+.cm .ty i{width:6px;height:6px;border-radius:50%;background:#9AA4AE;animation:tydot 1s infinite}
+.cm .ty i:nth-child(2){animation-delay:.15s}.cm .ty i:nth-child(3){animation-delay:.3s}
+@keyframes tydot{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.cm.typing{opacity:1;transform:none;background:transparent;border-color:transparent}
+.cm.typing>*:not(.ty){visibility:hidden}.cm.typing .ty{opacity:1}
+@media (max-width:760px){.cm pre{font-size:.74rem}}
+@media (prefers-reduced-motion: reduce){.cm{opacity:1;transform:none;transition:none}}
 /* wizard */
 .gcard{position:relative;width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);background:rgba(24,32,39,.92);border:1px solid #2E3943;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.55);overflow:hidden;backdrop-filter:blur(6px)}
 .gate .form{padding:1.5rem 1.8rem;display:flex;flex-direction:column;gap:1rem;text-align:start;min-height:34rem}
@@ -1043,7 +1096,13 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
         <div class="feat" id="feat"></div>
         <h2 class="lh b" style="--d:1.75s" data-i18n="l_how_h"></h2>
         <div class="how" id="how"></div>
-        <div class="cta b" style="--d:2.3s"><button type="button" class="gbtn primary" id="ctaUp2" data-i18n="l_cta"></button></div>
+        <div class="dict-bn" id="dictBn">
+          <div class="dict-tx"><h3 data-i18n="l_sub"></h3><button type="button" class="gbtn primary" id="ctaUp2" data-i18n="l_cta"></button></div>
+          <div class="bn-stage" id="bnStage"><div class="bn-card" id="bnCard">
+            <div class="dict face cur" id="dictCard"><div id="dictRows"></div></div>
+            <div class="chat face" id="chatCard" aria-hidden="true"></div>
+          </div></div>
+        </div>
       </div></div>
     </section>
     <div class="gcard b" id="wizard" hidden style="--d:.05s">
@@ -1657,6 +1716,7 @@ l_sub:"הקורס שהופך את SQL <span class=\"hl\">לשפה שלכם</span
 l_body:"אתם משתמשים במסדי נתונים בכל יום&nbsp;- מהקניות באינטרנט ועד בחירת סדרה לערב. בקורס תגלו מה קורה מאחורי הקלעים: איך מארגנים נתונים, מחברים ביניהם ושולפים את המידע שצריך. תרכשו את הידע והכלים <b>לתכנן מסדי נתונים ולכתוב שאילתות SQL מורכבות</b>, עם <b>תרגול מעשי ומשוב מיידי</b> לאורך הדרך.",
 l_cta:"מכאן מתחילים", l_cta2:"פותחים חשבון ומתחילים", l_scroll:"מסדי נתונים בפחות מדקה. גללו למטה", l_story_h:"עולם מסדי&nbsp;הנתונים, <span class=\"hl\">מבפנים</span>", l_st_pause:"השהיה", l_st_play:"המשך", l_st_replay:"צפייה חוזרת", l_st_top:"חזרה למעלה", l_have:"כבר יש לי חשבון",
 l_feat_h:"מה יש בפנים", l_how_h:"איך זה עובד",
+l_chat_name:"מסד הנתונים", l_dict:[["SELECT","מה רוצים לראות"],["FROM","מאיזו טבלה"],["WHERE","רק השורות ש..."],["JOIN","מחברים שתי טבלאות"],["GROUP BY","מחלקים לקבוצות לפי..."]],
 l_feat:[["≡","שיעורים מסודרים","כל נושא מחולק לשיעורים קצרים, מהבסיס ועד רמה מתקדמת."],["σ π ⋈","רואים איך זה עובד","כל פעולה מוצגת על טבלאות אמיתיות, ורואים בדיוק מה קורה לשורות."],["✓","תרגול ברמות שונות","תרגילים שנבדקים מיד, מהקל לקשה, עד שמרגישים שליטה."],["SELECT *","מסדי נתונים מוכנים","כותבים תשובה ורואים מיד את הטבלה שהיא מחזירה."]],
 l_how:[["פותחים חשבון",""],["לומדים בקצב שלכם",""],["מתרגלים עד שזה יושב",""]],
 lq_d1:"מי קנה כרטיס לפסטיבל האביב?", lq_d2:"מי הזמין הכי הרבה כרטיסים?", lq_d3:"אותה שאלה, באלגברה רלציונית", lq_d4:"איך טבלאות מוצאות זו את זו: מפתח זר פוגש מפתח ראשי", lq_d5:"אלגברה רלציונית: סטודנטים מהנדסת תעשייה", lq_d6:"חילוק: ספקים שעבדו בכל הפסטיבלים", lq_d7:"הפרש: סטודנטים שלא קנו אף כרטיס", lq_pw:"הסיסמה לעולם לא נשמרת כטקסט, רק כגיבוב",
@@ -1899,6 +1959,7 @@ l_sub:"The course that makes SQL <span class=\"hl\">your language</span>.",
 l_body:"You use databases every day&nbsp;- from online shopping to picking what to watch tonight. In this course you'll find out what happens behind the scenes: how data is organized, how it's connected, and how you pull out exactly what you need. You'll gain the knowledge and tools to <b>design databases and write complex SQL queries</b>, with <b>hands-on practice and instant feedback</b> along the way.",
 l_cta:"Start here", l_cta2:"Create your account", l_scroll:"Databases in under a minute. Scroll down", l_story_h:"The world of databases, <span class=\"hl\">from the inside</span>", l_st_pause:"Pause", l_st_play:"Play", l_st_replay:"Watch again", l_st_top:"Back to top", l_have:"I already have an account",
 l_feat_h:"What's inside", l_how_h:"How it works",
+l_chat_name:"The database", l_dict:[["SELECT","what you want to see"],["FROM","from which table"],["WHERE","only the rows that..."],["JOIN","connect two tables"],["GROUP BY","split into groups by..."]],
 l_feat:[["≡","Organized lessons","Each topic is split into short lessons, from the basics to an advanced level."],["σ π ⋈","See how it works","Every operation is shown on real tables, so you see exactly what happens to the rows."],["✓","Practice at every level","Exercises checked instantly, easy to hard, until you feel in control."],["SELECT *","Ready-made databases","Write an answer and see the table it returns right away."]],
 l_how:[["Create an account",""],["Learn at your own pace",""],["Practice until it sticks",""]],
 lq_d1:"Who bought a ticket to the Spring Festival?", lq_d2:"Who ordered the most tickets?", lq_d3:"The same question, in relational algebra", lq_d4:"How tables find each other: a foreign key meets a primary key", lq_d5:"Relational algebra: Industrial Engineering students", lq_d6:"Division: suppliers who worked every festival", lq_d7:"Difference: students who never bought a ticket", lq_pw:"The password is never stored as text, only as a hash",
@@ -3608,7 +3669,7 @@ function renderExercises(){
     card.innerHTML = '<div class="exh"><b>' + (i+1) + '. ' + t(ex.id) + '</b><span class="lvl">' + t('lv' + ex.lv) + '</span></div>'
       + '<textarea class="raq" rows="2" spellcheck="false" dir="ltr">' + esc(st.q || '') + '</textarea>'
       + '<div class="controls"><button type="button" class="btn primary exCheck">' + t('ex_check') + '</button><button type="button" class="btn small exH1" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint1_b') + '</button><button type="button" class="btn small exH2" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint2_b') + '</button><button type="button" class="btn small exS" ' + (st.tries >= 2 || teacher || st.solved ? '' : 'disabled') + '>' + t('ex_sol_b') + '</button><span class="count">' + t('ex_tries', {n: st.tries}) + '</span></div>'
-      + '<div class="tables exres"></div><div class="msg exmsg" hidden></div><div class="hint exh1" hidden>' + t(ex.id + 'h1') + '</div><div class="hint exh2" hidden>' + t(ex.id + 'h2') + '</div><div class="hint exsol" hidden><span class="ra">' + esc(t(ex.id + 's')) + '</span></div>';
+      + '<div class="tables exres"></div><div class="cm exmsg" hidden></div><div class="hint exh1" hidden>' + t(ex.id + 'h1') + '</div><div class="hint exh2" hidden>' + t(ex.id + 'h2') + '</div><div class="hint exsol" hidden><span class="ra">' + esc(t(ex.id + 's')) + '</span></div>';
     if (teacher) { card.querySelector('.exh1').hidden = false; card.querySelector('.exh2').hidden = false; card.querySelector('.exsol').hidden = false; }
     const ta = card.querySelector('textarea'); ta.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); checkEx(ex, card); } });
     card.querySelector('.exCheck').addEventListener('click', () => checkEx(ex, card));
@@ -4046,8 +4107,31 @@ $('#gateForm').addEventListener('submit', async e => {
   $('#stPP').addEventListener('click', () => { const st = STORY.state(); if (st.done) storyRollback(); else STORY.toggle(); });
   $('#stReplay').addEventListener('click', storyRollback);
   g.addEventListener('scroll', () => { cue.classList.toggle('gone', g.scrollTop > 60);
-    $('#toTop').classList.toggle('on', !$('#landing').hidden && $('#story').getBoundingClientRect().bottom < innerHeight * .5); storyTitleReveal(); lowerPaint(); }, { passive: true }); })();
+    $('#toTop').classList.toggle('on', !$('#landing').hidden && $('#story').getBoundingClientRect().bottom < innerHeight * .5); storyTitleReveal(); lowerPaint(); dictTurn(); }, { passive: true }); })();
 /* ---- the landing below the story is painted light once its top passes 72% of the screen, and resets once it is below the screen again ---- */
+let chatT = [];
+/* the chat plays as a sequence: your question, the database typing then answering, your own SQL, its answer */
+function chatPlay(on){ chatT.forEach(clearTimeout); chatT = []; const ms = [...document.querySelectorAll('#chatCard .cm')]; ms.forEach(m => m.classList.remove('in', 'typing')); if (!on) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { ms.forEach(m => m.classList.add('in')); return; }
+  let t0 = 200; ms.forEach(m => { if (m.classList.contains('db')) { chatT.push(setTimeout(() => m.classList.add('typing'), t0)); t0 += 900; chatT.push(setTimeout(() => { m.classList.remove('typing'); m.classList.add('in'); }, t0)); t0 += 1100; }
+    else { chatT.push(setTimeout(() => m.classList.add('in'), t0)); t0 += 900; } }); }
+/* the closing banner's card: the dictionary turns its rows, waits, hands over to the chat, which plays, waits, and hands back, in a loop while the banner is on */
+const BN = { t: [], face: 'dict' };
+function bnMeasure(){ const card = $('#bnCard'), d = $('#dictCard'), c = $('#chatCard'); if (!card || !d || !c) return;
+  const hd = d.offsetHeight, hc = c.offsetHeight; $('#bnStage').style.minHeight = Math.max(hd, hc) + 'px'; card.style.height = (BN.face === 'chat' ? hc : hd) + 'px'; }
+function bnShow(face){ BN.face = face; $('#dictCard').classList.toggle('cur', face === 'dict'); $('#chatCard').classList.toggle('cur', face === 'chat'); bnMeasure(); }
+function bnStill(){ const d = $('#dictBn'); d.classList.add('still'); d.classList.remove('flip'); void d.offsetWidth; d.classList.remove('still'); }
+function bnLoop(on){ BN.t.forEach(clearTimeout); BN.t = []; const d = $('#dictBn'); if (!d) return;
+  if (!on) { chatPlay(false); bnStill(); bnShow('dict'); return; }
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { bnShow('dict'); d.classList.add('flip'); return; }
+  const at = (ms, f) => BN.t.push(setTimeout(f, ms));
+  const dictPhase = () => { bnShow('dict'); at(650, () => chatPlay(false)); at(500, () => d.classList.add('flip')); at(500 + 2900 + 3200, chatPhase); };
+  const chatPhase = () => { bnShow('chat'); at(450, () => chatPlay(true)); at(650, bnStill); at(450 + 6000 + 3200, dictPhase); };
+  bnStill(); chatPlay(false); dictPhase(); }
+function dictTurn(){ const d = $('#dictBn'); if (!d || $('#landing').hidden) return; const r = d.getBoundingClientRect();
+  if (!d.classList.contains('on') && r.top < innerHeight * .68) { d.classList.add('on'); bnLoop(true); }
+  else if (d.classList.contains('on') && r.top > innerHeight) { d.classList.remove('on'); bnLoop(false); } }
+addEventListener('resize', bnMeasure, { passive: true }); if (document.fonts) document.fonts.ready.then(bnMeasure);
 function lowerPaint(){ const l = $('#lower'); if (!l || $('#landing').hidden) return; const r = l.getBoundingClientRect();
   if (!l.classList.contains('lit') && r.top < innerHeight * .72) l.classList.add('lit'); else if (l.classList.contains('lit') && r.top > innerHeight) l.classList.remove('lit'); }
 /* ---- the big title above the story: once it is in view its words rise one by one, then the neon bar runs under the highlight (about 2.5 s) ---- */
@@ -4100,8 +4184,16 @@ function startDemo(){
 }
 function renderLanding(){ if (built) $('#gate').classList.add('built');
   const f = $('#feat'); f.innerHTML = ''; tv('l_feat').forEach((x, i) => { const d = el('div','b'); d.style.setProperty('--d', (1.15 + i * 0.14) + 's'); d.innerHTML = '<span class="ic">' + esc(x[0]) + '</span><b>' + esc(x[1]) + '</b><span>' + esc(x[2]) + '</span>'; f.appendChild(d); });
+  const cc = $('#chatCard'); if (cc) { const kw = q => esc(q).replace(/\b(SELECT|FROM|WHERE|COUNT)\b/g, '<b>$1</b>');
+    const q1 = "SELECT StudentName\nFROM Purchases\nWHERE Event = 'Spring Festival';", q2 = "SELECT COUNT(*)\nFROM Purchases\nWHERE Event = 'Spring Festival';";
+    cc.innerHTML = '<div class="ch-top"><span class="ch-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg></span>' + esc(t('l_chat_name')) + '<span class="ch-on"></span></div>'
+      + '<div class="ch-body"><div class="cm me">' + esc(t('lq_d1')) + '</div>'
+      + '<div class="cm db"><span class="ty"><i></i><i></i><i></i></span><pre>' + kw(q1) + '</pre><table><tr><th>StudentName</th></tr><tr><td>Dana</td></tr><tr><td>Noa</td></tr><tr><td>Tom</td></tr></table></div>'
+      + '<div class="cm me"><pre>' + kw(q2) + '</pre></div>'
+      + '<div class="cm db"><span class="ty"><i></i><i></i><i></i></span><span class="num">3</span></div></div>'; }
+  const dr = $('#dictRows'); if (dr) dr.innerHTML = tv('l_dict').map((x, i) => '<div class="dr" style="--i:' + i + '"><code>' + esc(x[0]) + '</code><span class="ar" aria-hidden="true">' + (lang === 'he' ? '←' : '→') + '</span><span class="fl"><i class="f0" aria-hidden="true">···</i><i class="f1">' + esc(x[1]) + '</i></span></div>').join('');
   const hw = $('#how'); hw.innerHTML = ''; tv('l_how').forEach((x, i) => { const d = el('div','b'); d.style.setProperty('--d', (1.85 + i * 0.16) + 's'); d.innerHTML = '<b>' + esc(x[0]) + '</b>' + (x[1] ? '<span>' + esc(x[1]) + '</span>' : ''); hw.appendChild(d); });
-  $('#lnkLang').textContent = lang === 'he' ? 'EN' : 'עב'; storyTitleSplit(); if (typeof STORY !== 'undefined' && STORY.state) storyCtlSync();
+  $('#lnkLang').textContent = lang === 'he' ? 'EN' : 'עב'; storyTitleSplit(); if (typeof bnMeasure === 'function') { bnMeasure(); setTimeout(bnMeasure, 300); const db = $('#dictBn'); if (db && db.classList.contains('on')) bnLoop(true); } if (typeof STORY !== 'undefined' && STORY.state) storyCtlSync();
 }
 function gateRefresh(){ renderLanding(); if (W.view === 'wizard') { wizRender(); if (footTyped) { footTyped = ''; typeFoot(); } } }
 

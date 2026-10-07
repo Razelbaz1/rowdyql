@@ -1,6 +1,6 @@
 {
   "l_h1": "Main headline of the landing page, the first thing a stranger sees. Database jargon (σ, JOIN, PRIMARY KEY) floats around it. Must hook, not describe. Short.",
-  "l_sub": "Paragraph under the headline. Keep every promise in it: starts from zero, no prior knowledge, step by step up to multi-table queries, subqueries, window functions and proper database design; a visualizer, an instantly checked exercise and exam-style questions per topic.",
+  "l_sub": "Paragraph under the headline. Keep every promise in it: starts from zero, no prior knowledge, step by step up to multi-table queries, subqueries, window functions and proper database design; a visualizer, an instantly checked exercise and exam-style questions per topic. Also the slogan of the closing banner.",
   "l_cta": "Primary button under the headline. Starts sign-up.",
   "l_cta2": "Button at the end of the story animation, next to the ROLLBACK replay line. Starts sign-up.",
   "l_have": "Secondary button next to the primary one. Goes to sign-in. First person is fine here.",
@@ -59,5 +59,7 @@
   "l_story_h": "Big title above the story animation; once it is in view its words rise one by one. The word in the span gets a neon bar.",
   "l_st_replay": "Shown as an SQL comment ('-- ...') above the ROLLBACK; line at the end of the story, and as the label of the replay button. Plays the story again.",
   "l_st_pause": "Label of the pause button on the story player.",
-  "l_st_play": "Label of the play button on the story player (also before it starts)."
+  "l_st_play": "Label of the play button on the story player (also before it starts).",
+  "l_dict": "The closing banner of the landing: rows of an SQL keyword and its plain meaning, revealed one by one (meanings reviewed 2026-10-07). The card loops with the chat.",
+  "l_chat_name": "Name at the top of the small chat in the closing banner, where the database answers a question in SQL."
 }
