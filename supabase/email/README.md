@@ -4,13 +4,19 @@
 
 | תבנית ב-Supabase | קובץ | נושא (Subject) |
 |---|---|---|
-| Confirm signup | `confirm_signup.html` | ברוכים הבאים ל-RowdyQL: אישור האימייל |
+| Confirm signup | `confirm_signup.html` | לפי המגדר (למטה) |
 | Reset password | `reset_password.html` | איפוס הסיסמה ל-RowdyQL |
 | Reauthentication | `reauthentication.html` | הקוד לשינוי הסיסמה ב-RowdyQL |
 
 ## הדבקה
 Supabase → Authentication → Emails → Templates. בוחרים תבנית, מדביקים את הנושא, ואת כל תוכן הקובץ בגוף ההודעה (Message body), ושומרים.
 הלוגו נטען מ-`https://rowdyql.com/email-logo-light.png` (הקובץ בשורש הריפו, נוצר ב-`node tools/emaillogolight.js`). הלוגו הכהה הישן, `email-logo.png`, נשאר בשרת בשביל מיילים שכבר נשלחו. הברכה בשם הפרטי מגיעה מ-`first_name` שנשמר בהרשמה.
+
+## מייל האישור לפי מגדר
+מייל האישור פונה ביחיד לפי המגדר שנבחר בהרשמה (`gender`, M או F), ובלי מגדר ברבים (פרופיל הקול 1.2). משתנים הכותרת (תמונה: `confirm_signup_m.png`, `confirm_signup_f.png` או `confirm_signup.png`), שורת התצוגה המקדימה ו"שבחרת/שבחרתם". הנושא, שמודבק כמו שהוא:
+```
+{{ with .Data.gender }}{{ if eq . "F" }}ברוכה הבאה ל-RowdyQL: אישור האימייל{{ else }}ברוך הבא ל-RowdyQL: אישור האימייל{{ end }}{{ else }}ברוכים הבאים ל-RowdyQL: אישור האימייל{{ end }}
+```
 
 ## שם השולח: RowdyQL
 שירות המייל המובנה של Supabase לא מאפשר לשנות את השולח, אז צריך SMTP משלנו. ההמלצה: Resend (יש תוכנית חינמית).

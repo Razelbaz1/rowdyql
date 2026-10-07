@@ -14,7 +14,7 @@ Write the Hebrew from the intent. Never translate the English sentence. The Engl
 
 ## Rules
 
-1. **Address the reader in plural** (אתם): לחצו, עברתם, תמצאו. Never mix singular and plural in one string. No slash forms (מסכים/ה): rephrase instead, for example with a gender-neutral past tense (קראתי ואישרתי).
+1. **Address the reader in plural** (אתם): לחצו, עברתם, תמצאו. Never mix singular and plural in one string. No slash forms (מסכים/ה): rephrase instead, for example with a gender-neutral past tense (קראתי ואישרתי). One exception (Raz, 2026-10-08): the sign-up confirmation email speaks to the reader in the singular, by the gender chosen at sign-up, and stays plural when there is none.
 2. **Buttons and links use an action noun** (שם פעולה): הרשמה, כניסה, הרצה, בדיקה, איפוס, המשך. Not an imperative (הרץ, בדוק, דלג). First person is fine when the student is making a statement (שכחתי סיסמה, כבר יש לי חשבון). When a sentence mentions a button, quote its label: לחצו על 'בדיקה'. Exception (Raz, 2026-09-30): the one or two landing-page buttons that invite sign-up may be a short present-plural phrase, like the live "מכאן מתחילים" and "פותחים חשבון, דקה אחת".
 3. **One idea per sentence.** No comma splices: if two clauses could stand alone, use a period or a real connective (ו, אבל, כי, אז). Wrong: "היא נשמרת כגיבוב, אף אחד לא יכול לקרוא אותה, גם לא אנחנו."
 4. **No calques from English.** These came from translating and sound foreign: "ננסה לחיות איתה" (live with it), "הכל נשמר לחשבון" (saved to your account), "ענפים שלא הוטלו על אותן עמודות" (projected onto).

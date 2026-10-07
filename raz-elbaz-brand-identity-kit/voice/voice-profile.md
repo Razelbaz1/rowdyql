@@ -1,6 +1,9 @@
 # RowdyQL voice profile
 
-**Status: approved by Raz, 2026-09-30. Version 1.1 (2026-10-07). This is the official voice of the site.** English version: `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md`.
+**Status: approved by Raz, 2026-09-30. Version 1.2 (2026-10-08). This is the official voice of the site.** English version: `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md`.
+
+**Version 1.2, 2026-10-08 (Raz):**
+- One exception to plural address: the sign-up confirmation email speaks to the reader in the singular, by the gender chosen at sign-up. Without a gender it stays plural. Its footer line stays plural, because it speaks to someone who may not have signed up. Everything else stays plural.
 
 **Version 1.1, 2026-10-07 (Raz):**
 - Do 3 has a new example.
@@ -85,6 +88,7 @@ A TA who is a step ahead of you and remembers what it was like not to understand
 - **Slang.** Gentle slang is allowed, one per unit (Do 7).
 - **Real terms stay.** "רלציוני" and every other real term is kept and made clear, never dropped (Do 9).
 - **English.** The English site has its own profile, `raz-elbaz-brand-identity-kit/voice/voice-profile-en.md`, derived from this one.
+- **Gendered address (2026-10-08):** sign-up asks for gender ("איך נפנה אליכם?", זכר or נקבה), and the sign-up confirmation email uses it: "ברוך הבא!" or "ברוכה הבאה!", "ואתה בפנים" or "ואת בפנים". Without a gender, the email stays plural. The site, the other emails and the notices stay plural.
 - **Exclamation marks:** only in a greeting ("ברוכים הבאים!") or a real win ("נכון!"), never as decoration (Don't 9). Raz confirmed this on 2026-10-07, for now.
 
 ## Before and after
