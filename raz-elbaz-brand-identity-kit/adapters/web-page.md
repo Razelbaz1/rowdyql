@@ -45,6 +45,42 @@ The RowdyQL site, landing and lessons alike (the whole site follows this kit), p
 - Images: `loading="lazy"` below the fold, width and height attributes, alt text always.
 - The fallback stack is system-ui; never Inter, Roboto or Arial as the visible face.
 
+## Exercise and feedback recipes (approved by Raz, 2026-10-14)
+Board: the design board of 2026-10-14 (the exercise card through every state). These are the rules the site follows.
+
+- **Exercise card:**
+  - A panel on surface with a 1px rule and radius 14, on the quiet grid.
+  - The number is in Rubik 800 in the neon text tier. The question is in Heebo 500.
+  - The level is a pill (Heebo 500 on the neutral tint). Never Hebrew in mono.
+- **Expression field:**
+  - The canvas color (bg) inset into the surface, a 1px rule, radius 6, and IBM Plex Mono LTR.
+  - On hover the rule turns toward neon. On focus: a 2px ring in the neon line tier with a 2px offset.
+  - Above it sit the label "הביטוי שלכם" (Heebo 500, muted) and the operator palette. The palette keys are small cells: radius 6, a 1px rule, mono, and the neon frame with a soft glow on hover.
+- **Buttons:**
+  - "בדיקה" is the filled CTA (#20778A, dark #5CC3D9 with #11161B text, radius 10). Hint and solution buttons are outline buttons with the neon frame on hover.
+  - A disabled button sits on the neutral tint with muted text and no hover.
+  - The attempts count is Heebo with the number in a small mono cell.
+- **Verdict, the kicked row:**
+  - The logo's three rows stand in for the icon, on the state tint with a 1px border at 22% of the state color.
+  - Wrong: the middle row kicks out (−8°) in the wrong color, with a 0.55s spring.
+  - Right: the middle row snaps back into line in the correct color.
+- **Feedback without boxes:**
+  - **Empty:** the field nudges, and a quiet helper line with a short muted bar appears under it.
+  - **Syntax error:** a compiler-style echo of the expression with a mark where it breaks, and the message in the wrong color. Hebrew in Heebo; only the offending token is mono.
+  - **Hint:** the annotation-leader motif. A thin muted elbow runs from the field to the note, which has a small square in the sky line tier and a label in the sky text tier. No box.
+  - **Solution:** a ghost line under the student's expression, after a dashed hairline in the neon line tier, typed out with a short neon cursor.
+- **Tables in an answer:**
+  - Source tables get the neutral header and a Latin mono caption (uppercase, +0.12em).
+  - The correct result gets the result header and a 1px neon outline.
+  - Hebrew captions ("מה יוצא לכם", "מה אמור לצאת") are Heebo 500.
+  - Data islands flow left to right, source to result.
+  - Rows carry their mark cell at the end: a check on a correct row; a cross on a wrong row, which is struck through in the wrong color on the wrong tint; the kicked "!" on a missing row, on the note tint.
+- **Legend strip:** the three mark cells with a name each, under a hairline.
+- **Disclosure rows** (step by step, full result):
+  - A row on surface with a 1px rule and radius 10, a neon chevron, and the count in Heebo muted at the end.
+  - The neon frame and glow on hover.
+  - Inside, each step is a small neon-outlined number cell plus an expression chip (mono 500 on the neutral tint), then its table.
+
 ## Drop from Core here
 - Print rules (unless the page has a print stylesheet), email constraints, slide floors.
 

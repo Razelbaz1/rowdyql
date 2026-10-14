@@ -7,6 +7,7 @@
   --ground:#F7F2EC; --surface:#FDFBF8; --surface2:#ECE8E3; --ink:#373C44; --muted:#5F6670; --line:#DDD7CF;
   --accent:#20778A; --on-accent:#FDFBF8; --accent-soft:#E3F2F3;
   --amber:#C07D16; --amber-soft:#FFF1D6; --mk-back:#20778A; --mk-imp:#C07D16; --mk-weak:#D9603F; --mk-nd:#5F6670; --spring:cubic-bezier(.34,1.3,.64,1);
+  --neon-l:#2999B1; --res-head:#CDEAEF; --sky-l:#5793B7; --sky-t:#3F7392; --note-t:#966212; --grid:#EDE9E4; --mk-cell:#FDFBF8;
   --glass:linear-gradient(160deg,rgba(255,255,255,.78),rgba(222,240,244,.62)); --glass-line:rgba(32,119,138,.26); --glass-hi:rgba(255,255,255,.95); --sheen:rgba(92,195,217,.30); --lens:rgba(32,119,138,.10); --lens-line:rgba(32,119,138,.30);
   --pk:#966212; --pk-bg:#FFF1D6; --fk:#20778A; --fk-bg:#E3F2F3;
   --good:#276B43; --good-bg:#DCEFE3; --bad:#B23A2E; --bad-bg:#FBE3E0;
@@ -26,6 +27,7 @@
     --ground:#11161B; --surface:#182027; --surface2:#232B33; --ink:#E6EAEE; --muted:#9AA4AE; --line:#2E3943;
     --accent:#5CC3D9; --on-accent:#11161B; --accent-soft:#233A43;
     --amber:#F2B75A; --amber-soft:#3A2B0C; --mk-back:#5CC3D9; --mk-imp:#F2B75A; --mk-weak:#FD977A; --mk-nd:#9AA4AE;
+  --neon-l:#5CC3D9; --res-head:#2C515C; --sky-l:#8CBDDA; --sky-t:#8CBDDA; --note-t:#F2B75A; --grid:#1C2126; --mk-cell:transparent;
   --glass:linear-gradient(160deg,rgba(44,58,68,.55),rgba(30,40,48,.45)); --glass-line:rgba(255,255,255,.16); --glass-hi:rgba(255,255,255,.14); --sheen:rgba(255,255,255,.22); --lens:rgba(255,255,255,.08); --lens-line:rgba(255,255,255,.22);
     --pk:#F2B75A; --pk-bg:#3A2B0C; --fk:#5CC3D9; --fk-bg:#233A43;
     --good:#6BD09A; --good-bg:#12321F; --bad:#F28B7E; --bad-bg:#3D1712;
@@ -37,6 +39,7 @@
   --ground:#11161B; --surface:#182027; --surface2:#232B33; --ink:#E6EAEE; --muted:#9AA4AE; --line:#2E3943;
   --accent:#5CC3D9; --on-accent:#11161B; --accent-soft:#233A43;
   --amber:#F2B75A; --amber-soft:#3A2B0C; --mk-back:#5CC3D9; --mk-imp:#F2B75A; --mk-weak:#FD977A; --mk-nd:#9AA4AE;
+  --neon-l:#5CC3D9; --res-head:#2C515C; --sky-l:#8CBDDA; --sky-t:#8CBDDA; --note-t:#F2B75A; --grid:#1C2126; --mk-cell:transparent;
   --glass:linear-gradient(160deg,rgba(44,58,68,.55),rgba(30,40,48,.45)); --glass-line:rgba(255,255,255,.16); --glass-hi:rgba(255,255,255,.14); --sheen:rgba(255,255,255,.22); --lens:rgba(255,255,255,.08); --lens-line:rgba(255,255,255,.22);
   --pk:#F2B75A; --pk-bg:#3A2B0C; --fk:#5CC3D9; --fk-bg:#233A43;
   --good:#6BD09A; --good-bg:#12321F; --bad:#F28B7E; --bad-bg:#3D1712;
@@ -244,6 +247,18 @@ table.data tr.gone td{opacity:.25;text-decoration:line-through}
 table.data td.mark{background:var(--amber-soft);font-weight:500}
 table.data tr.good td{background:var(--good-bg)}
 table.data tr.badrow td{background:var(--bad-bg)}
+.ce{flex:1 1 100%;min-width:0;max-width:100%;box-sizing:border-box;margin-top:.8rem;padding:.9rem 1rem 1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.ce h4{margin:0 0 .25rem;font-size:1rem}
+.ce .ce-lede{margin:0 0 .7rem;color:var(--muted);font-size:.92rem}
+.ce .ce-lab{font-size:.8rem;color:var(--muted);margin:.2rem 0 .3rem}
+.ce .ce-cmp{margin-top:.7rem}
+.ce .ce-empty{font-size:.85rem;color:var(--muted);font-style:italic;margin-top:.25rem}
+.ce .ce-legend{margin:.5rem 0 0;font-size:.85rem;color:var(--muted)}
+.ce details{margin-top:.7rem;border-top:1px dashed var(--line);padding-top:.5rem}
+.ce summary{cursor:pointer;font-size:.9rem;color:var(--accent);font-weight:500}
+.ce summary:hover,.ce summary:focus-visible{text-decoration:underline;text-underline-offset:3px;outline:0}
+.ce-step{margin:.6rem 0}
+.ce-step .ra{font-size:.9rem;margin-bottom:.35rem;max-width:100%;overflow-x:auto;vertical-align:top}
 .spot{box-shadow:0 0 0 3px var(--amber) inset!important;background:var(--amber-soft)!important;opacity:1!important}
 /* pointer highlight: click any pinnable item to mark it for the room */
 .pinnable{transition:opacity .25s,box-shadow .25s,background .25s}
@@ -343,21 +358,125 @@ pre.sql .k{color:var(--accent);font-weight:500}
 
 /* ---------- relational algebra lab & exercises ---------- */
 .palette{display:flex;gap:.35rem;flex-wrap:wrap}
-.palette button{border:1px solid var(--line);background:var(--surface);border-radius:8px;min-width:2.4rem;min-height:40px;padding:.3rem .6rem;font-family:var(--mono);font-size:1rem}
-.palette button:hover{border-color:var(--accent);color:var(--accent)}
-textarea.raq{width:100%;font-family:var(--mono);font-size:1.05rem;direction:ltr;text-align:left;background:var(--surface2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:.7rem .8rem;resize:vertical;line-height:1.5}
-textarea.raq:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.palette{direction:ltr}
+.palette button,.ex .pal button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;min-width:34px;min-height:34px;padding:0 .45rem;font-family:var(--mono);font-size:.95rem;cursor:pointer;transition:border-color .3s,box-shadow .4s}
+.palette button:hover,.palette button:focus-visible,.ex .pal button:hover,.ex .pal button:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.5),0 0 12px rgba(92,195,217,.25);outline:0}
+textarea.raq{width:100%;font-family:var(--mono);font-size:1rem;line-height:1.6;direction:ltr;text-align:left;background:var(--ground);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:.7rem .85rem;resize:vertical;transition:border-color .2s;line-height:1.5}
+textarea.raq:hover{border-color:color-mix(in srgb,var(--neon-l) 45%,var(--line))}
+textarea.raq:focus{outline:2px solid var(--neon-l);outline-offset:2px;border-color:var(--neon-l);box-shadow:none}
 table.bridge{width:100%;direction:rtl;text-align:start;font-family:var(--body)}
 html[dir="ltr"] table.bridge{direction:ltr}
 table.bridge td:first-child{font-family:var(--mono);font-size:1.05rem;direction:ltr;text-align:left;white-space:nowrap}
 table.bridge td:nth-child(3){font-family:var(--mono);direction:ltr;text-align:left;white-space:nowrap}
 .exlist{display:flex;flex-direction:column;gap:1rem}
-.ex{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
-.ex .exh{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;flex-wrap:wrap}
-.ex .exh b{font-size:1.02rem}
-.ex .lvl{font-size:.72rem;border-radius:999px;padding:.1rem .55rem;background:var(--surface2);color:var(--muted);font-family:var(--mono)}
-.ex.solved{border-color:var(--good)}
-.ex.solved .exh b::before{content:"✓ ";color:var(--good)}
+/* ===== exercise area, the kit recipes (adapters/web-page.md, approved 2026-10-14) ===== */
+.exlist{background-color:var(--ground);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;border:1px solid var(--line);border-radius:18px;padding:24px}
+@media (max-width:640px){.exlist{padding:10px;border-radius:14px}}
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.35rem 1.3rem;display:flex;flex-direction:column;gap:.85rem}
+@media (max-width:640px){.ex{padding:1rem}}
+.ex-h{display:flex;align-items:flex-start;gap:.7rem}
+.ex-n{font-family:var(--display);font-weight:800;font-size:1.3rem;line-height:1.2;color:var(--accent);min-width:1.5em}
+.ex-q{flex:1;margin:0;font-weight:500;font-size:1.05rem;line-height:1.5}
+.ex .pill{font:500 .78rem var(--body);color:var(--muted);background:var(--surface2);border-radius:999px;padding:.15rem .7rem;white-space:nowrap;align-self:center}
+.ex .pill.lv4,.ex .pill.lv5{color:var(--ink);background:color-mix(in srgb,#DD6D25 16%,var(--surface))}
+.ex-h .mkc{align-self:center}
+.field-l{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:-.35rem}
+.field-l>span{font-weight:500;font-size:.85rem;color:var(--muted)}
+.ex .pal{display:flex;gap:4px;flex-wrap:wrap;direction:ltr}
+.ex .act{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.ex .act .btn,.bench .controls .count{font-family:var(--body);font-size:.85rem}
+#labEx{font:inherit;font-size:.92rem;min-height:42px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);padding:0 .6rem}
+.bench .controls .btn{border-radius:10px;min-height:42px;font-weight:500}
+.ex .act .btn:disabled{background:var(--surface2);border-color:transparent;color:var(--muted);box-shadow:none;cursor:not-allowed}
+.ex .tries{margin-inline-start:auto;font-weight:500;font-size:.85rem;color:var(--muted)}
+.ex .tries b,.ex .tries .n{font:500 .85rem var(--mono);color:var(--ink);background:var(--surface2);border-radius:6px;padding:0 .45rem;direction:ltr;display:inline-block}
+/* mark cells: drawn marks on a rounded-square cell, the note mark is the kicked "!" */
+.mkc{position:relative;display:inline-block;width:20px;height:20px;border-radius:6px;flex:none;vertical-align:middle}
+.mkc svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+.mkc.m-good{background:var(--good-bg);color:var(--good)} .mkc.m-bad{background:var(--bad-bg);color:var(--bad)} .mkc.m-note{background:var(--amber-soft);color:var(--note-t)} .mkc.m-neutral{background:var(--surface2);color:var(--muted)}
+/* verdict: the kicked row */
+.vc{display:flex;gap:.9rem;align-items:center;border-radius:10px;padding:.75rem .9rem;background:var(--t);border:1px solid color-mix(in srgb,var(--c) 22%,transparent)}
+.vc.bad{--c:var(--bad);--t:var(--bad-bg)} .vc.good{--c:var(--good);--t:var(--good-bg)}
+.vc .rows{position:relative;width:34px;height:30px;flex:none;direction:ltr}
+.vc .rows i{position:absolute;left:3px;width:28px;height:6px;border-radius:1.5px;background:var(--ink);opacity:.75}
+.vc .rows i:nth-child(1){top:2px}.vc .rows i:nth-child(3){top:22px}
+.vc .rows i:nth-child(2){top:12px;background:var(--c);opacity:1;transform-origin:20% 50%}
+.vc.bad .rows i:nth-child(2){transform:translate(5px,-1px) rotate(-8deg)}
+.vc.bad.in .rows i:nth-child(2){animation:vcKick .55s cubic-bezier(.3,1.5,.5,1)}
+.vc.good.in .rows i:nth-child(2){animation:vcSettle .6s cubic-bezier(.3,1.4,.5,1)}
+@keyframes vcKick{from{transform:none}}
+@keyframes vcSettle{from{transform:translate(5px,-1px) rotate(-8deg)}}
+.vc p{margin:0;font-size:.97rem}
+/* feedback next to the field, no boxes */
+.near:empty{display:none}
+.helper{margin:0;display:flex;align-items:center;gap:.6rem;color:var(--muted);font-size:.95rem}
+.helper .dash{width:14px;height:2px;border-radius:1px;background:var(--muted);flex:none}
+textarea.raq.nudge{animation:fieldNudge .45s cubic-bezier(.36,.07,.19,.97)}
+@keyframes fieldNudge{20%{transform:translateX(-5px)}40%{transform:translateX(4px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+.echo{font:400 .95rem/1.6 var(--mono);color:var(--muted);padding:0 2px;white-space:pre-wrap;word-break:break-word;direction:ltr;text-align:left}
+.echo .miss{color:var(--bad);border-bottom:2px solid var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent);border-radius:2px 2px 0 0;animation:echoIn .5s ease-out}
+.echo .miss.end{display:inline-block;width:.7em;height:1.15em;vertical-align:-.25em}
+@keyframes echoIn{from{opacity:0;transform:translateY(3px)}}
+.errmsg{margin:.2rem 0 0;display:flex;align-items:center;gap:.6rem;color:var(--bad);font-size:.95rem}
+.errmsg .xm{width:12px;height:12px;flex:none;position:relative}
+.errmsg .xm::before,.errmsg .xm::after{content:"";position:absolute;left:5px;top:-1px;width:2px;height:14px;border-radius:1px;background:var(--bad);transform:rotate(45deg)}
+.errmsg .xm::after{transform:rotate(-45deg)}
+.ann{position:relative;padding-inline-start:38px;margin-top:2px;font-size:.98rem;line-height:1.55}
+.ann::before{content:"";position:absolute;inset-inline-start:14px;top:-12px;width:16px;height:24px;border-inline-start:1px solid var(--muted);border-bottom:1px solid var(--muted);border-end-start-radius:4px}
+.ann::after{content:"";position:absolute;inset-inline-start:28px;top:8px;width:7px;height:7px;background:var(--sky-l)}
+.ann .ak{display:block;font-weight:700;font-size:.8rem;color:var(--sky-t);margin-bottom:1px}
+.ann.in{animation:annIn .45s ease-out}
+@keyframes annIn{from{opacity:0;transform:translateY(-3px)}}
+.ghost{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;border-top:1px dashed color-mix(in srgb,var(--neon-l) 55%,var(--line));padding:.6rem 2px 0}
+.ghost .gk{font-weight:700;font-size:.8rem;color:var(--accent)}
+.ghost code{font:500 1rem/1.5 var(--mono);color:var(--ink);white-space:pre-wrap;word-break:break-word}
+.ghost code.typing::after{content:"";display:inline-block;width:.55em;height:1.05em;background:#5CC3D9;vertical-align:-.15em;margin-inline-start:1px;animation:ghostCur .9s steps(1) infinite}
+@keyframes ghostCur{50%{opacity:0}}
+/* tables in an answer: source vs result, row marks at the end */
+.ex .exres:empty{display:none}
+.tabs2{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;direction:ltr}
+.tabs2.res-row{justify-content:flex-end}
+.tbl2{display:flex;flex-direction:column;gap:6px;max-width:100%;min-width:0}
+.tbl2 .tcap{font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tbl2 .tcap-he{font-weight:500;font-size:.85rem;color:var(--ink);direction:rtl;text-align:right}
+html[dir="ltr"] .tbl2 .tcap-he{direction:ltr;text-align:left}
+.tw{border:1px solid var(--line);border-radius:10px;overflow-x:auto;background:var(--surface);max-width:100%;width:fit-content}
+.tw.res{border-color:var(--neon-l)}
+table.t{border-collapse:collapse;font:400 .82rem var(--mono);direction:ltr}
+.t th{background:var(--surface2);font-weight:500;text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.tw.res .t th{background:var(--res-head)}
+.t td{padding:6px 10px;border-top:1px solid var(--line);white-space:nowrap}
+.t th.pk{color:var(--note-t)}
+.t td.m,.t th.m{padding:4px 8px;width:28px}
+.t tr.r-bad td:not(.m){color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bad);text-decoration-thickness:1.5px}
+.t tr.r-bad td{background:var(--bad-bg)} .t tr.r-good td{background:var(--good-bg)} .t tr.r-miss td{background:var(--amber-soft)}
+.t .nul{color:var(--muted);font-style:italic}
+.t .empty-row td{color:var(--muted);font-family:var(--body);font-style:italic;text-align:center;padding:10px 14px}
+/* the counterexample */
+.ce{flex:1 1 100%;min-width:0;max-width:100%;border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.85rem;background:var(--surface)}
+.ce h4{margin:0;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
+.ce .cl{margin:-.4rem 0 0;color:var(--muted);font-size:.95rem}
+.ce .cap{font-weight:500;font-size:.82rem;color:var(--muted);margin:0 0 -.3rem}
+.ce .flowline{height:1px;background:var(--line)}
+.legend2{display:flex;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px;font-size:.88rem;color:var(--muted)}
+.legend2 span{display:inline-flex;gap:8px;align-items:center}
+.disc{border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.disc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 14px;font-weight:500;font-size:.95rem;color:var(--ink);border-radius:10px;transition:box-shadow .4s}
+.disc>summary::-webkit-details-marker{display:none}
+.disc>summary:hover,.disc>summary:focus-visible{box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 14px rgba(92,195,217,.25);outline:0}
+.disc>summary .chev{width:16px;height:16px;color:var(--accent);transition:transform .25s;flex:none}
+html[dir="rtl"] .disc>summary .chev{transform:scaleX(-1)}
+.disc[open]>summary .chev{transform:rotate(90deg)} html[dir="rtl"] .disc[open]>summary .chev{transform:rotate(90deg) scaleX(-1)}
+.disc>summary .cnt{margin-inline-start:auto;font-weight:400;font-size:.85rem;color:var(--muted);white-space:nowrap}
+.disc .db{padding:4px 14px 14px;display:flex;flex-direction:column;gap:12px}
+.step{display:flex;flex-direction:column;gap:6px;min-width:0}
+.step .sh{display:flex;align-items:center;gap:8px;direction:ltr;justify-content:flex-start;min-width:0}
+.step .sn{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font:500 .78rem var(--mono);color:var(--accent);border:1px solid var(--neon-l);flex:none}
+.step .chip{display:inline-block;max-width:100%;overflow-x:auto;font:500 .92rem var(--mono);direction:ltr;background:var(--surface2);border-radius:6px;padding:.3rem .65rem;white-space:nowrap}
+/* lab: the same field, palette and feedback */
+#labMsg{border:0;background:none;padding:0;border-radius:0}
+#labMsg.lab-ok{color:var(--muted);font-size:.92rem}
+@media (prefers-reduced-motion: reduce){.vc.in .rows i,textarea.raq.nudge,.echo .miss,.ann.in{animation:none!important}.ghost code.typing::after{display:none}}
 .exres .tbl{max-width:100%}
 /* ---------- teacher dashboard ---------- */
 .dash{position:fixed;inset:0;z-index:85;background:var(--ground);color:var(--ink);overflow:auto}
@@ -1506,7 +1625,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
         <textarea class="raq" id="labQ" rows="3" spellcheck="false" dir="ltr" aria-labelledby="labH2"></textarea>
         <div class="controls"><button class="btn primary" id="labRun" data-i18n="run"></button><select id="labEx"></select><span class="count" data-i18n="lab_tip"></span></div>
         <div id="labOut" class="tables"></div>
-        <div class="msg" id="labMsg" data-i18n="lab_msg0"></div>
+        <div class="lab-ok" id="labMsg" data-i18n="lab_msg0"></div>
       </div>
       <div style="height:1rem"></div>
       <div class="tblwrap"><table class="data bridge" id="bridge"></table></div>
@@ -1550,7 +1669,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
 const I18N = {
 he: {
 brand_sub:"מסדי נתונים ו-SQL, מאפס", tab_home:"בית", tab_intro:"מבוא", tab_ra:"אלגברה רלציונית",
-present:"מצב מצגת", run:"הרץ", reset:"איפוס", lg_pk:"מפתח ראשי", lg_fk:"מפתח זר",
+present:"מצב מצגת", run:"הרצה", reset:"איפוס", lg_pk:"מפתח ראשי", lg_fk:"מפתח זר",
 toc_show:"תוכן עניינים", toc_hide:"הסתר תוכן", hud_l:"אתם כאן",
 nav_h_hello:"שלום", nav_h_stats:"ההתקדמות שלי", nav_h_sessions:"השיעורים", nav_h_tools:"כלים",
 gr_morning:"בוקר טוב", gr_noon:"צהריים טובים", gr_evening:"ערב טוב", gr_night:"לילה טוב",
@@ -1580,12 +1699,12 @@ sc2_tnote:"לעצור על FromStation/ToStation ולשאול: למה Rides ⋈ 
 lab_h2:"מחשבון אלגברה רלציונית", lab_lede:"כותבים ביטוי ומריצים אותו על הסכמה. הפרמטר של π, σ ו-ρ נכתב בסוגריים מרובעים, והטבלה בסוגריים רגילים. אפשר גם השמות עם ← ולהשתמש בשם בהמשך, מופרד בנקודה-פסיק.",
 lab_tip:"Ctrl+Enter מריץ", lab_msg0:"נסו: π[FullName](σ[City='Ariel'](Riders))",
 lab_ex0:"דוגמאות…", lab_ex1:"σ: נסיעות ארוכות", lab_ex2:"⋈ טבעי: מי רכב", lab_ex3:"⋈ עם תנאי: מאיזו תחנה", lab_ex4:"− : אופניים שלא נסעו ב-2025", lab_ex5:"ρ ו-×: מי מדווח למי", lab_ex6:"÷: רכב על כל סוג", lab_ex7:"השמה בשני שלבים",
-lab_rows:"{n} שורות · {c} עמודות",
+lab_cols:"{c} עמודות", lab_cols1:"עמודה אחת",
 br_h1:"אלגברה", br_h2:"משמעות", br_h3:"SQL Server",
 br1:"בחירת שורות", br2:"בחירת עמודות (בלי כפילויות)", br3:"צירוף על עמודות משותפות", br4:"צירוף עם תנאי", br5:"כל הזוגות", br6:"איחוד", br7:"חיתוך", br8:"הפרש", br9:"כינוי", br10:"'לכל': מי מחובר לכולם",
 ex2_h2:"תרגילים על RideOn", ex2_lede:"שישה תרגילים ראשונים מתוך 12, מהקל לקשה, בסגנון של שאלות מבחן. הבדיקה מריצה את הביטוי שלכם ומשווה את הטבלה שיוצאת לתוצאה הנכונה, אז כל ניסוח שקול מתקבל. רמזים נפתחים אחרי ניסיון, הפתרון אחרי שניים.",
-ex_check:"בדוק", ex_tries:"ניסיונות: {n}", ex_hint1_b:"רמז 1", ex_hint2_b:"רמז 2", ex_sol_b:"פתרון",
-exr_ok:"נכון! הטבלה שלכם זהה לתוצאה הצפויה.", exr_cols:"מספר העמודות שונה: קיבלתם {a}, צפוי {b}. בדקו את ה-π.", exr_rows:"העמודות במקום, אבל יש {a} שורות במקום {b}. {d}", exr_more:"יש שורות מיותרות, כנראה תנאי חלש מדי או צירוף חסר.", exr_less:"חסרות שורות, כנראה תנאי חזק מדי או ענף שנשכח.", exr_err:"שגיאה בביטוי: {e}", exr_empty:"כתבו ביטוי ואז בדוק.",
+ex_check:"בדיקה", ex_tries:"ניסיונות: {n}", ex_hint1_b:"רמז 1", ex_hint2_b:"רמז 2", ex_sol_b:"פתרון",
+exr_ok:"נכון! הטבלה שלכם זהה לתוצאה הצפויה.", exr_cols:"מספר העמודות שונה: קיבלתם {a}, צפוי {b}. בדקו את ה-π.", exr_rows:"העמודות במקום, אבל יש {a} שורות במקום {b}. {d}", exr_more:"יש שורות מיותרות, כנראה תנאי חלש מדי או צירוף חסר.", exr_less:"חסרות שורות, כנראה תנאי חזק מדי או חלק מהביטוי שנשכח.", exr_err:"שגיאה בביטוי: {e}", exr_empty:"כתבו ביטוי ולחצו על 'בדיקה'.",
 lv1:"בסיסי", lv2:"צירוף", lv3:"מורכב", lv4:"Self-Join", lv5:"מבחן",
 q1:"שמות התחנות ומספר העמדות (Docks) בכל אחת.", q1h1:"רק עמודות, בלי סינון: π בלבד.", q1h2:"π[StationName, Docks] על Stations.", q1s:"π[StationName, Docks](Stations)",
 q2:"שמות אנשי הצוות שמדווחים לאיש צוות מספר 3.", q2h1:"σ על ManagerID ואז π על השם.", q2h2:"σ[ManagerID=3] בפנים, π[FullName] בחוץ.", q2s:"π[FullName](σ[ManagerID=3](Staff))",
@@ -1730,7 +1849,7 @@ ex_step1:"1. איזה צירוף?", ex_step2:"2. איזה תנאי ב-σ?", ex_s
 ex_j0:"Students ⋈ Enroll", ex_j1:"Enroll ⋈ Courses", ex_j2:"Students × Enroll", ex_j3:"Students ⋈ Enroll ⋈ Courses",
 ex_s0:"Grade ≥ 90", ex_s1:"CID = 'DB'", ex_s2:"CID = 'DB' ∧ Grade ≥ 90", ex_s3:"Faculty = 'IE' ∧ Grade ≥ 90", ex_s4:"Title = 'Databases' ∧ Grade ≥ 90",
 ex_p0:"Name", ex_p1:"SID", ex_p2:"Name, Grade", ex_p3:"Faculty",
-ex_check:"בדוק", ex_tries:"ניסיונות: {n}",
+ex_check:"בדיקה", ex_tries:"ניסיונות: {n}",
 ex_msg0:"בחרו בכל שלב ולחצו בדוק.",
 ex_ok:"נכון! התוצאה זהה לתוצאה הצפויה. שימו לב שגם ניסוח אחר יכול להיות נכון, כל עוד הטבלה שיוצאת זהה.",
 ex_bad_cols:"העמודות לא נכונות: השאלה מבקשת שמות בלבד, וקיבלתם {c}.",
@@ -1756,7 +1875,7 @@ r3_e:"A ∪ B מכיל את כל A. כשמחסרים מ-A קבוצה שמכיל�
 t_cancel:"ביטול", 
 present_off:"סיום הצגה", pt_laser:"מצביע", pt_pen:"עט", pt_erase:"מחק", pt_undo:"בטל", pt_clear:"נקה", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"כלים",
 
-g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", doc_title:"RowdyQL · SQL בגובה העיניים", me_lang:"שפה", st_sections_x:"סעיף נספר ברגע שגוללים אליו. זה מראה כמה מהחומר עברתם, לא כמה ממנו יושב - בשביל זה יש כפתור 'סימון' בראש כל שיעור.", st_ex_x:"אלה 12 התרגילים של שיעורים 2.6 ו-2.7. תרגיל נספר כשהתשובה שלכם מחזירה בדיוק את הטבלה הנכונה.", st_qi_x:"זו הבדיקה העצמית בסוף פרק המבוא, בשיעור 1.3. סופרים כמה מתוך 4 השאלות עניתם נכון.", st_qr_x:"זו הבדיקה העצמית בסוף פרק האלגברה, בשיעור 2.8. סופרים כמה מתוך 3 השאלות עניתם נכון.", st_days_x:"סופרים בכמה ימים נכנסתם לאתר. נכנסתם שלוש פעמים באותו יום? זה עדיין יום אחד.", mk_btn:"סימון", mk_btn_a:"סימון השיעור", mk_back:"אחזור לזה", mk_imp:"חשוב לי", mk_weak:"עוד לא יושב לי", mk_notdone:"עוד לא סיימתי", mk_h:"מה שסימנתם", mk_g_back:"אחזור אליהם", mk_g_imp:"חשובים לי", mk_g_weak:"עוד לא יושבים לי", mk_g_notdone:"עוד לא סיימתי", sx_notdone:"עוד לא סיימתי", d_ch_weak:"שיעורים שסומנו 'עוד לא יושב לי' (מספר סטודנטים)", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
+g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", doc_title:"RowdyQL · SQL בגובה העיניים", me_lang:"שפה", exr_diff:"אותו מספר שורות, אבל לא אותן שורות.", ce_h:"רואים את זה על כמה שורות", ce_lede:"צמצמנו את הנתונים ל-{n} שורות, וגם עליהן התשובה שלכם יוצאת אחרת מהנכונה. ככה קל יותר לראות למה.", ce_lede1:"צמצמנו את הנתונים לשורה אחת, וגם עליה התשובה שלכם יוצאת אחרת מהנכונה. ככה קל יותר לראות למה.", ce_empty:"אין שורות", ce_data:"הנתונים בדוגמה", ce_yours:"מה יוצא לכם", ce_right:"מה אמור לצאת", ce_steps:"איך הביטוי שלכם רץ על הדוגמה, שלב אחרי שלב", ce_full:"התוצאה שלכם על כל הנתונים", ce_nsteps:"{n} שלבים", ce_nrows:"{n} שורות", ce_nrows1:"שורה אחת", ce_lg_ok:"נכונה", ce_lg_bad:"מיותרת", ce_lg_miss:"חסרה לכם", ex_expr:"הביטוי שלכם", ex_res:"התוצאה שלכם", st_sections_x:"סעיף נספר ברגע שגוללים אליו. זה מראה כמה מהחומר עברתם, לא כמה ממנו יושב - בשביל זה יש כפתור 'סימון' בראש כל שיעור.", st_ex_x:"אלה 12 התרגילים של שיעורים 2.6 ו-2.7. תרגיל נספר כשהתשובה שלכם מחזירה בדיוק את הטבלה הנכונה.", st_qi_x:"זו הבדיקה העצמית בסוף פרק המבוא, בשיעור 1.3. סופרים כמה מתוך 4 השאלות עניתם נכון.", st_qr_x:"זו הבדיקה העצמית בסוף פרק האלגברה, בשיעור 2.8. סופרים כמה מתוך 3 השאלות עניתם נכון.", st_days_x:"סופרים בכמה ימים נכנסתם לאתר. נכנסתם שלוש פעמים באותו יום? זה עדיין יום אחד.", mk_btn:"סימון", mk_btn_a:"סימון השיעור", mk_back:"אחזור לזה", mk_imp:"חשוב לי", mk_weak:"עוד לא יושב לי", mk_notdone:"עוד לא סיימתי", mk_h:"מה שסימנתם", mk_g_back:"אחזור אליהם", mk_g_imp:"חשובים לי", mk_g_weak:"עוד לא יושבים לי", mk_g_notdone:"עוד לא סיימתי", sx_notdone:"עוד לא סיימתי", d_ch_weak:"שיעורים שסומנו 'עוד לא יושב לי' (מספר סטודנטים)", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
 g_consent:"קראתי ואני מסכים/ה ל<a href=\"#\" id=\"termsLink\">תנאי השימוש</a>.",
 g_go:"הרשמה", g_go_in:"כניסה", g_signout:"יציאה", g_demo:"מצב הדגמה: הפרטים נשמרים בדפדפן הזה בלבד.",
 g_foot:"ההרשמה שלכם היא בעצם <code>INSERT</code> אחד. הכניסה היא <code>SELECT</code>. הסיסמה נשמרת כגיבוב, אף פעם לא כטקסט.",
@@ -1822,7 +1941,7 @@ sc2_tnote:"Stop on FromStation/ToStation and ask: why does Rides ⋈ Stations no
 lab_h2:"Relational algebra calculator", lab_lede:"Write an expression and run it on the schema. The parameter of π, σ and ρ goes in square brackets, the table in round ones. Assignments with ← are allowed; use the name later, separated by a semicolon.",
 lab_tip:"Ctrl+Enter runs", lab_msg0:"Try: π[FullName](σ[City='Ariel'](Riders))",
 lab_ex0:"Examples…", lab_ex1:"σ: long rides", lab_ex2:"natural ⋈: who rode", lab_ex3:"⋈ with condition: from which station", lab_ex4:"−: bikes not ridden in 2025", lab_ex5:"ρ and ×: who reports to whom", lab_ex6:"÷: rode every type", lab_ex7:"assignment in two steps",
-lab_rows:"{n} rows · {c} columns",
+lab_cols:"{c} columns", lab_cols1:"1 column",
 br_h1:"Algebra", br_h2:"Meaning", br_h3:"SQL Server",
 br1:"choose rows", br2:"choose columns (no duplicates)", br3:"join on shared columns", br4:"join with a condition", br5:"all pairs", br6:"union", br7:"intersection", br8:"difference", br9:"rename", br10:"'for all': who is connected to everyone",
 ex2_h2:"Exercises on RideOn", ex2_lede:"The first 6 of 12 exercises, easy to hard, exam style. The checker runs your expression and compares the resulting table with the correct result, so any equivalent formulation counts. Hints unlock after an attempt, the solution after two.",
@@ -1998,7 +2117,7 @@ r3_e:"A ∪ B contains all of A. Subtracting a superset of A from A leaves nothi
 t_cancel:"Cancel", 
 present_off:"Exit presenter", pt_laser:"Pointer", pt_pen:"Pen", pt_erase:"Erase", pt_undo:"Undo", pt_clear:"Clear", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"Tools",
 
-g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", doc_title:"RowdyQL · SQL that finally clicks", me_lang:"Language", st_sections_x:"A section counts once you scroll to it. It shows how much you've covered, not how much has stuck - that's what the 'Mark' button at the top of each lesson is for.", st_ex_x:"These are the 12 exercises in lessons 2.6 and 2.7. An exercise counts once your answer returns exactly the right table.", st_qi_x:"This is the self-check at the end of the intro chapter, in lesson 1.3. It shows how many of its 4 questions you got right.", st_qr_x:"This is the self-check at the end of the algebra chapter, in lesson 2.8. It shows how many of its 3 questions you got right.", st_days_x:"It counts the days you've visited the site. Three visits on the same day? Still one day.", mk_btn:"Mark", mk_btn_a:"Mark this lesson", mk_back:"Come back to this", mk_imp:"Important to me", mk_weak:"Not sticking yet", mk_notdone:"Not done yet", mk_h:"What you marked", mk_g_back:"Come back to these", mk_g_imp:"Important to me", mk_g_weak:"Not sticking yet", mk_g_notdone:"Not done yet", sx_notdone:"not done yet", d_ch_weak:"Lessons marked 'Not sticking yet' (students per lesson)", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
+g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", doc_title:"RowdyQL · SQL that finally clicks", me_lang:"Language", exr_diff:"Same number of rows, but not the same rows.", ce_h:"Here's the difference on a few rows", ce_lede:"We cut the data down to {n} rows, and your answer still doesn't match the right one. That makes it easier to see why.", ce_lede1:"We cut the data down to a single row, and your answer still doesn't match the right one. That makes it easier to see why.", ce_empty:"No rows", ce_data:"The data in this example", ce_yours:"What you get", ce_right:"What you should get", ce_steps:"How your expression runs on this example, step by step", ce_full:"Your result on all the data", ce_nsteps:"{n} steps", ce_nrows:"{n} rows", ce_nrows1:"1 row", ce_lg_ok:"Correct", ce_lg_bad:"Extra", ce_lg_miss:"Missing", ex_expr:"Your expression", ex_res:"Your result", st_sections_x:"A section counts once you scroll to it. It shows how much you've covered, not how much has stuck - that's what the 'Mark' button at the top of each lesson is for.", st_ex_x:"These are the 12 exercises in lessons 2.6 and 2.7. An exercise counts once your answer returns exactly the right table.", st_qi_x:"This is the self-check at the end of the intro chapter, in lesson 1.3. It shows how many of its 4 questions you got right.", st_qr_x:"This is the self-check at the end of the algebra chapter, in lesson 2.8. It shows how many of its 3 questions you got right.", st_days_x:"It counts the days you've visited the site. Three visits on the same day? Still one day.", mk_btn:"Mark", mk_btn_a:"Mark this lesson", mk_back:"Come back to this", mk_imp:"Important to me", mk_weak:"Not sticking yet", mk_notdone:"Not done yet", mk_h:"What you marked", mk_g_back:"Come back to these", mk_g_imp:"Important to me", mk_g_weak:"Not sticking yet", mk_g_notdone:"Not done yet", sx_notdone:"not done yet", d_ch_weak:"Lessons marked 'Not sticking yet' (students per lesson)", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
 g_consent:"I have read and agree to the <a href=\"#\" id=\"termsLink\">terms of use</a>.",
 g_go:"Sign up", g_go_in:"Sign in", g_signout:"Sign out", g_demo:"Demo mode: details are kept in this browser only.",
 g_foot:"Your sign-up is really one <code>INSERT</code>. Signing in is a <code>SELECT</code>. The password is stored as a hash, never as text.",
@@ -3603,7 +3722,7 @@ const RIDE = {
 };
 /* ---- relation helpers: {cols:[{name, rel}], rows:[[...]]} with set semantics ---- */
 const RAE = (() => {
-  const base = name => { const t = RIDE[name]; return { cols: t.cols.map(c => ({name:c, rel:name})), rows: t.rows.map(r => r.slice()) }; };
+  const base = (name, db) => { const t = RIDE[name], src = (db && db[name]) || t; return { cols: t.cols.map(c => ({name:c, rel:name})), rows: src.rows.map(r => r.slice()) }; };
   const dedupe = R => { const seen = new Set(); R.rows = R.rows.filter(r => { const k = JSON.stringify(r); if (seen.has(k)) return false; seen.add(k); return true; }); return R; };
   const label = c => (c.rel ? c.rel + '.' : '') + c.name;
   const findCol = (R, ref) => { const dot = ref.indexOf('.'); let idx = []; if (dot > 0) { const rel = ref.slice(0, dot), nm = ref.slice(dot + 1); idx = R.cols.map((c, i) => (c.name === nm && c.rel === rel) ? i : -1).filter(i => i >= 0); } else idx = R.cols.map((c, i) => c.name === ref ? i : -1).filter(i => i >= 0); if (!idx.length) throw new Error(lang === 'he' ? 'עמודה לא קיימת: ' + ref : 'unknown column: ' + ref); if (idx.length > 1) throw new Error(lang === 'he' ? 'עמודה דו-משמעית, ציינו טבלה: ' + ref : 'ambiguous column, qualify it: ' + ref); return idx[0]; };
@@ -3623,8 +3742,9 @@ const RAE = (() => {
   /* ---- tokenizer + parser ---- */
   const SYM = { 'π':'PI','σ':'SIG','ρ':'RHO','⋈':'JOIN','×':'TIMES','∪':'UNION','∩':'INTER','−':'MINUS','÷':'DIV','→':'TO','←':'FROM','∧':'AND','∨':'OR','¬':'NOT','≠':'NE','≤':'LE','≥':'GE' };
   const WORDS = { PI:'PI', SIGMA:'SIG', RHO:'RHO', JOIN:'JOIN', TIMES:'TIMES', UNION:'UNION', INTERSECT:'INTER', MINUS:'MINUS', EXCEPT:'MINUS', DIV:'DIV', AND:'AND', OR:'OR', NOT:'NOT' };
-  function tokenize(src){ const toks = []; let i = 0; while (i < src.length) { const ch = src[i]; if (/\s/.test(ch)) { i++; continue; } if (SYM[ch]) { toks.push({t:SYM[ch]}); i++; continue; } if (ch === '-' && src[i+1] === '>') { toks.push({t:'TO'}); i += 2; continue; } if (ch === '<' && src[i+1] === '-') { toks.push({t:'FROM'}); i += 2; continue; } if (ch === '!' && src[i+1] === '=') { toks.push({t:'NE'}); i += 2; continue; } if (ch === '<' && src[i+1] === '>') { toks.push({t:'NE'}); i += 2; continue; } if (ch === '<' && src[i+1] === '=') { toks.push({t:'LE'}); i += 2; continue; } if (ch === '>' && src[i+1] === '=') { toks.push({t:'GE'}); i += 2; continue; } if ('()[],;=<>'.includes(ch)) { toks.push({t: {'(':'LP',')':'RP','[':'LB',']':'RB',',':'COMMA',';':'SEMI','=':'EQ','<':'LT','>':'GT'}[ch]}); i++; continue; } if (ch === "'" || ch === '"') { let j = i + 1; while (j < src.length && src[j] !== ch) j++; toks.push({t:'STR', v: src.slice(i + 1, j)}); i = j + 1; continue; } if (/[0-9]/.test(ch)) { let j = i; while (j < src.length && /[0-9.]/.test(src[j])) j++; toks.push({t:'NUM', v: parseFloat(src.slice(i, j))}); i = j; continue; } if (/[A-Za-z_֐-׿]/.test(ch)) { let j = i; while (j < src.length && /[A-Za-z0-9_.֐-׿]/.test(src[j])) j++; const w = src.slice(i, j); const up = w.toUpperCase(); if (WORDS[up]) toks.push({t: WORDS[up]}); else toks.push({t:'ID', v: w}); i = j; continue; } throw new Error((lang === 'he' ? 'תו לא צפוי: ' : 'unexpected character: ') + ch); } toks.push({t:'END'}); return toks; }
-  function parse(src){ const toks = tokenize(src); let k = 0; const peek = () => toks[k].t; const next = () => toks[k++]; const expect = (t, what) => { if (peek() !== t) throw new Error((lang === 'he' ? 'ציפיתי ל-' : 'expected ') + (what || t) + (lang === 'he' ? ' אבל קיבלתי ' : ' but got ') + describe(toks[k])); return next(); };
+  function tokenize(src){ const toks = []; let i = 0; const push0 = toks.push.bind(toks); toks.push = tk => push0(tk.p === undefined ? Object.assign(tk, { p: i }) : tk); while (i < src.length) { const ch = src[i]; if (/\s/.test(ch)) { i++; continue; } if (SYM[ch]) { toks.push({t:SYM[ch]}); i++; continue; } if (ch === '-' && src[i+1] === '>') { toks.push({t:'TO'}); i += 2; continue; } if (ch === '<' && src[i+1] === '-') { toks.push({t:'FROM'}); i += 2; continue; } if (ch === '!' && src[i+1] === '=') { toks.push({t:'NE'}); i += 2; continue; } if (ch === '<' && src[i+1] === '>') { toks.push({t:'NE'}); i += 2; continue; } if (ch === '<' && src[i+1] === '=') { toks.push({t:'LE'}); i += 2; continue; } if (ch === '>' && src[i+1] === '=') { toks.push({t:'GE'}); i += 2; continue; } if ('()[],;=<>'.includes(ch)) { toks.push({t: {'(':'LP',')':'RP','[':'LB',']':'RB',',':'COMMA',';':'SEMI','=':'EQ','<':'LT','>':'GT'}[ch]}); i++; continue; } if (ch === "'" || ch === '"') { let j = i + 1; while (j < src.length && src[j] !== ch) j++; toks.push({t:'STR', v: src.slice(i + 1, j)}); i = j + 1; continue; } if (/[0-9]/.test(ch)) { let j = i; while (j < src.length && /[0-9.]/.test(src[j])) j++; toks.push({t:'NUM', v: parseFloat(src.slice(i, j))}); i = j; continue; } if (/[A-Za-z_֐-׿]/.test(ch)) { let j = i; while (j < src.length && /[A-Za-z0-9_.֐-׿]/.test(src[j])) j++; const w = src.slice(i, j); const up = w.toUpperCase(); if (WORDS[up]) toks.push({t: WORDS[up], p: i}); else toks.push({t:'ID', v: w, p: i}); i = j; continue; } throw Object.assign(new Error((lang === 'he' ? 'תו לא צפוי: ' : 'unexpected character: ') + ch), { pos: i }); } toks.push({t:'END', p: src.length}); return toks; }
+  function parse(src){ const toks = tokenize(src); let k = 0; try { return parse1(); } catch (e) { if (e.pos === undefined && toks[k]) e.pos = toks[k].p; throw e; }
+    function parse1(){ const peek = () => toks[k].t; const next = () => toks[k++]; const expect = (t, what) => { if (peek() !== t) throw new Error((lang === 'he' ? 'ציפיתי ל-' : 'expected ') + (what || t) + (lang === 'he' ? ' אבל קיבלתי ' : ' but got ') + describe(toks[k])); return next(); };
     const describe = tk => tk.t === 'END' ? (lang === 'he' ? 'סוף הביטוי' : 'end of expression') : (tk.v !== undefined ? String(tk.v) : tk.t);
     const stmts = []; function program(){ stmts.push(stmt()); while (peek() === 'SEMI') { next(); if (peek() === 'END') break; stmts.push(stmt()); } expect('END', lang === 'he' ? 'סוף' : 'end'); return stmts; }
     function stmt(){ if (peek() === 'ID' && (toks[k+1].t === 'FROM' || (toks[k+1].t === 'EQ' && toks[k+2].t !== 'ID' && toks[k+2].t !== 'NUM' && toks[k+2].t !== 'STR'))) { const name = next().v; next(); return { assign: name, expr: expr() }; } const e = expr(); if (peek() === 'TO') { next(); const name = expect('ID', lang === 'he' ? 'שם' : 'a name').v; return { assign: name, expr: e }; } return { expr: e }; }
@@ -3635,20 +3755,53 @@ const RAE = (() => {
     function parseCond(inner){ const save = toks, sk = k; toks.length; const sub = inner.concat([{t:'END'}]); const savedToks = toks.slice(); /* parse condition on a sub-token stream */ const p = parseCondStream(sub); return p; }
     function condition(){ /* condition inline until matching ] handled by caller */ const start = k; let depth = 0; while (!(peek() === 'RB' && depth === 0)) { if (peek() === 'END') throw new Error(lang === 'he' ? 'חסר ]' : 'missing ]'); if (peek() === 'LB') depth++; if (peek() === 'RB') depth--; next(); } return parseCondStream(toks.slice(start, k).concat([{t:'END'}])); }
     return program();
-  }
-  function parseCondStream(tk){ let k = 0; const peek = () => tk[k].t; const next = () => tk[k++];
+  } }
+  function parseCondStream(tk){ let k = 0; try { return pc1(); } catch (e) { if (e.pos === undefined && tk[k]) e.pos = tk[Math.min(k, tk.length - 1)].p; throw e; }
+    function pc1(){ const peek = () => tk[k].t; const next = () => tk[k++];
     function or(){ let l = and(); while (peek() === 'OR') { next(); const r = and(); l = { c:'OR', l, r }; } return l; }
     function and(){ let l = not(); while (peek() === 'AND') { next(); const r = not(); l = { c:'AND', l, r }; } return l; }
     function not(){ if (peek() === 'NOT') { next(); return { c:'NOT', e: not() }; } if (peek() === 'LP') { next(); const e = or(); if (peek() !== 'RP') throw new Error(lang === 'he' ? 'חסר ) בתנאי' : 'missing ) in condition'); next(); return e; } return cmp(); }
     function operand(){ const t = next(); if (t.t === 'ID') return { a: t.v }; if (t.t === 'NUM' || t.t === 'STR') return { v: t.v }; throw new Error(lang === 'he' ? 'תנאי לא תקין' : 'invalid condition'); }
     function cmp(){ const l = operand(); const op = next().t; if (!['EQ','NE','LT','GT','LE','GE'].includes(op)) throw new Error(lang === 'he' ? 'חסר אופרטור השוואה (=, ≠, <, >, ≤, ≥)' : 'missing comparison operator'); const r = operand(); return { c: op, l, r }; }
-    const e = or(); if (peek() !== 'END') throw new Error(lang === 'he' ? 'תנאי לא תקין' : 'invalid condition'); return e; }
+    const e = or(); if (peek() !== 'END') throw new Error(lang === 'he' ? 'תנאי לא תקין' : 'invalid condition'); return e; } }
   function evalCond(c, R, row){ const val = o => o.a !== undefined ? row[findCol(R, o.a)] : o.v; switch (c.c) { case 'AND': return evalCond(c.l, R, row) && evalCond(c.r, R, row); case 'OR': return evalCond(c.l, R, row) || evalCond(c.r, R, row); case 'NOT': return !evalCond(c.e, R, row); default: { const a = val(c.l), b = val(c.r); if (a == null || b == null) return false; switch (c.c) { case 'EQ': return a === b; case 'NE': return a !== b; case 'LT': return a < b; case 'GT': return a > b; case 'LE': return a <= b; case 'GE': return a >= b; } } } }
-  function evalNode(n, env){ switch (n.op) { case 'REL': if (env[n.name]) return env[n.name]; if (RIDE[n.name]) return base(n.name); throw new Error((lang === 'he' ? 'טבלה לא קיימת: ' : 'unknown table: ') + n.name); case 'PI': return ops.project(evalNode(n.e, env), n.attrs); case 'SIG': { const R = evalNode(n.e, env); return ops.select(R, (Rr, row) => evalCond(n.cond, Rr, row)); } case 'RHO': return ops.rename(evalNode(n.e, env), n.name, n.attrs); case 'TIMES': return ops.product(evalNode(n.left, env), evalNode(n.right, env)); case 'JOIN': { const A = evalNode(n.left, env), B = evalNode(n.right, env); return n.cond ? ops.thetajoin(A, B, (P, row) => evalCond(n.cond, P, row)) : ops.natjoin(A, B); } case 'DIV': return ops.divide(evalNode(n.left, env), evalNode(n.right, env)); case 'UNION': return ops.union(evalNode(n.left, env), evalNode(n.right, env)); case 'INTER': return ops.intersect(evalNode(n.left, env), evalNode(n.right, env)); case 'MINUS': return ops.minus(evalNode(n.left, env), evalNode(n.right, env)); } throw new Error('bad node'); }
-  function run(src){ const stmts = parse(src); const env = {}; let last = null; stmts.forEach(st => { const R = dedupe(evalNode(st.expr, env)); if (st.assign) env[st.assign] = R; last = R; }); return last; }
+  /* db: an optional subset of the RideOn rows ({Table: {rows}}); trace: an optional list that collects every step with its result */
+  function evalNode(n, env, db, trace){ const ev = c => evalNode(c, env, db, trace); let R;
+    switch (n.op) { case 'REL': if (env[n.name]) return env[n.name]; if (RIDE[n.name]) return base(n.name, db); throw new Error((lang === 'he' ? 'טבלה לא קיימת: ' : 'unknown table: ') + n.name);
+      case 'PI': R = ops.project(ev(n.e), n.attrs); break; case 'SIG': { const A = ev(n.e); R = ops.select(A, (Rr, row) => evalCond(n.cond, Rr, row)); break; } case 'RHO': R = ops.rename(ev(n.e), n.name, n.attrs); break;
+      case 'TIMES': R = ops.product(ev(n.left), ev(n.right)); break; case 'JOIN': { const A = ev(n.left), B = ev(n.right); R = n.cond ? ops.thetajoin(A, B, (P, row) => evalCond(n.cond, P, row)) : ops.natjoin(A, B); break; }
+      case 'DIV': R = ops.divide(ev(n.left), ev(n.right)); break; case 'UNION': R = ops.union(ev(n.left), ev(n.right)); break; case 'INTER': R = ops.intersect(ev(n.left), ev(n.right)); break; case 'MINUS': R = ops.minus(ev(n.left), ev(n.right)); break;
+      default: throw new Error('bad node'); }
+    if (trace) { trace.push({ n, R }); n._step = trace.length; } return R; }
+  function run(src, db, trace){ const stmts = parse(src); const env = {}; let last = null; stmts.forEach(st => { const R = dedupe(evalNode(st.expr, env, db, trace)); if (st.assign) { env[st.assign] = R; if (trace && trace.length && trace[trace.length - 1].n === st.expr) trace[trace.length - 1].assign = st.assign; } last = R; }); return last; }
   const toTable = R => ({ cols: R.cols.map(label), rows: R.rows });
   const key = R => JSON.stringify(R.rows.map(r => JSON.stringify(r)).sort());
-  return { run, toTable, key, base };
+  /* the same columns in another order still count: line them up by name when the names match one to one */
+  function align(R, ref){ const a = R.cols.map(c => c.name), b = ref.cols.map(c => c.name); if (a.join('|') === b.join('|') || new Set(a).size !== a.length || new Set(b).size !== b.length || a.slice().sort().join('|') !== b.slice().sort().join('|')) return R; const idx = b.map(nm => a.indexOf(nm)); return { cols: idx.map(i => R.cols[i]), rows: R.rows.map(r => idx.map(i => r[i])) }; }
+  const same = (R, ref) => R.cols.length === ref.cols.length && key(align(R, ref)) === key(ref);
+  /* the smallest data on which two expressions disagree (RATest-style): drop rows one by one and keep a drop while the answers still differ.
+     Dropping a row also drops the rows that point to it, so the example stays consistent; every table in use keeps at least one row. */
+  const FKS = [['Rides','RiderID','Riders','RiderID'],['Rides','BikeID','Bikes','BikeID'],['Rides','FromStation','Stations','StationID'],['Rides','ToStation','Stations','StationID'],['Staff','ManagerID','Staff','StaffID'],['Maintenance','BikeID','Bikes','BikeID'],['Maintenance','StaffID','Staff','StaffID']];
+  function counterexample(q, refQ){
+    const used = Object.keys(RIDE).filter(nm => new RegExp('(^|[^A-Za-z0-9_.])' + nm + '($|[^A-Za-z0-9_])').test(q + ' ' + refQ)); if (!used.length) return null;
+    const differ = d => { try { return !same(run(q, d), run(refQ, d)); } catch(e) { return false; } };
+    let db = {}; used.forEach(nm => db[nm] = { rows: RIDE[nm].rows.slice() }); if (!differ(db)) return null;
+    const without = (d, T, row) => { const nd = {}; Object.keys(d).forEach(nm => nd[nm] = { rows: d[nm].rows.slice() }); const todo = [[T, row]];
+      while (todo.length) { const [tb, r] = todo.pop(); const i = nd[tb].rows.indexOf(r); if (i < 0) continue; nd[tb].rows.splice(i, 1);
+        FKS.forEach(([ct, cc, pt, pc]) => { if (pt !== tb || !nd[ct]) return; const pv = r[RIDE[pt].cols.indexOf(pc)], ci = RIDE[ct].cols.indexOf(cc); nd[ct].rows.filter(x => x[ci] === pv).forEach(x => todo.push([ct, x])); }); }
+      return nd; };
+    for (let pass = 0, changed = true; changed && pass < 6; pass++) { changed = false;
+      used.slice().sort((a, b) => db[b].rows.length - db[a].rows.length).forEach(T => { db[T].rows.slice().reverse().forEach(r => { if (!db[T].rows.includes(r)) return; const nd = without(db, T, r); if (used.some(nm => !nd[nm].rows.length)) return; if (differ(nd)) { db = nd; changed = true; } }); }); }
+    return { db, used };
+  }
+  /* one step of the trace in RA notation; earlier steps are referred to by their circled number */
+  const CMP = { EQ:'=', NE:'≠', LT:'<', GT:'>', LE:'≤', GE:'≥' };
+  const condStr = c => c.c === 'AND' ? condStr(c.l) + ' ∧ ' + condStr(c.r) : c.c === 'OR' ? condStr(c.l) + ' ∨ ' + condStr(c.r) : c.c === 'NOT' ? '¬(' + condStr(c.e) + ')' : [c.l, c.r].map(o => o.a !== undefined ? o.a : typeof o.v === 'string' ? "'" + o.v + "'" : o.v).join(' ' + CMP[c.c] + ' ');
+  const circ = i => i <= 20 ? String.fromCharCode(0x245F + i) : '(' + i + ')';
+  function stepLabel(n){ const ref = c => c.op === 'REL' ? c.name : circ(c._step); const bin = { TIMES:'×', UNION:'∪', INTER:'∩', MINUS:'−', DIV:'÷' };
+    if (n.op === 'PI') return 'π[' + n.attrs.join(', ') + '](' + ref(n.e) + ')'; if (n.op === 'SIG') return 'σ[' + condStr(n.cond) + '](' + ref(n.e) + ')'; if (n.op === 'RHO') return 'ρ[' + n.name + (n.attrs ? '(' + n.attrs.join(', ') + ')' : '') + '](' + ref(n.e) + ')';
+    if (n.op === 'JOIN') return ref(n.left) + ' ⋈' + (n.cond ? '[' + condStr(n.cond) + ']' : '') + ' ' + ref(n.right); return ref(n.left) + ' ' + bin[n.op] + ' ' + ref(n.right); }
+  return { run, toTable, key, base, align, same, counterexample, stepLabel, circ };
 })();
 
 /* ---- visualizers: set operations, product, rename/self-join ---- */
@@ -3694,17 +3847,45 @@ function renderRideSchema(){
   const fk = $('#fkCards'); fk.innerHTML = ''; const h = el('h3', null, t('fk_h')); h.style.gridColumn = '1/-1'; fk.appendChild(h);
   ['fk1','fk2','fk3','fk4','fk5'].forEach(k => { const c = el('div','card pinnable'); c.appendChild(el('p', null, t(k))); c.querySelector('p').style.color = 'var(--ink)'; fk.appendChild(c); });
 }
+/* ---- exercise-area building blocks (kit recipes, adapters/web-page.md) ---- */
+const RA_PAL = [['π','π[ ]( )',5],['σ','σ[ ]( )',5],['ρ','ρ[ ]( )',5],['⋈','⋈ ',0],['⋈[ ]','⋈[ ] ',3],['×','× ',0],['∪','∪ ',0],['∩','∩ ',0],['−','− ',0],['÷','÷ ',0],['←','← ',0],['∧','∧ ',0],['∨','∨ ',0],['≠','≠',0],['≤','≤',0],['≥','≥',0]];
+const MKX = {
+  good: '<path d="M5.6 10.4l2.9 2.9 5.9-6.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+  bad: '<path d="M6.6 6.6l6.8 6.8M13.4 6.6l-6.8 6.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  note: '<g transform="rotate(-8 10 10)"><rect x="8.9" y="4" width="2.2" height="8" rx="1.1" fill="currentColor"/><rect x="8.85" y="13.6" width="2.3" height="2.3" rx=".7" fill="currentColor"/></g>',
+  neutral: '<path d="M6 10h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+};
+const mkCell = k => '<span class="mkc m-' + k + '" aria-hidden="true"><svg viewBox="0 0 20 20">' + MKX[k] + '</svg></span>';
+/* an answer table: a Latin caption (source) or a Hebrew one, the result style, and a mark cell at the end of each row */
+function dtab(cols, rows, o){ o = o || {}; const w = el('div', 'tbl2'); if (o.cap) w.appendChild(el('span', 'tcap', esc(o.cap))); if (o.capHe) w.appendChild(el('span', 'tcap-he', o.capHe));
+  const marks = !!o.state, tw = el('div', 'tw' + (o.res ? ' res' : '')), tb = el('table', 't');
+  let h = '<tr>' + cols.map(c => '<th' + (o.keys && o.keys[c] === 'pk' ? ' class="pk"' : '') + '>' + esc(c) + '</th>').join('') + (marks ? '<th class="m"></th>' : '') + '</tr>';
+  if (!rows.length) h += '<tr class="empty-row"><td colspan="' + (cols.length + (marks ? 1 : 0)) + '">' + t('ce_empty') + '</td></tr>';
+  rows.forEach((r, i) => { const st = marks ? o.state(r, i) : ''; h += '<tr' + (st ? ' class="r-' + st + '"' : '') + '>' + r.map(v => '<td>' + (v == null ? '<i class="nul">NULL</i>' : esc(String(v))) + '</td>').join('') + (marks ? '<td class="m">' + (st ? mkCell(st === 'miss' ? 'note' : st) : '') + '</td>' : '') + '</tr>'; });
+  tb.innerHTML = h; tw.appendChild(tb); w.appendChild(tw); return w; }
+/* the verdict: the logo's rows; wrong kicks the middle row out, right snaps it back */
+function verdictEl(kind, html){ const v = el('div', 'vc ' + kind, '<span class="rows" aria-hidden="true"><i></i><i></i><i></i></span><p>' + html + '</p>'); v.setAttribute('role', 'status'); requestAnimationFrame(() => v.classList.add('in')); return v; }
+/* a syntax or name error, the compiler way: the expression echoed with a mark where it breaks */
+function errEcho(q, e){ const box = el('div', 'errbox'); let pos = e && e.pos, len = 1; const msg = e && e.message ? e.message : String(e);
+  if (pos === undefined) { const nm = msg.split(': ').pop().trim(); const i = nm ? q.indexOf(nm) : -1; if (i >= 0) { pos = i; len = nm.length; } }
+  if (pos !== undefined && pos >= 0) { const end = pos >= q.length; box.appendChild(el('div', 'echo', esc(q.slice(0, pos)) + (end ? '<span class="miss end"></span>' : '<span class="miss">' + esc(q.slice(pos, pos + len)) + '</span>' + esc(q.slice(pos + len))))); }
+  box.appendChild(el('p', 'errmsg', '<span class="xm" aria-hidden="true"></span><span>' + esc(t('exr_err', { e: msg })) + '</span>')); return box; }
+function typeOut(code){ const txt = code.dataset.t || ''; clearInterval(code._iv); if (matchMedia('(prefers-reduced-motion: reduce)').matches || teacher) { code.textContent = txt; return; } let i = 0; code.textContent = ''; code.classList.add('typing'); code._iv = setInterval(() => { code.textContent = txt.slice(0, ++i); if (i >= txt.length) { clearInterval(code._iv); setTimeout(() => code.classList.remove('typing'), 700); } }, 26); }
+function nudge(ta){ ta.classList.remove('nudge'); void ta.offsetWidth; ta.classList.add('nudge'); }
 /* ---- lab ---- */
 const LAB_EX = [ ['lab_ex1', "σ[Minutes>=45](Rides)"], ['lab_ex2', "π[FullName, RideDate, Minutes](Riders ⋈ Rides)"], ['lab_ex3', "π[RideID, StationName](Rides ⋈[FromStation=StationID] Stations)"], ['lab_ex4', "π[BikeID](Bikes) − π[BikeID](σ[RideDate>='2025-01-01'](Rides))"], ['lab_ex5', "π[E.FullName, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff)))"], ['lab_ex6', "π[RiderID, BikeType](Rides ⋈ Bikes) ÷ π[BikeType](Bikes)"], ['lab_ex7', "Long ← σ[Minutes>=45](Rides);\nπ[FullName](Riders ⋈ Long)"] ];
 function insertAt(ta, text, back){ const s0 = ta.selectionStart, e0 = ta.selectionEnd; ta.value = ta.value.slice(0, s0) + text + ta.value.slice(e0); const pos = s0 + text.length - (back || 0); ta.focus(); ta.setSelectionRange(pos, pos); }
 function renderLab(){
   const pal = $('#labPal'); pal.innerHTML = '';
-  [['π','π[ ]( )',5],['σ','σ[ ]( )',5],['ρ','ρ[ ]( )',5],['⋈','⋈ ',0],['⋈[ ]','⋈[ ] ',3],['×','× ',0],['∪','∪ ',0],['∩','∩ ',0],['−','− ',0],['÷','÷ ',0],['←','← ',0],['∧','∧ ',0],['∨','∨ ',0],['≠','≠',0],['≤','≤',0],['≥','≥',0]].forEach(p => { const b = el('button', null, p[0]); b.type = 'button'; b.addEventListener('click', () => insertAt($('#labQ'), p[1], p[2])); pal.appendChild(b); });
+  RA_PAL.forEach(p => { const b = el('button', null, p[0]); b.type = 'button'; b.addEventListener('click', () => insertAt($('#labQ'), p[1], p[2])); pal.appendChild(b); });
   const sel = $('#labEx'); sel.setAttribute('aria-label', t('lab_ex0')); sel.innerHTML = '<option value="">' + t('lab_ex0') + '</option>'; LAB_EX.forEach((x, i) => { const o = el('option', null, t(x[0])); o.value = i; sel.appendChild(o); });
   const br = $('#bridge'); br.innerHTML = '<tr><th>' + t('br_h1') + '</th><th>' + t('br_h2') + '</th><th>' + t('br_h3') + '</th></tr>';
   [['σ<sub>c</sub>(R)','br1','SELECT * FROM R WHERE c'],['π<sub>a,b</sub>(R)','br2','SELECT DISTINCT a, b FROM R'],['R ⋈ S','br3','R JOIN S ON R.k = S.k'],['R ⋈<sub>c</sub> S','br4','R JOIN S ON c'],['R × S','br5','R CROSS JOIN S'],['R ∪ S','br6','… UNION …'],['R ∩ S','br7','… INTERSECT …'],['R − S','br8','… EXCEPT …'],['ρ<sub>X</sub>(R)','br9','FROM R AS X'],['R ÷ S','br10','GROUP BY … HAVING COUNT(DISTINCT …) = (SELECT COUNT(*) FROM S)']].forEach(r => { const tr = el('tr'); tr.appendChild(el('td', null, r[0])); tr.appendChild(el('td', null, t(r[1]))); tr.appendChild(el('td', null, r[2])); br.appendChild(tr); });
 }
-function runLab(){ const q = $('#labQ').value.trim(); const out = $('#labOut'); out.innerHTML = ''; const msg = $('#labMsg'); if (!q) { msg.className = 'msg'; msg.innerHTML = t('lab_msg0'); return; } try { const R = RAE.toTable(RAE.run(q)); out.appendChild(table(R.cols, R.rows, {title:'Result'})); msg.className = 'msg good'; msg.textContent = t('lab_rows', {n: R.rows.length, c: R.cols.length}); } catch(e) { msg.className = 'msg bad'; msg.textContent = t('exr_err', {e: e.message}); } }
+function runLab(){ const raw = $('#labQ').value, q = raw.trim(); const out = $('#labOut'); out.innerHTML = ''; const msg = $('#labMsg'); msg.innerHTML = '';
+  if (!q) { nudge($('#labQ')); msg.className = 'near'; msg.innerHTML = '<p class="helper"><span class="dash"></span>' + t('lab_msg0') + '</p>'; return; }
+  try { const R = RAE.toTable(RAE.run(q)); out.appendChild(dtab(R.cols, R.rows, { res: true, capHe: t('ex_res') })); msg.className = 'lab-ok'; msg.textContent = (R.rows.length === 1 ? t('ce_nrows1') : t('ce_nrows', {n: R.rows.length})) + ' · ' + (R.cols.length === 1 ? t('lab_cols1') : t('lab_cols', {c: R.cols.length})); }
+  catch(e) { msg.className = 'near'; msg.appendChild(errEcho(q, e)); } }
 $('#labRun').addEventListener('click', runLab);
 $('#labQ').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); runLab(); } });
 $('#labEx').addEventListener('change', e => { const i = e.target.value; if (i !== '') { $('#labQ').value = LAB_EX[+i][1]; runLab(); } });
@@ -3716,30 +3897,59 @@ function renderExercises(){
   EXS2.forEach((ex, i) => {
     const st = exState[ex.id] || { tries: 0, solved: false, q: '' };
     const card = el('div', 'ex' + (st.solved ? ' solved' : '')); card.dataset.ex = ex.id;
-    card.innerHTML = '<div class="exh"><b id="exT-' + ex.id + '">' + (i+1) + '. ' + t(ex.id) + '</b><span class="lvl">' + t('lv' + ex.lv) + '</span></div>'
+    card.innerHTML = '<div class="ex-h"><span class="ex-n">' + (i+1) + '</span><b class="ex-q" id="exT-' + ex.id + '">' + t(ex.id) + '</b>' + (st.solved ? mkCell('good') : '') + '<span class="pill lv' + ex.lv + '">' + t('lv' + ex.lv) + '</span></div>'
+      + '<div class="field-l"><span>' + t('ex_expr') + '</span><div class="pal"></div></div>'
       + '<textarea class="raq" rows="2" spellcheck="false" dir="ltr" aria-labelledby="exT-' + ex.id + '">' + esc(st.q || '') + '</textarea>'
-      + '<div class="controls"><button type="button" class="btn primary exCheck">' + t('ex_check') + '</button><button type="button" class="btn small exH1" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint1_b') + '</button><button type="button" class="btn small exH2" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint2_b') + '</button><button type="button" class="btn small exS" ' + (st.tries >= 2 || teacher || st.solved ? '' : 'disabled') + '>' + t('ex_sol_b') + '</button><span class="count">' + t('ex_tries', {n: st.tries}) + '</span></div>'
-      + '<div class="tables exres"></div><div class="cm exmsg" hidden></div><div class="hint exh1" hidden>' + t(ex.id + 'h1') + '</div><div class="hint exh2" hidden>' + t(ex.id + 'h2') + '</div><div class="hint exsol" hidden><span class="ra">' + esc(t(ex.id + 's')) + '</span></div>';
-    if (teacher) { card.querySelector('.exh1').hidden = false; card.querySelector('.exh2').hidden = false; card.querySelector('.exsol').hidden = false; }
-    const ta = card.querySelector('textarea'); ta.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); checkEx(ex, card); } });
+      + '<div class="near" aria-live="polite"></div>'
+      + '<div class="ann exh1" hidden><span class="ak">' + t('ex_hint1_b') + '</span>' + t(ex.id + 'h1') + '</div>'
+      + '<div class="ann exh2" hidden><span class="ak">' + t('ex_hint2_b') + '</span>' + t(ex.id + 'h2') + '</div>'
+      + '<div class="ghost exsol" hidden><span class="gk">' + t('ex_sol_b') + '</span><code dir="ltr" data-t="' + esc(t(ex.id + 's')) + '"></code></div>'
+      + '<div class="act"><button type="button" class="btn primary exCheck">' + t('ex_check') + '</button><button type="button" class="btn small exH1" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint1_b') + '</button><button type="button" class="btn small exH2" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint2_b') + '</button><button type="button" class="btn small exS" ' + (st.tries >= 2 || teacher || st.solved ? '' : 'disabled') + '>' + t('ex_sol_b') + '</button><span class="tries">' + t('ex_tries', {n: '<span class="n">' + st.tries + '</span>'}) + '</span></div>'
+      + '<div class="verdict"></div><div class="tables exres"></div>';
+    const ta = card.querySelector('textarea'), pal = card.querySelector('.pal');
+    RA_PAL.slice(0, 11).forEach(pp => { const b = el('button', null, pp[0]); b.type = 'button'; b.setAttribute('aria-label', pp[0]); b.addEventListener('click', () => insertAt(ta, pp[1], pp[2])); pal.appendChild(b); });
+    const show = (sel, after) => { const n = card.querySelector(sel); const was = !n.hidden; n.hidden = false; if (!was) { n.classList.remove('in'); void n.offsetWidth; n.classList.add('in'); if (after) after(n); } };
+    if (teacher) { card.querySelector('.exh1').hidden = false; card.querySelector('.exh2').hidden = false; const g = card.querySelector('.exsol'); g.hidden = false; typeOut(g.querySelector('code')); }
+    ta.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); checkEx(ex, card); } });
     card.querySelector('.exCheck').addEventListener('click', () => checkEx(ex, card));
-    card.querySelector('.exH1').addEventListener('click', () => card.querySelector('.exh1').hidden = false);
-    card.querySelector('.exH2').addEventListener('click', () => card.querySelector('.exh2').hidden = false);
-    card.querySelector('.exS').addEventListener('click', () => card.querySelector('.exsol').hidden = false);
+    card.querySelector('.exH1').addEventListener('click', () => show('.exh1'));
+    card.querySelector('.exH2').addEventListener('click', () => show('.exh2'));
+    card.querySelector('.exS').addEventListener('click', () => show('.exsol', n => typeOut(n.querySelector('code'))));
     (i < 6 || !list2 ? list : list2).appendChild(card);
   });
 }
 function checkEx(ex, card){
-  const ta = card.querySelector('textarea'), res = card.querySelector('.exres'), msg = card.querySelector('.exmsg'); res.innerHTML = ''; msg.hidden = false; msg.className = 'msg exmsg';
-  const q = ta.value.trim(); if (!q) { msg.textContent = t('exr_empty'); return; }
+  const ta = card.querySelector('textarea'), res = card.querySelector('.exres'), near = card.querySelector('.near'), vd = card.querySelector('.verdict'); res.innerHTML = ''; near.innerHTML = ''; vd.innerHTML = '';
+  const q = ta.value.trim(); if (!q) { nudge(ta); near.innerHTML = '<p class="helper"><span class="dash"></span>' + t('exr_empty') + '</p>'; return; }
   const st = exState[ex.id] = exState[ex.id] || { tries: 0, solved: false, q: '' }; st.tries++; st.q = q;
-  try { const R = RAE.run(q); const ref = RAE.run(I18N.he[ex.id + 's']); const tR = RAE.toTable(R); res.appendChild(table(tR.cols, tR.rows, {title:'Result'}));
-    if (R.cols.length !== ref.cols.length) { msg.classList.add('bad'); msg.textContent = t('exr_cols', {a: R.cols.length, b: ref.cols.length}); }
-    else if (RAE.key(R) === RAE.key(ref)) { msg.classList.add('good'); msg.textContent = t('exr_ok'); st.solved = true; card.classList.add('solved'); }
-    else { msg.classList.add('bad'); msg.textContent = t('exr_rows', {a: R.rows.length, b: ref.rows.length, d: t(R.rows.length > ref.rows.length ? 'exr_more' : 'exr_less')}); }
-  } catch(e) { msg.classList.add('bad'); msg.textContent = t('exr_err', {e: e.message}); }
+  try { const R = RAE.run(q), refQ = I18N.he[ex.id + 's'], ref = RAE.run(refQ), tR = RAE.toTable(R);
+    if (R.cols.length !== ref.cols.length) { vd.appendChild(verdictEl('bad', t('exr_cols', {a: R.cols.length, b: ref.cols.length}))); res.appendChild(dtab(tR.cols, tR.rows, { capHe: t('ex_res') })); }
+    else if (RAE.same(R, ref)) { vd.appendChild(verdictEl('good', t('exr_ok'))); res.appendChild(dtab(tR.cols, tR.rows, { capHe: t('ex_res'), res: true, state: () => 'good' })); st.solved = true; card.classList.add('solved');
+      const h = card.querySelector('.ex-h'); if (!h.querySelector('.mkc')) h.querySelector('.pill').insertAdjacentHTML('beforebegin', mkCell('good')); }
+    else { vd.appendChild(verdictEl('bad', R.rows.length === ref.rows.length ? t('exr_diff') : t('exr_rows', {a: R.rows.length, b: ref.rows.length, d: t(R.rows.length > ref.rows.length ? 'exr_more' : 'exr_less')})));
+      const ce = RAE.counterexample(q, refQ); res.appendChild(ce ? ceBlock(ce, q, refQ, tR) : dtab(tR.cols, tR.rows, { capHe: t('ex_res') })); }
+  } catch(e) { near.appendChild(errEcho(q, e)); }
   store('dbs_ra_ex', exState);
-  const b1 = card.querySelector('.exH1'), b2 = card.querySelector('.exH2'), b3 = card.querySelector('.exS'); b1.disabled = b2.disabled = !(st.tries >= 1 || teacher); b3.disabled = !(st.tries >= 2 || teacher || st.solved); card.querySelector('.count').textContent = t('ex_tries', {n: st.tries});
+  const b1 = card.querySelector('.exH1'), b2 = card.querySelector('.exH2'), b3 = card.querySelector('.exS'); b1.disabled = b2.disabled = !(st.tries >= 1 || teacher); b3.disabled = !(st.tries >= 2 || teacher || st.solved); card.querySelector('.tries').innerHTML = t('ex_tries', {n: '<span class="n">' + st.tries + '</span>'});
+}
+/* the counterexample: a few rows where the two answers part ways, both results with the difference marked, and the student's expression step by step */
+function ceBlock(ce, q, refQ, full){
+  const steps = [], mine = RAE.run(q, ce.db, steps), right = RAE.run(refQ, ce.db), a = RAE.align(mine, right);
+  const kA = new Set(a.rows.map(r => JSON.stringify(r))), kB = new Set(right.rows.map(r => JSON.stringify(r)));
+  const n = ce.used.reduce((sum, nm) => sum + ce.db[nm].rows.length, 0), box = el('section', 'ce');
+  box.innerHTML = '<h4>' + t('ce_h') + '</h4><p class="cl">' + t(n === 1 ? 'ce_lede1' : 'ce_lede', { n }) + '</p><p class="cap">' + t('ce_data') + '</p>';
+  const data = el('div', 'tabs2'); ce.used.forEach(nm => data.appendChild(dtab(RIDE[nm].cols, ce.db[nm].rows, { cap: nm, keys: RIDE[nm].keys }))); box.appendChild(data);
+  box.appendChild(el('div', 'flowline'));
+  const tm = RAE.toTable(mine), tr = RAE.toTable(right), rr = el('div', 'tabs2 res-row');
+  rr.appendChild(dtab(tm.cols, tm.rows, { capHe: t('ce_yours'), state: (r, i) => kB.has(JSON.stringify(a.rows[i])) ? 'good' : 'bad' }));
+  rr.appendChild(dtab(tr.cols, tr.rows, { capHe: t('ce_right'), res: true, state: r => kA.has(JSON.stringify(r)) ? 'good' : 'miss' }));
+  box.appendChild(rr);
+  box.appendChild(el('div', 'legend2', '<span>' + mkCell('good') + t('ce_lg_ok') + '</span><span>' + mkCell('bad') + t('ce_lg_bad') + '</span><span>' + mkCell('note') + t('ce_lg_miss') + '</span>'));
+  const chev = '<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
+  if (steps.length > 1) { const d = el('details', 'disc'); d.innerHTML = '<summary>' + chev + '<span>' + t('ce_steps') + '</span><span class="cnt">' + t('ce_nsteps', { n: steps.length }) + '</span></summary>'; const db = el('div', 'db');
+    steps.forEach((st, i) => { const tt = RAE.toTable(st.R), w = el('div', 'step'); w.appendChild(el('div', 'sh', '<span class="sn">' + (i + 1) + '</span><span class="chip">' + esc((st.assign ? st.assign + ' ← ' : '') + RAE.stepLabel(st.n)) + '</span>')); w.appendChild(dtab(tt.cols, tt.rows, {})); db.appendChild(w); }); d.appendChild(db); box.appendChild(d); }
+  const f = el('details', 'disc'); f.innerHTML = '<summary>' + chev + '<span>' + t('ce_full') + '</span><span class="cnt">' + t(full.rows.length === 1 ? 'ce_nrows1' : 'ce_nrows', { n: full.rows.length }) + '</span></summary>'; const fb = el('div', 'db'); fb.appendChild(dtab(full.cols, full.rows, {})); f.appendChild(fb); box.appendChild(f);
+  return box;
 }
 function renderRaV2(){ renderSets(); renderProduct(); renderRename(); renderRideSchema(); renderLab(); renderExercises(); renderRefs(); }
 /* reference tables for lessons that use a schema introduced in an earlier lesson (exercises: RideOn, algebra self-check: the three toy tables) */
