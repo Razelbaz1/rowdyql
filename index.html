@@ -20,7 +20,8 @@
   /* colors: raz-elbaz-brand-identity-kit/design-tokens.css (light) */
   --ground:#F7F2EC; --surface:#FDFBF8; --surface2:#ECE8E3; --ink:#373C44; --muted:#5F6670; --line:#DDD7CF;
   --accent:#20778A; --on-accent:#FDFBF8; --accent-soft:#E3F2F3;
-  --amber:#C07D16; --amber-soft:#FFF1D6;
+  --amber:#C07D16; --amber-soft:#FFF1D6; --mk-back:#20778A; --mk-imp:#C07D16; --mk-weak:#D9603F; --mk-nd:#5F6670; --spring:cubic-bezier(.34,1.3,.64,1);
+  --glass:linear-gradient(160deg,rgba(255,255,255,.78),rgba(222,240,244,.62)); --glass-line:rgba(32,119,138,.26); --glass-hi:rgba(255,255,255,.95); --sheen:rgba(92,195,217,.30); --lens:rgba(32,119,138,.10); --lens-line:rgba(32,119,138,.30);
   --pk:#966212; --pk-bg:#FFF1D6; --fk:#20778A; --fk-bg:#E3F2F3;
   --good:#276B43; --good-bg:#DCEFE3; --bad:#B23A2E; --bad-bg:#FBE3E0;
   --wash-sky:linear-gradient(90deg,#F7F2EC 0%,#E7F2F4 100%);
@@ -38,7 +39,8 @@
   :root:not([data-theme="light"]){
     --ground:#11161B; --surface:#182027; --surface2:#232B33; --ink:#E6EAEE; --muted:#9AA4AE; --line:#2E3943;
     --accent:#5CC3D9; --on-accent:#11161B; --accent-soft:#233A43;
-    --amber:#F2B75A; --amber-soft:#3A2B0C;
+    --amber:#F2B75A; --amber-soft:#3A2B0C; --mk-back:#5CC3D9; --mk-imp:#F2B75A; --mk-weak:#FD977A; --mk-nd:#9AA4AE;
+  --glass:linear-gradient(160deg,rgba(44,58,68,.55),rgba(30,40,48,.45)); --glass-line:rgba(255,255,255,.16); --glass-hi:rgba(255,255,255,.14); --sheen:rgba(255,255,255,.22); --lens:rgba(255,255,255,.08); --lens-line:rgba(255,255,255,.22);
     --pk:#F2B75A; --pk-bg:#3A2B0C; --fk:#5CC3D9; --fk-bg:#233A43;
     --good:#6BD09A; --good-bg:#12321F; --bad:#F28B7E; --bad-bg:#3D1712;
     --shadow:none; --wash-sky:linear-gradient(90deg,#11161B 0%,#25313A 100%); --wash-flow:linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%); --wash-coral:linear-gradient(90deg,#11161B 0%,#322828 100%); --wash-apricot:linear-gradient(90deg,#11161B 0%,#322A27 100%); --wash-sun:linear-gradient(90deg,#11161B 0%,#2F2F2C 100%);
@@ -48,7 +50,8 @@
 :root[data-theme="dark"]{
   --ground:#11161B; --surface:#182027; --surface2:#232B33; --ink:#E6EAEE; --muted:#9AA4AE; --line:#2E3943;
   --accent:#5CC3D9; --on-accent:#11161B; --accent-soft:#233A43;
-  --amber:#F2B75A; --amber-soft:#3A2B0C;
+  --amber:#F2B75A; --amber-soft:#3A2B0C; --mk-back:#5CC3D9; --mk-imp:#F2B75A; --mk-weak:#FD977A; --mk-nd:#9AA4AE;
+  --glass:linear-gradient(160deg,rgba(44,58,68,.55),rgba(30,40,48,.45)); --glass-line:rgba(255,255,255,.16); --glass-hi:rgba(255,255,255,.14); --sheen:rgba(255,255,255,.22); --lens:rgba(255,255,255,.08); --lens-line:rgba(255,255,255,.22);
   --pk:#F2B75A; --pk-bg:#3A2B0C; --fk:#5CC3D9; --fk-bg:#233A43;
   --good:#6BD09A; --good-bg:#12321F; --bad:#F28B7E; --bad-bg:#3D1712;
   --shadow:none; --wash-sky:linear-gradient(90deg,#11161B 0%,#25313A 100%); --wash-flow:linear-gradient(90deg,#322828 0%,#11161B 50%,#25313A 100%); --wash-coral:linear-gradient(90deg,#11161B 0%,#322828 100%); --wash-apricot:linear-gradient(90deg,#11161B 0%,#322A27 100%); --wash-sun:linear-gradient(90deg,#11161B 0%,#2F2F2C 100%);
@@ -837,6 +840,57 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 .lsn-dots button:hover i{border-color:var(--accent);transform:scale(1.2)}
 .lsn-dots button.done i{background:var(--good);border-color:var(--good)}
 .lsn-dots button.cur i{background:var(--accent);border-color:var(--accent);transform:scale(1.3)}
+.lsn-side{display:flex;align-items:center;gap:.4rem .9rem;flex-wrap:wrap}
+/* lesson marks: three flags and "not done yet", on a liquid-glass menu (approved demo, 2026-10-14) */
+.mk-wrap{position:relative;display:flex;align-items:center;gap:.45rem}
+.mk-btn{position:relative;font:inherit;display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.3rem .8rem .3rem .7rem;min-height:36px;cursor:pointer;font-weight:500;font-size:.88rem;transition:border-color .25s,color .25s}
+.mk-btn:hover,.mk-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.mk-btn svg{width:17px;height:17px}
+.mk-chips{display:flex;align-items:center;min-height:1.5rem}
+.mk-chip{display:block;width:1.5rem;height:1.5rem;margin-inline-start:.25rem}
+.mk-chip:first-child{margin-inline-start:0}
+.mk-chip .mk-ic{width:1.5rem;height:1.5rem}
+.mk-ic{position:relative;display:grid;place-items:center;border-radius:50%;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);isolation:isolate;flex:none}
+.mk-ic::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--c);z-index:0;clip-path:circle(0% at 50% 50%);transition:clip-path .38s cubic-bezier(.4,0,.2,1)}
+.mk-ic svg{position:relative;z-index:1;width:58%;height:58%;transition:color .3s ease}
+.mk-ic.full::before,.mk-opt[aria-checked="true"] .mk-ic::before{clip-path:circle(71% at 50% 50%);transition:clip-path .62s var(--spring)}
+.mk-ic.full svg,.mk-opt[aria-checked="true"] .mk-ic svg{color:var(--surface);transition-delay:.06s}
+[data-mk="back"]{--c:var(--mk-back)}[data-mk="imp"]{--c:var(--mk-imp)}[data-mk="weak"]{--c:var(--mk-weak)}[data-mk="notdone"]{--c:var(--mk-nd)}
+.mk-menu{position:absolute;top:calc(100% + 10px);left:0;width:262px;max-width:calc(100vw - 16px);z-index:40;padding:8px;border-radius:18px;background:var(--glass);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 var(--glass-hi);-webkit-backdrop-filter:blur(16px) saturate(1.7);backdrop-filter:blur(16px) saturate(1.7);transform-origin:top left;overflow:hidden}
+html[dir="ltr"] .mk-menu{transform-origin:top right}
+.mk-menu[hidden]{display:none}
+.mk-menu.in{animation:mkGlassIn .62s cubic-bezier(.3,1.35,.45,1)}
+.mk-menu.out{animation:mkGlassOut .26s ease-in forwards}
+.mk-menu::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,var(--sheen) 45%,transparent 60%) no-repeat;background-size:250% 100%;pointer-events:none;opacity:0}
+.mk-menu.in::before{animation:mkSheen 1.1s .1s ease-out both}
+@keyframes mkGlassIn{0%{opacity:0;transform:scale(.55,.25);border-radius:40px}60%{opacity:1;transform:scale(1.04,1.03)}80%{transform:scale(.99,1)}100%{transform:none}}
+@keyframes mkGlassOut{to{opacity:0;transform:scale(.92,.85) translateY(-6px)}}
+@keyframes mkSheen{0%{opacity:1;background-position:120% 0}100%{opacity:1;background-position:-40% 0}}
+.mk-lens{position:absolute;inset-inline:8px;top:0;height:44px;border-radius:14px;background:var(--lens);border:1px solid var(--lens-line);box-shadow:inset 0 1px 0 var(--glass-hi);opacity:0;pointer-events:none;transition:opacity .25s}
+.mk-opt{position:relative;display:flex;align-items:center;gap:.65rem;width:100%;font:inherit;color:var(--ink);background:none;border:0;border-radius:12px;padding:.55rem .6rem;cursor:pointer;text-align:start}
+.mk-opt .mk-ic{width:1.9rem;height:1.9rem}
+.mk-opt span.l{flex:1}
+.mk-opt .tick{width:18px;height:18px;opacity:0;transform:scale(.5);transition:opacity .25s ease,transform .45s var(--spring);color:var(--accent)}
+.mk-opt[aria-checked="true"] .tick{opacity:1;transform:none}
+.mk-opt:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.mk-sep{height:1px;background:var(--glass-line);margin:6px 4px}
+.sess .mk-chips .mk-chip,.sess .mk-chips .mk-ic{width:1.3rem;height:1.3rem}
+.sess-end{display:flex;align-items:center;gap:.5rem}
+.sess .pill.nd{color:var(--mk-weak);border-color:color-mix(in srgb,var(--mk-weak) 50%,transparent)}
+.sess .ring.nd{background:conic-gradient(var(--mk-weak) 0%,var(--surface2) 0)}
+.sess .ring.nd i svg{width:.85rem;height:.85rem;color:var(--mk-weak)}
+.mk-home{margin:0 0 1.4rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.mk-home h3{margin:0 0 .4rem;font-size:1rem}
+.mk-grps{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.1rem 1.4rem}
+.mk-grp{padding:.25rem 0}
+.mk-grp .gh{display:flex;align-items:center;gap:.45rem;font-size:.85rem;color:var(--muted)}
+.mk-grp .gh .mk-ic{width:1.3rem;height:1.3rem}
+.mk-grp button{display:block;font:inherit;background:none;border:0;color:var(--ink);cursor:pointer;padding:.15rem 1.75rem;font-size:.92rem;text-align:start}
+.mk-grp button:hover{color:var(--accent)}
+.mk-grp button .lsn-id{font-family:var(--mono);color:var(--accent);font-size:.8rem;margin-inline-end:.4rem}
+.mk-mini{display:inline-flex;gap:2px;margin-inline-start:.35rem;vertical-align:middle}
+.mk-mini .mk-ic{width:.95rem;height:.95rem}
+@media (prefers-reduced-motion: reduce){.mk-menu,.mk-menu::before,.mk-ic::before,.mk-ic svg,.mk-opt .tick{animation:none!important;transition:none!important}}
 .lsn-end{display:flex;flex-direction:column;align-items:center;gap:.45rem;text-align:center;max-width:560px;margin:2.2rem auto 1rem;padding:1.6rem 1.4rem;background:var(--surface);border:1px solid var(--line);border-radius:16px}
 .lsn-end:empty{display:none}
 .lsn-end b{font-size:1.15rem;line-height:1.35}
@@ -1177,6 +1231,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
     </section>
     <section class="sec" id="h-sessions" data-title="nav_h_sessions">
       <div class="sec-head"><h2 data-i18n="hsx_h2"></h2><p class="lede" data-i18n="hsx_lede"></p></div>
+      <div class="mk-home" id="homeMarks" hidden></div>
       <div class="sessions" id="homeSessions"></div>
     </section>
     <section class="sec" id="h-tools" data-title="nav_h_tools">
@@ -1711,7 +1766,7 @@ r3_e:"A ∪ B מכיל את כל A. כשמחסרים מ-A קבוצה שמכיל�
 t_cancel:"ביטול", 
 present_off:"סיום הצגה", pt_laser:"מצביע", pt_pen:"עט", pt_erase:"מחק", pt_undo:"בטל", pt_clear:"נקה", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"כלים",
 
-g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", doc_title:"RowdyQL · SQL בגובה העיניים", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
+g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", doc_title:"RowdyQL · SQL בגובה העיניים", mk_btn:"סימון", mk_btn_a:"סימון השיעור", mk_back:"אחזור לזה", mk_imp:"חשוב לי", mk_weak:"עוד לא יושב לי", mk_notdone:"עוד לא סיימתי", mk_h:"מה שסימנתם", mk_g_back:"אחזור אליהם", mk_g_imp:"חשובים לי", mk_g_weak:"עוד לא יושבים לי", mk_g_notdone:"עוד לא סיימתי", sx_notdone:"עוד לא סיימתי", d_ch_weak:"שיעורים שסומנו 'עוד לא יושב לי' (מספר סטודנטים)", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
 g_consent:"קראתי ואני מסכים/ה ל<a href=\"#\" id=\"termsLink\">תנאי השימוש</a>.",
 g_go:"הרשמה", g_go_in:"כניסה", g_signout:"יציאה", g_demo:"מצב הדגמה: הפרטים נשמרים בדפדפן הזה בלבד.",
 g_foot:"ההרשמה שלכם היא בעצם <code>INSERT</code> אחד. הכניסה היא <code>SELECT</code>. הסיסמה נשמרת כגיבוב, אף פעם לא כטקסט.",
@@ -1954,7 +2009,7 @@ r3_e:"A ∪ B contains all of A. Subtracting a superset of A from A leaves nothi
 t_cancel:"Cancel", 
 present_off:"Exit presenter", pt_laser:"Pointer", pt_pen:"Pen", pt_erase:"Erase", pt_undo:"Undo", pt_clear:"Clear", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"Tools",
 
-g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", doc_title:"RowdyQL · SQL that finally clicks", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
+g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", doc_title:"RowdyQL · SQL that finally clicks", mk_btn:"Mark", mk_btn_a:"Mark this lesson", mk_back:"Come back to this", mk_imp:"Important to me", mk_weak:"Not sticking yet", mk_notdone:"Not done yet", mk_h:"What you marked", mk_g_back:"Come back to these", mk_g_imp:"Important to me", mk_g_weak:"Not sticking yet", mk_g_notdone:"Not done yet", sx_notdone:"not done yet", d_ch_weak:"Lessons marked 'Not sticking yet' (students per lesson)", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
 g_consent:"I have read and agree to the <a href=\"#\" id=\"termsLink\">terms of use</a>.",
 g_go:"Sign up", g_go_in:"Sign in", g_signout:"Sign out", g_demo:"Demo mode: details are kept in this browser only.",
 g_foot:"Your sign-up is really one <code>INSERT</code>. Signing in is a <code>SELECT</code>. The password is stored as a hash, never as text.",
@@ -3725,7 +3780,7 @@ function renderHome(){
   const sb2 = $('#homeStats'); sb2.innerHTML = '';
   stats.forEach((st, i) => { const d = el('div', 'stat reveal'); d.style.setProperty('--rd', (i * 0.07) + 's'); d.innerHTML = '<div class="v">' + st[1] + (st[2] ? '<small> / ' + st[2] + '</small>' : '<small> ' + t('st_days_s') + '</small>') + '</div><div class="l">' + t(st[0]) + '</div>' + (st[2] ? '<div class="bar"><i data-w="' + Math.round(100 * st[1] / st[2]) + '"></i></div>' : ''); sb2.appendChild(d); });
   const grid = $('#homeSessions'); grid.innerHTML = '';
-  lessonCards(grid);
+  renderHomeMarks(); lessonCards(grid);
   const q = $('#homeQuick'); q.innerHTML = '';
   [['qk_lab', 'qk_lab_s', 'ra', 'r-lab', 'π σ ⋈'], ['qk_ex', 'qk_ex_s', 'ra', 'r-exercises', '✓'], ['qk_map', 'qk_map_s', 'intro', 's-map', '4'], ['qk_quiz', 'qk_quiz_s', 'intro', 's-quiz-intro', '?']].forEach((x, i) => { const b = el('button', 'reveal'); b.type = 'button'; b.style.setProperty('--rd', (i * 0.06) + 's'); b.innerHTML = '<span class="ic">' + x[4] + '</span><b>' + t(x[0]) + '</b><span>' + t(x[1]) + '</span>'; b.addEventListener('click', () => goTo(x[2], x[3])); q.appendChild(b); });
   observeReveal();
@@ -3734,9 +3789,9 @@ function renderHome(){
 function lessonCards(grid){
   COURSE.forEach((ch, ci) => { if (!ch.lessons.length) return;
     grid.appendChild(el('h3', 'lsn-chh', t('ch_n', { n: ci + 1 }) + ' · ' + t('tab_' + ch.unit) + '<span>' + t('ls_count', { n: ch.lessons.length, m: ch.lessons.reduce((a, l) => a + l.min, 0) }) + '</span>'));
-    ch.lessons.forEach((l, i) => { const p = lessonPct(l), state = p >= 100 ? 'done' : 'open';
+    ch.lessons.forEach((l, i) => { const p = lessonPct(l), nd = !!markOf(l.id).notdone, state = nd ? 'notdone' : p >= 100 ? 'done' : 'open';
       const c = el('button', 'sess reveal ' + state); c.type = 'button'; c.style.setProperty('--rd', (i * 0.05) + 's'); c.style.setProperty('--p', p);
-      c.innerHTML = '<div class="sess-top"><span class="num">' + l.n + '</span><span class="lsn-dur">' + t('ls_min', { m: l.min }) + '</span></div><b>' + t('ls_' + l.id) + '</b><div class="st"><span class="pill">' + t('sx_' + state) + '</span><span class="ring"><i>' + p + '%</i></span></div>';
+      c.innerHTML = '<div class="sess-top"><span class="num">' + l.n + '</span><span class="sess-end"><span class="mk-chips">' + mkChipsHtml(l.id) + '</span><span class="lsn-dur">' + t('ls_min', { m: l.min }) + '</span></span></div><b>' + t('ls_' + l.id) + '</b><div class="st"><span class="pill' + (nd ? ' nd' : '') + '">' + t('sx_' + state) + '</span><span class="ring' + (nd ? ' nd' : '') + '"><i>' + (nd ? MK_ICONS.notdone : p + '%') + '</i></span></div>';
       c.addEventListener('click', () => setUnit(l.unit, l)); grid.appendChild(c); }); });
   grid.appendChild(el('h3', 'lsn-chh', t('ls_later')));
   ['st2_b', 'st3_b', 'st4_b'].forEach((k, i) => { const c = el('button', 'sess reveal soon'); c.type = 'button'; c.disabled = true; c.innerHTML = '<div class="sess-top"><span class="num">' + (COURSE.length + i + 1) + '</span></div><b>' + t(k) + '</b><div class="st"><span class="pill">' + t('sx_soon') + '</span></div>'; grid.appendChild(c); });
@@ -3795,7 +3850,7 @@ const lessonSecs = l => l.secs.map(id => document.getElementById(id)).filter(Boo
 const lessonPct = l => Math.round(100 * l.secs.filter(id => visited[id]).length / l.secs.length);
 let lesson = null;
 /* a unit opens on the lesson you were in, otherwise on its first unfinished lesson */
-function pickLesson(u){ const last = load('dbs_last_sec', null), mine = LESSONS.filter(l => l.unit === u); const lastL = last && last.unit === u ? lessonOf(last.id) : null; return lastL || mine.find(l => lessonPct(l) < 100) || mine[0] || null; }
+function pickLesson(u){ const last = load('dbs_last_sec', null), mine = LESSONS.filter(l => l.unit === u); const lastL = last && last.unit === u ? lessonOf(last.id) : null; return lastL || mine.find(l => !lessonDone(l)) || mine[0] || null; }
 function openLesson(l, secId){
   if (!l) return; lesson = l; activeSec = null;
   $$('#u-' + l.unit + ' section.sec').forEach(s => s.hidden = !l.secs.includes(s.id));
@@ -3805,11 +3860,97 @@ function openLesson(l, secId){
   updateNav(false);
 }
 function goLesson(l, secId){ if (!l) return; if (l.unit !== unit) setUnit(l.unit, l, secId); else openLesson(l, secId); }
+/* =========================== LESSON MARKS =========================== */
+/* three flags a student can put on a lesson, plus "not done yet", which keeps it unfinished even after the whole lesson was scrolled.
+   Kept in dbs_marks ({ lessonId: { back, imp, weak, notdone } }), synced with the rest of the progress. */
+const MK_FLAGS = ['back', 'imp', 'weak'], MK_ALL = ['back', 'imp', 'weak', 'notdone'];
+const markOf = id => load('dbs_marks', {})[id] || {};
+function setMark(id, k, on){ const all = load('dbs_marks', {}), m = Object.assign({}, all[id]); if (on) m[k] = 1; else delete m[k]; if (Object.keys(m).length) all[id] = m; else delete all[id]; store('dbs_marks', all); }
+const lessonDone = l => lessonPct(l) >= 100 && !markOf(l.id).notdone;
+const MK_REDUCE = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* a gentle spring as a CSS linear() curve: one small overshoot, no snap at the end */
+const MK_SPRING = (() => { try { if (!CSS.supports('transition-timing-function', 'linear(0, 1)')) return 'cubic-bezier(.34,1.3,.64,1)'; const pts = []; let x = 0, v = 0; const dt = 1 / 600;
+  for (let t = 0, i = 0; t <= 0.9; t += dt, i++) { v += (-160 * (x - 1) - 17 * v) * dt; x += v * dt; if (i % 15 === 0) pts.push(+x.toFixed(4)); }
+  pts[pts.length - 1] = 1; const f = 'linear(0, ' + pts.join(', ') + ')'; document.documentElement.style.setProperty('--spring', f); return f; } catch(e) { return 'cubic-bezier(.34,1.3,.64,1)'; } })();
+const MK_ICONS = (() => { let d = ''; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? 4.3 : 9.4; d += (i ? 'L' : 'M') + (12 + r * Math.cos(a)).toFixed(2) + ' ' + (12.6 + r * Math.sin(a)).toFixed(2); } /* the star is drawn around the circle's own center */
+  return { back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v18"/><path d="M7 4h11l-2.6 4.3L18 12.6H7z" fill="currentColor"/></svg>',
+    imp: '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" aria-hidden="true"><path d="' + d + 'Z"/></svg>',
+    weak: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg>',
+    notdone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-dasharray="4 3.2"/></svg>' }; })();
+const MK_FLAG_BTN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v18"/><path d="M6 4h11l-2.6 4.3L17 12.6H6z"/></svg>';
+const MK_TICK = '<svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+const mkIc = (k, full) => '<span class="mk-ic' + (full ? ' full' : '') + '" data-mk="' + k + '">' + MK_ICONS[k] + '</span>';
+const mkChipsHtml = id => { const m = markOf(id); return MK_FLAGS.filter(k => m[k]).map(k => '<span class="mk-chip" data-mk="' + k + '" title="' + esc(t('mk_' + k)) + '">' + mkIc(k, true) + '</span>').join(''); };
+/* chips come in by opening their slot and growing from a drop; they leave by fading, shrinking, then closing the slot */
+function mkSyncChips(host, id){
+  const m = markOf(id), keys = MK_FLAGS.filter(k => m[k]), have = [...host.children].filter(c => !c.dataset.leaving);
+  have.forEach(c => { if (keys.includes(c.dataset.mk)) return; c.dataset.leaving = '1'; if (MK_REDUCE()) { c.remove(); return; }
+    c.firstChild.animate([{ transform: 'scale(1)', opacity: 1, filter: 'blur(0)' }, { transform: 'scale(.55)', opacity: 0, filter: 'blur(1.5px)' }], { duration: 380, easing: 'cubic-bezier(.4,0,.6,1)', fill: 'forwards' });
+    c.animate([{ width: c.offsetWidth + 'px', marginInlineStart: getComputedStyle(c).marginInlineStart }, { width: '0px', marginInlineStart: '0px' }], { duration: 360, delay: 220, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }).onfinish = () => c.remove(); });
+  keys.forEach(k => { if (have.some(c => c.dataset.mk === k)) return; const w = el('span', 'mk-chip', mkIc(k, true)); w.dataset.mk = k; w.title = t('mk_' + k);
+    const next = [...host.children].find(c => MK_FLAGS.indexOf(c.dataset.mk) > MK_FLAGS.indexOf(k)); host.insertBefore(w, next || null); if (MK_REDUCE()) return;
+    const cs = getComputedStyle(w); w.animate([{ width: '0px', marginInlineStart: '0px' }, { width: cs.width, marginInlineStart: cs.marginInlineStart }], { duration: 420, easing: 'cubic-bezier(.4,0,.2,1)' });
+    w.firstChild.animate([{ transform: 'scale(.2)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 700, easing: MK_SPRING, fill: 'backwards', delay: 60 }); });
+}
+/* the control in the lesson bar: chips, the "mark" button, and the glass menu */
+let mkOpen = null;
+function markControl(l){
+  const wrap = el('div', 'mk-wrap'), chips = el('div', 'mk-chips', mkChipsHtml(l.id)), btn = el('button', 'mk-btn', MK_FLAG_BTN + '<span>' + t('mk_btn') + '</span>'), menu = el('div', 'mk-menu');
+  btn.type = 'button'; btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-haspopup', 'true'); btn.setAttribute('aria-label', t('mk_btn_a')); menu.hidden = true; menu.setAttribute('role', 'menu');
+  wrap.append(chips, btn, menu);
+  btn.addEventListener('click', e => { e.stopPropagation(); if (mkOpen && mkOpen.menu === menu) mkClose(); else mkMenuOpen(l, wrap, btn, menu, chips); });
+  return wrap;
+}
+function mkMenuOpen(l, wrap, btn, menu, chips){
+  mkClose(true); const m = markOf(l.id);
+  menu.innerHTML = '<div class="mk-lens"></div>' + MK_ALL.map(k => (k === 'notdone' ? '<div class="mk-sep"></div>' : '') + '<button type="button" class="mk-opt" role="menuitemcheckbox" aria-checked="' + !!m[k] + '" data-mk="' + k + '">' + mkIc(k) + '<span class="l">' + t('mk_' + k) + '</span>' + MK_TICK + '</button>').join('');
+  menu.querySelectorAll('.mk-opt').forEach(o => o.addEventListener('click', e => { e.stopPropagation(); const k = o.dataset.mk, on = o.getAttribute('aria-checked') !== 'true';
+    o.setAttribute('aria-checked', String(on)); setMark(l.id, k, on); mkSyncChips(chips, l.id); mkAfterChange(l); }));
+  menu.classList.remove('out'); menu.style.left = '0px'; menu.hidden = false;
+  /* keep the sheet on screen: line it up with the end of the control, then clamp to the viewport */
+  const wr = wrap.getBoundingClientRect(), mw = menu.offsetWidth, rtl = document.documentElement.dir === 'rtl';
+  const left = Math.max(8, Math.min(rtl ? wr.left : wr.right - mw, innerWidth - 8 - mw)); menu.style.left = (left - wr.left) + 'px';
+  void menu.offsetWidth; menu.classList.add('in'); btn.setAttribute('aria-expanded', 'true');
+  mkOpen = { menu, btn, raf: 0 }; mkLens(menu);
+}
+function mkClose(now){
+  if (!mkOpen) return; const { menu, btn, raf } = mkOpen; mkOpen = null; cancelAnimationFrame(raf); btn.setAttribute('aria-expanded', 'false');
+  if (now || MK_REDUCE()) { menu.hidden = true; menu.classList.remove('in', 'out'); return; }
+  menu.classList.remove('in'); menu.classList.add('out'); setTimeout(() => { if (!mkOpen || mkOpen.menu !== menu) { menu.hidden = true; menu.classList.remove('out'); } }, 260);
+}
+/* the glass lens follows the pointer (or the keyboard focus) on a spring and stretches a little when it moves fast */
+function mkLens(menu){
+  const lens = menu.querySelector('.mk-lens'); let y = 0, v = 0, target = null, h = 44, hv = 0, ht = 44;
+  const step = () => { if (!mkOpen || mkOpen.menu !== menu) return; if (target !== null) { v = (v + (target - y) * 0.16) * 0.72; y += v; hv = (hv + (ht - h) * 0.16) * 0.72; h += hv; const st = Math.min(Math.abs(v) * 0.9, 10);
+      lens.style.transform = 'translateY(' + y + 'px)'; lens.style.height = (h + st) + 'px'; lens.style.marginTop = (-st / 2) + 'px'; } mkOpen.raf = requestAnimationFrame(step); };
+  mkOpen.raf = requestAnimationFrame(step);
+  const go = o => { if (target === null) y = o.offsetTop; target = o.offsetTop; ht = o.offsetHeight; lens.style.opacity = 1; };
+  menu.querySelectorAll('.mk-opt').forEach(o => { o.addEventListener('pointerenter', () => go(o)); o.addEventListener('focus', () => go(o)); });
+  menu.addEventListener('pointerleave', () => { if (!menu.contains(document.activeElement)) { lens.style.opacity = 0; target = null; } });
+}
+document.addEventListener('click', e => { if (mkOpen && !mkOpen.menu.contains(e.target)) mkClose(); });
+document.addEventListener('keydown', e => { if (!mkOpen) return; if (e.key === 'Escape') { const b = mkOpen.btn; mkClose(); b.focus(); }
+  else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { const os = [...mkOpen.menu.querySelectorAll('.mk-opt')], i = os.indexOf(document.activeElement); e.preventDefault(); os[i < 0 ? 0 : (i + (e.key === 'ArrowDown' ? 1 : os.length - 1)) % os.length].focus(); } });
+/* a mark changed: the dots in the bar, the table of contents and its small icons follow */
+const mkMiniHtml = id => { const m = markOf(id), ks = MK_ALL.filter(k => m[k]); return ks.length ? '<span class="mk-mini" title="' + esc(ks.map(k => t('mk_' + k)).join(', ')) + '">' + ks.map(k => mkIc(k, true)).join('') + '</span>' : ''; };
+function mkAfterChange(l){
+  const mine = LESSONS.filter(y => y.unit === l.unit); $$('#u-' + l.unit + ' .lsn-dots button').forEach((b, i) => { const x = mine[i]; if (x && x !== lesson) b.className = lessonDone(x) ? 'done' : ''; });
+  const a = $('#rail a[data-lsn="' + l.id + '"]'); if (a) { const old = a.querySelector('.mk-mini'); if (old) old.remove(); a.lastElementChild.insertAdjacentHTML('beforeend', mkMiniHtml(l.id)); }
+  railState();
+}
+/* home: the lessons you marked, grouped by mark */
+function renderHomeMarks(){
+  const box = $('#homeMarks'); if (!box) return; const all = load('dbs_marks', {});
+  const groups = MK_ALL.map(k => [k, LESSONS.filter(l => all[l.id] && all[l.id][k])]).filter(g => g[1].length);
+  box.hidden = !groups.length; if (!groups.length) { box.innerHTML = ''; return; }
+  box.innerHTML = '<h3>' + t('mk_h') + '</h3><div class="mk-grps">' + groups.map(g => '<div class="mk-grp"><div class="gh">' + mkIc(g[0], true) + t('mk_g_' + g[0]) + '</div>' + g[1].map(l => '<button type="button" data-lsn="' + l.id + '"><span class="lsn-id">' + l.n + '</span>' + t('ls_' + l.id) + '</button>').join('') + '</div>').join('') + '</div>';
+  box.querySelectorAll('button[data-lsn]').forEach(b => b.addEventListener('click', () => { const l = lessonById(b.dataset.lsn); setUnit(l.unit, l); }));
+}
 function renderLessonBar(){
-  if (!lesson) return; const bar = $('#u-' + lesson.unit + ' .lsn-bar'); if (!bar) return; bar.innerHTML = '';
+  if (mkOpen) mkClose(true); if (!lesson) return; const bar = $('#u-' + lesson.unit + ' .lsn-bar'); if (!bar) return; bar.innerHTML = '';
   bar.appendChild(el('div', 'lsn-t', '<span class="lsn-id">' + lesson.n + '</span><b>' + t('ls_' + lesson.id) + '</b><span class="lsn-dur">' + t('ls_min', { m: lesson.min }) + '</span>'));
-  const dots = el('div', 'lsn-dots'); LESSONS.filter(l => l.unit === lesson.unit).forEach(l => { const b = el('button', l === lesson ? 'cur' : lessonPct(l) >= 100 ? 'done' : '', '<i></i>'); b.type = 'button'; b.title = l.n + ' · ' + t('ls_' + l.id); b.setAttribute('aria-label', b.title); if (l === lesson) b.setAttribute('aria-current', 'step'); b.addEventListener('click', () => openLesson(l)); dots.appendChild(b); });
-  bar.appendChild(dots);
+  const dots = el('div', 'lsn-dots'); LESSONS.filter(l => l.unit === lesson.unit).forEach(l => { const b = el('button', l === lesson ? 'cur' : lessonDone(l) ? 'done' : '', '<i></i>'); b.type = 'button'; b.title = l.n + ' · ' + t('ls_' + l.id); b.setAttribute('aria-label', b.title); if (l === lesson) b.setAttribute('aria-current', 'step'); b.addEventListener('click', () => openLesson(l)); dots.appendChild(b); });
+  const side = el('div', 'lsn-side'); side.append(markControl(lesson), dots); bar.appendChild(side);
 }
 function renderLessonEnd(){
   if (!lesson) return; const box = $('#u-' + lesson.unit + ' .lsn-end'); if (!box) return; box.innerHTML = '';
@@ -3824,14 +3965,14 @@ function renderRail(){
   const secLink = (sec, cls) => { const a = el('a', cls, '<span class="dot"></span><span>' + t(sec.dataset.title) + '</span>'); a.href = '#' + sec.id; a.dataset.sec = sec.id; a.addEventListener('click', e => { e.preventDefault(); sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); rail.appendChild(a); };
   if (unit === 'home' || !lesson) $$('#u-home section.sec').forEach(sec => secLink(sec, ''));
   else LESSONS.filter(l => l.unit === unit).forEach(l => {
-    const a = el('a', 'lsn-rl', '<span class="dot"></span><span><span class="lsn-id">' + l.n + '</span> ' + t('ls_' + l.id) + '</span>'); a.href = '#' + l.secs[0]; a.dataset.lsn = l.id; a.addEventListener('click', e => { e.preventDefault(); openLesson(l); }); rail.appendChild(a);
+    const a = el('a', 'lsn-rl', '<span class="dot"></span><span><span class="lsn-id">' + l.n + '</span> ' + t('ls_' + l.id) + mkMiniHtml(l.id) + '</span>'); a.href = '#' + l.secs[0]; a.dataset.lsn = l.id; a.addEventListener('click', e => { e.preventDefault(); openLesson(l); }); rail.appendChild(a);
     if (l === lesson && l.secs.length > 1) lessonSecs(l).forEach(sec => secLink(sec, 'lsn-rs'));
   });
   railState();
 }
 function railState(){
   $$('#rail a[data-sec]').forEach(a => { a.classList.toggle('active', a.dataset.sec === activeSec); a.classList.toggle('done', !!visited[a.dataset.sec]); });
-  $$('#rail a[data-lsn]').forEach(a => { const l = lessonById(a.dataset.lsn); a.classList.toggle('active', l === lesson); a.classList.toggle('done', !!l && lessonPct(l) >= 100); });
+  $$('#rail a[data-lsn]').forEach(a => { const l = lessonById(a.dataset.lsn); a.classList.toggle('active', l === lesson); a.classList.toggle('done', !!l && lessonDone(l)); });
 }
 function setUnit(u, l, secId){
   unit = u; if (u === 'home') { lesson = null; if (typeof renderHome === 'function') renderHome(); }
@@ -4231,7 +4372,7 @@ $('#btnOut').addEventListener('click', async () => { if (sb) await sb.auth.signO
 
 async function logVisit(){ try { const last = +load('dbs_visit_at', 0); if (Date.now() - last < 30 * 60 * 1000) return; store('dbs_visit_at', Date.now()); await sb.from('events').insert({ user_id: session.user.id, kind: 'visit', meta: { lang, w: innerWidth } }); } catch(e){} }
 /* ---- progress sync: local storage stays the cache, the account is the record ---- */
-const SYNC_KEYS = ['dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs'];
+const SYNC_KEYS = ['dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_marks'];
 const syncTimers = {};
 function syncKey(k, v){ if (!sb || !session || !session.user) return; clearTimeout(syncTimers[k]); syncTimers[k] = setTimeout(async () => { try { await sb.from('progress').upsert({ user_id: session.user.id, key: k, value: v, updated_at: new Date().toISOString() }); } catch(e){} }, 800); }
 async function pullProgress(){
@@ -4259,7 +4400,7 @@ async function loadDash(){
   const visitsBy = {}; (ev || []).forEach(e => { (visitsBy[e.user_id] = visitsBy[e.user_id] || []).push(e.at); });
   D.visits = ev || [];
   D.rows = (roster || []).map(u => { const p = byUser[u.id] || {}; const qi = p.dbs_quiz_intro || {}, qr = p.dbs_quiz_ra || {}; const age = u.birth_date ? Math.floor((Date.now() - new Date(u.birth_date).getTime()) / (365.25 * 86400000)) : '';
-    return { id: u.id, name: u.full_name, first: u.first_name || '', lname: u.last_name || '', email: u.email, birth: u.birth_date || '', age, gender: u.gender ? t(u.gender === 'F' ? 'g_female' : 'g_male') : '', year: u.study_year || '', sem: u.semester || '', stud: u.studying == null ? '' : t(u.studying ? 'ob_yes' : 'ob_no'), inst: u.institution || '', field: u.field_of_study || '', lvl: u.level ? t('ob_lv' + u.level) : '', joined: fmtDT(u.created_at), joinedTs: u.created_at ? new Date(u.created_at).getTime() : 0, last: fmtDT(u.last_active), lastTs: u.last_active ? new Date(u.last_active).getTime() : 0, visits: +u.visits || 0, lastvisit: fmtDT(u.last_visit), lastvisitTs: u.last_visit ? new Date(u.last_visit).getTime() : 0, sec: Object.keys(p.dbs_visited || {}).length, qiN: Object.values(qi).filter(x => x && x.ok).length, qrN: Object.values(qr).filter(x => x && x.ok).length, exN: Object.values(p.dbs_ra_ex || {}).filter(x => x && x.solved).length, goals: u.goals || '', int: u.interests || '', note: u.note || '', status: u.status || 'active', snote: u.status_note || '' }; });
+    return { id: u.id, name: u.full_name, first: u.first_name || '', lname: u.last_name || '', email: u.email, birth: u.birth_date || '', age, gender: u.gender ? t(u.gender === 'F' ? 'g_female' : 'g_male') : '', year: u.study_year || '', sem: u.semester || '', stud: u.studying == null ? '' : t(u.studying ? 'ob_yes' : 'ob_no'), inst: u.institution || '', field: u.field_of_study || '', lvl: u.level ? t('ob_lv' + u.level) : '', joined: fmtDT(u.created_at), joinedTs: u.created_at ? new Date(u.created_at).getTime() : 0, last: fmtDT(u.last_active), lastTs: u.last_active ? new Date(u.last_active).getTime() : 0, visits: +u.visits || 0, lastvisit: fmtDT(u.last_visit), lastvisitTs: u.last_visit ? new Date(u.last_visit).getTime() : 0, sec: Object.keys(p.dbs_visited || {}).length, qiN: Object.values(qi).filter(x => x && x.ok).length, qrN: Object.values(qr).filter(x => x && x.ok).length, exN: Object.values(p.dbs_ra_ex || {}).filter(x => x && x.solved).length, marks: p.dbs_marks || {}, goals: u.goals || '', int: u.interests || '', note: u.note || '', status: u.status || 'active', snote: u.status_note || '' }; });
   D.rows.forEach(r => { r.qi = r.qiN + '/4'; r.qr = r.qrN + '/3'; r.ex = r.exN + '/12'; });
 }
 function dashFiltered(){ const f = D.f; const now = Date.now(); const q = f.q.toLowerCase(); return D.rows.filter(r => (!q || (r.name + ' ' + r.email).toLowerCase().includes(q)) && (!f.from || dayKey(r.joined) >= f.from) && (!f.to || dayKey(r.joined) <= f.to) && (f.active === 'all' || Math.max(r.lastTs, r.lastvisitTs) >= now - (+f.active) * 86400000) && (f.sem === 'all' || r.sem === f.sem) && (f.year === 'all' || String(r.year) === f.year) && r.exN >= (+f.minex || 0)); }
@@ -4283,7 +4424,7 @@ function renderDash(){
   const days = lastDays(30); const regBy = {}; rows.forEach(r => { const k = dayKey(r.joined); regBy[k] = (regBy[k] || 0) + 1; }); const visBy = {}; vis30.forEach(e => { const k = dayKey(e.at); visBy[k] = (visBy[k] || 0) + 1; });
   const dl = days.map(d => d.slice(5).replace('-', '/')); const exDist = Array.from({length: 13}, (_, i) => rows.filter(r => r.exN === i).length); const qrDist = [0,1,2,3].map(i => rows.filter(r => r.qrN === i).length);
   let h = '<h3 class="dsec">' + t('d_s_kpi') + '</h3><div class="kpis">' + kpi.map(k => '<div class="kpi"><b>' + k[1] + '</b><span>' + t(k[0]) + '</span></div>').join('') + '</div><h3 class="dsec">' + t('d_s_charts') + '</h3>';
-  h += '<div class="charts"><div class="chartcard"><h4>' + t('d_c_reg') + '</h4>' + svgBars(dl, days.map(d => regBy[d] || 0), {title: t('d_c_reg'), w: 560, h: 190}) + '</div><div class="chartcard"><h4>' + t('d_c_vis') + '</h4>' + svgBars(dl, days.map(d => visBy[d] || 0), {title: t('d_c_vis'), w: 560, h: 190}) + '</div><div class="chartcard"><h4>' + t('d_ch_ex') + '</h4>' + svgBars(exDist.map((_, i) => String(i)), exDist, {title: t('d_ch_ex'), w: 560, h: 190}) + '</div><div class="chartcard"><h4>' + t('d_ch_qr') + '</h4>' + svgBars(['0','1','2','3'], qrDist, {title: t('d_ch_qr'), w: 560, h: 190}) + '</div></div>';
+  h += '<div class="charts"><div class="chartcard"><h4>' + t('d_c_reg') + '</h4>' + svgBars(dl, days.map(d => regBy[d] || 0), {title: t('d_c_reg'), w: 560, h: 190}) + '</div><div class="chartcard"><h4>' + t('d_c_vis') + '</h4>' + svgBars(dl, days.map(d => visBy[d] || 0), {title: t('d_c_vis'), w: 560, h: 190}) + '</div><div class="chartcard"><h4>' + t('d_ch_ex') + '</h4>' + svgBars(exDist.map((_, i) => String(i)), exDist, {title: t('d_ch_ex'), w: 560, h: 190}) + '</div><div class="chartcard"><h4>' + t('d_ch_qr') + '</h4>' + svgBars(['0','1','2','3'], qrDist, {title: t('d_ch_qr'), w: 560, h: 190}) + '</div><div class="chartcard"><h4>' + t('d_ch_weak') + '</h4>' + svgBars(LESSONS.map(l => l.n), LESSONS.map(l => rows.filter(r => r.marks && r.marks[l.id] && r.marks[l.id].weak).length), {title: t('d_ch_weak'), w: 560, h: 190}) + '</div></div>';
   const cols = DCOLS.filter(c => D.cols.includes(c[0]));
   h += '<h3 class="dsec">' + t('d_s_table') + '</h3><details class="colpick-wrap"><summary>' + t('d_cols') + ' · ' + cols.length + '/' + DCOLS.length + '</summary><div class="colpick">' + DCOLS.map(c => '<label class="chk"><input type="checkbox" data-col="' + c[0] + '"' + (D.cols.includes(c[0]) ? ' checked' : '') + '><span>' + t(c[1]) + '</span></label>').join('') + '</div></details>';
   const sorted = rows.slice().sort((a, b) => { const k = D.sort.k; const ka = k === 'joined' ? a.joinedTs : k === 'last' ? a.lastTs : k === 'lastvisit' ? a.lastvisitTs : k === 'ex' ? a.exN : k === 'qi' ? a.qiN : k === 'qr' ? a.qrN : a[k]; const kb = k === 'joined' ? b.joinedTs : k === 'last' ? b.lastTs : k === 'lastvisit' ? b.lastvisitTs : k === 'ex' ? b.exN : k === 'qi' ? b.qiN : k === 'qr' ? b.qrN : b[k]; return (ka > kb ? 1 : ka < kb ? -1 : 0) * D.sort.dir; });
@@ -4478,7 +4619,7 @@ async function meDelete(m){
   } catch (e) { msg.textContent = t('g_err_gen'); go.disabled = false; }
 }
 /* what this device keeps for the signed-in user; cleared on sign-out and account deletion, and when a different account signs in here */
-const USER_KEYS = ['dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
+const USER_KEYS = ['dbs_marks','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
 function clearUserData(){ USER_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e){} }); for (const k in visited) delete visited[k]; exState = {}; applyPrefs(); }
 /* forgotten password: the email link lands here with a recovery session (?reset=1 and #...type=recovery); ask for the new password */
 const RECOVERY = (() => { try { return /(^|[#&])type=recovery(&|$)/.test(location.hash) || new URLSearchParams(location.search).get('reset') === '1'; } catch(e) { return false; } })();
