@@ -4,7 +4,6 @@
 "I18N.en.exr_more|stiff-en": "a4ff22f180",
 "I18N.en.g_blocked|please-en": "1e33f47919",
 "I18N.en.g_err_domain|please-en": "60bae4f5f1",
-"I18N.en.hs_lede|stiff-en": "ec6d40ca24",
 "I18N.en.i1_e|stiff-en": "b4683eb392",
 "I18N.en.i3_3|stiff-en": "b507a28db7",
 "I18N.en.lv_h|emoji": "6571a40e4e",
@@ -50,7 +49,6 @@
 "I18N.he.g_err_domain|form-register": "96a56440f7",
 "I18N.he.g_ok_up_demo|form-register": "8ef536fa93",
 "I18N.he.g_ok_up|form-register": "2745ad0a4c",
-"I18N.he.hs_lede|calque": "506d831d15",
 "I18N.he.in_lede|colon-slogan": "2cd6785fdf",
 "I18N.he.ind6_p|colon-slogan": "ac307869ea",
 "I18N.he.jn_lede|colon-slogan": "927f10d2de",
@@ -86,6 +84,5 @@
 "I18N.he.st2_p|colon-slogan": "0ca04fb4fc",
 "I18N.he.st4_p|colon-slogan": "61c96d0eb0",
 "I18N.he.tm_why|form-register": "c56d034f66",
-"I18N.he.tour_me|colon-slogan": "80ec916f48",
 "I18N.he.w_skip|singular-imperative": "80a413c554"
 }
