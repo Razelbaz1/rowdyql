@@ -473,6 +473,77 @@ html[dir="rtl"] .disc>summary .chev{transform:scaleX(-1)}
 .step .sh{display:flex;align-items:center;gap:8px;direction:ltr;justify-content:flex-start;min-width:0}
 .step .sn{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font:500 .78rem var(--mono);color:var(--accent);border:1px solid var(--neon-l);flex:none}
 .step .chip{display:inline-block;max-width:100%;overflow-x:auto;font:500 .92rem var(--mono);direction:ltr;background:var(--surface2);border-radius:6px;padding:.3rem .65rem;white-space:nowrap}
+/* the expression as a map: the counterexample's 'הצגה כמפה' (kit: tables, marks, neon on what reacts) */
+.maprow{display:flex}
+.mapbtn svg{width:16px;height:16px;flex:none}
+.mapov{position:fixed;inset:0;z-index:90;background:rgba(17,22,27,.5);display:grid;place-items:center;padding:20px;opacity:0;transition:opacity .25s}
+.mapov.on{opacity:1}
+.mapwin{width:min(1180px,100%);height:min(800px,100%);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;overflow:hidden;transform:translateY(10px) scale(.985);transition:transform .35s cubic-bezier(.3,1.2,.45,1)}
+.mapov.on .mapwin{transform:none}
+.mapwin .wh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
+.mapwin .wh h3{margin:0;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
+.mapwin .wh .expr{font:500 .9rem var(--mono);direction:ltr;unicode-bidi:isolate;background:var(--surface2);border-radius:6px;padding:.25rem .6rem;max-width:100%;overflow-x:auto;white-space:nowrap;order:3;flex-basis:100%;box-sizing:border-box}
+@media (min-width:721px){.mapwin .wh .expr{order:0;flex-basis:auto;max-width:60%}}
+.mapwin .wh .sp{flex:1}
+.mapwin .mx{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:border-color .3s,box-shadow .4s}
+.mapwin .mx:hover,.mapwin .mx:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+.mapwin .mtools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line)}
+.mapwin .mtools .hint{margin-inline-start:auto;color:var(--muted);font-size:.88rem}
+.mapwin .mtools .btn svg{width:14px;height:14px;flex:none}
+.mcanvas{position:relative;flex:1;overflow:auto;cursor:grab;direction:rtl;scroll-padding:32px 48px;background-color:var(--ground);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+.mcanvas.drag{cursor:grabbing;user-select:none}
+.mstage{position:relative;direction:ltr;min-width:max-content;min-height:100%;box-sizing:border-box;padding:40px 48px;display:flex;align-items:center;justify-content:flex-end}
+svg.mwires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+svg.mwires path{fill:none;stroke:var(--muted);stroke-width:1.5}
+svg.mwires path.hot{stroke:var(--neon-l);stroke-width:2.5}
+svg.mwires path.draw{animation:mwire .6s ease-out}
+@keyframes mwire{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+.mapwin .mlegend{display:flex;gap:16px;flex-wrap:wrap;padding:10px 18px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}
+.mapwin .mlegend>span{display:inline-flex;gap:7px;align-items:center}
+.lin-sw{display:inline-block;width:20px;height:14px;border-radius:3px;background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--neon-l)}
+.mbranch{display:flex;align-items:center;gap:64px}
+.mkids{display:flex;flex-direction:column;gap:22px;align-items:flex-end}
+.mkids[hidden]{display:none}
+.mnode{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px;min-width:170px;max-width:420px;box-sizing:border-box}
+.mnode.root{border-color:var(--neon-l)}
+.mnode.in{animation:mnodeIn .45s cubic-bezier(.3,1.3,.45,1)}
+@keyframes mnodeIn{from{opacity:0;transform:translateX(-14px) scale(.97)}}
+.mnode .mh{display:flex;align-items:center;gap:8px;min-width:0}
+.mnode .sn{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font:500 .78rem var(--mono);color:var(--accent);border:1px solid var(--neon-l);flex:none}
+.mnode .sn.base{border-color:var(--line);color:var(--muted)}
+.mnode .sn svg{width:13px;height:13px}
+.mnode .op{font:500 .88rem var(--mono);background:var(--surface2);border-radius:6px;padding:.2rem .55rem;overflow-wrap:anywhere;min-width:0}
+.mnode .cnt{margin-left:auto;font-size:.8rem;color:var(--muted);white-space:nowrap;padding-left:6px}
+.mnode .what{font-size:.85rem;line-height:1.45;color:var(--muted);margin:0}
+.mnode .what .tk{font:500 .8rem var(--mono);color:var(--ink);direction:ltr;unicode-bidi:isolate}
+.mnode .tw:empty{display:none}
+.mnode .t .empty-row td{text-align:left}
+.mnode .t tr.more td{color:var(--muted);font-family:var(--body);font-size:.8rem;text-align:left;padding:5px 9px}
+.mnode .t td{transition:background-color .25s}
+.mnode .t tr.lin td{background:var(--accent-soft)!important}
+.mnode .t tr.lin td:first-child{box-shadow:inset 3px 0 0 var(--neon-l)}
+.mnode .t tr.rin td{animation:mrowIn .38s ease-out backwards}
+@keyframes mrowIn{from{opacity:0;transform:translateY(-6px)}}
+.mnode .t tr.drop td{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bad);background:var(--bad-bg)}
+.mnode .t tr.gone td{padding-top:0;padding-bottom:0;font-size:0;line-height:0;border-top-color:transparent;transition:all .45s ease}
+.mnode .t .colx{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bad);background:color-mix(in srgb,var(--bad) 8%,transparent)}
+.mnode .t .colgone{padding-left:0;padding-right:0;font-size:0;max-width:0;border:0;transition:all .45s ease}
+.mexp{align-self:flex-start;font:500 .85rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--accent);border-radius:999px;padding:.25rem .8rem;min-height:32px;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;transition:border-color .3s,box-shadow .4s}
+.mexp:hover,.mexp:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+.mexp svg{width:12px;height:12px;transition:transform .25s}
+.mexp[aria-expanded="true"] svg{transform:rotate(180deg)}
+@media (max-width:720px){
+  .mapov{padding:0}.mapwin{height:100%;border-radius:0;border:0}
+  .mstage{flex-direction:column;align-items:stretch;justify-content:flex-start;padding:20px 14px;min-width:0}
+  .mbranch{flex-direction:column-reverse;align-items:stretch;gap:28px}
+  .mkids{align-items:stretch;padding-left:18px}
+  .mnode{max-width:100%;min-width:0}
+  .mapwin .mtools .hint{display:none}
+  .mapwin .mtools{padding:8px 14px}
+  .mapwin .mlegend{gap:10px;font-size:.8rem;padding:8px 14px}
+  .mexp svg{transform:rotate(-90deg)} .mexp[aria-expanded="true"] svg{transform:rotate(90deg)}
+}
+@media (prefers-reduced-motion:reduce){.mapov,.mapwin,.mnode,.mnode *,svg.mwires path{animation:none!important;transition:none!important}}
 /* lab: the same field, palette and feedback */
 #labMsg{border:0;background:none;padding:0;border-radius:0}
 #labMsg.lab-ok{color:var(--muted);font-size:.92rem}
@@ -1875,7 +1946,7 @@ r3_e:"A ∪ B מכיל את כל A. כשמחסרים מ-A קבוצה שמכיל�
 t_cancel:"ביטול", 
 present_off:"סיום הצגה", pt_laser:"מצביע", pt_pen:"עט", pt_erase:"מחק", pt_undo:"בטל", pt_clear:"נקה", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"כלים",
 
-g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", doc_title:"RowdyQL · SQL בגובה העיניים", me_lang:"שפה", exr_diff:"אותו מספר שורות, אבל לא אותן שורות.", ce_h:"רואים את זה על כמה שורות", ce_lede:"צמצמנו את הנתונים ל-{n} שורות, וגם עליהן התשובה שלכם יוצאת אחרת מהנכונה. ככה קל יותר לראות למה.", ce_lede1:"צמצמנו את הנתונים לשורה אחת, וגם עליה התשובה שלכם יוצאת אחרת מהנכונה. ככה קל יותר לראות למה.", ce_empty:"אין שורות", ce_data:"הנתונים בדוגמה", ce_yours:"מה יוצא לכם", ce_right:"מה אמור לצאת", ce_steps:"איך הביטוי שלכם רץ על הדוגמה, שלב אחרי שלב", ce_full:"התוצאה שלכם על כל הנתונים", ce_nsteps:"{n} שלבים", ce_nrows:"{n} שורות", ce_nrows1:"שורה אחת", ce_lg_ok:"נכונה", ce_lg_bad:"מיותרת", ce_lg_miss:"חסרה לכם", ex_expr:"הביטוי שלכם", ex_res:"התוצאה שלכם", st_sections_x:"סעיף נספר ברגע שגוללים אליו. זה מראה כמה מהחומר עברתם, לא כמה ממנו יושב - בשביל זה יש כפתור 'סימון' בראש כל שיעור.", st_ex_x:"אלה 12 התרגילים של שיעורים 2.6 ו-2.7. תרגיל נספר כשהתשובה שלכם מחזירה בדיוק את הטבלה הנכונה.", st_qi_x:"זו הבדיקה העצמית בסוף פרק המבוא, בשיעור 1.3. סופרים כמה מתוך 4 השאלות עניתם נכון.", st_qr_x:"זו הבדיקה העצמית בסוף פרק האלגברה, בשיעור 2.8. סופרים כמה מתוך 3 השאלות עניתם נכון.", st_days_x:"סופרים בכמה ימים נכנסתם לאתר. נכנסתם שלוש פעמים באותו יום? זה עדיין יום אחד.", mk_btn:"סימון", mk_btn_a:"סימון השיעור", mk_back:"אחזור לזה", mk_imp:"חשוב לי", mk_weak:"עוד לא יושב לי", mk_notdone:"עוד לא סיימתי", mk_h:"מה שסימנתם", mk_g_back:"אחזור אליהם", mk_g_imp:"חשובים לי", mk_g_weak:"עוד לא יושבים לי", mk_g_notdone:"עוד לא סיימתי", sx_notdone:"עוד לא סיימתי", d_ch_weak:"שיעורים שסומנו 'עוד לא יושב לי' (מספר סטודנטים)", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
+g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", doc_title:"RowdyQL · SQL בגובה העיניים", me_lang:"שפה", exr_diff:"אותו מספר שורות, אבל לא אותן שורות.", ce_h:"רואים את זה על כמה שורות", ce_lede:"צמצמנו את הנתונים ל-{n} שורות, וגם עליהן התשובה שלכם יוצאת אחרת מהנכונה. ככה קל יותר לראות למה.", ce_lede1:"צמצמנו את הנתונים לשורה אחת, וגם עליה התשובה שלכם יוצאת אחרת מהנכונה. ככה קל יותר לראות למה.", ce_empty:"אין שורות", ce_data:"הנתונים בדוגמה", ce_yours:"מה יוצא לכם", ce_right:"מה אמור לצאת", ce_steps:"איך הביטוי שלכם רץ על הדוגמה, שלב אחרי שלב", ce_full:"התוצאה שלכם על כל הנתונים", ce_nsteps:"{n} שלבים", ce_nrows:"{n} שורות", ce_nrows1:"שורה אחת", ce_lg_ok:"נכונה", ce_lg_bad:"מיותרת", ce_lg_miss:"חסרה לכם", map_btn:"הצגה כמפה", map_h:"הביטוי שלכם כמפה", map_play:"הפעלה", map_all:"פתיחת הכול", map_none:"סגירת הכול", map_close:"סגירת המפה", map_from:"מאיפה זה בא?", map_fold:"סגירה", map_hint:"עוברים עם העכבר על שורה ורואים מאיפה היא באה ולאן היא ממשיכה.", map_lg_lin:"מאיפה השורה באה ולאן היא ממשיכה", map_more:"ועוד {n} שורות", map_more1:"ועוד שורה אחת", map_w_PI:"משאירים רק את {c}. שורות שיוצאות זהות מתאחדות לאחת.", map_w_SIG:"משאירים רק את השורות שעומדות בתנאי.", map_w_RHO:"אותן שורות, עם הכינוי {c}.", map_w_RHO2:"אותן שורות, עם הכינוי {c}. העמודות נקראות עכשיו {a}.", map_w_NJ:"כל שורה מהראשונה מתחברת לשורות מהשנייה שיש להן אותו {c}.", map_w_NJ2:"כל שורה מהראשונה מתחברת לשורות מהשנייה שיש להן אותם ערכים בעמודות {c}.", map_w_TJ:"כל זוג שורות שעומד בתנאי הופך לשורה אחת.", map_w_TIMES:"כל שורה מהראשונה, עם כל שורה מהשנייה.", map_w_UNION:"השורות של שתיהן יחד, כל שורה פעם אחת.", map_w_INTER:"רק השורות שמופיעות בשתיהן.", map_w_MINUS:"השורות של הראשונה שלא מופיעות בשנייה.", map_w_DIV:"רק מי שמופיע בראשונה עם כל אחת מהשורות של השנייה.", ex_expr:"הביטוי שלכם", ex_res:"התוצאה שלכם", st_sections_x:"סעיף נספר ברגע שגוללים אליו. זה מראה כמה מהחומר עברתם, לא כמה ממנו יושב - בשביל זה יש כפתור 'סימון' בראש כל שיעור.", st_ex_x:"אלה 12 התרגילים של שיעורים 2.6 ו-2.7. תרגיל נספר כשהתשובה שלכם מחזירה בדיוק את הטבלה הנכונה.", st_qi_x:"זו הבדיקה העצמית בסוף פרק המבוא, בשיעור 1.3. סופרים כמה מתוך 4 השאלות עניתם נכון.", st_qr_x:"זו הבדיקה העצמית בסוף פרק האלגברה, בשיעור 2.8. סופרים כמה מתוך 3 השאלות עניתם נכון.", st_days_x:"סופרים בכמה ימים נכנסתם לאתר. נכנסתם שלוש פעמים באותו יום? זה עדיין יום אחד.", mk_btn:"סימון", mk_btn_a:"סימון השיעור", mk_back:"אחזור לזה", mk_imp:"חשוב לי", mk_weak:"עוד לא יושב לי", mk_notdone:"עוד לא סיימתי", mk_h:"מה שסימנתם", mk_g_back:"אחזור אליהם", mk_g_imp:"חשובים לי", mk_g_weak:"עוד לא יושבים לי", mk_g_notdone:"עוד לא סיימתי", sx_notdone:"עוד לא סיימתי", d_ch_weak:"שיעורים שסומנו 'עוד לא יושב לי' (מספר סטודנטים)", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
 g_consent:"קראתי ואני מסכים/ה ל<a href=\"#\" id=\"termsLink\">תנאי השימוש</a>.",
 g_go:"הרשמה", g_go_in:"כניסה", g_signout:"יציאה", g_demo:"מצב הדגמה: הפרטים נשמרים בדפדפן הזה בלבד.",
 g_foot:"ההרשמה שלכם היא בעצם <code>INSERT</code> אחד. הכניסה היא <code>SELECT</code>. הסיסמה נשמרת כגיבוב, אף פעם לא כטקסט.",
@@ -2117,7 +2188,7 @@ r3_e:"A ∪ B contains all of A. Subtracting a superset of A from A leaves nothi
 t_cancel:"Cancel", 
 present_off:"Exit presenter", pt_laser:"Pointer", pt_pen:"Pen", pt_erase:"Erase", pt_undo:"Undo", pt_clear:"Clear", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"Tools",
 
-g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", doc_title:"RowdyQL · SQL that finally clicks", me_lang:"Language", exr_diff:"Same number of rows, but not the same rows.", ce_h:"Here's the difference on a few rows", ce_lede:"We cut the data down to {n} rows, and your answer still doesn't match the right one. That makes it easier to see why.", ce_lede1:"We cut the data down to a single row, and your answer still doesn't match the right one. That makes it easier to see why.", ce_empty:"No rows", ce_data:"The data in this example", ce_yours:"What you get", ce_right:"What you should get", ce_steps:"How your expression runs on this example, step by step", ce_full:"Your result on all the data", ce_nsteps:"{n} steps", ce_nrows:"{n} rows", ce_nrows1:"1 row", ce_lg_ok:"Correct", ce_lg_bad:"Extra", ce_lg_miss:"Missing", ex_expr:"Your expression", ex_res:"Your result", st_sections_x:"A section counts once you scroll to it. It shows how much you've covered, not how much has stuck - that's what the 'Mark' button at the top of each lesson is for.", st_ex_x:"These are the 12 exercises in lessons 2.6 and 2.7. An exercise counts once your answer returns exactly the right table.", st_qi_x:"This is the self-check at the end of the intro chapter, in lesson 1.3. It shows how many of its 4 questions you got right.", st_qr_x:"This is the self-check at the end of the algebra chapter, in lesson 2.8. It shows how many of its 3 questions you got right.", st_days_x:"It counts the days you've visited the site. Three visits on the same day? Still one day.", mk_btn:"Mark", mk_btn_a:"Mark this lesson", mk_back:"Come back to this", mk_imp:"Important to me", mk_weak:"Not sticking yet", mk_notdone:"Not done yet", mk_h:"What you marked", mk_g_back:"Come back to these", mk_g_imp:"Important to me", mk_g_weak:"Not sticking yet", mk_g_notdone:"Not done yet", sx_notdone:"not done yet", d_ch_weak:"Lessons marked 'Not sticking yet' (students per lesson)", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
+g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", doc_title:"RowdyQL · SQL that finally clicks", me_lang:"Language", exr_diff:"Same number of rows, but not the same rows.", ce_h:"Here's the difference on a few rows", ce_lede:"We cut the data down to {n} rows, and your answer still doesn't match the right one. That makes it easier to see why.", ce_lede1:"We cut the data down to a single row, and your answer still doesn't match the right one. That makes it easier to see why.", ce_empty:"No rows", ce_data:"The data in this example", ce_yours:"What you get", ce_right:"What you should get", ce_steps:"How your expression runs on this example, step by step", ce_full:"Your result on all the data", ce_nsteps:"{n} steps", ce_nrows:"{n} rows", ce_nrows1:"1 row", ce_lg_ok:"Correct", ce_lg_bad:"Extra", ce_lg_miss:"Missing", map_btn:"Open the map", map_h:"Your expression as a map", map_play:"Play", map_all:"Open all", map_none:"Close all", map_close:"Close map", map_from:"Where's this from?", map_fold:"Close", map_hint:"Point at a row to see where it came from and where it goes.", map_lg_lin:"Where a row came from and where it goes", map_more:"and {n} more rows", map_more1:"and 1 more row", map_w_PI:"Keeps only {c}. Rows that come out the same merge into one.", map_w_SIG:"Keeps only the rows that meet the condition.", map_w_RHO:"The same rows, under the name {c}.", map_w_RHO2:"The same rows, under the name {c}. The columns are now called {a}.", map_w_NJ:"Each row of the first table joins the rows of the second that have the same {c}.", map_w_NJ2:"Each row of the first table joins the rows of the second that have the same values in {c}.", map_w_TJ:"Every pair of rows that meets the condition becomes one row.", map_w_TIMES:"Every row of the first table paired with every row of the second.", map_w_UNION:"The rows of both, each row once.", map_w_INTER:"Only the rows that appear in both.", map_w_MINUS:"The rows of the first table that don't appear in the second.", map_w_DIV:"Only those in the first table that appear with every row of the second.", ex_expr:"Your expression", ex_res:"Your result", st_sections_x:"A section counts once you scroll to it. It shows how much you've covered, not how much has stuck - that's what the 'Mark' button at the top of each lesson is for.", st_ex_x:"These are the 12 exercises in lessons 2.6 and 2.7. An exercise counts once your answer returns exactly the right table.", st_qi_x:"This is the self-check at the end of the intro chapter, in lesson 1.3. It shows how many of its 4 questions you got right.", st_qr_x:"This is the self-check at the end of the algebra chapter, in lesson 2.8. It shows how many of its 3 questions you got right.", st_days_x:"It counts the days you've visited the site. Three visits on the same day? Still one day.", mk_btn:"Mark", mk_btn_a:"Mark this lesson", mk_back:"Come back to this", mk_imp:"Important to me", mk_weak:"Not sticking yet", mk_notdone:"Not done yet", mk_h:"What you marked", mk_g_back:"Come back to these", mk_g_imp:"Important to me", mk_g_weak:"Not sticking yet", mk_g_notdone:"Not done yet", sx_notdone:"not done yet", d_ch_weak:"Lessons marked 'Not sticking yet' (students per lesson)", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
 g_consent:"I have read and agree to the <a href=\"#\" id=\"termsLink\">terms of use</a>.",
 g_go:"Sign up", g_go_in:"Sign in", g_signout:"Sign out", g_demo:"Demo mode: details are kept in this browser only.",
 g_foot:"Your sign-up is really one <code>INSERT</code>. Signing in is a <code>SELECT</code>. The password is stored as a hash, never as text.",
@@ -3723,21 +3794,25 @@ const RIDE = {
 /* ---- relation helpers: {cols:[{name, rel}], rows:[[...]]} with set semantics ---- */
 const RAE = (() => {
   const base = (name, db) => { const t = RIDE[name], src = (db && db[name]) || t; return { cols: t.cols.map(c => ({name:c, rel:name})), rows: src.rows.map(r => r.slice()) }; };
-  const dedupe = R => { const seen = new Set(); R.rows = R.rows.filter(r => { const k = JSON.stringify(r); if (seen.has(k)) return false; seen.add(k); return true; }); return R; };
+  /* every result row keeps where it came from: src[i] lists [input, row] pairs (input 0 is the only or the left one, 1 the right one) */
+  const dedupe = R => { const at = new Map(), rows = [], src = R.src ? [] : null; R.rows.forEach((r, i) => { const k = JSON.stringify(r), j = at.get(k); if (j !== undefined) { if (src) src[j] = src[j].concat(R.src[i]); return; } at.set(k, rows.length); rows.push(r); if (src) src.push(R.src[i]); }); R.rows = rows; if (src) R.src = src; return R; };
+  const own = R => R.rows.map((r, i) => [[0, i]]);
   const label = c => (c.rel ? c.rel + '.' : '') + c.name;
   const findCol = (R, ref) => { const dot = ref.indexOf('.'); let idx = []; if (dot > 0) { const rel = ref.slice(0, dot), nm = ref.slice(dot + 1); idx = R.cols.map((c, i) => (c.name === nm && c.rel === rel) ? i : -1).filter(i => i >= 0); } else idx = R.cols.map((c, i) => c.name === ref ? i : -1).filter(i => i >= 0); if (!idx.length) throw new Error(lang === 'he' ? 'עמודה לא קיימת: ' + ref : 'unknown column: ' + ref); if (idx.length > 1) throw new Error(lang === 'he' ? 'עמודה דו-משמעית, ציינו טבלה: ' + ref : 'ambiguous column, qualify it: ' + ref); return idx[0]; };
   const compatible = (A, B) => { if (A.cols.length !== B.cols.length) throw new Error(lang === 'he' ? 'לא תואם לאיחוד: ' + A.cols.length + ' עמודות מול ' + B.cols.length : 'not union-compatible: ' + A.cols.length + ' columns vs ' + B.cols.length); if (A.rows.length && B.rows.length) for (let i = 0; i < A.cols.length; i++) { if (typeof A.rows[0][i] !== typeof B.rows[0][i] && A.rows[0][i] != null && B.rows[0][i] != null) throw new Error(lang === 'he' ? 'לא תואם לאיחוד: עמודה ' + (i+1) + ' היא ' + (typeof A.rows[0][i] === 'number' ? 'מספר' : 'טקסט') + ' מול ' + (typeof B.rows[0][i] === 'number' ? 'מספר' : 'טקסט') : 'not union-compatible: column ' + (i+1) + ' is ' + typeof A.rows[0][i] + ' vs ' + typeof B.rows[0][i]); } };
   const ops = {
-    project(R, attrs){ const idx = attrs.map(a => findCol(R, a)); return dedupe({ cols: idx.map(i => R.cols[i]), rows: R.rows.map(r => idx.map(i => r[i])) }); },
-    select(R, pred){ return { cols: R.cols, rows: R.rows.filter(r => pred(R, r)) }; },
-    rename(R, name, attrs){ const cols = R.cols.map((c, i) => ({ name: attrs && attrs[i] ? attrs[i] : c.name, rel: name })); return { cols, rows: R.rows }; },
-    product(A, B){ const cols = A.cols.concat(B.cols); const rows = []; A.rows.forEach(a => B.rows.forEach(b => rows.push(a.concat(b)))); return { cols, rows }; },
-    natjoin(A, B){ const common = A.cols.map((c, i) => ({ i, j: B.cols.findIndex(d => d.name === c.name) })).filter(p => p.j >= 0); if (!common.length) return ops.product(A, B); const keep = B.cols.map((c, j) => common.some(p => p.j === j) ? -1 : j).filter(j => j >= 0); const cols = A.cols.concat(keep.map(j => B.cols[j])); const rows = []; A.rows.forEach(a => B.rows.forEach(b => { if (common.every(p => a[p.i] === b[p.j])) rows.push(a.concat(keep.map(j => b[j]))); })); return dedupe({ cols, rows }); },
-    thetajoin(A, B, pred){ const P = ops.product(A, B); return { cols: P.cols, rows: P.rows.filter(r => pred(P, r)) }; },
-    union(A, B){ compatible(A, B); return dedupe({ cols: A.cols, rows: A.rows.concat(B.rows) }); },
-    intersect(A, B){ compatible(A, B); const set = new Set(B.rows.map(r => JSON.stringify(r))); return { cols: A.cols, rows: A.rows.filter(r => set.has(JSON.stringify(r))) }; },
-    minus(A, B){ compatible(A, B); const set = new Set(B.rows.map(r => JSON.stringify(r))); return { cols: A.cols, rows: A.rows.filter(r => !set.has(JSON.stringify(r))) }; },
-    divide(A, B){ const bIdx = B.cols.map(c => { const i = A.cols.findIndex(d => d.name === c.name); if (i < 0) throw new Error(lang === 'he' ? 'חילוק: העמודה ' + c.name + ' לא קיימת במחולק' : 'division: column ' + c.name + ' missing in the dividend'); return i; }); const keep = A.cols.map((c, i) => bIdx.includes(i) ? -1 : i).filter(i => i >= 0); const need = B.rows.map(r => JSON.stringify(r)); const groups = {}; A.rows.forEach(r => { const k = JSON.stringify(keep.map(i => r[i])); (groups[k] = groups[k] || new Set()).add(JSON.stringify(bIdx.map(i => r[i]))); }); const rows = Object.keys(groups).filter(k => need.every(n => groups[k].has(n))).map(k => JSON.parse(k)); return { cols: keep.map(i => A.cols[i]), rows }; },
+    project(R, attrs){ const idx = attrs.map(a => findCol(R, a)); return dedupe({ cols: idx.map(i => R.cols[i]), rows: R.rows.map(r => idx.map(i => r[i])), src: own(R), pick: idx }); },
+    select(R, pred){ const rows = [], src = []; R.rows.forEach((r, i) => { if (pred(R, r)) { rows.push(r); src.push([[0, i]]); } }); return { cols: R.cols, rows, src }; },
+    rename(R, name, attrs){ const cols = R.cols.map((c, i) => ({ name: attrs && attrs[i] ? attrs[i] : c.name, rel: name })); return { cols, rows: R.rows, src: own(R) }; },
+    product(A, B){ const cols = A.cols.concat(B.cols), rows = [], src = []; A.rows.forEach((a, i) => B.rows.forEach((b, j) => { rows.push(a.concat(b)); src.push([[0, i], [1, j]]); })); return { cols, rows, src }; },
+    natjoin(A, B){ const common = A.cols.map((c, i) => ({ i, j: B.cols.findIndex(d => d.name === c.name) })).filter(p => p.j >= 0); if (!common.length) return ops.product(A, B); const keep = B.cols.map((c, j) => common.some(p => p.j === j) ? -1 : j).filter(j => j >= 0); const cols = A.cols.concat(keep.map(j => B.cols[j])), rows = [], src = []; A.rows.forEach((a, i) => B.rows.forEach((b, j) => { if (common.every(p => a[p.i] === b[p.j])) { rows.push(a.concat(keep.map(x => b[x]))); src.push([[0, i], [1, j]]); } })); return dedupe({ cols, rows, src }); },
+    thetajoin(A, B, pred){ const P = ops.product(A, B), rows = [], src = []; P.rows.forEach((r, i) => { if (pred(P, r)) { rows.push(r); src.push(P.src[i]); } }); return { cols: P.cols, rows, src }; },
+    union(A, B){ compatible(A, B); return dedupe({ cols: A.cols, rows: A.rows.concat(B.rows), src: own(A).concat(B.rows.map((r, j) => [[1, j]])) }); },
+    intersect(A, B){ compatible(A, B); const at = new Map(); B.rows.forEach((r, j) => { const k = JSON.stringify(r); at.set(k, (at.get(k) || []).concat([[1, j]])); }); const rows = [], src = []; A.rows.forEach((r, i) => { const m = at.get(JSON.stringify(r)); if (m) { rows.push(r); src.push([[0, i]].concat(m)); } }); return { cols: A.cols, rows, src }; },
+    minus(A, B){ compatible(A, B); const set = new Set(B.rows.map(r => JSON.stringify(r))), rows = [], src = []; A.rows.forEach((r, i) => { if (!set.has(JSON.stringify(r))) { rows.push(r); src.push([[0, i]]); } }); return { cols: A.cols, rows, src }; },
+    divide(A, B){ const bIdx = B.cols.map(c => { const i = A.cols.findIndex(d => d.name === c.name); if (i < 0) throw new Error(lang === 'he' ? 'חילוק: העמודה ' + c.name + ' לא קיימת במחולק' : 'division: column ' + c.name + ' missing in the dividend'); return i; }); const keep = A.cols.map((c, i) => bIdx.includes(i) ? -1 : i).filter(i => i >= 0); const need = B.rows.map(r => JSON.stringify(r)), needS = new Set(need), groups = {}, order = [];
+      A.rows.forEach((r, i) => { const k = JSON.stringify(keep.map(x => r[x])), b = JSON.stringify(bIdx.map(x => r[x])); if (!groups[k]) { groups[k] = { has: new Set(), src: [] }; order.push(k); } groups[k].has.add(b); if (needS.has(b) || !need.length) groups[k].src.push([0, i]); });
+      const ok = order.filter(k => need.every(n => groups[k].has.has(n))); return { cols: keep.map(i => A.cols[i]), rows: ok.map(k => JSON.parse(k)), src: ok.map(k => groups[k].src.concat(B.rows.map((r, j) => [1, j]))) }; },
   };
   /* ---- tokenizer + parser ---- */
   const SYM = { 'π':'PI','σ':'SIG','ρ':'RHO','⋈':'JOIN','×':'TIMES','∪':'UNION','∩':'INTER','−':'MINUS','÷':'DIV','→':'TO','←':'FROM','∧':'AND','∨':'OR','¬':'NOT','≠':'NE','≤':'LE','≥':'GE' };
@@ -3767,13 +3842,81 @@ const RAE = (() => {
   function evalCond(c, R, row){ const val = o => o.a !== undefined ? row[findCol(R, o.a)] : o.v; switch (c.c) { case 'AND': return evalCond(c.l, R, row) && evalCond(c.r, R, row); case 'OR': return evalCond(c.l, R, row) || evalCond(c.r, R, row); case 'NOT': return !evalCond(c.e, R, row); default: { const a = val(c.l), b = val(c.r); if (a == null || b == null) return false; switch (c.c) { case 'EQ': return a === b; case 'NE': return a !== b; case 'LT': return a < b; case 'GT': return a > b; case 'LE': return a <= b; case 'GE': return a >= b; } } } }
   /* db: an optional subset of the RideOn rows ({Table: {rows}}); trace: an optional list that collects every step with its result */
   function evalNode(n, env, db, trace){ const ev = c => evalNode(c, env, db, trace); let R;
-    switch (n.op) { case 'REL': if (env[n.name]) return env[n.name]; if (RIDE[n.name]) return base(n.name, db); throw new Error((lang === 'he' ? 'טבלה לא קיימת: ' : 'unknown table: ') + n.name);
+    switch (n.op) { case 'REL': R = env[n.name] || (RIDE[n.name] ? base(n.name, db) : null); if (!R) throw new Error((lang === 'he' ? 'טבלה לא קיימת: ' : 'unknown table: ') + n.name); n._R = R; return R;
       case 'PI': R = ops.project(ev(n.e), n.attrs); break; case 'SIG': { const A = ev(n.e); R = ops.select(A, (Rr, row) => evalCond(n.cond, Rr, row)); break; } case 'RHO': R = ops.rename(ev(n.e), n.name, n.attrs); break;
       case 'TIMES': R = ops.product(ev(n.left), ev(n.right)); break; case 'JOIN': { const A = ev(n.left), B = ev(n.right); R = n.cond ? ops.thetajoin(A, B, (P, row) => evalCond(n.cond, P, row)) : ops.natjoin(A, B); break; }
       case 'DIV': R = ops.divide(ev(n.left), ev(n.right)); break; case 'UNION': R = ops.union(ev(n.left), ev(n.right)); break; case 'INTER': R = ops.intersect(ev(n.left), ev(n.right)); break; case 'MINUS': R = ops.minus(ev(n.left), ev(n.right)); break;
       default: throw new Error('bad node'); }
-    if (trace) { trace.push({ n, R }); n._step = trace.length; } return R; }
-  function run(src, db, trace){ const stmts = parse(src); const env = {}; let last = null; stmts.forEach(st => { const R = dedupe(evalNode(st.expr, env, db, trace)); if (st.assign) { env[st.assign] = R; if (trace && trace.length && trace[trace.length - 1].n === st.expr) trace[trace.length - 1].assign = st.assign; } last = R; }); return last; }
+    n._R = R; if (trace) { trace.push({ n, R }); n._step = trace.length; } return R; }
+  /* a name made with ← remembers its expression, so the map can open the name back into the steps behind it */
+  function exec(src, db, trace){ const stmts = parse(src), env = {}; let R = null, st = null;
+    stmts.forEach(s => { R = dedupe(evalNode(s.expr, env, db, trace)); st = s; if (s.assign) { env[s.assign] = { cols: R.cols, rows: R.rows, src: R.src, _expr: s.expr, _as: s.assign }; if (trace && trace.length && trace[trace.length - 1].n === s.expr) trace[trace.length - 1].assign = s.assign; } });
+    return { R, st }; }
+  function run(src, db, trace){ return exec(src, db, trace).R; }
+  /* the map: the last statement as a tree, from the result back to the tables. Built from the same run that checks the answer. */
+  const MAP_MAX = 120;
+  function mapOf(src, db){ const trace = [], x = exec(src, db, trace); let count = 0;
+    const node = (n, id, as, ast) => { if (++count > MAP_MAX) throw new Error('map too big'); ast = ast || n;
+      if (n.op === 'REL') { if (n._R._expr) { count--; return node(n._R._expr, id, as || n._R._as, ast); } return { id, op: 'REL', name: n.name, as, ast, R: n._R, kids: [] }; }
+      const ch = n.e ? [n.e] : [n.left, n.right]; return { id, op: n.op, n, as, ast, step: n._step, R: n._R, kids: ch.map((c, i) => node(c, id + '-' + i)) }; };
+    const T = node(x.st.expr, 'm', x.st.assign); T.trace = trace; return T; }
+  /* checks a map on its own data before it is shown. Each step is worked out again from its inputs, with code of its own;
+     any problem and the page keeps the step list instead of the map. Returns the problems found. */
+  function checkMap(T, src, db){ const errs = [], K = JSON.stringify, no = (m, s) => errs.push((m ? m.id + ': ' : '') + s);
+    let ref; try { ref = run(src, db); } catch (e) { return ['run: ' + e.message]; }
+    if (!T || !T.R) return ['no map'];
+    if (T.R.cols.length !== ref.cols.length || key(T.R) !== key(ref)) no(null, 'the map\'s result is not the result');
+    const colIx = (cols, ref) => { const d = ref.indexOf('.'), rel = d > 0 ? ref.slice(0, d) : null, nm = d > 0 ? ref.slice(d + 1) : ref, hit = []; cols.forEach((c, i) => { if (c.name === nm && (rel === null || c.rel === rel)) hit.push(i); }); return hit.length === 1 ? hit[0] : -1; };
+    const holds = (c, cols, row) => { if (c.c === 'AND') return holds(c.l, cols, row) && holds(c.r, cols, row); if (c.c === 'OR') return holds(c.l, cols, row) || holds(c.r, cols, row); if (c.c === 'NOT') return !holds(c.e, cols, row);
+      const v = o => o.a !== undefined ? row[colIx(cols, o.a)] : o.v, a = v(c.l), b = v(c.r); if (a === undefined || b === undefined || a === null || b === null) return false;
+      return { EQ: a === b, NE: a !== b, LT: a < b, GT: a > b, LE: a <= b, GE: a >= b }[c.c]; };
+    const setOf = rows => new Set(rows.map(K)), sameSet = (a, b) => a.size === b.size && [...a].every(x => b.has(x)), seq = rows => rows.map(K).join('|');
+    const ids = new Set(); let ops = 0, rels = 0;
+    const visit = (m, depth) => { if (depth > 60) { no(m, 'too deep'); return; } if (ids.has(m.id)) no(m, 'id twice'); ids.add(m.id);
+      const R = m.R; if (!R || !Array.isArray(R.rows) || !Array.isArray(R.cols)) { no(m, 'no table'); return; }
+      if (R.rows.some(r => !Array.isArray(r) || r.length !== R.cols.length)) no(m, 'a row does not fit the columns');
+      if (setOf(R.rows).size !== R.rows.length) no(m, 'the same row twice');
+      if (m.op === 'REL') { rels++; if (m.kids.length) no(m, 'a table with inputs'); if (!RIDE[m.name]) no(m, 'not a table'); else if (seq(R.rows) !== seq(base(m.name, db).rows)) no(m, 'not the table\'s rows'); return; }
+      ops++; const ar = ['PI','SIG','RHO'].includes(m.op) ? 1 : 2; if (m.kids.length !== ar) { no(m, 'wrong number of inputs'); return; }
+      if (m.kids.some((k, i) => k.ast !== (m.n.e ? [m.n.e] : [m.n.left, m.n.right])[i])) no(m, 'inputs out of order');
+      if (!(m.step >= 1 && T.trace[m.step - 1] && T.trace[m.step - 1].n === m.n)) no(m, 'not the same step as the step list');
+      m.kids.forEach(c => visit(c, depth + 1)); const A = m.kids[0].R, B = ar === 2 ? m.kids[1].R : null; if (!A || (ar === 2 && !B)) return;
+      const S = R.src; if (!Array.isArray(S) || S.length !== R.rows.length || S.some(e => !Array.isArray(e) || !e.length || e.some(p => !Array.isArray(p) || !(p[0] === 0 || (p[0] === 1 && ar === 2)) || !(p[1] >= 0 && p[1] < (p[0] ? B : A).rows.length && Number.isInteger(p[1]))))) { no(m, 'row sources broken'); return; }
+      const lab = cols => cols.map(c => c.rel + '.' + c.name).join('|'), rowAt = p => (p[0] ? B : A).rows[p[1]], used = [new Set(), new Set()]; S.forEach(e => e.forEach(p => used[p[0]].add(p[1])));
+      const pairOk = (out, e, f) => e.length === 2 && e[0][0] === 0 && e[1][0] === 1 && K(f(A.rows[e[0][1]], B.rows[e[1][1]])) === K(out);
+      switch (m.op) {
+        case 'PI': { const ix = m.n.attrs.map(a => colIx(A.cols, a)); if (ix.some(i => i < 0)) { no(m, 'π column missing'); break; } const pr = r => ix.map(i => r[i]);
+          if (lab(R.cols) !== lab(ix.map(i => A.cols[i]))) no(m, 'π columns');
+          if (!sameSet(setOf(R.rows), setOf(A.rows.map(pr)))) no(m, 'π rows');
+          if (S.some((e, i) => e.some(p => K(pr(A.rows[p[1]])) !== K(R.rows[i]))) || used[0].size !== A.rows.length || S.reduce((n, e) => n + e.length, 0) !== A.rows.length) no(m, 'π sources'); break; }
+        case 'SIG': { const want = A.rows.filter(r => holds(m.n.cond, A.cols, r)); if (seq(R.rows) !== seq(want)) no(m, 'σ rows');
+          if (S.some((e, i) => e.length !== 1 || A.rows[e[0][1]] !== R.rows[i])) no(m, 'σ sources'); break; }
+        case 'RHO': { if (seq(R.rows) !== seq(A.rows) || R.cols.length !== A.cols.length || R.cols.some((c, i) => c.rel !== m.n.name || c.name !== (m.n.attrs && m.n.attrs[i] ? m.n.attrs[i] : A.cols[i].name))) no(m, 'ρ');
+          if (S.some((e, i) => e.length !== 1 || e[0][1] !== i)) no(m, 'ρ sources'); break; }
+        case 'TIMES': { if (R.rows.length !== A.rows.length * B.rows.length || lab(R.cols) !== lab(A.cols.concat(B.cols))) no(m, '× size');
+          if (S.some((e, i) => !pairOk(R.rows[i], e, (a, b) => a.concat(b))) || setOf(S.map(e => [e[0][1], e[1][1]])).size !== S.length) no(m, '× sources'); break; }
+        case 'JOIN': { if (m.n.cond) { const P = []; A.rows.forEach(a => B.rows.forEach(b => P.push(a.concat(b)))); const cols = A.cols.concat(B.cols), want = P.filter(r => holds(m.n.cond, cols, r));
+            if (seq(R.rows) !== seq(want) || lab(R.cols) !== lab(cols)) no(m, '⋈[] rows'); if (S.some((e, i) => !pairOk(R.rows[i], e, (a, b) => a.concat(b)))) no(m, '⋈[] sources'); break; }
+          const com = A.cols.map((c, i) => [i, B.cols.findIndex(d => d.name === c.name)]).filter(p => p[1] >= 0), rest = B.cols.map((c, j) => j).filter(j => !com.some(p => p[1] === j));
+          const glue = (a, b) => com.length ? a.concat(rest.map(j => b[j])) : a.concat(b), want = []; A.rows.forEach(a => B.rows.forEach(b => { if (com.every(p => a[p[0]] === b[p[1]])) want.push(glue(a, b)); }));
+          if (!sameSet(setOf(R.rows), setOf(want)) || lab(R.cols) !== lab(A.cols.concat((com.length ? rest : B.cols.map((c, j) => j)).map(j => B.cols[j])))) no(m, '⋈ rows');
+          if (S.some((e, i) => e.length % 2 || e.some((p, k) => p[0] !== k % 2) || e.some((p, k) => k % 2 === 0 && (!com.every(q => A.rows[p[1]][q[0]] === B.rows[e[k + 1][1]][q[1]]) || K(glue(A.rows[p[1]], B.rows[e[k + 1][1]])) !== K(R.rows[i]))))) no(m, '⋈ sources'); break; }
+        case 'UNION': case 'INTER': case 'MINUS': { const a = setOf(A.rows), b = setOf(B.rows), want = new Set(m.op === 'UNION' ? [...a, ...b] : [...a].filter(x => m.op === 'INTER' ? b.has(x) : !b.has(x)));
+          if (!sameSet(setOf(R.rows), want) || lab(R.cols) !== lab(A.cols)) no(m, m.op + ' rows');
+          if (S.some((e, i) => e.some(p => K(rowAt(p)) !== K(R.rows[i])))) no(m, m.op + ' sources');
+          if (m.op === 'UNION' && (used[0].size !== A.rows.length || used[1].size !== B.rows.length)) no(m, '∪ lost a row');
+          if (m.op === 'INTER' && S.some(e => !e.some(p => p[0] === 0) || !e.some(p => p[0] === 1))) no(m, '∩ sources');
+          if (m.op === 'MINUS' && S.some(e => e.length !== 1 || e[0][0] !== 0)) no(m, '− sources'); break; }
+        case 'DIV': { const bi = B.cols.map(c => A.cols.findIndex(d => d.name === c.name)), ki = A.cols.map((c, i) => i).filter(i => !bi.includes(i)), kp = r => K(ki.map(i => r[i])), bp = r => K(bi.map(i => r[i]));
+          const pairs = setOf(A.rows.map(r => [kp(r), bp(r)])), want = new Set([...new Set(A.rows.map(r => kp(r)))].filter(x => B.rows.every(b => pairs.has(K([x, K(b)])))));
+          if (!sameSet(new Set(R.rows.map(K)), want) || lab(R.cols) !== lab(ki.map(i => A.cols[i]))) no(m, '÷ rows');
+          if (S.some((e, i) => e.some(p => p[0] === 0 && kp(A.rows[p[1]]) !== K(R.rows[i])) || e.filter(p => p[0] === 1).length !== B.rows.length)) no(m, '÷ sources'); break; }
+        default: no(m, 'unknown step'); } };
+    visit(T, 0);
+    /* the same count of steps and tables as the expression has, with every name opened */
+    try { const env = {}; let want = null; const cnt = n => n.op === 'REL' ? (env[n.name] || { ops: 0, rels: 1 }) : (n.e ? [n.e] : [n.left, n.right]).map(cnt).reduce((s, x) => ({ ops: s.ops + x.ops, rels: s.rels + x.rels }), { ops: 1, rels: 0 });
+      parse(src).forEach(s => { want = cnt(s.expr); if (s.assign) env[s.assign] = want; }); if (want.ops !== ops || want.rels !== rels) no(null, 'steps or tables missing'); } catch (e) { no(null, 'count: ' + e.message); }
+    return errs; }
   const toTable = R => ({ cols: R.cols.map(label), rows: R.rows });
   const key = R => JSON.stringify(R.rows.map(r => JSON.stringify(r)).sort());
   /* the same columns in another order still count: line them up by name when the names match one to one */
@@ -3796,12 +3939,12 @@ const RAE = (() => {
   }
   /* one step of the trace in RA notation; earlier steps are referred to by their circled number */
   const CMP = { EQ:'=', NE:'≠', LT:'<', GT:'>', LE:'≤', GE:'≥' };
-  const condStr = c => c.c === 'AND' ? condStr(c.l) + ' ∧ ' + condStr(c.r) : c.c === 'OR' ? condStr(c.l) + ' ∨ ' + condStr(c.r) : c.c === 'NOT' ? '¬(' + condStr(c.e) + ')' : [c.l, c.r].map(o => o.a !== undefined ? o.a : typeof o.v === 'string' ? "'" + o.v + "'" : o.v).join(' ' + CMP[c.c] + ' ');
+  const condStr = (c, inAnd) => c.c === 'AND' ? condStr(c.l, true) + ' ∧ ' + condStr(c.r, true) : c.c === 'OR' ? (inAnd ? '(' : '') + condStr(c.l) + ' ∨ ' + condStr(c.r) + (inAnd ? ')' : '') : c.c === 'NOT' ? '¬(' + condStr(c.e) + ')' : [c.l, c.r].map(o => o.a !== undefined ? o.a : typeof o.v === 'string' ? "'" + o.v + "'" : o.v).join(' ' + CMP[c.c] + ' ');
   const circ = i => i <= 20 ? String.fromCharCode(0x245F + i) : '(' + i + ')';
   function stepLabel(n){ const ref = c => c.op === 'REL' ? c.name : circ(c._step); const bin = { TIMES:'×', UNION:'∪', INTER:'∩', MINUS:'−', DIV:'÷' };
     if (n.op === 'PI') return 'π[' + n.attrs.join(', ') + '](' + ref(n.e) + ')'; if (n.op === 'SIG') return 'σ[' + condStr(n.cond) + '](' + ref(n.e) + ')'; if (n.op === 'RHO') return 'ρ[' + n.name + (n.attrs ? '(' + n.attrs.join(', ') + ')' : '') + '](' + ref(n.e) + ')';
     if (n.op === 'JOIN') return ref(n.left) + ' ⋈' + (n.cond ? '[' + condStr(n.cond) + ']' : '') + ' ' + ref(n.right); return ref(n.left) + ' ' + bin[n.op] + ' ' + ref(n.right); }
-  return { run, toTable, key, base, align, same, counterexample, stepLabel, circ };
+  return { run, toTable, key, base, align, same, counterexample, stepLabel, circ, mapOf, checkMap, condStr };
 })();
 
 /* ---- visualizers: set operations, product, rename/self-join ---- */
@@ -3945,12 +4088,130 @@ function ceBlock(ce, q, refQ, full){
   rr.appendChild(dtab(tr.cols, tr.rows, { capHe: t('ce_right'), res: true, state: r => kA.has(JSON.stringify(r)) ? 'good' : 'miss' }));
   box.appendChild(rr);
   box.appendChild(el('div', 'legend2', '<span>' + mkCell('good') + t('ce_lg_ok') + '</span><span>' + mkCell('bad') + t('ce_lg_bad') + '</span><span>' + mkCell('note') + t('ce_lg_miss') + '</span>'));
+  /* the map opens only after it passed its own check; otherwise the step list below is the way in */
+  let map = null; try { map = RAE.mapOf(q, ce.db); const errs = map.op === 'REL' ? ['one table'] : RAE.checkMap(map, q, ce.db); if (errs.length) { if (map.op !== 'REL') console.warn('map check', errs); map = null; } } catch (e) { map = null; }
+  if (map) { const a2 = RAE.align(map.R, right), mb = el('button', 'btn small mapbtn', MAP_ICON + '<span>' + t('map_btn') + '</span>'); mb.type = 'button';
+    mb.addEventListener('click', () => openMap(map, q, { state: i => kB.has(JSON.stringify(a2.rows[i])) ? 'good' : 'bad' })); const mr = el('div', 'maprow'); mr.appendChild(mb); box.appendChild(mr); }
   const chev = '<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
   if (steps.length > 1) { const d = el('details', 'disc'); d.innerHTML = '<summary>' + chev + '<span>' + t('ce_steps') + '</span><span class="cnt">' + t('ce_nsteps', { n: steps.length }) + '</span></summary>'; const db = el('div', 'db');
     steps.forEach((st, i) => { const tt = RAE.toTable(st.R), w = el('div', 'step'); w.appendChild(el('div', 'sh', '<span class="sn">' + (i + 1) + '</span><span class="chip">' + esc((st.assign ? st.assign + ' ← ' : '') + RAE.stepLabel(st.n)) + '</span>')); w.appendChild(dtab(tt.cols, tt.rows, {})); db.appendChild(w); }); d.appendChild(db); box.appendChild(d); }
   const f = el('details', 'disc'); f.innerHTML = '<summary>' + chev + '<span>' + t('ce_full') + '</span><span class="cnt">' + t(full.rows.length === 1 ? 'ce_nrows1' : 'ce_nrows', { n: full.rows.length }) + '</span></summary>'; const fb = el('div', 'db'); fb.appendChild(dtab(full.cols, full.rows, {})); f.appendChild(fb); box.appendChild(f);
   return box;
 }
+/* ---- the expression as a map: from the result back to the tables, one step at a time. Built by RAE.mapOf from the same run
+   that checks the answer; every row knows the rows it came from (src), so pointing at a row lights its whole path. ---- */
+const MAP_ROWS = 10;
+const MAP_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="8" r="2"/><circle cx="3" cy="3.5" r="2"/><circle cx="3" cy="12.5" r="2"/><path d="M5 3.5h2.5V8H11M5 12.5h2.5V8"/></svg>';
+const MAP_TBL = '<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="1.5" y="2" width="11" height="10" rx="1.5"/><path d="M1.5 5.5h11M5.5 5.5V12"/></svg>';
+const MAP_CHEV = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3L4 6l4.5 3"/></svg>';
+const MAP_PLAY = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
+let MAP = null;
+const mapCalm = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+function mapLabel(m){ const n = m.n, bin = { TIMES: '×', UNION: '∪', INTER: '∩', MINUS: '−', DIV: '÷' }; let s;
+  if (m.op === 'REL') s = m.name; else if (m.op === 'PI') s = 'π[' + n.attrs.join(', ') + ']'; else if (m.op === 'SIG') s = 'σ[' + RAE.condStr(n.cond) + ']';
+  else if (m.op === 'RHO') s = 'ρ[' + n.name + (n.attrs ? '(' + n.attrs.join(', ') + ')' : '') + ']'; else if (m.op === 'JOIN') s = '⋈' + (n.cond ? '[' + RAE.condStr(n.cond) + ']' : ''); else s = bin[m.op];
+  return (m.as ? m.as + ' ← ' : '') + s; }
+function mapWhat(m){ const tk = a => '<span class="tk">' + esc(a) + '</span>', list = a => a.map(tk).join(', ');
+  if (m.op === 'REL') return ''; if (m.op === 'PI') return t('map_w_PI', { c: list(m.n.attrs) }); if (m.op === 'RHO') return m.n.attrs ? t('map_w_RHO2', { c: tk(m.n.name), a: list(m.n.attrs) }) : t('map_w_RHO', { c: tk(m.n.name) });
+  if (m.op === 'JOIN') { if (m.n.cond) return t('map_w_TJ'); const B = m.kids[1].R.cols, com = [...new Set(m.kids[0].R.cols.filter(c => B.some(d => d.name === c.name)).map(c => c.name))]; return com.length ? t(com.length > 1 ? 'map_w_NJ2' : 'map_w_NJ', { c: list(com) }) : t('map_w_TIMES'); }
+  return t('map_w_' + m.op); }
+const mapCount = n => t(n === 0 ? 'ce_empty' : n === 1 ? 'ce_nrows1' : 'ce_nrows', { n });
+/* a step's table: the first rows, each tagged with its place (node|row) for the lineage; a name that repeats gets its table's name */
+function mapTab(R, id, state){ const n = R.rows.length, show = Math.min(n, MAP_ROWS), names = R.cols.map(c => c.name), span = R.cols.length + (state ? 1 : 0);
+  let h = '<table class="t"><tr>' + R.cols.map((c, ci) => '<th data-c="' + ci + '">' + esc(names.indexOf(c.name) !== names.lastIndexOf(c.name) && c.rel ? c.rel + '.' + c.name : c.name) + '</th>').join('') + (state ? '<th class="m"></th>' : '') + '</tr>';
+  if (!n) h += '<tr class="empty-row"><td colspan="' + span + '">' + t('ce_empty') + '</td></tr>';
+  for (let i = 0; i < show; i++) { const st = state ? state(i) : ''; h += '<tr data-k="' + id + '|' + i + '"' + (st ? ' class="r-' + st + '"' : '') + '>' + R.rows[i].map((v, ci) => '<td data-c="' + ci + '">' + (v == null ? '<i class="nul">NULL</i>' : esc(String(v))) + '</td>').join('') + (state ? '<td class="m">' + (st ? mkCell(st) : '') + '</td>' : '') + '</tr>'; }
+  if (n > show) h += '<tr class="more"><td colspan="' + span + '">' + t(n - show === 1 ? 'map_more1' : 'map_more', { n: n - show }) + '</td></tr>';
+  return h + '</table>'; }
+function mapBranch(m, root){ const b = el('div', 'mbranch'), dir = lang === 'he' ? 'rtl' : 'ltr', what = mapWhat(m); b.dataset.id = m.id;
+  if (m.kids.length) { const k = el('div', 'mkids'); k.hidden = true; m.kids.forEach(c => k.appendChild(mapBranch(c))); b.appendChild(k); }
+  b.insertAdjacentHTML('beforeend', '<div class="mnode' + (root ? ' root' : '') + '" data-id="' + m.id + '"><div class="mh">' + (m.op === 'REL' ? '<span class="sn base">' + MAP_TBL + '</span>' : '<span class="sn">' + m.step + '</span>')
+    + '<span class="op">' + esc(mapLabel(m)) + '</span><span class="cnt" dir="' + dir + '">' + mapCount(m.R.rows.length) + '</span></div>' + (what ? '<p class="what" dir="' + dir + '">' + what + '</p>' : '')
+    + '<div class="tw' + (root ? ' res' : '') + '"></div>' + (m.kids.length ? '<button type="button" class="mexp" aria-expanded="false" dir="' + dir + '">' + MAP_CHEV + '<span>' + t('map_from') + '</span></button>' : '') + '</div>');
+  return b; }
+/* fill a step's table with the motion of its operator: σ strikes the rows that fail and folds them away, π folds the columns it drops */
+function mapFill(S, id, animate){ const m = S.by[id], tw = S.stage.querySelector('.mnode[data-id="' + id + '"] .tw'); if (!tw) return;
+  const tok = String(++S.tok), live = () => MAP === S && tw.dataset.tok === tok; tw.dataset.tok = tok;
+  const state = m === S.T ? S.o.state : null, kid = m.kids[0], moving = animate && !mapCalm();
+  const later = (f, ms) => setTimeout(() => { if (live()) f(); }, ms);
+  const rowsIn = () => { if (!moving) return; tw.querySelectorAll('tr').forEach((tr, i) => { tr.classList.add('rin'); tr.querySelectorAll('td,th').forEach(c => c.style.animationDelay = (i * 70) + 'ms'); }); };
+  const done = anim => { tw.innerHTML = mapTab(m.R, m.id, state); if (anim) rowsIn(); };
+  if (moving && m.op === 'SIG' && kid.R.rows.length) { const kept = new Set(m.R.src.map(e => e[0][1])); tw.innerHTML = mapTab(kid.R, 'x', null); rowsIn();
+    const drop = [...tw.querySelectorAll('tr[data-k]')].filter((tr, i) => !kept.has(i)); if (!drop.length) { later(() => done(false), 700); return; }
+    later(() => drop.forEach(tr => tr.classList.add('drop')), 650); later(() => drop.forEach(tr => tr.classList.add('gone')), 1450); later(() => done(false), 1950); return; }
+  if (moving && m.op === 'PI' && kid.R.rows.length) { const pick = m.R.pick || [], gone = kid.R.cols.map((c, i) => i).filter(i => !pick.includes(i)); tw.innerHTML = mapTab(kid.R, 'x', null); rowsIn();
+    if (!gone.length) { later(() => done(true), 700); return; }
+    later(() => gone.forEach(ci => tw.querySelectorAll('[data-c="' + ci + '"]').forEach(c => c.classList.add('colx'))), 650);
+    later(() => gone.forEach(ci => tw.querySelectorAll('[data-c="' + ci + '"]').forEach(c => c.classList.add('colgone'))), 1350); later(() => done(true), 1850); return; }
+  done(true); }
+function mapToggle(S, id, open, quiet, still){ const br = S.stage.querySelector('.mbranch[data-id="' + id + '"]'), kids = br && br.querySelector(':scope > .mkids'); if (!kids) return;
+  const btn = br.querySelector(':scope > .mnode .mexp'); if (open === undefined) open = kids.hidden; if (open === !kids.hidden) return;
+  kids.hidden = !open; btn.setAttribute('aria-expanded', String(open)); btn.querySelector('span').textContent = t(open ? 'map_fold' : 'map_from');
+  if (open && !quiet) S.by[id].kids.forEach(c => { const nd = S.stage.querySelector('.mnode[data-id="' + c.id + '"]'); nd.classList.remove('in'); void nd.offsetWidth; if (!mapCalm()) nd.classList.add('in'); mapFill(S, c.id, true); });
+  if (!open) { kids.querySelectorAll('.mkids').forEach(k => k.hidden = true); kids.querySelectorAll('.mexp').forEach(b => { b.setAttribute('aria-expanded', 'false'); b.querySelector('span').textContent = t('map_from'); }); }
+  mapDraw(S); if (S.lit) mapLight(S, S.lit);
+  if (open && !quiet && !still) setTimeout(() => { const first = br.querySelector(':scope > .mkids .mnode'); if (MAP === S && first) first.scrollIntoView({ behavior: mapCalm() ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' }); }, 120); }
+/* wires: an elbow from each open input to its step; the wires into the result are neon. Paths are kept by key, so a redraw only moves them. */
+function mapDraw(S){ if (S.raf) return; S.raf = requestAnimationFrame(() => { S.raf = 0; if (MAP !== S) return; const sr = S.stage.getBoundingClientRect(), vert = matchMedia('(max-width:720px)').matches, want = new Map();
+  S.stage.querySelectorAll('.mbranch').forEach(br => { const kids = br.querySelector(':scope > .mkids'); if (!kids || kids.hidden) return; const pr = br.querySelector(':scope > .mnode').getBoundingClientRect();
+    [...kids.children].forEach(cb => { const cr = cb.querySelector(':scope > .mnode').getBoundingClientRect(); let d;
+      if (vert) { const x1 = cr.left - sr.left - 9, y1 = cr.top - sr.top + 18, x2 = pr.left - sr.left + 10, y2 = pr.bottom - sr.top; d = 'M' + (x1 + 9) + ' ' + y1 + ' H' + x1 + ' V' + (y2 + 6) + ' H' + x2 + ' V' + y2; }
+      else { const x1 = cr.right - sr.left, y1 = cr.top - sr.top + cr.height / 2, x2 = pr.left - sr.left, y2 = pr.top - sr.top + pr.height / 2, mx = x1 + (x2 - x1) / 2; d = 'M' + x1 + ' ' + y1 + ' H' + mx + ' V' + y2 + ' H' + x2; }
+      want.set(br.dataset.id + '>' + cb.dataset.id, { d, hot: br.dataset.id === S.T.id }); }); });
+  [...S.wires.querySelectorAll('path')].forEach(p => { if (!want.has(p.getAttribute('data-k'))) p.remove(); });
+  want.forEach((w, k) => { let p = S.wires.querySelector('path[data-k="' + k + '"]'), fresh = !p; if (fresh) { p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('data-k', k); S.wires.appendChild(p); }
+    p.setAttribute('d', w.d); p.classList.toggle('hot', w.hot);
+    if (fresh && !mapCalm()) { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.setProperty('--len', L); p.classList.add('draw'); p.addEventListener('animationend', () => { p.classList.remove('draw'); p.style.strokeDasharray = ''; }, { once: true }); } }); }); }
+/* lineage: the rows a row came from (down the src links) and the rows made from it (up them) */
+function mapLineage(S, m, i){ const set = new Set([m.id + '|' + i]);
+  const down = (m, i) => { const e = m.R.src && m.R.src[i]; if (!e || !m.kids.length) return; e.forEach(([c, j]) => { const k = m.kids[c], key = k.id + '|' + j; if (!set.has(key)) { set.add(key); down(k, j); } }); };
+  const up = (m, i) => { const p = S.par[m.id]; if (!p) return; const c = p.kids.indexOf(m); p.R.src.forEach((e, r) => { if (e.some(x => x[0] === c && x[1] === i)) { const key = p.id + '|' + r; if (!set.has(key)) { set.add(key); up(p, r); } } }); };
+  down(m, i); up(m, i); return set; }
+function mapLight(S, k){ S.lit = k; S.stage.querySelectorAll('tr.lin').forEach(r => r.classList.remove('lin')); if (!k) return; const bar = k.indexOf('|'), m = S.by[k.slice(0, bar)]; if (!m) return;
+  const set = mapLineage(S, m, +k.slice(bar + 1)); S.stage.querySelectorAll('tr[data-k]').forEach(r => { if (set.has(r.dataset.k)) r.classList.add('lin'); }); }
+/* bring the result into view: its end of the stage, centred (on a phone: at the top) */
+function mapToRoot(S){ if (MAP !== S) return; const cr = S.canvas.getBoundingClientRect(), rr = S.stage.querySelector('.mnode.root').getBoundingClientRect(), vert = matchMedia('(max-width:720px)').matches;
+  S.canvas.scrollBy({ left: rr.right + 48 - cr.right, top: vert ? rr.top - cr.top - 16 : rr.top + rr.height / 2 - (cr.top + cr.height / 2), behavior: mapCalm() ? 'auto' : 'smooth' }); }
+/* play: open everything, then build the tables from the source tables up to the result */
+function mapPlay(S){ const my = ++S.playing, order = []; (function post(m){ m.kids.forEach(post); order.push(m.id); })(S.T);
+  Object.keys(S.by).forEach(id => { if (S.by[id].kids.length) mapToggle(S, id, true, true); });
+  S.stage.querySelectorAll('.mnode .tw').forEach(tw => { tw.dataset.tok = String(++S.tok); tw.innerHTML = ''; }); mapDraw(S);
+  order.forEach((id, i) => setTimeout(() => { if (my !== S.playing || MAP !== S) return; mapFill(S, id, true); const nd = S.stage.querySelector('.mnode[data-id="' + id + '"]'); if (nd) nd.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: mapCalm() ? 'auto' : 'smooth' }); }, 250 + i * (mapCalm() ? 60 : 1500))); }
+function openMap(T, q, o){ closeMap(true); o = o || {};
+  const by = {}, par = {}; (function walk(m, p){ by[m.id] = m; par[m.id] = p; m.kids.forEach(k => walk(k, m)); })(T, null);
+  const ov = el('div', 'mapov'), x = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
+  ov.innerHTML = '<div class="mapwin" role="dialog" aria-modal="true" aria-labelledby="mapH"><div class="wh"><h3 id="mapH">' + t('map_h') + '</h3><span class="expr">' + esc(q) + '</span><span class="sp"></span><button type="button" class="mx" aria-label="' + t('map_close') + '">' + x + '</button></div>'
+    + '<div class="mtools"><button type="button" class="btn small primary mplay">' + MAP_PLAY + t('map_play') + '</button><button type="button" class="btn small mall">' + t('map_all') + '</button><button type="button" class="btn small mnone">' + t('map_none') + '</button><span class="hint">' + t('map_hint') + '</span></div>'
+    + '<div class="mcanvas"><div class="mstage"><svg class="mwires" aria-hidden="true"></svg></div></div>'
+    + '<div class="mlegend"><span><span class="lin-sw"></span>' + t('map_lg_lin') + '</span>' + (o.state ? '<span>' + mkCell('good') + t('ce_lg_ok') + '</span><span>' + mkCell('bad') + t('ce_lg_bad') + '</span>' : '') + '</div></div>';
+  document.body.appendChild(ov);
+  const S = MAP = { T, by, par, o, ov, stage: ov.querySelector('.mstage'), wires: ov.querySelector('.mwires'), canvas: ov.querySelector('.mcanvas'), opener: document.activeElement, playing: 0, tok: 0, lit: null, raf: 0, ovf: document.documentElement.style.overflow };
+  document.documentElement.style.overflow = 'hidden';
+  S.stage.appendChild(mapBranch(T, true)); mapFill(S, T.id, true);
+  S.stage.addEventListener('click', e => { const b = e.target.closest('.mexp'); if (b) { S.playing++; mapToggle(S, b.closest('.mnode').dataset.id); return; } const tr = e.target.closest('tr[data-k]'); if (tr && S.touch) mapLight(S, S.lit === tr.dataset.k ? null : tr.dataset.k); });
+  S.stage.addEventListener('pointerover', e => { if (e.pointerType !== 'mouse') return; const tr = e.target.closest('tr[data-k]'); if (tr) mapLight(S, tr.dataset.k); });
+  S.stage.addEventListener('pointerout', e => { if (e.pointerType !== 'mouse') return; const tr = e.target.closest('tr[data-k]'); if (tr && !(e.relatedTarget && tr.contains(e.relatedTarget))) mapLight(S, null); });
+  ov.querySelector('.mx').addEventListener('click', () => closeMap());
+  ov.querySelector('.mplay').addEventListener('click', () => mapPlay(S));
+  ov.querySelector('.mall').addEventListener('click', () => { S.playing++; Object.keys(by).forEach(id => { if (by[id].kids.length) mapToggle(S, id, true, false, true); }); requestAnimationFrame(() => mapToRoot(S)); });
+  ov.querySelector('.mnone').addEventListener('click', () => { S.playing++; mapToggle(S, T.id, false); });
+  ov.addEventListener('click', e => { if (e.target === ov) closeMap(); });
+  /* drag to pan with a mouse; touch scrolls natively */
+  let pan = null; const cv = S.canvas;
+  cv.addEventListener('pointerdown', e => { S.touch = e.pointerType !== 'mouse'; if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('button,table,.op,.what')) return; pan = { x: e.clientX, y: e.clientY, l: cv.scrollLeft, t: cv.scrollTop }; cv.classList.add('drag'); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => { if (!pan) return; cv.scrollLeft = pan.l - (e.clientX - pan.x); cv.scrollTop = pan.t - (e.clientY - pan.y); });
+  const endPan = () => { pan = null; cv.classList.remove('drag'); }; cv.addEventListener('pointerup', endPan); cv.addEventListener('pointercancel', endPan);
+  /* Escape closes; Tab stays inside the window */
+  S.key = e => { if (MAP !== S) return; if (e.key === 'Escape') { e.preventDefault(); closeMap(); return; } if (e.key !== 'Tab') return;
+    const f = [...ov.querySelectorAll('button')].filter(b => b.offsetParent !== null); if (!f.length) return; const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && (i === f.length - 1 || i < 0)) { e.preventDefault(); f[0].focus(); } };
+  document.addEventListener('keydown', S.key, true);
+  S.rs = () => mapDraw(S); addEventListener('resize', S.rs);
+  if (window.ResizeObserver) { S.ro = new ResizeObserver(() => mapDraw(S)); S.ro.observe(S.stage); S.stage.querySelectorAll('.mnode').forEach(n => S.ro.observe(n)); }
+  requestAnimationFrame(() => ov.classList.add('on')); ov.querySelector('.mx').focus({ preventScroll: true }); mapDraw(S); }
+function closeMap(now){ const S = MAP; if (!S) return; MAP = null; S.playing++; if (S.ro) S.ro.disconnect(); document.removeEventListener('keydown', S.key, true); removeEventListener('resize', S.rs);
+  document.documentElement.style.overflow = S.ovf; if (now || mapCalm()) S.ov.remove(); else { S.ov.classList.remove('on'); setTimeout(() => S.ov.remove(), 260); }
+  if (!now && S.opener && document.contains(S.opener)) S.opener.focus({ preventScroll: true }); }
 function renderRaV2(){ renderSets(); renderProduct(); renderRename(); renderRideSchema(); renderLab(); renderExercises(); renderRefs(); }
 /* reference tables for lessons that use a schema introduced in an earlier lesson (exercises: RideOn, algebra self-check: the three toy tables) */
 function renderRefs(){
