@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RowdyQL</title>
+<title>RowdyQL · SQL בגובה העיניים</title>
 <meta name="description" content="RowdyQL: SQL בגובה העיניים. הקורס שהופך את SQL לשפה שלכם.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta property="og:type" content="website"><meta property="og:title" content="RowdyQL · SQL בגובה העיניים"><meta property="og:description" content="הקורס שהופך את SQL לשפה שלכם."><meta property="og:url" content="https://rowdyql.com/"><meta property="og:image" content="https://rowdyql.com/og.png?v=2026-10-07"><meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://rowdyql.com/">
+<meta property="og:type" content="website"><meta property="og:title" content="RowdyQL · SQL בגובה העיניים"><meta property="og:description" content="הקורס שהופך את SQL לשפה שלכם."><meta property="og:url" content="https://rowdyql.com/"><meta property="og:image" content="https://rowdyql.com/og.jpg?v=2026-10-14"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -265,7 +267,7 @@ html.present .pinned{transform:scale(1.02)}
 .legend i{display:inline-block;width:.9rem;height:.9rem;border-radius:3px;vertical-align:-2px;margin-inline-end:.3rem;border:1px solid var(--line)}
 .ra{font-size:1.05rem;direction:ltr;display:inline-block;background:var(--surface2);padding:.35rem .7rem;border-radius:8px;white-space:nowrap}
 .ra sub{font-size:.7em}
-.ra.big{font-size:1.25rem}
+.ra.big{font-size:1.25rem;max-width:100%;overflow-x:auto;vertical-align:top;scrollbar-width:thin}
 pre.sql{font-family:var(--mono);font-size:.85rem;direction:ltr;text-align:left;background:var(--surface2);padding:.9rem 1rem;border-radius:10px;overflow-x:auto;margin:0;line-height:1.55}
 pre.sql .k{color:var(--accent);font-weight:500}
 .steps{display:flex;gap:.5rem;flex-wrap:wrap}
@@ -860,8 +862,8 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 .me-open:hover #userName,.me-open:focus-visible #userName{text-decoration:underline;text-underline-offset:3px}
 .me-page{position:fixed;inset:0;z-index:85;background:var(--ground);color:var(--ink);overflow:auto}
 .me-wrap{max-width:780px;margin:0 auto;padding:1.4rem 1.2rem 5rem;display:flex;flex-direction:column;gap:1rem}
-.me-head{display:flex;align-items:center;gap:1rem;padding:.4rem 0 .6rem}
-.me-head .who{display:flex;flex-direction:column;min-width:0;flex:1}
+.me-head{display:flex;align-items:center;gap:1rem;padding:.4rem 0 .6rem;flex-wrap:wrap}
+.me-head .who{display:flex;flex-direction:column;min-width:0;flex:1 1 12rem}
 .me-head .who b{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.2;overflow-wrap:anywhere}
 .me-head .who span{color:var(--muted);font-size:.9rem;overflow-wrap:anywhere}
 .me-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem 1.2rem;display:flex;flex-direction:column;gap:.75rem}
@@ -1450,12 +1452,12 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
 
     <section class="sec" id="r-lab" data-title="nav_r_lab">
       <div class="sec-head">
-        <h2 data-i18n="lab_h2"></h2>
+        <h2 data-i18n="lab_h2" id="labH2"></h2>
         <p class="lede" data-i18n="lab_lede"></p>
       </div>
       <div class="bench">
         <div class="palette" id="labPal"></div>
-        <textarea class="raq" id="labQ" rows="3" spellcheck="false" dir="ltr"></textarea>
+        <textarea class="raq" id="labQ" rows="3" spellcheck="false" dir="ltr" aria-labelledby="labH2"></textarea>
         <div class="controls"><button class="btn primary" id="labRun" data-i18n="run"></button><select id="labEx"></select><span class="count" data-i18n="lab_tip"></span></div>
         <div id="labOut" class="tables"></div>
         <div class="msg" id="labMsg" data-i18n="lab_msg0"></div>
@@ -1709,7 +1711,7 @@ r3_e:"A ∪ B מכיל את כל A. כשמחסרים מ-A קבוצה שמכיל�
 t_cancel:"ביטול", 
 present_off:"סיום הצגה", pt_laser:"מצביע", pt_pen:"עט", pt_erase:"מחק", pt_undo:"בטל", pt_clear:"נקה", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"כלים",
 
-g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
+g_signup:"הרשמה", g_signin:"כניסה", g_email:"אימייל", g_pass:"סיסמה (8 תווים לפחות)", g_pass_in:"סיסמה", g_name:"שם מלא", g_first:"שם פרטי", g_last:"שם משפחה", g_birth:"תאריך לידה", g_year:"שנת לימוד", g_y1:"א'", g_y2:"ב'", g_y3:"ג'", g_y4:"ד' ומעלה", g_sem:"סמסטר", g_semA:"סמסטר א'", g_semB:"סמסטר ב'", g_home:"חזרה לדף הבית", doc_title:"RowdyQL · SQL בגובה העיניים", g_gender:"מגדר", g_gender_q:"איך נפנה אליכם?", g_male:"זכר", g_female:"נקבה",
 g_consent:"קראתי ואני מסכים/ה ל<a href=\"#\" id=\"termsLink\">תנאי השימוש</a>.",
 g_go:"הרשמה", g_go_in:"כניסה", g_signout:"יציאה", g_demo:"מצב הדגמה: הפרטים נשמרים בדפדפן הזה בלבד.",
 g_foot:"ההרשמה שלכם היא בעצם <code>INSERT</code> אחד. הכניסה היא <code>SELECT</code>. הסיסמה נשמרת כגיבוב, אף פעם לא כטקסט.",
@@ -1952,7 +1954,7 @@ r3_e:"A ∪ B contains all of A. Subtracting a superset of A from A leaves nothi
 t_cancel:"Cancel", 
 present_off:"Exit presenter", pt_laser:"Pointer", pt_pen:"Pen", pt_erase:"Erase", pt_undo:"Undo", pt_clear:"Clear", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"Tools",
 
-g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
+g_signup:"Sign up", g_signin:"Sign in", g_email:"Email", g_pass:"Password (8+ characters)", g_pass_in:"Password", g_name:"Full name", g_first:"First name", g_last:"Last name", g_birth:"Date of birth", g_year:"Year of study", g_y1:"1st", g_y2:"2nd", g_y3:"3rd", g_y4:"4th+", g_sem:"Semester", g_semA:"Semester A", g_semB:"Semester B", g_home:"Back to home", doc_title:"RowdyQL · SQL that finally clicks", g_gender:"Gender", g_gender_q:"Gender", g_male:"Male", g_female:"Female",
 g_consent:"I have read and agree to the <a href=\"#\" id=\"termsLink\">terms of use</a>.",
 g_go:"Sign up", g_go_in:"Sign in", g_signout:"Sign out", g_demo:"Demo mode: details are kept in this browser only.",
 g_foot:"Your sign-up is really one <code>INSERT</code>. Signing in is a <code>SELECT</code>. The password is stored as a hash, never as text.",
@@ -3654,7 +3656,7 @@ function insertAt(ta, text, back){ const s0 = ta.selectionStart, e0 = ta.selecti
 function renderLab(){
   const pal = $('#labPal'); pal.innerHTML = '';
   [['π','π[ ]( )',5],['σ','σ[ ]( )',5],['ρ','ρ[ ]( )',5],['⋈','⋈ ',0],['⋈[ ]','⋈[ ] ',3],['×','× ',0],['∪','∪ ',0],['∩','∩ ',0],['−','− ',0],['÷','÷ ',0],['←','← ',0],['∧','∧ ',0],['∨','∨ ',0],['≠','≠',0],['≤','≤',0],['≥','≥',0]].forEach(p => { const b = el('button', null, p[0]); b.type = 'button'; b.addEventListener('click', () => insertAt($('#labQ'), p[1], p[2])); pal.appendChild(b); });
-  const sel = $('#labEx'); sel.innerHTML = '<option value="">' + t('lab_ex0') + '</option>'; LAB_EX.forEach((x, i) => { const o = el('option', null, t(x[0])); o.value = i; sel.appendChild(o); });
+  const sel = $('#labEx'); sel.setAttribute('aria-label', t('lab_ex0')); sel.innerHTML = '<option value="">' + t('lab_ex0') + '</option>'; LAB_EX.forEach((x, i) => { const o = el('option', null, t(x[0])); o.value = i; sel.appendChild(o); });
   const br = $('#bridge'); br.innerHTML = '<tr><th>' + t('br_h1') + '</th><th>' + t('br_h2') + '</th><th>' + t('br_h3') + '</th></tr>';
   [['σ<sub>c</sub>(R)','br1','SELECT * FROM R WHERE c'],['π<sub>a,b</sub>(R)','br2','SELECT DISTINCT a, b FROM R'],['R ⋈ S','br3','R JOIN S ON R.k = S.k'],['R ⋈<sub>c</sub> S','br4','R JOIN S ON c'],['R × S','br5','R CROSS JOIN S'],['R ∪ S','br6','… UNION …'],['R ∩ S','br7','… INTERSECT …'],['R − S','br8','… EXCEPT …'],['ρ<sub>X</sub>(R)','br9','FROM R AS X'],['R ÷ S','br10','GROUP BY … HAVING COUNT(DISTINCT …) = (SELECT COUNT(*) FROM S)']].forEach(r => { const tr = el('tr'); tr.appendChild(el('td', null, r[0])); tr.appendChild(el('td', null, t(r[1]))); tr.appendChild(el('td', null, r[2])); br.appendChild(tr); });
 }
@@ -3670,8 +3672,8 @@ function renderExercises(){
   EXS2.forEach((ex, i) => {
     const st = exState[ex.id] || { tries: 0, solved: false, q: '' };
     const card = el('div', 'ex' + (st.solved ? ' solved' : '')); card.dataset.ex = ex.id;
-    card.innerHTML = '<div class="exh"><b>' + (i+1) + '. ' + t(ex.id) + '</b><span class="lvl">' + t('lv' + ex.lv) + '</span></div>'
-      + '<textarea class="raq" rows="2" spellcheck="false" dir="ltr">' + esc(st.q || '') + '</textarea>'
+    card.innerHTML = '<div class="exh"><b id="exT-' + ex.id + '">' + (i+1) + '. ' + t(ex.id) + '</b><span class="lvl">' + t('lv' + ex.lv) + '</span></div>'
+      + '<textarea class="raq" rows="2" spellcheck="false" dir="ltr" aria-labelledby="exT-' + ex.id + '">' + esc(st.q || '') + '</textarea>'
       + '<div class="controls"><button type="button" class="btn primary exCheck">' + t('ex_check') + '</button><button type="button" class="btn small exH1" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint1_b') + '</button><button type="button" class="btn small exH2" ' + (st.tries >= 1 || teacher ? '' : 'disabled') + '>' + t('ex_hint2_b') + '</button><button type="button" class="btn small exS" ' + (st.tries >= 2 || teacher || st.solved ? '' : 'disabled') + '>' + t('ex_sol_b') + '</button><span class="count">' + t('ex_tries', {n: st.tries}) + '</span></div>'
       + '<div class="tables exres"></div><div class="cm exmsg" hidden></div><div class="hint exh1" hidden>' + t(ex.id + 'h1') + '</div><div class="hint exh2" hidden>' + t(ex.id + 'h2') + '</div><div class="hint exsol" hidden><span class="ra">' + esc(t(ex.id + 's')) + '</span></div>';
     if (teacher) { card.querySelector('.exh1').hidden = false; card.querySelector('.exh2').hidden = false; card.querySelector('.exsol').hidden = false; }
@@ -3891,7 +3893,7 @@ $('#btnToc').addEventListener('click', () => { railOn = !railOn; applyRail(); up
 
 /* =========================== LANG, PRESENTER, TEACHER =========================== */
 function applyLang(){
-  document.documentElement.lang = lang; document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'; $('#gate').setAttribute('dir', document.documentElement.dir); $('#gate').setAttribute('lang', lang);
+  document.documentElement.lang = lang; document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'; document.title = t('doc_title'); $('#gate').setAttribute('dir', document.documentElement.dir); $('#gate').setAttribute('lang', lang);
   $('#btnLang').textContent = lang === 'he' ? 'EN' : 'עב'; if (typeof PT !== 'undefined') PT.render();
   $$('[data-i18n]').forEach(e => e.innerHTML = t(e.dataset.i18n));
   $$('[data-tnote]').forEach(e => { e.innerHTML = '<b>'+t('an_note_t')+':</b> ' + t(e.dataset.tnote+'_tnote'); e.hidden = !teacher; });
