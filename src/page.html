@@ -475,6 +475,8 @@ html[dir="rtl"] .disc>summary .chev{transform:scaleX(-1)}
 .step .chip{display:inline-block;max-width:100%;overflow-x:auto;font:500 .92rem var(--mono);direction:ltr;background:var(--surface2);border-radius:6px;padding:.3rem .65rem;white-space:nowrap}
 /* the expression as a map: the counterexample's 'הצגה כמפה' (kit: tables, marks, neon on what reacts) */
 .maprow{display:flex}
+#labMapRow{margin-top:.2rem}
+.exres>.maprow{flex-basis:100%}
 .mapbtn svg{width:16px;height:16px;flex:none}
 .mapov{position:fixed;inset:0;z-index:90;background:rgba(17,22,27,.5);display:grid;place-items:center;padding:20px;opacity:0;transition:opacity .25s}
 .mapov.on{opacity:1}
@@ -4025,9 +4027,9 @@ function renderLab(){
   const br = $('#bridge'); br.innerHTML = '<tr><th>' + t('br_h1') + '</th><th>' + t('br_h2') + '</th><th>' + t('br_h3') + '</th></tr>';
   [['σ<sub>c</sub>(R)','br1','SELECT * FROM R WHERE c'],['π<sub>a,b</sub>(R)','br2','SELECT DISTINCT a, b FROM R'],['R ⋈ S','br3','R JOIN S ON R.k = S.k'],['R ⋈<sub>c</sub> S','br4','R JOIN S ON c'],['R × S','br5','R CROSS JOIN S'],['R ∪ S','br6','… UNION …'],['R ∩ S','br7','… INTERSECT …'],['R − S','br8','… EXCEPT …'],['ρ<sub>X</sub>(R)','br9','FROM R AS X'],['R ÷ S','br10','GROUP BY … HAVING COUNT(DISTINCT …) = (SELECT COUNT(*) FROM S)']].forEach(r => { const tr = el('tr'); tr.appendChild(el('td', null, r[0])); tr.appendChild(el('td', null, t(r[1]))); tr.appendChild(el('td', null, r[2])); br.appendChild(tr); });
 }
-function runLab(){ const raw = $('#labQ').value, q = raw.trim(); const out = $('#labOut'); out.innerHTML = ''; const msg = $('#labMsg'); msg.innerHTML = '';
+function runLab(){ const raw = $('#labQ').value, q = raw.trim(); const out = $('#labOut'); out.innerHTML = ''; const msg = $('#labMsg'); msg.innerHTML = ''; const om = $('#labMapRow'); if (om) om.remove();
   if (!q) { nudge($('#labQ')); msg.className = 'near'; msg.innerHTML = '<p class="helper"><span class="dash"></span>' + t('lab_msg0') + '</p>'; return; }
-  try { const R = RAE.toTable(RAE.run(q)); out.appendChild(dtab(R.cols, R.rows, { res: true, capHe: t('ex_res') })); msg.className = 'lab-ok'; msg.textContent = (R.rows.length === 1 ? t('ce_nrows1') : t('ce_nrows', {n: R.rows.length})) + ' · ' + (R.cols.length === 1 ? t('lab_cols1') : t('lab_cols', {c: R.cols.length})); }
+  try { const R = RAE.toTable(RAE.run(q)); out.appendChild(dtab(R.cols, R.rows, { res: true, capHe: t('ex_res') })); msg.className = 'lab-ok'; msg.textContent = (R.rows.length === 1 ? t('ce_nrows1') : t('ce_nrows', {n: R.rows.length})) + ' · ' + (R.cols.length === 1 ? t('lab_cols1') : t('lab_cols', {c: R.cols.length})); const mr = mapButton(q); if (mr) { mr.id = 'labMapRow'; msg.after(mr); } }
   catch(e) { msg.className = 'near'; msg.appendChild(errEcho(q, e)); } }
 $('#labRun').addEventListener('click', runLab);
 $('#labQ').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); runLab(); } });
@@ -4066,15 +4068,17 @@ function checkEx(ex, card){
   const q = ta.value.trim(); if (!q) { nudge(ta); near.innerHTML = '<p class="helper"><span class="dash"></span>' + t('exr_empty') + '</p>'; return; }
   const st = exState[ex.id] = exState[ex.id] || { tries: 0, solved: false, q: '' }; st.tries++; st.q = q;
   try { const R = RAE.run(q), refQ = I18N.he[ex.id + 's'], ref = RAE.run(refQ), tR = RAE.toTable(R);
-    if (R.cols.length !== ref.cols.length) { vd.appendChild(verdictEl('bad', t('exr_cols', {a: R.cols.length, b: ref.cols.length}))); res.appendChild(dtab(tR.cols, tR.rows, { capHe: t('ex_res') })); }
-    else if (RAE.same(R, ref)) { vd.appendChild(verdictEl('good', t('exr_ok'))); res.appendChild(dtab(tR.cols, tR.rows, { capHe: t('ex_res'), res: true, state: () => 'good' })); st.solved = true; card.classList.add('solved');
+    if (R.cols.length !== ref.cols.length) { vd.appendChild(verdictEl('bad', t('exr_cols', {a: R.cols.length, b: ref.cols.length}))); res.appendChild(dtab(tR.cols, tR.rows, { capHe: t('ex_res') })); exMap(res, q); }
+    else if (RAE.same(R, ref)) { vd.appendChild(verdictEl('good', t('exr_ok'))); res.appendChild(dtab(tR.cols, tR.rows, { capHe: t('ex_res'), res: true, state: () => 'good' })); exMap(res, q); st.solved = true; card.classList.add('solved');
       const h = card.querySelector('.ex-h'); if (!h.querySelector('.mkc')) h.querySelector('.pill').insertAdjacentHTML('beforebegin', mkCell('good')); }
     else { vd.appendChild(verdictEl('bad', R.rows.length === ref.rows.length ? t('exr_diff') : t('exr_rows', {a: R.rows.length, b: ref.rows.length, d: t(R.rows.length > ref.rows.length ? 'exr_more' : 'exr_less')})));
-      const ce = RAE.counterexample(q, refQ); res.appendChild(ce ? ceBlock(ce, q, refQ, tR) : dtab(tR.cols, tR.rows, { capHe: t('ex_res') })); }
+      const ce = RAE.counterexample(q, refQ); if (ce) res.appendChild(ceBlock(ce, q, refQ, tR)); else { res.appendChild(dtab(tR.cols, tR.rows, { capHe: t('ex_res') })); exMap(res, q); } }
   } catch(e) { near.appendChild(errEcho(q, e)); }
   store('dbs_ra_ex', exState);
   const b1 = card.querySelector('.exH1'), b2 = card.querySelector('.exH2'), b3 = card.querySelector('.exS'); b1.disabled = b2.disabled = !(st.tries >= 1 || teacher); b3.disabled = !(st.tries >= 2 || teacher || st.solved); card.querySelector('.tries').innerHTML = t('ex_tries', {n: '<span class="n">' + st.tries + '</span>'});
 }
+/* the map on all the data, under the result: a right answer, or one with the wrong number of columns */
+function exMap(res, q){ const mr = mapButton(q); if (mr) res.appendChild(mr); }
 /* the counterexample: a few rows where the two answers part ways, both results with the difference marked, and the student's expression step by step */
 function ceBlock(ce, q, refQ, full){
   const steps = [], mine = RAE.run(q, ce.db, steps), right = RAE.run(refQ, ce.db), a = RAE.align(mine, right);
@@ -4089,9 +4093,7 @@ function ceBlock(ce, q, refQ, full){
   box.appendChild(rr);
   box.appendChild(el('div', 'legend2', '<span>' + mkCell('good') + t('ce_lg_ok') + '</span><span>' + mkCell('bad') + t('ce_lg_bad') + '</span><span>' + mkCell('note') + t('ce_lg_miss') + '</span>'));
   /* the map opens only after it passed its own check; otherwise the step list below is the way in */
-  let map = null; try { map = RAE.mapOf(q, ce.db); const errs = map.op === 'REL' ? ['one table'] : RAE.checkMap(map, q, ce.db); if (errs.length) { if (map.op !== 'REL') console.warn('map check', errs); map = null; } } catch (e) { map = null; }
-  if (map) { const a2 = RAE.align(map.R, right), mb = el('button', 'btn small mapbtn', MAP_ICON + '<span>' + t('map_btn') + '</span>'); mb.type = 'button';
-    mb.addEventListener('click', () => openMap(map, q, { state: i => kB.has(JSON.stringify(a2.rows[i])) ? 'good' : 'bad' })); const mr = el('div', 'maprow'); mr.appendChild(mb); box.appendChild(mr); }
+  const mr = mapButton(q, ce.db, map => { const a2 = RAE.align(map.R, right); return i => kB.has(JSON.stringify(a2.rows[i])) ? 'good' : 'bad'; }); if (mr) box.appendChild(mr);
   const chev = '<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
   if (steps.length > 1) { const d = el('details', 'disc'); d.innerHTML = '<summary>' + chev + '<span>' + t('ce_steps') + '</span><span class="cnt">' + t('ce_nsteps', { n: steps.length }) + '</span></summary>'; const db = el('div', 'db');
     steps.forEach((st, i) => { const tt = RAE.toTable(st.R), w = el('div', 'step'); w.appendChild(el('div', 'sh', '<span class="sn">' + (i + 1) + '</span><span class="chip">' + esc((st.assign ? st.assign + ' ← ' : '') + RAE.stepLabel(st.n)) + '</span>')); w.appendChild(dtab(tt.cols, tt.rows, {})); db.appendChild(w); }); d.appendChild(db); box.appendChild(d); }
@@ -4177,6 +4179,11 @@ function mapPlay(S){ const my = ++S.playing, order = []; (function post(m){ m.ki
   Object.keys(S.by).forEach(id => { if (S.by[id].kids.length) mapToggle(S, id, true, true); });
   S.stage.querySelectorAll('.mnode .tw').forEach(tw => { tw.dataset.tok = String(++S.tok); tw.innerHTML = ''; }); mapDraw(S);
   order.forEach((id, i) => setTimeout(() => { if (my !== S.playing || MAP !== S) return; mapFill(S, id, true); const nd = S.stage.querySelector('.mnode[data-id="' + id + '"]'); if (nd) nd.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: mapCalm() ? 'auto' : 'smooth' }); }, 250 + i * (mapCalm() ? 60 : 1500))); }
+/* the button that opens the map, or null: a single table has no map, and a map that fails its own check is not offered */
+function mapButton(q, db, stateOf){ let map = null;
+  try { map = RAE.mapOf(q, db); const errs = map.op === 'REL' ? ['one table'] : RAE.checkMap(map, q, db); if (errs.length) { if (map.op !== 'REL') console.warn('map check', errs); map = null; } } catch (e) { map = null; }
+  if (!map) return null; const mb = el('button', 'btn small mapbtn', MAP_ICON + '<span>' + t('map_btn') + '</span>'); mb.type = 'button';
+  mb.addEventListener('click', () => openMap(map, q, stateOf ? { state: stateOf(map) } : {})); const mr = el('div', 'maprow'); mr.appendChild(mb); return mr; }
 function openMap(T, q, o){ closeMap(true); o = o || {};
   const by = {}, par = {}; (function walk(m, p){ by[m.id] = m; par[m.id] = p; m.kids.forEach(k => walk(k, m)); })(T, null);
   const ov = el('div', 'mapov'), x = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
