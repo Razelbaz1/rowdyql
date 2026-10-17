@@ -429,6 +429,49 @@ var v=q||t;if(v==='dark'||v==='light'){document.documentElement.setAttribute('da
   footer{padding:28px 0 64px;border-top:var(--border-line);color:var(--muted);font-size:14px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
+
+/* ===== Block 4 - signature recipe: the tide (Raz, 2026-10-17) =====
+   The outline of a card that reminds or invites (a reminder popup, an invitation). The sunrise-to-sea flow circulates slowly around
+   the edge like the deep sea, with a wet glossy light on the top edge, a glint that drifts across it and a soft neon glow under it.
+   Markup: <div class="rq-tide"><div class="rq-tide-in">...</div></div>. The inner card carries the surface; the glow sits under it.
+   One per screen, on a floating card only. Never on panels, data, tables, buttons or verdicts. Reduced motion: still. Print: off. */
+@property --rq-tide-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+:root{
+  --rq-tide-flow:conic-gradient(from var(--rq-tide-a),#FD977A,#FAA670,#E6C792,#5CC3D9,#8CBDDA,#5CC3D9,#E6C792,#FAA670,#FD977A);
+  --rq-tide-w:2.5px;     /* the ring */
+  --rq-tide-glow:.5;     /* the glow under the card: .5 light, .72 dark */
+  --rq-tide-turn:22s;    /* one slow lap of the flow */
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --rq-tide-glow:.72; } }
+:root[data-theme="dark"]{ --rq-tide-glow:.72; }
+.rq-tide{position:relative;isolation:isolate;border-radius:var(--radius-lg,14px)}
+.rq-tide::before,.rq-tide::after{content:"";position:absolute;pointer-events:none;border-radius:calc(var(--radius-lg,14px) + var(--rq-tide-w))}
+/* the ring: a white sheen that drifts across it (the logo's leading streak), the wet top light, and the flow going round */
+.rq-tide::before{inset:calc(var(--rq-tide-w) * -1);padding:var(--rq-tide-w);z-index:0;
+  background:linear-gradient(105deg,rgba(255,255,255,0) 45%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0) 45%),var(--rq-tide-flow);
+  background-size:280% 100%,100% 100%,100% 100%;background-repeat:no-repeat;background-position:100% 0,0 0,0 0;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:rq-tide-turn var(--rq-tide-turn) linear infinite,rq-tide-glint 9s ease-in-out infinite alternate}
+/* the glow: the same flow, blurred, breathing slowly under the card */
+.rq-tide::after{inset:-10px;z-index:-1;background:var(--rq-tide-flow);filter:blur(16px) saturate(1.35);opacity:var(--rq-tide-glow);
+  animation:rq-tide-turn var(--rq-tide-turn) linear infinite,rq-tide-breathe 7s ease-in-out infinite alternate}
+.rq-tide-in{position:relative;z-index:1;border-radius:var(--radius-lg,14px);background:var(--surface)}
+@keyframes rq-tide-turn{to{--rq-tide-a:360deg}}
+@keyframes rq-tide-glint{0%{background-position:100% 0,0 0,0 0}100%{background-position:0% 0,0 0,0 0}}
+@keyframes rq-tide-breathe{from{opacity:calc(var(--rq-tide-glow) * .7)}to{opacity:var(--rq-tide-glow)}}
+@media (prefers-reduced-motion: reduce){.rq-tide::before,.rq-tide::after{animation:none}}
+@media print{.rq-tide::before,.rq-tide::after{display:none}}
+
+.tide-demo{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;padding:22px 6px 6px}
+.tide-demo .rq-tide{width:min(380px,100%)}
+.tide-demo .rq-tide-in{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;direction:rtl;text-align:right;font-family:var(--font-body)}
+.tide-demo .ti-top{display:flex;align-items:center;gap:10px}
+.tide-demo .ti-ic{width:34px;height:34px;border-radius:8px;background:var(--sel-s);color:var(--neon-t);display:grid;place-items:center;flex:none}
+.tide-demo b{font-family:var(--font-head);font-weight:800;font-size:1.1rem;color:var(--ink)}
+.tide-demo p{margin:0;color:var(--muted);font-size:.93rem;line-height:1.55}
+.tide-demo .ti-btns{display:flex;gap:8px}
+.tide-demo .ti-btns span{border-radius:10px;padding:8px 16px;font-weight:500;font-size:.9rem;border:1px solid var(--border);color:var(--ink)}
+.tide-demo .ti-btns span.cta{background:var(--accent);border-color:var(--accent);color:var(--surface);font-weight:700}
 </style>
 </head>
 <body>
@@ -533,7 +576,16 @@ var v=q||t;if(v==='dark'||v==='light'){document.documentElement.setAttribute('da
       <div class="panel"><svg viewBox="0 0 180 60" role="img" aria-label="A quiet line whose last segment is active"><path d="M10 40 H80 V22 H120" fill="none" stroke-width="1.5" style="stroke:var(--muted)"/><path d="M120 22 H168" fill="none" stroke-width="2.5" style="stroke:var(--neon-l)"/><circle cx="168" cy="22" r="5" style="fill:var(--neon);filter:var(--glow-point)"/></svg><div class="cap">active line · end point</div></div>
       <div class="panel"><svg viewBox="0 0 180 60" role="img" aria-label="Progress ring at 70 percent"><circle cx="90" cy="30" r="24" fill="none" stroke-width="6" style="stroke:var(--fill)"/><circle cx="90" cy="30" r="24" fill="none" stroke="#5CC3D9" stroke-width="6" stroke-linecap="round" stroke-dasharray="106 151" transform="rotate(-90 90 30)" style="filter:var(--glow-ring)"/><text x="90" y="35" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" style="fill:var(--ink)">70%</text></svg><div class="cap">progress · ring glow</div></div>
     </div>
-    <p class="muted small" style="margin-top:12px">Motion: theme transitions .3s, nothing idle; ease not defined (CSS default). Texture: none.</p>
+    <h3 class="sub">Signature: the tide (Raz, 2026-10-17)</h3>
+    <p class="muted small">The outline of a floating reminder or invitation card: the flow circulating like the deep sea, glossy, with a soft neon glow. One per screen. Recipe: design-tokens.css Block 4.</p>
+    <div class="tide-demo">
+      <div class="rq-tide" role="img" aria-label="A reminder card with the tide outline"><div class="rq-tide-in">
+        <div class="ti-top"><span class="ti-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 17v-6"/><path d="M9.5 13.5L12 11l2.5 2.5"/></svg></span><b>יש לכם חומרים מהקורס?</b></div>
+        <p>בכל רגע אפשר להעלות מבחנים קודמים, תרגילים, פתרונות או סילבוס, בתיבה "החומרים שלכם" באזור האישי.</p>
+        <div class="ti-btns"><span class="cta">לחומרים שלי</span><span>הבנתי</span></div>
+      </div></div>
+    </div>
+    <p class="muted small" style="margin-top:12px">Motion: theme transitions .3s, nothing idle except the tide; ease not defined (CSS default). Texture: none.</p>
   </section>
 
   <section id="motifs">

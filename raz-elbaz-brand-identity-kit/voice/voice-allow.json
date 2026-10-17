@@ -1,3 +1,7 @@
 {
-"I18N.he.l_body|colon-slogan": "Raz wrote this landing paragraph himself on 2026-10-05 (see copy/examples.md). The colon introduces a list (איך מארגנים... איך מחברים... איך שולפים...), not a slogan."
+  "I18N.he.l_body|colon-slogan": "Raz wrote this landing paragraph himself on 2026-10-05 (see copy/examples.md). The colon introduces a list (איך מארגנים... איך מחברים... איך שולפים...), not a slogan.",
+  "I18N.he.pl_unsure|gender-slash": "Raz, 2026-10-17: answer options on the plan screen speak in the student's own voice by the sign-up gender; this slash form is the approved fallback when the gender is unknown (copy/examples.md, hebrew-copy.md rule 1).",
+  "I18N.he.pl_o_work|gender-slash": "Raz, 2026-10-17: answer options on the plan screen speak in the student's own voice by the sign-up gender; this slash form is the approved fallback when the gender is unknown (copy/examples.md, hebrew-copy.md rule 1).",
+  "I18N.he.pl_o_pre|gender-slash": "Raz, 2026-10-17: answer options on the plan screen speak in the student's own voice by the sign-up gender; this slash form is the approved fallback when the gender is unknown (copy/examples.md, hebrew-copy.md rule 1).",
+  "I18N.he.pt_body|colon-slogan": "Raz approved the terms of use on 2026-10-17 (version 2026-10-17.1, copy/terms-versions.md). Its colons introduce lists (the questionnaire answers, the plan's uses), not slogans."
 }

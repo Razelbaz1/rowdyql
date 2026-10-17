@@ -185,6 +185,38 @@
   color-scheme:dark;
 }
 
+/* ===== Block 4 - signature recipe: the tide (Raz, 2026-10-17) =====
+   The outline of a card that reminds or invites (a reminder popup, an invitation). The sunrise-to-sea flow circulates slowly around
+   the edge like the deep sea, with a wet glossy light on the top edge, a glint that drifts across it and a soft neon glow under it.
+   Markup: <div class="rq-tide"><div class="rq-tide-in">...</div></div>. The inner card carries the surface; the glow sits under it.
+   One per screen, on a floating card only. Never on panels, data, tables, buttons or verdicts. Reduced motion: still. Print: off. */
+@property --rq-tide-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+:root{
+  --rq-tide-flow:conic-gradient(from var(--rq-tide-a),#FD977A,#FAA670,#E6C792,#5CC3D9,#8CBDDA,#5CC3D9,#E6C792,#FAA670,#FD977A);
+  --rq-tide-w:2.5px;     /* the ring */
+  --rq-tide-glow:.5;     /* the glow under the card: .5 light, .72 dark */
+  --rq-tide-turn:22s;    /* one slow lap of the flow */
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --rq-tide-glow:.72; } }
+:root[data-theme="dark"]{ --rq-tide-glow:.72; }
+.rq-tide{position:relative;isolation:isolate;border-radius:var(--radius-lg,14px)}
+.rq-tide::before,.rq-tide::after{content:"";position:absolute;pointer-events:none;border-radius:calc(var(--radius-lg,14px) + var(--rq-tide-w))}
+/* the ring: a white sheen that drifts across it (the logo's leading streak), the wet top light, and the flow going round */
+.rq-tide::before{inset:calc(var(--rq-tide-w) * -1);padding:var(--rq-tide-w);z-index:0;
+  background:linear-gradient(105deg,rgba(255,255,255,0) 45%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0) 45%),var(--rq-tide-flow);
+  background-size:280% 100%,100% 100%,100% 100%;background-repeat:no-repeat;background-position:100% 0,0 0,0 0;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:rq-tide-turn var(--rq-tide-turn) linear infinite,rq-tide-glint 9s ease-in-out infinite alternate}
+/* the glow: the same flow, blurred, breathing slowly under the card */
+.rq-tide::after{inset:-10px;z-index:-1;background:var(--rq-tide-flow);filter:blur(16px) saturate(1.35);opacity:var(--rq-tide-glow);
+  animation:rq-tide-turn var(--rq-tide-turn) linear infinite,rq-tide-breathe 7s ease-in-out infinite alternate}
+.rq-tide-in{position:relative;z-index:1;border-radius:var(--radius-lg,14px);background:var(--surface)}
+@keyframes rq-tide-turn{to{--rq-tide-a:360deg}}
+@keyframes rq-tide-glint{0%{background-position:100% 0,0 0,0 0}100%{background-position:0% 0,0 0,0 0}}
+@keyframes rq-tide-breathe{from{opacity:calc(var(--rq-tide-glow) * .7)}to{opacity:var(--rq-tide-glow)}}
+@media (prefers-reduced-motion: reduce){.rq-tide::before,.rq-tide::after{animation:none}}
+@media print{.rq-tide::before,.rq-tide::after{display:none}}
+
 /* Print: glow off. Pages that print also set body{background:#fff}. */
 @media print{
   :root{ --glow-point:none; --glow-ring:none; }

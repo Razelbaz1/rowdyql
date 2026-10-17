@@ -101,7 +101,8 @@ A background is one hue fading from off-white, left to right. The full warm-to-c
 **Where it lives:**
 - Bands: a 4px rule, a legend band.
 - Backgrounds: the washes.
-- A few deliberate thin accents (Raz, 2026-10-05): the 3px track under the site's top bar and the 56 × 3px accent under section headings. On a thin line the flow can be elegant, but only as a considered accent. Never on a hairline (1px), and never on a line that carries data.
+- A few deliberate thin accents (Raz, 2026-10-05): the 3px track under the site's top bar and the 56 × 3px accent under section headings.
+- The tide (Raz, 2026-10-17): the flow circulating around a floating reminder card, glossy and glowing (section 4). On a thin line the flow can be elegant, but only as a considered accent. Never on a hairline (1px), and never on a line that carries data.
 
 **Progress:**
 - The progress ring is one solid neon #5CC3D9, with no flow.
@@ -186,6 +187,13 @@ Mono sample, an LTR island: `SELECT name FROM Students WHERE year >= 2;`
     - The recipe: a translucent pane, backdrop blur 16px with saturate 1.7, a 1px border, a 1px inner highlight on the top edge, and a single sheen as the menu opens. A glass lens can follow the pointer on a spring.
     - Under reduced motion there is no sheen and no lens motion.
     - Never on panels, cards, buttons, notes or verdicts. A glass verdict was tried and rejected the same day.
+  - **A second exception: the tide** (Raz, 2026-10-17). It is the outline of a floating card that reminds or invites, first used for the "החומרים שלכם" reminder popup. Raz called it one of the things that make the product what it is.
+    - The look: the flow gradient circulates slowly around the card's edge, "like the deep sea". The ring is 2.5px with a wet, glossy light on its top edge and a white glint that drifts across it. A soft neon glow (the same flow, blurred 16px) breathes under the card.
+    - The numbers: one lap is 22s, the glint 9s and the breath 7s, all ease-in-out except the lap. The glow is .5 in light and .72 in dark.
+    - The recipe is `.rq-tide` with an inner `.rq-tide-in`, in `design-tokens.css` Block 4. Use it as it is.
+    - At most one per screen, on a floating card only (a reminder, an invitation, a one-time notice).
+    - Never on panels, lesson content, data, tables, buttons, verdicts or anything that stays on screen.
+    - Reduced motion: the ring and the glow stand still. Print: off.
 - Glow is never clipped: a glow must fade out freely and never look boxed in an invisible square. Give every glowing element room: an SVG viewBox or filter region with at least 3 times the blur radius on every side (the logo intro: 30 units around the ignition bloom), and no `overflow:hidden` on a parent that cuts a glow. A glow with a hard edge is a bug.
 - Glow (a data highlight, not a shadow): only on a data point, an active line or progress; small radius; never behind text; off in print; stronger in dark.
   - Point: `filter:drop-shadow(0 0 2px rgba(92,195,217,A)) drop-shadow(0 0 7px rgba(92,195,217,A*.7))`.
@@ -193,7 +201,7 @@ Mono sample, an LTR island: `SELECT name FROM Students WHERE year >= 2;`
   - A = .55 light, .85 dark. Other hues use their soft-tier RGB: coral 253,151,122; apricot 250,166,112; sky 140,189,218.
   - Print: `@media print{ filter:none }` on every glow.
   - Exception: the logo intro and the top-bar sheen may be glossy (digital, dark only; section 9).
-- Motion character: restrained. Color and background transitions .3s on theme change; no idle motion; the glow is static. Ease: not defined (the CSS default). The logo has its own motion (section 9). Respect `prefers-reduced-motion`: no transitions, the logo shows its still end frame.
+- Motion character: restrained. Color and background transitions .3s on theme change; no idle motion; the glow is static. The one idle motion is the tide's slow drift (above), on a floating card only. Ease: not defined (the CSS default). The logo has its own motion (section 9). Respect `prefers-reduced-motion`: no transitions, the logo shows its still end frame.
 - Texture: none. Gradients only as one-hue washes, the flow band and 4px flow rule, the progress ring and a thin chart baseline.
 
 ## 5 - Motif vocabulary (8 approved)
@@ -286,7 +294,7 @@ The logo is "the rowdy row": three rounded rows of a table, the middle one kicke
 | State colors only to mark: correct #276B43 on #DCEFE3, note #966212 on #FFF1D6, wrong #B23A2E on #FBE3E0, neutral #5F6670 on #ECE8E3, selected #E3F2F3 with ink text | States as decoration; a brand hue as a state (coral never means error) |
 | A one-hue wash from off-white #F7F2EC as the background | The full warm-to-cool wash unless the screen shows a source and a result |
 | Quiet grid #EDE9E4 (5% ink), always lighter than the table rule #DDD7CF; NULL hatch #E1E0DF (14% ink) | Numbered grids, coordinates, loud hatching |
-| Softly rounded corners (6 to 18px), 1px hairline rules #DDD7CF, flat matte fills | Big pill-shaped cards, thick borders, shadows, glass or blur (liquid glass only on floating menus) |
+| Softly rounded corners (6 to 18px), 1px hairline rules #DDD7CF, flat matte fills | Big pill-shaped cards, thick borders, shadows, glass or blur (liquid glass only on floating menus; the tide only on one floating reminder card) |
 | Feedback next to what it is about, with no box: a field that nudges, a compiler-style echo, a margin note on a leader, a ghost line, the kicked-row verdict (Raz, 2026-10-14) | Boxed callouts with a colored side bar, cards inside cards ("classic AI design", Raz); gradient washes behind data panels; decorative data-line connectors in the UI (rejected 2026-10-14) |
 | Brand hues by tier: soft for fills and glow, line for strokes and chart marks, text for type; dark uses the soft tier for all three | Soft tier as text or thin lines on light canvases; line tier on washes |
 | IBM Plex Mono for code, data and labels as LTR islands; operators as geometry in graphics, Noto Sans Math in live text | Hebrew in mono; uppercase or letter-spaced Hebrew; operators left to system fallback fonts |

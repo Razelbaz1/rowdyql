@@ -81,6 +81,24 @@ Board: the design board of 2026-10-14 (the exercise card through every state). T
   - The neon frame and glow on hover.
   - Inside, each step is a small neon-outlined number cell plus an expression chip (mono 500 on the neutral tint), then its table.
 
+## Signature: the tide (approved by Raz, 2026-10-17)
+The outline of a floating card that reminds or invites. Raz sees it as part of what makes RowdyQL recognizable.
+- **First use:** the reminder after the personal plan is ready. It sits beside the personal-area button: "יש לכם חומרים מהקורס? בכל רגע אפשר להעלות אותם, בתיבה 'החומרים שלכם' באזור האישי."
+- **Recipe:** `design-tokens.css` Block 4. Markup: `<div class="rq-tide"><div class="rq-tide-in">…</div></div>`. Use it as it is, and don't redraw the ring.
+- **Inside the card:**
+  - the kit's light or dark tokens;
+  - a small icon cell (radius 8, the selected tint, the neon text tier);
+  - a Rubik 800 title;
+  - a muted body;
+  - the filled CTA plus an outline button.
+- **Entrance:** fade and an 8px rise over .6s. It is shown once, and it closes on its own buttons.
+- **On phones:** it sits at the bottom with a 12px inset.
+- **Where it never goes:**
+  - two on one screen;
+  - panels, lesson content, data, tables, buttons, verdicts;
+  - anything that stays on screen;
+  - email and print.
+
 ## Drop from Core here
 - Print rules (unless the page has a print stylesheet), email constraints, slide floors.
 

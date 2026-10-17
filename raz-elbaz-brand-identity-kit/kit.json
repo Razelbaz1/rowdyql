@@ -1411,7 +1411,17 @@
       "character": "Restrained: color and background transitions .3s on theme change; no idle motion; the glow is static. The logo has its own motion (logo.x_motion).",
       "ease": "not defined",
       "idle": false,
-      "reduced_motion": true
+      "reduced_motion": true,
+      "x_signature_tide": {
+        "approved": "Raz, 2026-10-17",
+        "what": "The outline of a floating card that reminds or invites: the flow gradient circulating slowly around the edge like the deep sea, a 2.5px glossy ring with a wet top light and a drifting white glint, and a soft neon glow of the same flow (blur 16px) breathing under the card.",
+        "timing": {"lap": "22s linear", "glint": "9s ease-in-out alternate", "breath": "7s ease-in-out alternate"},
+        "glow_opacity": {"light": 0.5, "dark": 0.72},
+        "recipe": "design-tokens.css Block 4: .rq-tide with an inner .rq-tide-in",
+        "use": "at most one per screen, floating reminder or invitation cards only",
+        "never": "panels, lesson content, data, tables, buttons, verdicts, anything that stays on screen, email, print",
+        "reduced_motion": "still ring and glow"
+      }
     },
     "texture": "none"
   },
