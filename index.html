@@ -269,10 +269,10 @@ html[dir="rtl"] .notice{--dir:-1}
 .lp-said{margin:0;font-weight:500;color:var(--ink)}
 .lp-said:empty{display:none}
 .lp-stage{display:flex;flex-direction:column;gap:.7rem}
-.lp-beat{display:flex;align-items:center;justify-content:space-between;gap:.5rem .9rem;flex-wrap:wrap}
 .lp-cap{margin:0;color:var(--ink)}
 .lp-cap bdi{white-space:nowrap}
-.lp-nav{display:inline-flex;align-items:center;gap:.45rem;flex:none}
+/* the steps sit at the bottom, on the side where reading ends (left in Hebrew), under the tables and the rule (Raz, 2026-10-19) */
+.lp-nav{display:flex;align-items:center;gap:.45rem;align-self:flex-end;margin-top:.2rem}
 .lp-nav svg{width:14px;height:14px}
 html[dir="rtl"] .lp-prev svg,html[dir="ltr"] .lp-next svg{transform:scaleX(-1)}
 .lp-n{font-size:.85rem;color:var(--muted);min-width:4.6em;text-align:center}
@@ -5230,9 +5230,9 @@ function lpRender(id){
     : '<button type="button" class="lp-o" data-i="' + i + '"><b>' + o + '</b><span>' + t(o === 1 ? 'lp_n1' : 'lp_n') + '</span></button>';
   box.innerHTML = '<div class="lp-top"><span class="lp-eb">' + t('lp_eb') + '</span><span class="ra">' + L.show + '</span></div><p class="lp-q">' + t(L.q) + '</p>'
     + '<div class="lp-opts' + (L.table ? ' tbls' : '') + '" role="group" aria-label="' + esc(t(L.q).replace(/<[^>]+>/g, '')) + '">' + L.opts.map(opt).join('') + '</div><p class="lp-said" aria-live="polite"></p>'
-    + '<div class="lp-stage" hidden><div class="lp-beat"><p class="lp-cap" aria-live="polite"></p><div class="lp-nav"><button type="button" class="btn small lp-prev">' + MAP_STEPI + t('map_prev') + '</button>'
-    + '<span class="lp-n"></span><button type="button" class="btn small primary lp-next">' + t('map_next') + MAP_STEPI + '</button></div></div><div class="tables lp-tables"></div></div>'
-    + '<p class="msg good lp-rule" hidden></p><div class="lp-foot"><button type="button" class="lp-skip">' + t('lp_skip') + '</button></div>';
+    + '<div class="lp-stage" hidden><p class="lp-cap" aria-live="polite"></p><div class="tables lp-tables"></div><p class="msg good lp-rule" hidden></p>'
+    + '<div class="lp-nav"><button type="button" class="btn small lp-prev">' + MAP_STEPI + t('map_prev') + '</button><span class="lp-n"></span><button type="button" class="btn small primary lp-next">' + t('map_next') + MAP_STEPI + '</button></div></div>'
+    + '<div class="lp-foot"><button type="button" class="lp-skip">' + t('lp_skip') + '</button></div>';
   box.querySelectorAll('.lp-o').forEach(b => b.addEventListener('click', () => lpAnswer(id, +b.dataset.i, true)));
   box.querySelector('.lp-skip').addEventListener('click', () => { lpSave(id, { skip: true }); lpRender(id); });
   box.querySelector('.lp-prev').addEventListener('click', () => lpShow(id, box._k - 1));
