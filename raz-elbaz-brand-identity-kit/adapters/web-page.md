@@ -28,7 +28,12 @@ The RowdyQL site, landing and lessons alike (the whole site follows this kit), p
 - All copy follows voice/voice-profile.md; run its quick test before calling it done. Site strings also pass `voice/scripts/voice_check.py` (`python build.py` runs it and stops on new errors).
 - Every color is a token; no raw hex in component CSS outside `:root`.
 - Tables: header on the neutral tint (source) or the result header (result, 1px neon line outline); a selected row on #E3F2F3 with ink text; NULL cells with the hatch and a knock-out label.
-- Motion: theme transitions .3s; optional entrance (opacity and transform, under .4s); nothing idle, nothing blinking; none under reduced motion.
+- Motion: theme transitions .3s; optional entrance (opacity and transform, under .4s); nothing blinking; none under reduced motion.
+- Motion never pretends to be a control (Raz, 2026-10-18). What isn't a button doesn't look like one, and makes no gesture that invites a click or promises that something will open (no bounce, pulse or wiggle).
+  - Explaining motion is allowed, as the operator signs beside the relational algebra headings show. A sign plays when it scrolls into view, up to three runs with a short rest on the result between them, then rests on the result.
+  - Hovering the heading replays it, and a click stops it (WCAG 2.2.2).
+  - Its pace follows its story: about 2.4–3.8 s a run.
+  - Under reduced motion only the last frame shows.
 - The RowdyQL landing (Raz, 2026-10-05):
   - The top bar, the hero and the story stay dark for every visitor.
   - Every section after the story sits on the light flow wash, painted in as it scrolls into view (Core, "The light flow wash"). This is the one motion longer than .4s on the page, and it is off under reduced motion.

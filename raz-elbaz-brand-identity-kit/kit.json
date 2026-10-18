@@ -1412,6 +1412,17 @@
       "ease": "not defined",
       "idle": false,
       "reduced_motion": true,
+      "x_never_a_fake_control": {
+        "approved": "Raz, 2026-10-18",
+        "rule": "What isn't a button doesn't look like one, and makes no gesture that invites a click or promises that something will open (no bounce, pulse or wiggle). Motion that explains is allowed.",
+        "explaining_signs": {
+          "what": "Small animated table signs beside the relational algebra operator headings (σ π ∪∩− × ⋈ ρ ÷): each tells its operator's story on a few colored cells, the result outlined in neon",
+          "runs": "up to 3 when the sign scrolls into view (∪∩− uses the three runs for ∪, then ∩, then −), a 1.6s rest on the result between runs, then it rests on the result",
+          "pace_s": {"σ": 2.4, "ρ": 2.4, "π": 3.0, "⋈": 3.2, "∪∩−": 3.2, "×": 3.4, "÷": 3.8},
+          "replay": "hovering the heading", "stop": "a click (WCAG 2.2.2)", "reduced_motion": "last frame only",
+          "palette": "structure in fill gray, values in the soft coral, apricot, sun and sky, the result header in the result tint and the outline in the neon line tier"
+        }
+      },
       "x_signature_tide": {
         "approved": "Raz, 2026-10-17",
         "what": "The outline of a floating card that reminds or invites: the flow gradient circulating slowly around the edge like the deep sea, a 2.5px glossy ring with a wet top light and a drifting white glint, and a soft neon glow of the same flow (blur 16px) breathing under the card.",

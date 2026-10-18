@@ -1933,6 +1933,15 @@ html[dir="rtl"] .cal-dlg h3{margin:0 0 .3rem 2.5rem}
 /* ---------- a line that answers a choice flares once in the neon, then settles to plain text (Raz, 2026-10-18) ----------
    Used on: the plan's note line, the institution line, "we already know your course", and the calendar's "what changed" line. */
 @keyframes rqFlare{0%{text-shadow:0 0 0 rgba(92,195,217,0)}16%,42%{color:var(--flare-ink,#5CC3D9);text-shadow:0 0 6px rgba(92,195,217,.95),0 0 16px rgba(92,195,217,.7),0 0 32px rgba(92,195,217,.4)}100%{text-shadow:0 0 0 rgba(92,195,217,0)}}
+/* ---------- the operator signs (7a): structure gray, values in the soft hues, the result in the neon ---------- */
+:root{--sg-fill:#DBD7D4;--sg-head:var(--surface2);--sg-res-head:var(--res-head);--sg-out:var(--neon-l);--sg-neon:#5CC3D9;
+  --sg-coral:color-mix(in srgb,#FD977A 55%,#FDFBF8);--sg-apri:color-mix(in srgb,#FAA670 55%,#FDFBF8);--sg-sky:color-mix(in srgb,#8CBDDA 60%,#FDFBF8);--sg-sun:color-mix(in srgb,#E6C792 70%,#FDFBF8)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sg-fill:#2A333C;--sg-coral:color-mix(in srgb,#FD977A 45%,#182027);--sg-apri:color-mix(in srgb,#FAA670 45%,#182027);--sg-sky:color-mix(in srgb,#8CBDDA 45%,#182027);--sg-sun:color-mix(in srgb,#E6C792 40%,#182027)}}
+:root[data-theme="dark"]{--sg-fill:#2A333C;--sg-coral:color-mix(in srgb,#FD977A 45%,#182027);--sg-apri:color-mix(in srgb,#FAA670 45%,#182027);--sg-sky:color-mix(in srgb,#8CBDDA 45%,#182027);--sg-sun:color-mix(in srgb,#E6C792 40%,#182027)}
+.sg{display:inline-grid;place-items:center;vertical-align:-.46em;margin-inline-end:.45em;border-radius:8px;transition:filter .4s}
+.sg svg{display:block;height:1.55em;width:auto;overflow:visible}
+.sg:hover,.sec-head h2:hover .sg{filter:drop-shadow(0 0 5px rgba(92,195,217,.55))}
+.sg .fx{transform-box:fill-box;transform-origin:center}
 .cal-said{--flare-ink:var(--accent)}
 .rq-flare{animation:rqFlare 2.4s ease-out}
 .px-known{animation:rqFlare 2.4s ease-out .45s}
@@ -6638,6 +6647,164 @@ function pxMeCards(){ const h = pxForHome(); if (!h) return '';
   return '<section class="me-card"><h3>' + esc(t('pl_me_plan')) + '</h3><div class="px-home-h"><span class="px-bpill">' + esc(h.P.B.name) + '</span></div><div class="px-home" style="border:0;padding:0;margin:0;background:none">' + pxPaceHtml(h.P) + '</div><div class="controls"><button type="button" class="btn" id="pxMeChange">' + esc(t('pl_home_change')) + '</button></div></section>'
     + '<section class="me-card px-site" id="pxMeMat"><h3>' + esc(t('pl_me_mat')) + '</h3><p class="me-hint">' + esc(t('pl_me_mat_p')) + '</p><div id="pxMeBox"></div></section>'; }
 function pxMeBind(){ const c = $('#pxMeChange'); if (c) c.addEventListener('click', () => { closeMe(); pxOpen({ view: 'change' }); }); const b = $('#pxMeBox'); if (b) pxUpBind(b); }
+
+/* =========================== OPERATOR SIGNS (7a) =========================== */
+/* A small animated table beside each relational algebra heading, telling its operator's story on a few colored cells: σ keeps two
+   rows, π drops a column and two rows that became the same merge, ∪ ∩ − take their three runs in turn on the same two tables, × pairs
+   every row with every row, ⋈ links matching keys, ρ renames only the header, ÷ checks each group against the divider. It runs when it
+   comes into view, up to three times with a rest on the result, then rests; hovering the heading runs it again, a click stops it, and
+   under reduced motion it shows only its last frame (the kit: motion that explains, never a fake control). Prototype: tools/proto/signs.html. */
+const RQS = (() => {
+const NS = 'http://www.w3.org/2000/svg', HOLD = 1600, RUNS = 3;
+const DUR = { sel: 2400, ren: 2400, proj: 3000, join: 3200, sets: 3200, prod: 3400, div: 3800 };
+const E = (tag, a, p) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const cell = (p, x, y, w, h, fill, cls) => E('rect', { x, y, width: w, height: h, rx: 1.2, fill, class: cls || '' }, p);
+const EASE = 'cubic-bezier(.4,0,.2,1)';
+function sign(kind){
+  const T = DUR[kind] || 3000, svg = E('svg', { viewBox: '0 0 60 40', 'aria-hidden': 'true' }), tls = [[]]; let tl = tls[0];
+  const at = (el, kf, a, b, ease) => tl.push([el, kf, a * T, (b - a) * T, ease || EASE]), next = () => { tl = []; tls.push(tl); };
+  const outline = (x, y, w, h) => { const o = E('rect', { x, y, width: w, height: h, rx: 2, fill: 'none', stroke: 'var(--sg-out)', 'stroke-width': 1.2, opacity: 0 }, svg); return o; };
+  if (kind === 'sel') {
+    /* σ: two rows meet the condition and stay; the others leave, and the result closes up */
+    const X = [10, 24, 38], W = 12, H = 4.6, Y = [12, 18, 24, 30], keep = [1, 3];
+    const head = E('g', {}, svg); X.forEach(x => cell(head, x, 4, W, 6, 'var(--sg-head)'));
+    const headR = E('g', { opacity: 0 }, svg); X.forEach(x => cell(headR, x, 4, W, 6, 'var(--sg-res-head)'));
+    const rows = Y.map((y, i) => { const g = E('g', { class: 'fx' }, svg); X.forEach(x => cell(g, x, y, W, H, 'var(--sg-fill)')); const hl = E('g', { opacity: 0 }, g); X.forEach(x => cell(hl, x, y, W, H, 'var(--sg-neon)')); g.hl = hl; return g; });
+    const out = outline(8.5, 2.5, 43, 21.6); /* the result: the header and two rows */
+    keep.forEach(i => { at(rows[i].hl, [{ opacity: 0 }, { opacity: .55 }], 0, .22); at(rows[i].hl, [{ opacity: .55 }, { opacity: .2 }], .62, .9); });
+    [0, 2].forEach(i => at(rows[i], [{ opacity: 1, transform: 'scaleY(1)' }, { opacity: 0, transform: 'scaleY(.2)' }], .22, .48));
+    at(rows[1], [{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }], .5, .74); at(rows[3], [{ transform: 'translateY(0)' }, { transform: 'translateY(-12px)' }], .5, .74);
+    at(headR, [{ opacity: 0 }, { opacity: 1 }], .72, .92); at(out, [{ opacity: 0 }, { opacity: 1 }], .76, 1);
+  }
+  if (kind === 'proj') {
+    /* π: the middle column leaves; two rows that differed only there become the same row, and merge into one */
+    const X = [10, 24, 38], W = 12, H = 4.6, Y = [12, 18, 24, 30];
+    const V = [['var(--sg-coral)', 'var(--sg-sun)', 'var(--sg-sky)'], ['var(--sg-apri)', 'var(--sg-sky)', 'var(--sg-coral)'], ['var(--sg-apri)', 'var(--sg-coral)', 'var(--sg-coral)'], ['var(--sg-sky)', 'var(--sg-apri)', 'var(--sg-apri)']];
+    const cols = X.map((x, c) => { const g = E('g', { class: 'fx' }, svg); cell(g, x, 4, W, 6, 'var(--sg-head)'); g.cells = Y.map((y, r) => cell(g, x, y, W, H, V[r][c])); return g; });
+    const headR = E('g', { opacity: 0 }, svg); [10, 24].forEach(x => cell(headR, x, 4, W, 6, 'var(--sg-res-head)'));
+    const dupe = [cols[0].cells[2], cols[2].cells[2]], last = [cols[0].cells[3], cols[2].cells[3]];
+    const out = outline(8.5, 2.5, 29, 27.6); /* the result: two columns, three rows */
+    at(cols[1], [{ opacity: 1 }, { opacity: .35 }], 0, .18); at(cols[1], [{ opacity: .35, transform: 'scaleX(1)' }, { opacity: 0, transform: 'scaleX(.15)' }], .18, .4);
+    at(cols[2], [{ transform: 'translateX(0)' }, { transform: 'translateX(-14px)' }], .4, .6);
+    /* the two rows that just became the same are ringed, then merge */
+    const ring = E('rect', { x: 9, y: 17, width: 28, height: 12.6, rx: 2, fill: 'none', stroke: 'var(--sg-neon)', 'stroke-width': 1, opacity: 0 }, svg);
+    at(ring, [{ opacity: 0 }, { opacity: 1 }], .6, .68);
+    dupe.forEach((d, i) => at(d, [{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-6px)', opacity: 0 }], .7, .86));
+    at(ring, [{ opacity: 1 }, { opacity: 0 }], .8, .9);
+    last.forEach(d => at(d, [{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }], .82, .94));
+    at(headR, [{ opacity: 0 }, { opacity: 1 }], .84, .96); at(out, [{ opacity: 0 }, { opacity: 1 }], .86, 1);
+  }
+  if (kind === 'join') {
+    /* ⋈: rows whose keys match link up; the rest drop out; the matched pairs become the rows of one wider table */
+    const W = 8.5, H = 4.6, Y = [12, 18, 24], A = [3, 13.5], B = [38, 48.5], F = [10, 20.5, 31, 41.5]; /* F: the joined table's columns */
+    const keyA = ['var(--sg-coral)', 'var(--sg-apri)', 'var(--sg-sky)'], keyB = ['var(--sg-coral)', 'var(--sg-fill)', 'var(--sg-apri)'];
+    const t1 = E('g', { class: 'fx' }, svg), t2 = E('g', { class: 'fx' }, svg);
+    A.forEach(x => cell(t1, x, 4, W, 6, 'var(--sg-head)')); B.forEach(x => cell(t2, x, 4, W, 6, 'var(--sg-head)'));
+    const r1 = Y.map((y, i) => { const g = E('g', { class: 'fx' }, t1); cell(g, A[0], y, W, H, 'var(--sg-fill)'); cell(g, A[1], y, W, H, keyA[i]); return g; });
+    const r2 = Y.map((y, i) => { const g = E('g', { class: 'fx' }, t2); cell(g, B[0], y, W, H, keyB[i]); cell(g, B[1], y, W, H, 'var(--sg-fill)'); return g; });
+    const links = [[0, 0], [1, 2]].map(([i, j]) => E('line', { x1: 22, y1: Y[i] + H / 2, x2: 37.5, y2: Y[j] + H / 2, stroke: 'var(--sg-neon)', 'stroke-width': 1.1, 'stroke-linecap': 'round', opacity: 0 }, svg));
+    const headR = E('g', { opacity: 0 }, svg); F.forEach(x => cell(headR, x, 4, W, 6, 'var(--sg-res-head)'));
+    const out = outline(8.5, 2.5, 43, 21.6);
+    links.forEach((l, k) => at(l, [{ opacity: 0 }, { opacity: 1 }], .08 + k * .08, .3 + k * .08));
+    [2].forEach(i => at(r1[i], [{ opacity: 1, transform: 'scaleY(1)' }, { opacity: 0, transform: 'scaleY(.2)' }], .42, .6));
+    [1].forEach(i => at(r2[i], [{ opacity: 1, transform: 'scaleY(1)' }, { opacity: 0, transform: 'scaleY(.2)' }], .42, .6));
+    links.forEach(l => at(l, [{ opacity: 1 }, { opacity: 0 }], .58, .7));
+    at(r2[2], [{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }], .6, .78);
+    at(t1, [{ transform: 'translateX(0)' }, { transform: 'translateX(7px)' }], .64, .84); at(t2, [{ transform: 'translateX(0)' }, { transform: 'translateX(-7px)' }], .64, .84);
+    at(headR, [{ opacity: 0 }, { opacity: 1 }], .82, .95); at(out, [{ opacity: 0 }, { opacity: 1 }], .86, 1);
+  }
+  if (kind === 'sets') {
+    /* ∪ ∩ −, one per run: two tables with the same columns; rows of the same color are the same row */
+    const W = 8, H = 4.6, Y = [12, 18, 24, 30], A = [4, 13.5], B = [38.5, 48];
+    const vA = ['var(--sg-coral)', 'var(--sg-apri)', 'var(--sg-sky)'], vB = ['var(--sg-apri)', 'var(--sg-sun)', 'var(--sg-coral)'];
+    const st = E('g', { class: 'fx' }, svg), ta = E('g', {}, st), tb = E('g', {}, st);
+    const hA = E('g', {}, ta); A.forEach(x => cell(hA, x, 4, W, 6, 'var(--sg-head)')); const hB = E('g', { class: 'fx' }, tb); B.forEach(x => cell(hB, x, 4, W, 6, 'var(--sg-head)'));
+    const hR = E('g', { opacity: 0 }, ta); A.forEach(x => cell(hR, x, 4, W, 6, 'var(--sg-res-head)'));
+    const ra = vA.map((v, i) => { const g = E('g', { class: 'fx' }, ta); A.forEach(x => cell(g, x, Y[i], W, H, v)); return g; });
+    const rb = vB.map((v, i) => { const g = E('g', { class: 'fx' }, tb); B.forEach(x => cell(g, x, Y[i], W, H, v)); return g; });
+    const link = (i, j) => E('line', { x1: 22, y1: Y[i] + H / 2, x2: 38, y2: Y[j] + H / 2, stroke: 'var(--sg-neon)', 'stroke-width': 1.1, 'stroke-linecap': 'round', opacity: 0 }, st);
+    const L = [link(0, 2), link(1, 0)], ob = (h) => E('rect', { x: 2.5, y: 2.5, width: 20.5, height: h, rx: 2, fill: 'none', stroke: 'var(--sg-out)', 'stroke-width': 1.2, opacity: 0 }, ta);
+    const oU = ob(33.6), oI = ob(21.6), oD = ob(15.6), mid = 'translateX(17px)';
+    const common = (o) => { L.forEach((l, k) => at(l, [{ opacity: 0 }, { opacity: 1 }], .04 + k * .08, .24 + k * .08)); L.forEach(l => at(l, [{ opacity: 1 }, { opacity: 0 }], .46, .58));
+      at(hB, [{ opacity: 1 }, { opacity: 0 }], .5, .64); at(hR, [{ opacity: 0 }, { opacity: 1 }], .7, .86); at(st, [{ transform: 'translateX(0)' }, { transform: mid }], .7, .92); at(o, [{ opacity: 0 }, { opacity: 1 }], .84, 1); };
+    const gone = (g, a, b) => at(g, [{ opacity: 1, transform: 'scaleY(1)' }, { opacity: 0, transform: 'scaleY(.2)' }], a, b);
+    /* ∪: every row once; B's own row joins A, the shared ones aren't repeated */
+    gone(rb[0], .3, .48); gone(rb[2], .3, .48); at(rb[1], [{ transform: 'translate(0,0)' }, { transform: 'translate(-34.5px,12px)' }], .5, .74); common(oU);
+    /* ∩: only the rows in both */
+    next(); gone(ra[2], .3, .48); rb.forEach(g => gone(g, .32, .5)); common(oI);
+    /* −: A's rows that B doesn't have */
+    next(); gone(ra[0], .3, .48); gone(ra[1], .3, .48); rb.forEach(g => gone(g, .32, .5)); at(ra[2], [{ transform: 'translateY(0)' }, { transform: 'translateY(-12px)' }], .52, .72); common(oD);
+  }
+  if (kind === 'prod') {
+    /* ×: every row of one table with every row of the other; two rows by three make six */
+    const W = 9, va = ['var(--sg-coral)', 'var(--sg-apri)'], vb = ['var(--sg-sky)', 'var(--sg-sun)', 'var(--sg-fill)'];
+    const ta = E('g', { class: 'fx' }, svg), tb = E('g', { class: 'fx' }, svg); cell(ta, 3, 4, W, 6, 'var(--sg-head)'); cell(tb, 48, 4, W, 6, 'var(--sg-head)');
+    va.forEach((v, i) => cell(ta, 3, 12 + i * 6, W, 4.6, v)); vb.forEach((v, j) => cell(tb, 48, 12 + j * 6, W, 4.6, v));
+    const fan = []; va.forEach((_, i) => vb.forEach((_, j) => fan.push(E('line', { x1: 12, y1: 14.3 + i * 6, x2: 48, y2: 14.3 + j * 6, stroke: 'var(--sg-neon)', 'stroke-width': .8, 'stroke-linecap': 'round', opacity: 0 }, svg))));
+    const res = E('g', {}, svg), hR = E('g', { opacity: 0 }, res); [20.5, 30.5].forEach(x => cell(hR, x, 3.5, W, 5, 'var(--sg-res-head)'));
+    const rows = []; va.forEach((a, i) => vb.forEach((b, j) => { const k = i * 3 + j, g = E('g', { opacity: 0 }, res); cell(g, 20.5, 10 + k * 4.6, W, 3.8, a); cell(g, 30.5, 10 + k * 4.6, W, 3.8, b); rows.push(g); }));
+    const out = E('rect', { x: 19, y: 2, width: 22, height: 37, rx: 2, fill: 'none', stroke: 'var(--sg-out)', 'stroke-width': 1.2, opacity: 0 }, svg);
+    fan.forEach((l, k) => at(l, [{ opacity: 0 }, { opacity: .9 }], .02 + k * .05, .14 + k * .05));
+    fan.forEach(l => at(l, [{ opacity: .9 }, { opacity: 0 }], .44, .56)); [ta, tb].forEach(g => at(g, [{ opacity: 1 }, { opacity: .25 }], .44, .6));
+    rows.forEach((g, k) => at(g, [{ opacity: 0, transform: 'translateY(-2px)' }, { opacity: 1, transform: 'translateY(0)' }], .48 + k * .055, .6 + k * .055));
+    at(hR, [{ opacity: 0 }, { opacity: 1 }], .8, .92); at(out, [{ opacity: 0 }, { opacity: 1 }], .84, 1);
+  }
+  if (kind === 'ren') {
+    /* ρ: only the names change; the rows stay exactly as they were */
+    const X = [10, 24, 38], W = 12, Y = [12, 18, 24];
+    X.forEach(x => cell(svg, x, 4, W, 6, 'var(--sg-head)'));
+    const nw = X.map(x => cell(svg, x, 4, W, 6, 'var(--sg-sky)', 'fx'));
+    nw.forEach(n => n.setAttribute('opacity', 0));
+    Y.forEach(y => X.forEach(x => cell(svg, x, y, W, 4.6, 'var(--sg-fill)')));
+    const sweep = E('rect', { x: 9, y: 3, width: 42, height: 8, rx: 2, fill: 'none', stroke: 'var(--sg-neon)', 'stroke-width': 1, opacity: 0 }, svg);
+    const out = outline(8.5, 2.5, 43, 27.6);
+    at(sweep, [{ opacity: 0 }, { opacity: 1 }], .04, .18); at(sweep, [{ opacity: 1 }, { opacity: 0 }], .66, .78);
+    nw.forEach((n, i) => at(n, [{ opacity: 1, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }], .2 + i * .14, .34 + i * .14, 'cubic-bezier(.34,1.4,.64,1)'));
+    at(out, [{ opacity: 0 }, { opacity: 1 }], .82, 1);
+  }
+  if (kind === 'div') {
+    /* ÷: which x has every y of the divider? Each group is checked in turn; the ones that cover all of it stay */
+    const W = 8, H = 4, Y = [10.5, 15.5, 20.5, 25.5, 30.5], A = [4, 13.5];
+    const vx = ['var(--sg-coral)', 'var(--sg-coral)', 'var(--sg-apri)', 'var(--sg-sky)', 'var(--sg-sky)'], vy = ['var(--sg-sun)', 'var(--sg-fill)', 'var(--sg-sun)', 'var(--sg-fill)', 'var(--sg-sun)'];
+    const r = E('g', { class: 'fx' }, svg); A.forEach(x => cell(r, x, 4, W, 5, 'var(--sg-head)'));
+    const rows = Y.map((y, i) => { const g = E('g', { class: 'fx' }, r); cell(g, A[0], y, W, H, vx[i]); cell(g, A[1], y, W, H, vy[i]); return g; });
+    const d = E('g', { class: 'fx' }, svg); cell(d, 48, 4, W, 5, 'var(--sg-head)'); cell(d, 48, 10.5, W, H, 'var(--sg-sun)'); cell(d, 48, 15.5, W, H, 'var(--sg-fill)');
+    const dRing = E('rect', { x: 47, y: 9.5, width: 10, height: 11, rx: 2, fill: 'none', stroke: 'var(--sg-neon)', 'stroke-width': 1, opacity: 0 }, svg);
+    const ring = (y0, h, c) => E('rect', { x: 3, y: y0 - 1, width: 19.5, height: h + 2, rx: 2, fill: 'none', stroke: c, 'stroke-width': 1, opacity: 0 }, svg);
+    const g1 = ring(10.5, 9, 'var(--sg-neon)'), g2 = ring(20.5, 4, 'var(--muted)'), g3 = ring(25.5, 9, 'var(--sg-neon)');
+    const res = E('g', {}, svg), hR = cell(res, 30, 4, W, 5, 'var(--sg-res-head)'), o1 = cell(res, 30, 10.5, W, H, 'var(--sg-coral)'), o2 = cell(res, 30, 15.5, W, H, 'var(--sg-sky)');
+    [hR, o1, o2].forEach(e => e.setAttribute('opacity', 0));
+    const out = E('rect', { x: 28.5, y: 2.5, width: 11, height: 18.5, rx: 2, fill: 'none', stroke: 'var(--sg-out)', 'stroke-width': 1.2, opacity: 0 }, svg);
+    at(dRing, [{ opacity: 0 }, { opacity: 1 }], .02, .12); at(dRing, [{ opacity: 1 }, { opacity: 0 }], .62, .7);
+    at(g1, [{ opacity: 0 }, { opacity: 1 }], .12, .2); at(g1, [{ opacity: 1 }, { opacity: 0 }], .3, .36);
+    at(g2, [{ opacity: 0 }, { opacity: 1 }], .32, .4); at(rows[2], [{ opacity: 1 }, { opacity: .3 }], .4, .5); at(g2, [{ opacity: 1 }, { opacity: 0 }], .48, .54);
+    at(g3, [{ opacity: 0 }, { opacity: 1 }], .5, .58); at(g3, [{ opacity: 1 }, { opacity: 0 }], .66, .72);
+    [r, d].forEach(g => at(g, [{ opacity: 1 }, { opacity: .25 }], .7, .82));
+    [o1, o2].forEach((e, k) => at(e, [{ opacity: 0 }, { opacity: 1 }], .72 + k * .06, .84 + k * .06)); at(hR, [{ opacity: 0 }, { opacity: 1 }], .8, .92); at(out, [{ opacity: 0 }, { opacity: 1 }], .86, 1);
+  }
+  const wrap = document.createElement('span'); wrap.className = 'sg'; wrap.appendChild(svg); wrap.tls = tls; let anims = [], timer = 0;
+  /* forwards only: a later step must not paint over the start before its turn */
+  wrap.play = (i = 0) => { anims.forEach(a => a.cancel()); anims = tls[i % tls.length].map(([el, kf, delay, dur, ease]) => el.animate(kf, { delay, duration: Math.max(1, dur), easing: ease, fill: 'forwards' })); return anims; };
+  wrap.at = (f, i = 0) => { const a = wrap.play(i); a.forEach(x => { x.pause(); x.currentTime = f * T; }); };
+  wrap.end = () => wrap.at(1, tls.length - 1);
+  wrap.running = false;
+  wrap.run = (n) => { clearTimeout(timer); wrap.running = true; let k = 0;
+    const go = () => { wrap.play(k); k++; timer = setTimeout(() => { if (k >= n) { wrap.running = false; return; }
+      svg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, easing: EASE }).onfinish = () => { go(); svg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, easing: EASE }); }; }, T + HOLD); };
+    go(); };
+  wrap.stop = () => { clearTimeout(timer); wrap.running = false; wrap.end(); };
+  return wrap;
+}
+const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches, runs = s => s.tls.length > 1 ? s.tls.length : 1;
+const IO = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const s = e.target; IO.unobserve(s); if (reduce()) s.end(); else s.run(RUNS); }), { threshold: .6 }) : null;
+const SIGNS = [['r-select', 'sel'], ['r-project', 'proj'], ['r-sets', 'sets'], ['r-product', 'prod'], ['r-join', 'join'], ['r-rename', 'ren'], ['r-divide', 'div']];
+function mount(){ SIGNS.forEach(([id, k]) => { const h = document.querySelector('#' + id + ' .sec-head h2'); if (!h || h.querySelector('.sg')) return;
+  const s = sign(k); h.insertBefore(s, h.firstChild); s.end(); if (IO) IO.observe(s);
+  h.addEventListener('mouseenter', () => { if (!reduce() && !s.running) s.run(runs(s)); });
+  s.addEventListener('click', () => { if (s.running) s.stop(); else if (!reduce()) s.run(runs(s)); }); }); }
+return { sign, mount };
+})();
+RQS.mount();
 
 /* =========================== THE STUDY CALENDAR =========================== */
 /* The plan's pace as study sessions: a weekly rhythm, one-off weeks on top of it, and the plan's lessons poured into the sessions in

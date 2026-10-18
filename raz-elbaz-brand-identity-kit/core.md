@@ -201,7 +201,8 @@ Mono sample, an LTR island: `SELECT name FROM Students WHERE year >= 2;`
   - A = .55 light, .85 dark. Other hues use their soft-tier RGB: coral 253,151,122; apricot 250,166,112; sky 140,189,218.
   - Print: `@media print{ filter:none }` on every glow.
   - Exception: the logo intro and the top-bar sheen may be glossy (digital, dark only; section 9).
-- Motion character: restrained. Color and background transitions .3s on theme change; no idle motion; the glow is static. The one idle motion is the tide's slow drift (above), on a floating card only. Ease: not defined (the CSS default). The logo has its own motion (section 9). Respect `prefers-reduced-motion`: no transitions, the logo shows its still end frame.
+- Motion character: restrained. Color and background transitions .3s on theme change; no idle motion; the glow is static. The one idle motion is the tide's slow drift (above), on a floating card only.
+- **Motion never pretends to be a control (Raz, 2026-10-18).** What isn't a button doesn't look like one, and doesn't make a gesture that asks to be clicked or promises that something will open: no bounce, pulse or wiggle. Motion that explains is welcome. The operator signs are the example: a sign runs when it comes into view, up to three times, then rests on its result. Hovering its heading runs it again, a click stops it, and under reduced motion it shows only its last frame. Ease: not defined (the CSS default). The logo has its own motion (section 9). Respect `prefers-reduced-motion`: no transitions, the logo shows its still end frame.
 - Texture: none. Gradients only as one-hue washes, the flow band and 4px flow rule, the progress ring and a thin chart baseline.
 
 ## 5 - Motif vocabulary (8 approved)
