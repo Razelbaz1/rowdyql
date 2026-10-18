@@ -40,8 +40,8 @@ begin new.updated_at := now(); return new; end $$;
 drop trigger if exists requests_touch on public.requests;
 create trigger requests_touch before update on public.requests for each row execute function public.requests_touch();
 
--- staff only: sends the reply (after Raz's click in the board) from hello@ through Resend, in the student's thread, with a copy to hello@
--- (Raz's Gmail, through Cloudflare Email Routing). p_text, when given, replaces the draft first.
+-- staff only: sends the reply (after Raz's click in the board) from hello@ through Resend, in the student's thread. No copy to hello@:
+-- the board keeps the sent text and time (Raz, 2026-10-18). p_text, when given, replaces the draft first.
 create or replace function public.send_request_reply(p_id bigint, p_text text default null)
 returns jsonb
 language plpgsql
@@ -124,7 +124,7 @@ begin
   select net.http_post(
     url     := 'https://api.resend.com/emails',
     headers := jsonb_build_object('Authorization', 'Bearer ' || v_key, 'Content-Type', 'application/json'),
-    body    := jsonb_build_object('from', 'RowdyQL <hello@rowdyql.com>', 'to', jsonb_build_array(r.from_email), 'bcc', jsonb_build_array('hello@rowdyql.com'),
+    body    := jsonb_build_object('from', 'RowdyQL <hello@rowdyql.com>', 'to', jsonb_build_array(r.from_email),
                                   'reply_to', 'hello@rowdyql.com', 'subject', v_subj, 'html', v_html, 'text', v_text, 'headers', v_hdr),
     timeout_milliseconds := 20000) into v_req;
   update public.requests set reply_text = v_text, reply_subject = v_subj, status = 'sent', sent_at = now(), sent_by = auth.uid() where id = p_id;

@@ -5,7 +5,7 @@ description: Sort the RowdyQL requests inbox (hello@rowdyql.com) for Raz. Reads 
 
 # The RowdyQL requests inbox
 
-Students write to **hello@rowdyql.com**. Cloudflare Email Routing forwards it to Raz's Gmail. This skill sorts the mail. It never sends a reply and never builds content. Raz reads every reply in the staff board (the "פניות" tab) and sends it with one click. The click calls `send_request_reply`, which sends from hello@ through Resend, in the student's thread, with a copy to hello@.
+Students write to **hello@rowdyql.com**. Cloudflare Email Routing forwards it to Raz's Gmail. This skill sorts the mail. It never sends a reply and never builds content. Raz reads every reply in the staff board (the "פניות" tab) and sends it with one click. The click calls `send_request_reply`, which sends from hello@ through Resend, in the student's thread. There is no copy to hello@: the board keeps the sent text and time.
 
 Raz's rules (2026-10-18):
 - Every request gets a reply, so the student feels heard and didn't write for nothing.
