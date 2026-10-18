@@ -26,7 +26,9 @@ Talk to Raz in Hebrew. The sources below are the truth. If something here confli
 
 ## Sorting the inbox ("תמיין את הפניות")
 
-1. **Find new mail:** `to:hello@rowdyql.com -from:hello@rowdyql.com -from:noreply@rowdyql.com -label:RowdyQL/נקלט`.
+1. **Find new mail:** `to:hello@rowdyql.com -from:hello@rowdyql.com -from:noreply@rowdyql.com -label:RowdyQL-נקלט`. In a Gmail search, a nested label's `/` is written `-`.
+   - The labels already exist (created 2026-10-18), and their ids come from `list_labels`.
+   - The connector does not expose the `Message-ID` header, so `message_id` stays empty for now. The reply then arrives as a new "Re:" email rather than inside the thread.
    - Skip anything sent from hello@ or noreply@. Those are our own replies and copies.
    - Also check `public.requests.gmail_thread`, so the same thread is never entered twice.
    - A new message in an old thread is a follow-up: add it to the row's `body` and set `status` back to `review`.

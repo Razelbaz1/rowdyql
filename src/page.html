@@ -6138,7 +6138,7 @@ const PX_PLANNED = { sql: [['sql1', 15], ['sql2', 15, 'join'], ['sql3', 15, 'gro
   norm: [['n1', 15, 'norm'], ['n2', 15, 'norm'], ['n3', 15, 'norm'], ['n4', 15, 'norm'], ['n5', 12, 'norm bcnf 4nf'], ['n6', 25, 'ex']],
   erd: [['e1', 15, 'erd'], ['e2', 15, 'erd'], ['e3', 15, 'erd'], ['e4', 12, 'erd'], ['e5', 15, 'erd'], ['e6', 20, 'ex']] };
 /* what we know first hand: only Raz's own course. Knowledge is per course, so an institution we know is not a course we know */
-const PX_COURSES = [{ inst: 'אוניברסיטת אריאל', fields: ['הנדסת תעשייה וניהול'], field: { he: 'הנדסת תעשייה וניהול', en: 'Industrial Engineering and Management' }, name: { he: 'תכנון בסיסי נתונים', en: 'Database Design' }, style: 'mc', topics: ['ra', 'sql', 'norm', 'erd'] }];
+const PX_COURSES = [{ inst: 'אוניברסיטת אריאל', fields: ['הנדסת תעשייה וניהול'], aliases: ['תעשייה', 'תעונ', 'תעו נ', 'industrial engineering and management', 'industrial engineering', 'iem', 'ie m', 'ie'], field: { he: 'הנדסת תעשייה וניהול', en: 'Industrial Engineering and Management' }, name: { he: 'תכנון בסיסי נתונים', en: 'Database Design' }, style: 'mc', topics: ['ra', 'sql', 'norm', 'erd'] }];
 const PX_KNOWN = { 'אוניברסיטת אריאל': { he: 'אריאל', en: 'Ariel' } };
 const PX_BUNDLES = {
   full: { n: 'pl_bd_full', focus: ['intro', 'ra', 'sql', 'norm', 'erd'], skip: {}, inTx: 'pl_bd_full_in', outTx: 'pl_bd_full_out' },
@@ -6151,7 +6151,10 @@ const PX = { view: 'hello', qi: 0, mode: 'new', P: null, first: true, tok: 0, bi
 
 /* ---- small helpers ---- */
 const pxSt = () => PS.studying === 'yes', pxNs = () => PS.studying === 'no';
-const pxCourse = () => pxSt() && PS.inst ? PX_COURSES.find(c => c.inst === PS.inst && c.fields.includes((PS.field || '').trim())) || null : null;
+/* a department as people type it: no quotes, dashes or "&", one spelling of תעשייה, and no leading "הנדסת"/"הנדסה" (Raz, 2026-10-18: "תעשייה וניהול" is the same engineering department) */
+const pxNormField = f => String(f || '').toLowerCase().replace(/["'׳״`.,\-–&/()]/g, ' ').replace(/תעשיה/g, 'תעשייה').replace(/\s+/g, ' ').trim().replace(/^(הנדסת|הנדסה) /, '');
+const pxFieldIs = (c, f) => { const n = pxNormField(f); return !!n && c.fields.concat(c.aliases || []).some(x => pxNormField(x) === n); };
+const pxCourse = () => pxSt() && PS.inst ? PX_COURSES.find(c => c.inst === PS.inst && pxFieldIs(c, PS.field)) || null : null;
 const pxConf = () => pxCourse() ? 3 : pxSt() && PX_KNOWN[PS.inst] ? 2 : 1;
 const pxShort = n => (PX_KNOWN[n] && PX_KNOWN[n][lang]) || n;
 const pxAt = n => { const s = pxShort(n); return lang === 'en' ? 'at ' + s : 'ב' + (s.startsWith('ה') ? s.slice(1) : s); };
