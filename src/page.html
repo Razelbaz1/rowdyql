@@ -57,7 +57,7 @@ h3{font-size:1.15rem;font-family:var(--body);font-weight:700}
 p{margin:0}
 code,.mono,.ra,table.data{font-family:var(--mono)}
 button{font:inherit;cursor:pointer;color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+:focus-visible{outline:2px solid var(--neon-l);outline-offset:2px}
 [hidden]{display:none!important}
 .eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
 html[lang="he"] .eyebrow{letter-spacing:.04em;text-transform:none}
@@ -150,6 +150,8 @@ section.sec:last-child{border-bottom:0}
 .sec-head h2::after{content:"";display:block;width:56px;height:3px;border-radius:1.5px;margin-top:.55rem;background:var(--flow)}
 html[dir="rtl"] .sec-head h2::after{background:var(--flow-rtl)}
 .lede{font-size:1.1rem;color:var(--muted);max-width:76ch}
+.unit h3{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.unit .eyebrow{color:var(--muted);font-weight:500;letter-spacing:0}
 .prose{max-width:76ch;display:flex;flex-direction:column;gap:.8rem}
 .prose strong{font-weight:700}
 
@@ -220,7 +222,7 @@ html[dir="rtl"] .notice{--dir:-1}
 .tile b{font-size:.8rem;color:var(--muted);font-weight:500}
 .tile span{font-family:var(--mono);font-size:.78rem;line-height:1.4;direction:ltr;text-align:left;overflow-wrap:break-word}
 .tile.on{border-color:var(--accent);background:var(--accent-soft)}
-.tile{transition:border-color .3s ease,box-shadow .4s ease,background .3s ease}.tile:hover{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25)}
+
 
 /* ---------- bench (interactive panels) ---------- */
 .bench{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:1rem;box-shadow:var(--shadow)}
@@ -232,21 +234,30 @@ label.chk{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .6rem;
 label.chk:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
 .tables{display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start}
 .tbl{display:flex;flex-direction:column;gap:.35rem;min-width:0;max-width:100%}
-.tbl>b{font-size:.85rem;color:var(--muted);font-weight:500;font-family:var(--mono)}
+/* lesson tables (design phase 2): the kit's frame, square cells, captions as in the exercise area, state rows with their mark cells */
+.tbl>b{font-weight:500}
+.tbl>b.tcap{font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);direction:ltr;text-align:left}
+.tbl>b.tcap-he{font:500 .85rem var(--body);color:var(--ink)}
 .tblwrap{overflow-x:auto;max-width:100%}
-table.data{border-collapse:collapse;font-size:.85rem;direction:ltr;text-align:left;font-variant-numeric:tabular-nums;background:var(--surface)}
-table.data th,table.data td{border:1px solid var(--line);padding:.35rem .6rem;white-space:nowrap;transition:background .3s,opacity .3s,color .3s}
-table.data th{background:var(--surface2);font-weight:500}
-table.data th.pk{background:var(--pk-bg);color:var(--pk)}
-table.data th.fk{background:var(--fk-bg);color:var(--fk)}
-table.data th.clickable{cursor:pointer;text-decoration:underline dotted}
-table.data tr.hit td{background:var(--amber-soft)}
-table.data tr.miss td{opacity:.32}
-table.data tr.dup td{text-decoration:line-through;color:var(--muted)}
-table.data tr.gone td{opacity:.25;text-decoration:line-through}
+.tblwrap.tw{border:1px solid var(--line);border-radius:10px;background:var(--surface);width:fit-content}
+.tblwrap.tw.res{border-color:var(--neon-l)}
+table.data{border-collapse:collapse;font:400 .82rem var(--mono);direction:ltr;text-align:left;font-variant-numeric:tabular-nums;background:var(--surface)}
+table.data th,table.data td{border:0;border-top:1px solid var(--line);padding:6px 10px;white-space:nowrap;transition:background .3s,opacity .3s,color .3s}
+table.data th{border-top:0;border-bottom:1px solid var(--line);background:var(--surface2);font-weight:500}
+.tw.res table.data th{background:var(--res-head)}
+table.data th.pk{color:var(--note-t)} table.data th.fk{color:var(--sky-t)}
+.key{font:500 .62rem var(--mono);letter-spacing:.08em;margin-inline-start:6px;vertical-align:1px}
+.legend2 .key{margin:0;border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem;background:var(--surface2)}
+.key.pk{color:var(--note-t)} .key.fk{color:var(--sky-t)}
+table.data th.clickable{cursor:pointer;text-decoration:underline dotted;transition:box-shadow .4s}
+table.data th.clickable:hover,table.data th.clickable:focus-visible{box-shadow:inset 0 0 0 1px #5CC3D9,0 0 12px rgba(92,195,217,.25);outline:0}
+table.data td.m,table.data th.m{padding:4px 8px;width:28px}
+table.data td.nul{color:var(--muted);font-style:italic;background-image:repeating-linear-gradient(135deg,color-mix(in srgb,var(--ink) 14%,transparent) 0 1px,transparent 1px 6px)}
+table.data td.nul span{background:var(--surface);padding:0 .25em}
+table.data tr.hit td,table.data tr.good td{background:var(--accent-soft)}
+table.data tr.miss td,table.data tr.badrow td,table.data tr.dup td,table.data tr.gone td{background:var(--bad-bg)}
+table.data tr.miss td:not(.m),table.data tr.badrow td:not(.m),table.data tr.dup td:not(.m),table.data tr.gone td:not(.m){color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bad);text-decoration-thickness:1.5px}
 table.data td.mark{background:var(--amber-soft);font-weight:500}
-table.data tr.good td{background:var(--good-bg)}
-table.data tr.badrow td{background:var(--bad-bg)}
 .ce{flex:1 1 100%;min-width:0;max-width:100%;box-sizing:border-box;margin-top:.8rem;padding:.9rem 1rem 1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .ce h4{margin:0 0 .25rem;font-size:1rem}
 .ce .ce-lede{margin:0 0 .7rem;color:var(--muted);font-size:.92rem}
@@ -267,31 +278,39 @@ html.present .pinnable:hover{box-shadow:0 0 0 2px #5CC3D9}
 .pinned{box-shadow:0 0 0 3px var(--amber),0 0 26px rgba(232,163,58,.45)!important;background:var(--amber-soft)!important;border-radius:8px;opacity:1!important}
 .has-pin>.pinnable:not(.pinned){opacity:.38}
 html.present .pinned{transform:scale(1.02)}
-.msg{border-inline-start:3px solid var(--accent);background:var(--surface2);padding:.7rem .9rem;border-radius:8px;font-size:.95rem}
-.msg.good{border-color:var(--good);background:var(--good-bg)}
-.msg.bad{border-color:var(--bad);background:var(--bad-bg)}
-.count{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
-.legend{display:flex;gap:.8rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
-.legend i{display:inline-block;width:.9rem;height:.9rem;border-radius:3px;vertical-align:-2px;margin-inline-end:.3rem;border:1px solid var(--line)}
+/* the line under a visualizer (Raz, 2026-10-18: a note line with its mark cell, no box) */
+.msg,.tnote{position:relative;padding-inline-start:30px;font-size:1rem;line-height:1.55;min-height:22px}
+.msg::before,.tnote::before{content:"";position:absolute;inset-inline-start:0;top:.15em;width:20px;height:20px;border-radius:6px;background:var(--surface2)}
+.msg::after,.tnote::after{content:"";position:absolute;inset-inline-start:0;top:.15em;width:20px;height:20px;background:var(--muted);-webkit-mask:var(--mk-neutral) center/20px no-repeat;mask:var(--mk-neutral) center/20px no-repeat}
+.msg.good::before{background:var(--good-bg)} .msg.good::after{background:var(--good);-webkit-mask-image:var(--mk-good);mask-image:var(--mk-good)}
+.msg.bad::before{background:var(--bad-bg)} .msg.bad::after{background:var(--bad);-webkit-mask-image:var(--mk-bad);mask-image:var(--mk-bad)}
+.tnote::before{background:var(--amber-soft)} .tnote::after{background:var(--note-t);-webkit-mask-image:var(--mk-note);mask-image:var(--mk-note)}
+:root{--mk-good:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.6 10.4l2.9 2.9 5.9-6.3' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --mk-bad:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6.6 6.6l6.8 6.8M13.4 6.6l-6.8 6.8' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --mk-neutral:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10h8' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --mk-note:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg transform='rotate(-8 10 10)'%3E%3Crect x='8.9' y='4' width='2.2' height='8' rx='1.1'/%3E%3Crect x='8.85' y='13.6' width='2.3' height='2.3' rx='.7'/%3E%3C/g%3E%3C/svg%3E")}
+.count{font-size:.85rem;color:var(--muted)}
+
 .ra{font-size:1.05rem;direction:ltr;display:inline-block;background:var(--surface2);padding:.35rem .7rem;border-radius:8px;white-space:nowrap}
 .ra sub{font-size:.7em}
 .ra.big{font-size:1.25rem;max-width:100%;overflow-x:auto;vertical-align:top;scrollbar-width:thin}
 pre.sql{font-family:var(--mono);font-size:.85rem;direction:ltr;text-align:left;background:var(--surface2);padding:.9rem 1rem;border-radius:10px;overflow-x:auto;margin:0;line-height:1.55}
 pre.sql .k{color:var(--accent);font-weight:500}
-.steps{display:flex;gap:.5rem;flex-wrap:wrap}
-.step{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.4rem .9rem;min-height:44px;display:inline-flex;align-items:center;gap:.4rem}
-.step[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-.matrix{border-collapse:collapse;direction:ltr;font-family:var(--mono);font-size:.9rem}
-.matrix th,.matrix td{border:1px solid var(--line);padding:.4rem .8rem;text-align:center}
-.matrix th{background:var(--surface2);font-weight:500}
-.matrix td.yes{color:var(--good);font-weight:700}
-.matrix td.no{color:var(--muted)}
-.matrix tr.win td{background:var(--good-bg)}
+/* the visualizer steps: one segmented track, the pressed step in ink (the kit's toggle) */
+.steps{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--surface);flex-wrap:wrap;width:fit-content;max-width:100%}
+button.step{border:0;background:none;color:var(--ink);border-radius:999px;padding:.4rem .95rem;min-height:40px;display:inline-flex;align-items:center;gap:.4rem;font:500 .92rem var(--body);cursor:pointer;transition:box-shadow .4s,background .3s,color .3s}
+button.step:hover,button.step:focus-visible{box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+button.step[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.matrix{border-collapse:collapse;direction:ltr;font:400 .82rem var(--mono)}
+.matrix th,.matrix td{border:0;border-top:1px solid var(--line);padding:6px 12px;text-align:center;height:22px}
+.matrix th{border-top:0;border-bottom:1px solid var(--line);background:var(--surface2);font-weight:500}
+.matrix td:first-child{text-align:left}
+.matrix tr.win td{background:var(--accent-soft)}
 .matrix th.off,.matrix td.off{opacity:.3}
 .tree{display:flex;flex-direction:column;gap:.5rem}
 .node{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;cursor:pointer;padding:.5rem .7rem;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
 .node[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
-.node .depth{font-size:.72rem;color:var(--muted);font-family:var(--mono)}
+.node .depth{font-size:.8rem;color:var(--muted)}
 
 /* ---------- cards & lists ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem}
@@ -327,6 +346,7 @@ pre.sql .k{color:var(--accent);font-weight:500}
 .hist{display:flex;gap:.8rem;flex-wrap:wrap}
 .hist div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;font-size:.85rem;display:flex;flex-direction:column;min-width:8rem}
 .hist b{font-family:var(--mono);color:var(--accent);font-weight:500}
+.hist b.he{font-family:var(--body);font-weight:700}
 .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;align-items:start}
 .three .lab{font-size:.78rem;color:var(--muted);font-weight:500;margin-bottom:.3rem}
 .qbox{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem;font-size:1rem}
@@ -336,15 +356,20 @@ pre.sql .k{color:var(--accent);font-weight:500}
 .quiz{display:flex;flex-direction:column;gap:1.2rem}
 .q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
 .q .qt{font-weight:500;font-size:1.02rem}
-.q .qn{font-size:.75rem;color:var(--muted);font-family:var(--mono)}
+.q .qn{font:800 1.05rem var(--display);color:var(--accent);direction:ltr;unicode-bidi:isolate;align-self:flex-start}
 .opts{display:flex;flex-direction:column;gap:.4rem}
 .opt{text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:.55rem .8rem;display:flex;gap:.6rem;align-items:flex-start;min-height:44px;line-height:1.45}
 
-.opt .l{font-family:var(--mono);color:var(--muted);flex:none;width:1.4rem}
-.opt.correct{border-color:var(--good);background:var(--good-bg)}
-.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt .l{font-weight:700;font-size:.9rem;color:var(--muted);flex:none;width:1.2rem}
+.opt>span:not(.l):not(.mkc){flex:1}
+.opt .mkc{margin-inline-start:auto;align-self:center}
+.opt.correct{border-color:color-mix(in srgb,var(--good) 30%,transparent);background:var(--good-bg)}
+.opt.wrong{border-color:color-mix(in srgb,var(--bad) 30%,transparent);background:var(--bad-bg)}
+.opt.wrong>span:not(.l):not(.mkc){color:var(--muted);text-decoration:line-through;text-decoration-color:var(--bad);text-decoration-thickness:1.5px}
 .opt[disabled]{cursor:default}
-.exp{font-size:.92rem;border-inline-start:3px solid var(--good);padding:.5rem .8rem;background:var(--surface2);border-radius:8px}
+.exp{position:relative;padding-inline-start:38px;margin-top:6px;font-size:.98rem;line-height:1.55}
+.exp::before{content:"";position:absolute;inset-inline-start:14px;top:-12px;width:16px;height:24px;border-inline-start:1px solid var(--muted);border-bottom:1px solid var(--muted);border-end-start-radius:4px}
+.exp::after{content:"";position:absolute;inset-inline-start:28px;top:8px;width:7px;height:7px;background:var(--sky-l)}
 .score{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
 .score b{font-family:var(--mono);font-size:1.4rem;color:var(--accent)}
 
@@ -469,7 +494,7 @@ html[dir="rtl"] .disc>summary .chev{transform:scaleX(-1)}
 .disc[open]>summary .chev{transform:rotate(90deg)} html[dir="rtl"] .disc[open]>summary .chev{transform:rotate(90deg) scaleX(-1)}
 .disc>summary .cnt{margin-inline-start:auto;font-weight:400;font-size:.85rem;color:var(--muted);white-space:nowrap}
 .disc .db{padding:4px 14px 14px;display:flex;flex-direction:column;gap:12px}
-.step{display:flex;flex-direction:column;gap:6px;min-width:0}
+div.step{display:flex;flex-direction:column;gap:6px;min-width:0}
 .step .sh{display:flex;align-items:center;gap:8px;direction:ltr;justify-content:flex-start;min-width:0}
 .step .sn{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font:500 .78rem var(--mono);color:var(--accent);border:1px solid var(--neon-l);flex:none}
 .step .chip{display:inline-block;max-width:100%;overflow-x:auto;font:500 .92rem var(--mono);direction:ltr;background:var(--surface2);border-radius:6px;padding:.3rem .65rem;white-space:nowrap}
@@ -649,8 +674,7 @@ table.dtable td.wrapcell{white-space:normal;max-width:18rem}
 [data-pop]{cursor:help;text-decoration:underline dotted var(--accent);text-underline-offset:3px}
 .dialog{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:60;padding:1rem}
 .dialog>div{background:var(--surface);border-radius:14px;padding:1.4rem;max-width:420px;width:100%;display:flex;flex-direction:column;gap:.8rem;box-shadow:var(--shadow)}
-.tnote{border-inline-start:3px solid var(--amber);background:var(--amber-soft);padding:.6rem .9rem;border-radius:8px;font-size:.92rem}
-.tnote b{color:var(--pk)}
+.tnote b{color:var(--note-t)}
 .toast{position:fixed;bottom:1.2rem;inset-inline-start:50%;transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:.6rem 1rem;border-radius:999px;font-size:.9rem;z-index:70;box-shadow:var(--shadow)}
 html[dir="rtl"] .toast{transform:translateX(50%)}
 
@@ -1068,7 +1092,7 @@ section.sec{scroll-margin-top:calc(var(--toph,74px) + .75rem)}
 #u-intro .lsn-bar{background:var(--wash-coral)}#u-ra .lsn-bar{background:var(--wash-apricot)}
 .lsn-bar:empty{display:none}
 .lsn-t{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;min-width:0}
-.lsn-id{font-family:var(--mono);color:var(--accent);font-size:.85rem}
+.lsn-id{font-family:var(--mono);color:var(--ink);font-size:.82rem;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:6px;padding:0 .35rem}
 .lsn-t b{font-weight:600;font-size:.98rem}
 .lsn-dur{color:var(--muted);font-size:.82rem}
 .lsn-dots{display:flex;align-items:center;gap:.05rem;flex-wrap:wrap}
@@ -1356,6 +1380,8 @@ html[dir="ltr"] .mk-menu{transform-origin:top right}
 /* hover on a clickable block: the frame turns neon and a soft glow fades in; nothing that is not clickable reacts */
 .sess:not(.soon),.quick button,.opt,.lv-opt,.ob-opt,.btn:not(.primary),.subopen,.nt-bell{transition:border-color .3s ease,box-shadow .4s ease,background-color .3s ease,color .3s ease}
 .sess:not(.soon):hover,.quick button:hover,.opt:not(:disabled):hover,.lv-opt:hover,.ob-opt:hover,.sess:not(.soon):focus-visible,.quick button:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px #5CC3D9,0 0 18px rgba(92,195,217,.32)}
+label.chk,select,.node,.lsn-ref summary{transition:border-color .3s ease,box-shadow .4s ease}
+label.chk:hover,select:hover,select:focus-visible,.node:hover,.node:focus-visible,.lsn-ref summary:hover,.lsn-ref summary:focus-visible,.mk-btn:hover{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
 .btn:not(.primary):hover,.subopen:hover,.nt-bell:hover{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25)}
 @media (prefers-reduced-motion:reduce){.sess,.quick button,.opt,.lv-opt,.ob-opt,.btn,.subopen,.nt-bell{transition:none}}
 
@@ -2118,7 +2144,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
       <div class="bench">
         <div class="bench-head"><h3 data-i18n="sc_bench"></h3><span class="count" data-i18n="sc_hint"></span></div>
         <div class="tables" id="scTables"></div>
-        <div class="legend"><span><i style="background:var(--pk-bg)"></i><span data-i18n="lg_pk"></span></span><span><i style="background:var(--fk-bg)"></i><span data-i18n="lg_fk"></span></span></div>
+        <div class="legend2"><span><span class="key pk">PK</span><span data-i18n="lg_pk"></span></span><span><span class="key fk">FK</span><span data-i18n="lg_fk"></span></span></div>
       </div>
       <div style="height:1.2rem"></div>
       <div class="terms" id="terms"></div>
@@ -2334,7 +2360,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
       <div class="bench">
         <div class="bench-head"><h3 data-i18n="sc2_bench"></h3><span class="count" data-i18n="sc2_hint"></span></div>
         <div class="tables" id="rideTables"></div>
-        <div class="legend"><span><i style="background:var(--pk-bg)"></i><span data-i18n="lg_pk"></span></span><span><i style="background:var(--fk-bg)"></i><span data-i18n="lg_fk"></span></span></div>
+        <div class="legend2"><span><span class="key pk">PK</span><span data-i18n="lg_pk"></span></span><span><span class="key fk">FK</span><span data-i18n="lg_fk"></span></span></div>
       </div>
       <div style="height:1rem"></div>
       <div class="cards" id="fkCards"></div>
@@ -2395,7 +2421,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
 const I18N = {
 he: {
 brand_sub:"מסדי נתונים ו-SQL, מאפס", tab_home:"בית", tab_intro:"מבוא", tab_ra:"אלגברה רלציונית",
-present:"מצב מצגת", run:"הרצה", reset:"איפוס", lg_pk:"מפתח ראשי", lg_fk:"מפתח זר",
+present:"מצב מצגת", run:"הרצה", reset:"איפוס", lg_pk:"מפתח ראשי", dv_lg:"משובצים לקורס", lg_fk:"מפתח זר",
 toc_show:"תוכן עניינים", toc_hide:"הסתר תוכן", hud_l:"אתם כאן",
 nav_h_hello:"שלום", nav_h_stats:"ההתקדמות שלי", nav_h_sessions:"השיעורים", nav_h_tools:"כלים",
 gr_morning:"בוקר טוב", gr_noon:"צהריים טובים", gr_evening:"ערב טוב", gr_night:"לילה טוב",
@@ -2409,41 +2435,41 @@ ht_h2:"כלים מהירים", qk_lab:"מחשבון אלגברה", qk_lab_s:"ל�
 nav_why:"למה בסיס נתונים", nav_anomaly:"הניסוי: טבלה אחת", nav_schema:"מה זו סכמה", nav_decl:"לשאול, לא לתכנת", nav_ind:"איפה זה חי", nav_map:"מפת הקורס", nav_quiz:"בדיקה עצמית",
 nav_r_data:"הטבלאות שלנו", nav_r_sel:"σ בחירה", nav_r_proj:"π הטלה", nav_r_join:"⋈ צירוף", nav_r_div:"÷ חילוק", nav_r_tree:"קריאת ביטוי",
 nav_r_sets:"∪ ∩ − קבוצות", nav_r_prod:"× מכפלה", nav_r_ren:"ρ כינוי והשמה", nav_r_schema:"הסכמה לתרגול", nav_r_lab:"מחשבון אלגברה", nav_r_ex:"תרגילים 1 עד 6",
-st_h2:"פעולות קבוצות", st_lede:"שתי טבלאות עם אותן עמודות הן פשוט שתי קבוצות של שורות, ואפשר לאחד, לחתוך ולהחסיר. התנאי היחיד: תאימות איחוד, אותו מספר עמודות ואותם טיפוסים, לפי הסדר.", st_bad:"לא תואם",
+st_h2:"פעולות קבוצות", st_lede:"שתי טבלאות עם אותן עמודות הן פשוט שתי קבוצות של שורות, ואפשר לאחד, לחתוך ולהחסיר. התנאי היחיד הוא תאימות איחוד - אותו מספר עמודות ואותם טיפוסים, לפי הסדר.", st_bad:"לא תואם",
 st_A:"A = רוכבים מאריאל", st_B:"B = רוכבים במנוי חודשי",
-st_msg_u:"<b>איחוד</b>: כל מי שנמצא ב-A או ב-B. רוכב שנמצא בשתיהן מופיע פעם אחת, כי התוצאה היא קבוצה.", st_msg_i:"<b>חיתוך</b>: רק מי שנמצא גם ב-A וגם ב-B.", st_msg_d:"<b>הפרש</b>: מי שנמצא ב-A ולא ב-B. שימו לב שהכיוון חשוב: B − A נותן תוצאה אחרת.",
+st_msg_u:"<b>איחוד</b>: כל מי שנמצא ב-A או ב-B. רוכב שנמצא בשתיהן מופיע פעם אחת, כי התוצאה היא קבוצה.", st_msg_i:"<b>חיתוך</b>: רק מי שנמצא גם ב-A וגם ב-B.", st_msg_d:"<b>הפרש</b>: מי שנמצא ב-A ולא ב-B. שימו לב שהכיוון חשוב - B − A נותן תוצאה אחרת.",
 st_msg_x:"<b>לא תואם</b>: A היא עמודה של מספרים, וניסינו לאחד אותה עם שמות של תחנות. אותו מספר עמודות, טיפוס אחר. במבחן זו מלכודת קלאסית - מאחדים שתי תוצאות ולא בודקים שה-π בשתיהן השאיר את אותן עמודות.",
-pr_h2:"מכפלה קרטזית", pr_lede:"כל שורה מהטבלה הראשונה מול כל שורה מהשנייה. לבד היא כמעט חסרת משמעות, אבל היא הבסיס לכל צירוף: JOIN הוא מכפלה ואחריה σ.", pr_msg:"3 אופניים × 2 תחנות = 6 שורות. שמות העמודות מקבלים תחילית של הטבלה כדי שלא יתבלבלו. עם 1,000 אופניים ו-100 תחנות היו כאן 100,000 שורות, ולכן במבחן תמיד מסננים מיד אחרי המכפלה.",
-rn_h2:"כינוי והשמה", rn_lede:"ρ נותן לטבלה או לפעולה שם אחר בלי לשנות אותה. הצורך העיקרי: צירוף של טבלה עם עצמה (Self-Join), שבו חייבים שני עותקים עם שמות שונים. השמה (→ או ←) שומרת תוצאת ביניים בשם כדי להשתמש בה שוב.",
+pr_h2:"מכפלה קרטזית", pr_lede:"כל שורה מהטבלה הראשונה מול כל שורה מהשנייה. לבד היא כמעט חסרת משמעות, אבל היא הבסיס לכל צירוף - JOIN הוא מכפלה ואחריה σ.", pr_msg:"3 אופניים × 2 תחנות = 6 שורות. שמות העמודות מקבלים תחילית של הטבלה כדי שלא יתבלבלו. עם 1,000 אופניים ו-100 תחנות היו כאן 100,000 שורות, ולכן במבחן תמיד מסננים מיד אחרי המכפלה.",
+rn_h2:"כינוי והשמה", rn_lede:"ρ נותן לטבלה או לפעולה שם אחר בלי לשנות אותה. צריך אותו בעיקר בצירוף של טבלה עם עצמה (Self-Join), שבו חייבים שני עותקים עם שמות שונים. השמה (→ או ←) שומרת תוצאת ביניים בשם כדי להשתמש בה שוב.",
 rn_s0:"1. שני עותקים", rn_s1:"2. המכפלה", rn_s2:"3. σ: עובד מול המנהל שלו",
-rn_msg0:"Staff מופיעה פעמיים, עם כינוי E (employee) ו-M (manager). בלי הכינויים לא היה אפשר להבחין בין StaffID של העובד ל-StaffID של המנהל.", rn_msg1:"7 × 7 = 49 זוגות. רובם חסרי משמעות: עובד מול עובד שאינו המנהל שלו.", rn_msg2:"σ<sub>E.ManagerID = M.StaffID</sub> משאירה רק את הזוגות הנכונים: 6 עובדים, כל אחד ליד המנהל שלו. עכשיו π<sub>E.FullName, M.FullName</sub> נותנת רשימת \"מי מדווח למי\".",
-rn_assign:"<strong>השמה</strong> היא הדרך לפרק שאלה מסובכת לשלבים. במקום ביטוי אחד ארוך, שומרים תוצאת ביניים בשם ומשתמשים בה. למשל \"עובדים שאינם מנהלים\": קודם מגדירים את קבוצת המנהלים, ואז מחסירים אותה מכל העובדים.",
+rn_msg0:"Staff מופיעה פעמיים, עם כינוי E (employee) ו-M (manager). בלי הכינויים לא היה אפשר להבחין בין StaffID של העובד ל-StaffID של המנהל.", rn_msg1:"7 × 7 = 49 זוגות. רובם חסרי משמעות - עובד מול עובד שהוא לא המנהל שלו.", rn_msg2:"σ<sub>E.ManagerID = M.StaffID</sub> משאירה רק את הזוגות הנכונים - 6 עובדים, כל אחד ליד המנהל שלו. עכשיו π<sub>E.FullName, M.FullName</sub> נותנת רשימת 'מי מדווח למי'.",
+rn_assign:"<strong>השמה</strong> היא הדרך לפרק שאלה מסובכת לשלבים. במקום ביטוי אחד ארוך, שומרים תוצאת ביניים בשם ומשתמשים בה. למשל 'עובדים שאינם מנהלים' - קודם מגדירים את קבוצת המנהלים, ואז מחסירים אותה מכל העובדים.",
 sc2_eyebrow:"סכמת התרגול", sc2_h2:"RideOn: אופניים שיתופיים בעיר", sc2_lede:"כל התרגילים והמחשבון עובדים על הסכמה הזו, ואותה סכמה תלווה אותנו גם ב-SQL. שש טבלאות: תחנות, רוכבים, אופניים, נסיעות, צוות ותחזוקה.",
-sc2_bench:"הנתונים המלאים", sc2_hint:"הטבלאות קטנות בכוונה: אפשר לבדוק כל תוצאה ביד",
-fk_h:"איך הטבלאות מתחברות", fk1:"Rides.RiderID → Riders.RiderID: מי רכב", fk2:"Rides.BikeID → Bikes.BikeID: על איזה אופניים", fk3:"Rides.FromStation ו-Rides.ToStation → Stations.StationID: מאיפה ולאן. שני מפתחות זרים לאותה טבלה, ולכן צירוף טבעי לא יעבוד כאן: צריך צירוף עם תנאי מפורש", fk4:"Staff.ManagerID → Staff.StaffID: מי המנהל של מי. מפתח זר לאותה טבלה, ולכן Self-Join", fk5:"Maintenance.BikeID → Bikes, Maintenance.StaffID → Staff: מי טיפל באיזה אופניים",
-sc2_tnote:"לעצור על FromStation/ToStation ולשאול: למה Rides ⋈ Stations לא עובד? (אין עמודה משותפת בשם. זה הרגע ללמד צירוף טטה.)",
-lab_h2:"מחשבון אלגברה רלציונית", lab_lede:"כותבים ביטוי ומריצים אותו על הסכמה. הפרמטר של π, σ ו-ρ נכתב בסוגריים מרובעים, והטבלה בסוגריים רגילים. אפשר גם השמות עם ← ולהשתמש בשם בהמשך, מופרד בנקודה-פסיק.",
+sc2_bench:"הנתונים המלאים", sc2_hint:"הטבלאות קטנות בכוונה - אפשר לבדוק כל תוצאה ביד",
+fk_h:"איך הטבלאות מתחברות", fk1:"Rides.RiderID → Riders.RiderID: מי רכב", fk2:"Rides.BikeID → Bikes.BikeID: על איזה אופניים", fk3:"Rides.FromStation ו-Rides.ToStation → Stations.StationID: מאיפה ולאן. שני מפתחות זרים לאותה טבלה, ולכן צירוף טבעי לא יעבוד כאן - צריך צירוף עם תנאי מפורש", fk4:"Staff.ManagerID → Staff.StaffID: מי המנהל של מי. מפתח זר לאותה טבלה, ולכן Self-Join", fk5:"Maintenance.BikeID → Bikes, Maintenance.StaffID → Staff: מי טיפל באיזה אופניים",
+sc2_tnote:"עוצרים על FromStation/ToStation ושואלים למה Rides ⋈ Stations לא עובד. (אין להן עמודה עם אותו שם. זה הרגע ללמד צירוף תטא.)",
+lab_h2:"מחשבון אלגברה רלציונית", lab_lede:"כותבים ביטוי ומריצים אותו על הסכמה. הפרמטר של π, σ ו-ρ נכתב בסוגריים מרובעים, והטבלה בסוגריים עגולים. אפשר גם לכתוב השמה עם ← ולהשתמש בשם בהמשך. בין שלב לשלב שמים נקודה-פסיק.",
 lab_tip:"Ctrl+Enter מריץ", lab_msg0:"נסו: π[FullName](σ[City='Ariel'](Riders))",
 lab_ex0:"דוגמאות…", lab_ex1:"σ: נסיעות ארוכות", lab_ex2:"⋈ טבעי: מי רכב", lab_ex3:"⋈ עם תנאי: מאיזו תחנה", lab_ex4:"− : אופניים שלא נסעו ב-2025", lab_ex5:"ρ ו-×: מי מדווח למי", lab_ex6:"÷: רכב על כל סוג", lab_ex7:"השמה בשני שלבים",
 lab_cols:"{c} עמודות", lab_cols1:"עמודה אחת",
 br_h1:"אלגברה", br_h2:"משמעות", br_h3:"SQL Server",
 br1:"בחירת שורות", br2:"בחירת עמודות (בלי כפילויות)", br3:"צירוף על עמודות משותפות", br4:"צירוף עם תנאי", br5:"כל הזוגות", br6:"איחוד", br7:"חיתוך", br8:"הפרש", br9:"כינוי", br10:"'לכל': מי מחובר לכולם",
 ex2_h2:"תרגילים על RideOn", ex2_lede:"שישה תרגילים ראשונים מתוך 12, מהקל לקשה, בסגנון של שאלות מבחן. הבדיקה מריצה את הביטוי שלכם ומשווה את הטבלה שיוצאת לתוצאה הנכונה, אז כל ניסוח שקול מתקבל. רמזים נפתחים אחרי ניסיון, הפתרון אחרי שניים.",
-ex_check:"בדיקה", ex_tries:"ניסיונות: {n}", ex_hint1_b:"רמז 1", ex_hint2_b:"רמז 2", ex_sol_b:"פתרון",
+ex_check:"בדיקה", ex_tries:"ניסיונות: {n}", ex_hint1_b:"רמז 1", ex_hint2_b:"רמז 2", ex_sol_b:"פתרון מלא",
 exr_ok:"נכון! הטבלה שלכם זהה לתוצאה הצפויה.", exr_cols:"מספר העמודות שונה: קיבלתם {a}, צפוי {b}. בדקו את ה-π.", exr_rows:"העמודות במקום, אבל יש {a} שורות במקום {b}. {d}", exr_more:"יש שורות מיותרות, כנראה תנאי חלש מדי או צירוף חסר.", exr_less:"חסרות שורות, כנראה תנאי חזק מדי או חלק מהביטוי שנשכח.", exr_err:"שגיאה בביטוי: {e}", exr_empty:"כתבו ביטוי ולחצו על 'בדיקה'.",
 lv1:"בסיסי", lv2:"צירוף", lv3:"מורכב", lv4:"Self-Join", lv5:"מבחן",
 q1:"שמות התחנות ומספר העמדות (Docks) בכל אחת.", q1h1:"רק עמודות, בלי סינון: π בלבד.", q1h2:"π[StationName, Docks] על Stations.", q1s:"π[StationName, Docks](Stations)",
 q2:"שמות אנשי הצוות שמדווחים לאיש צוות מספר 3.", q2h1:"σ על ManagerID ואז π על השם.", q2h2:"σ[ManagerID=3] בפנים, π[FullName] בחוץ.", q2s:"π[FullName](σ[ManagerID=3](Staff))",
-q3:"שמות הרוכבים שביצעו נסיעה של 45 דקות לפחות.", q3h1:"השם ב-Riders, הדקות ב-Rides. יש עמודה משותפת, אז צירוף טבעי.", q3h2:"σ[Minutes>=45] על Riders ⋈ Rides, ואז π[FullName].", q3s:"π[FullName](σ[Minutes>=45](Riders ⋈ Rides))",
-q4:"מזהה וסוג של האופניים שנסעו לפחות פעם אחת בשנת 2025.", q4h1:"תאריכים הם מחרוזות 'YYYY-MM-DD', אפשר להשוות אותן.", q4h2:"σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'] על Bikes ⋈ Rides, ואז π[BikeID, BikeType].", q4s:"π[BikeID, BikeType](σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'](Bikes ⋈ Rides))",
-q5:"מספרי הנסיעות שהתחילו בתחנה Central, או שבוצעו על ידי רוכבים מהעיר Ariel.", q5h1:"שני ענפים ואיחוד. כל ענף חייב להסתיים ב-π[RideID] כדי שהאיחוד יהיה חוקי.", q5h2:"הענף הראשון צריך צירוף עם תנאי: Rides ⋈[FromStation=StationID] Stations. השני: Rides ⋈ Riders.", q5s:"π[RideID](σ[StationName='Central'](Rides ⋈[FromStation=StationID] Stations)) ∪ π[RideID](σ[City='Ariel'](Rides ⋈ Riders))",
+q3:"שמות הרוכבים שהייתה להם נסיעה של 45 דקות לפחות.", q3h1:"השם ב-Riders, הדקות ב-Rides. יש עמודה משותפת, אז צירוף טבעי.", q3h2:"σ[Minutes>=45] על Riders ⋈ Rides, ואז π[FullName].", q3s:"π[FullName](σ[Minutes>=45](Riders ⋈ Rides))",
+q4:"מזהה וסוג של האופניים שנסעו לפחות פעם אחת בשנת 2025.", q4h1:"תאריכים הם מחרוזות 'YYYY-MM-DD', אז אפשר להשוות אותן כמו טקסט.", q4h2:"σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'] על Bikes ⋈ Rides, ואז π[BikeID, BikeType].", q4s:"π[BikeID, BikeType](σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'](Bikes ⋈ Rides))",
+q5:"מספרי הנסיעות שהתחילו בתחנה Central, או שרכב בהן רוכב מהעיר Ariel.", q5h1:"שני ביטויים ואיחוד ביניהם. כל אחד מהם חייב להסתיים ב-π[RideID] כדי שהאיחוד יהיה חוקי.", q5h2:"בביטוי הראשון צריך צירוף עם תנאי: Rides ⋈[FromStation=StationID] Stations. בשני: Rides ⋈ Riders.", q5s:"π[RideID](σ[StationName='Central'](Rides ⋈[FromStation=StationID] Stations)) ∪ π[RideID](σ[City='Ariel'](Rides ⋈ Riders))",
 q6:"מזהי האופניים שעדיין לא נסעו בשנת 2025.", q6h1:"'לא' = הפרש: כל האופניים פחות אלה שכן נסעו.", q6h2:"π[BikeID](Bikes) − π[BikeID](σ[…2025…](Rides)). שני הצדדים עם עמודה אחת, BikeID.", q6s:"π[BikeID](Bikes) − π[BikeID](σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'](Rides))",
-q7:"שמות אנשי הצוות שמדווחים למנהל בתפקיד Ops Manager.", q7h1:"הטבלה מול עצמה: עותק לעובדים ועותק למנהלים, עם ρ.", q7h2:"ρ[E](Staff) × ρ[M](Staff), ואז σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'], ואז π[E.FullName].", q7s:"π[E.FullName](σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'](ρ[E](Staff) × ρ[M](Staff)))",
-q8:"מזהה ושם של אנשי הצוות שאינם מנהלים (אף אחד לא מדווח להם).", q8h1:"קודם מוצאים את המנהלים (Self-Join), ואז מחסירים אותם מכל הצוות.", q8h2:"Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))); ואז π[StaffID, FullName](Staff) − Managers.", q8s:"Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))); π[StaffID, FullName](Staff) − Managers",
-q9:"שמות התחנות שמספר העמדות בהן זהה לזה של תחנת Central (בלי Central עצמה).", q9h1:"צריך להשוות שורה לשורה אחרת באותה טבלה: שני עותקים של Stations.", q9h2:"ρ[S1](Stations) × ρ[S2](Stations), σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID], π[S2.StationName].", q9s:"π[S2.StationName](σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID](ρ[S1](Stations) × ρ[S2](Stations)))",
-q10:"מזהי הרוכבים שרכבו לפחות פעם אחת, אך מעולם לא על אופניים חשמליים (Electric).", q10h1:"מי שרכב, פחות מי שרכב על חשמליים.", q10h2:"π[RiderID](Rides) − π[RiderID](σ[BikeType='Electric'](Rides ⋈ Bikes)).", q10s:"π[RiderID](Rides) − π[RiderID](σ[BikeType='Electric'](Rides ⋈ Bikes))",
+q7:"שמות אנשי הצוות שמדווחים למנהל בתפקיד Ops Manager.", q7h1:"הטבלה מול עצמה - עותק לעובדים ועותק למנהלים, עם ρ.", q7h2:"ρ[E](Staff) × ρ[M](Staff), ואז σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'], ואז π[E.FullName].", q7s:"π[E.FullName](σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'](ρ[E](Staff) × ρ[M](Staff)))",
+q8:"מזהה ושם של אנשי הצוות שאינם מנהלים (אף אחד לא מדווח להם).", q8h1:"קודם מוצאים את המנהלים (Self-Join), ואז מחסירים אותם מכל הצוות.", q8h2:"<span dir=\"ltr\">Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff)));</span> ואז π[StaffID, FullName](Staff) − Managers.", q8s:"Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))); π[StaffID, FullName](Staff) − Managers",
+q9:"שמות התחנות שמספר העמדות בהן זהה לזה של תחנת Central (בלי Central עצמה).", q9h1:"צריך להשוות שורה לשורה אחרת באותה טבלה - שני עותקים של Stations.", q9h2:"ρ[S1](Stations) × ρ[S2](Stations), σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID], π[S2.StationName].", q9s:"π[S2.StationName](σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID](ρ[S1](Stations) × ρ[S2](Stations)))",
+q10:"מזהי הרוכבים שרכבו לפחות פעם אחת, אבל אף פעם לא על אופניים חשמליים (Electric).", q10h1:"מי שרכב, פחות מי שרכב על חשמליים.", q10h2:"π[RiderID](Rides) − π[RiderID](σ[BikeType='Electric'](Rides ⋈ Bikes)).", q10s:"π[RiderID](Rides) − π[RiderID](σ[BikeType='Electric'](Rides ⋈ Bikes))",
 q11:"מזהי הרוכבים שרכבו על כל סוגי האופניים הקיימים.", q11h1:"'כל' = חילוק. המחלק: קבוצת הסוגים.", q11h2:"π[RiderID, BikeType](Rides ⋈ Bikes) ÷ π[BikeType](Bikes).", q11s:"π[RiderID, BikeType](Rides ⋈ Bikes) ÷ π[BikeType](Bikes)",
-q12:"מזהי הרוכבים שהתחילו נסיעה גם בתחנת Central וגם בתחנת Market.", q12h1:"'גם וגם' על שתי נסיעות שונות = חיתוך של שני ענפים, לא σ אחת עם ∧.", q12h2:"השמה תחסוך כפילות: T ← Rides ⋈[FromStation=StationID] Stations; ואז π[RiderID](σ[StationName='Central'](T)) ∩ π[RiderID](σ[StationName='Market'](T)).", q12s:"T ← Rides ⋈[FromStation=StationID] Stations; π[RiderID](σ[StationName='Central'](T)) ∩ π[RiderID](σ[StationName='Market'](T))",
+q12:"מזהי הרוכבים שהתחילו נסיעה גם בתחנת Central וגם בתחנת Market.", q12h1:"'גם וגם' על שתי נסיעות שונות = חיתוך של שני ביטויים, לא σ אחת עם ∧.", q12h2:"השמה תחסוך כפילות: <span dir=\"ltr\">T ← Rides ⋈[FromStation=StationID] Stations;</span> ואז π[RiderID](σ[StationName='Central'](T)) ∩ π[RiderID](σ[StationName='Market'](T)).", q12s:"T ← Rides ⋈[FromStation=StationID] Stations; π[RiderID](σ[StationName='Central'](T)) ∩ π[RiderID](σ[StationName='Market'](T))",
 
 
 hero_eyebrow:"פרק 1 · מבוא",
@@ -2534,34 +2560,37 @@ i4_e:"אתם אומרים מה, המנוע מחליט איך. בגלל זה שת
 
 ra_eyebrow:"פרק 2 · אלגברה רלציונית",
 ra_h1:"שפה של פעולות על טבלאות.",
-ra_lede:"כל פעולה מקבלת טבלה (או שתיים) ומחזירה טבלה. בגלל זה אפשר לשרשר: התוצאה של פעולה אחת היא הקלט של הבאה. כל הממחישים בשיעור הזה עובדים על שלוש הטבלאות האלה.",
+ra_lede:"כל פעולה מקבלת טבלה (או שתיים) ומחזירה טבלה. בגלל זה אפשר לשרשר פעולות - התוצאה של אחת היא הקלט של הבאה. כל הדוגמאות בשיעור הזה עובדות על שלוש הטבלאות האלה.",
 ra_data_h:"סכמת הקורסים", ra_data_c:"Students(5) · Courses(3) · Enroll(11)",
-ra_p_sets:"טבלה באלגברה רלציונית היא <strong>קבוצה</strong> של שורות: אין כפילויות ואין סדר. זה ההבדל הראשון מ-SQL, שבו טבלה יכולה להכיל את אותה שורה פעמיים. תזכרו את זה כשנגיע ל-π.",
-ra_tnote:"לפתוח עם השאלה: מה ההבדל בין קבוצה לרשימה? ואז להראות ש-Enroll היא קבוצה של שלשות.",
+ra_p_sets:"טבלה באלגברה רלציונית היא <strong>קבוצה</strong> של שורות - אין כפילויות ואין סדר. זה ההבדל הראשון מ-SQL, שבו טבלה יכולה להכיל את אותה שורה פעמיים. תזכרו את זה כשנגיע ל-π.",
+ra_tnote:"פותחים בשאלה: מה ההבדל בין קבוצה לרשימה? ואז מראים ש-Enroll היא קבוצה של שלשות.",
 
 sel_h2:"בחירה", sel_lede:"σ בוחרת שורות. התנאי נכתב כתחתית, הטבלה בסוגריים. מספר העמודות לא משתנה, רק מספר השורות.",
-sel_msg0:"בחרו תנאי ולחצו הרץ. השורות שמקיימות אותו יידלקו, השאר ידהו.",
-sel_c0:"Grade ≥ 85", sel_c1:"CID = 'DB'", sel_c2:"CID = 'DB' ∧ Grade ≥ 90", sel_c3:"Faculty = 'IE'  (על Students)",
+sel_msg0:"בחרו תנאי ולחצו על 'הרצה'. שורות שמקיימות אותו יקבלו ✓, והשאר יימחקו בקו.",
+sel_c0:"Grade ≥ 85", sel_c1:"CID = 'DB'", sel_c2:"CID = 'DB' ∧ Grade ≥ 90", sel_c3:"\u2066Faculty = 'IE'\u2069  (על Students)",
 sel_msg:"<b>{n}</b> מתוך {m} שורות מקיימות את התנאי. שימו לב: התוצאה היא טבלה עם אותן עמודות בדיוק.",
 
 prj_h2:"הטלה", prj_lede:"π בוחרת עמודות. ובגלל שהתוצאה היא קבוצה, שורות שנהיו זהות מתמזגות לאחת. זה השלב שרוב הטעויות במבחן מתחילות בו.",
 prj_s0:"1. הטבלה המקורית", prj_s1:"2. מסתירים עמודות", prj_s2:"3. מסירים כפילויות",
 prj_msg0:"Enroll עם 11 שורות. סמנו אילו עמודות להשאיר ועברו בין השלבים.",
-prj_msg1:"נשארו רק {c}. {d} שורות נהיו זהות לשורה אחרת (מסומנות בקו). באלגברה רלציונית הן לא יכולות להתקיים.",
+prj_msg1:"נשארנו רק עם <span dir=\"ltr\">{c}</span>. {d} שורות נהיו זהות לשורה אחרת (מסומנות בקו). באלגברה רלציונית הן לא יכולות להתקיים.",
 prj_msg2:"התוצאה: <b>{n}</b> שורות ייחודיות. ב-SQL תקבלו {m} שורות, אלא אם תכתבו DISTINCT.",
+prj_msg1_one:"נשארנו רק עם {c}. שורה אחת נהיתה זהה לשורה אחרת (מסומנת בקו). באלגברה רלציונית היא לא יכולה להתקיים.",
+prj_msg1_none:"נשארנו עם {c}, ואף שורה לא נהיתה זהה לשורה אחרת. כל שילוב של ערכים מופיע פעם אחת, אז אין מה למחוק.",
+prj_msg2_none:"התוצאה: <b>{n}</b> שורות, בדיוק כמו בטבלה המקורית. כאן גם ב-SQL תקבלו {n} שורות, עם DISTINCT או בלעדיו.",
 
-jn_h2:"צירוף", jn_lede:"⋈ מחבר שתי טבלאות לפי תנאי. הדרך להבין אותו: קודם כל הזוגות האפשריים, אחר כך רק אלה שהתנאי מתקיים בהם.",
+jn_h2:"צירוף", jn_lede:"⋈ מחבר שתי טבלאות לפי תנאי. כדי להבין אותו, מתחילים מכל הזוגות האפשריים, ואז משאירים רק את אלה שהתנאי מתקיים בהם.",
 jn_s0:"1. מכפלה קרטזית ×", jn_s1:"2. σ על התנאי", jn_s2:"3. התוצאה",
-jn_msg0:"5 סטודנטים × 11 שיבוצים = <b>55</b> זוגות. מוצגים 8 מהם. ירוק: המפתחות שווים. אדום: זוג חסר משמעות שהמכפלה יוצרת בכל זאת.",
+jn_msg0:"5 סטודנטים × 11 שיבוצים = <b>55</b> זוגות. מוצגים 8 מהם. בזוגות עם ✓ המפתחות שווים. הזוגות המחוקים חסרי משמעות, אבל המכפלה יוצרת גם אותם.",
 jn_msg1:"אחרי σ<sub>Students.SID = Enroll.SID</sub> נשארים <b>11</b> זוגות, בדיוק כמספר השיבוצים. כל שיבוץ מצא את הסטודנט שלו.",
-jn_msg2:"ב-Natural Join עמודת SID הכפולה מתמזגת לאחת. זו הטבלה שעליה נמשיך לעבוד עם σ ו-π.",
+jn_msg2:"בצירוף טבעי עמודת SID הכפולה מתמזגת לאחת. זו הטבלה שעליה נמשיך לעבוד עם σ ו-π.",
 jn_lab_prod:"Students × Enroll (8 מתוך 55)",
 
-dv_h2:"חילוק", dv_lede:"÷ עונה על שאלות 'כל': מי משובץ לכל הקורסים? הממחיש מראה את הבדיקה שהמנוע עושה לכל סטודנט. הסירו קורס מהמחלק ותראו איך התוצאה משתנה.",
+dv_h2:"חילוק", dv_lede:"÷ עונה על שאלות 'לכל' - מי משובץ לכל הקורסים? הטבלה למטה מראה את הבדיקה שהמנוע עושה לכל סטודנט. הסירו קורס מהמחלק ותראו איך התוצאה משתנה.",
 dv_expr_l:"המחלק (divisor):",
 dv_msg:"סטודנט נכנס לתוצאה רק אם יש לו ✓ בכל העמודות הפעילות. עכשיו: <b>{n}</b> סטודנטים ({names}).",
 dv_msg_empty:"אף סטודנט לא משובץ לכל הקורסים שנבחרו. התוצאה היא <b>קבוצה ריקה</b>, וזו תשובה לגיטימית לגמרי במבחן.",
-dv_msg_none:"מחלק ריק הוא מקרה קצה: כל סטודנט 'עומד בכל התנאים' כי אין תנאים. בחרו לפחות קורס אחד.",
+dv_msg_none:"מחלק ריק הוא מקרה קצה - כל סטודנט 'עומד בכל התנאים' כי אין תנאים. בחרו לפחות קורס אחד.",
 dv_lab_sql:"אותה שאלה ב-SQL Server:",
 
 tr_h2:"קריאת ביטוי מבפנים החוצה", tr_lede:"ביטוי מורכב הוא עץ. תמיד מתחילים מהסוגריים הפנימיים ביותר. לחצו על כל שלב כדי לראות את טבלת הביניים שלו.",
@@ -2570,33 +2599,33 @@ tr_d0:"שלב 1 · הכי פנימי", tr_d1:"שלב 2", tr_d2:"שלב 3 · הת
 tr_rows:"{n} שורות",
 
 ex_h2:"תרגיל: בנו את הביטוי", ex_lede:"הבדיקה מריצה את הביטוי שלכם על הטבלאות ומשווה תוצאות, לא טקסט. יש יותר מדרך אחת נכונה.",
-ex_q:"מהם שמות הסטודנטים שקיבלו 90 ומעלה בקורס Databases (DB)?",
+ex_q:"מה שמות הסטודנטים שקיבלו 90 ומעלה בקורס Databases (DB)?",
 ex_step1:"1. איזה צירוף?", ex_step2:"2. איזה תנאי ב-σ?", ex_step3:"3. אילו עמודות ב-π?",
 ex_j0:"Students ⋈ Enroll", ex_j1:"Enroll ⋈ Courses", ex_j2:"Students × Enroll", ex_j3:"Students ⋈ Enroll ⋈ Courses",
 ex_s0:"Grade ≥ 90", ex_s1:"CID = 'DB'", ex_s2:"CID = 'DB' ∧ Grade ≥ 90", ex_s3:"Faculty = 'IE' ∧ Grade ≥ 90", ex_s4:"Title = 'Databases' ∧ Grade ≥ 90",
 ex_p0:"Name", ex_p1:"SID", ex_p2:"Name, Grade", ex_p3:"Faculty",
 ex_check:"בדיקה", ex_tries:"ניסיונות: {n}",
-ex_msg0:"בחרו בכל שלב ולחצו בדוק.",
-ex_ok:"נכון! התוצאה זהה לתוצאה הצפויה. שימו לב שגם ניסוח אחר יכול להיות נכון, כל עוד הטבלה שיוצאת זהה.",
-ex_bad_cols:"העמודות לא נכונות: השאלה מבקשת שמות בלבד, וקיבלתם {c}.",
+ex_msg0:"בחרו בכל שלב ולחצו על 'בדיקה'.",
+ex_ok:"נכון! זו בדיוק הטבלה שהשאלה מבקשת.",
+ex_bad_cols:"העמודות לא נכונות - השאלה מבקשת שמות בלבד, וקיבלתם {c}.",
 ex_bad_rows:"העמודות נכונות, אבל התוצאה מכילה {n} שורות במקום {m}. בדקו מה התנאי מסנן ומה הצירוף מחבר.",
 ex_bad_join:"הצירוף שבחרתם לא מייצר את העמודות שהתנאי או ההטלה צריכים. חשבו איזו טבלה מכילה Name ואיזו מכילה Grade.",
 ex_hint1_b:"רמז 1", ex_hint2_b:"רמז 2", ex_sol_b:"פתרון מלא",
 ex_hint1:"רמז 1: השם נמצא ב-Students, הציון והקורס ב-Enroll. חייבים לחבר את שתיהן.",
 ex_hint2:"רמז 2: התנאי צריך לדבר גם על הקורס וגם על הציון. תנאי על ציון בלבד יכניס סטודנטים שהצטיינו בקורס אחר.",
-ex_sol:"פתרון: π<sub>Name</sub>(σ<sub>CID='DB' ∧ Grade≥90</sub>(Students ⋈ Enroll)). ניסוח שקול: σ קודם על Enroll ואז ⋈ עם Students, ואז π. גם דרך Courses עם Title='Databases' נכונה.",
+ex_sol:"פתרון: π<sub>Name</sub>(σ<sub>CID='DB' ∧ Grade≥90</sub>(Students ⋈ Enroll)). ניסוח שקול: σ קודם על Enroll ואז ⋈ עם Students, ואז π. גם דרך Courses עם <span dir=\"ltr\">Title='Databases'</span> נכונה.",
 ex_locked:"הפתרון המלא נפתח אחרי שני ניסיונות.",
 
 
 r1_q:"מה מחזיר הביטוי π<sub>SID</sub>(σ<sub>CID='DB'</sub>(Enroll)) − π<sub>SID</sub>(σ<sub>CID='OR'</sub>(Enroll))?",
 r1_0:"סטודנטים שמשובצים ל-DB ולא משובצים ל-OR", r1_1:"סטודנטים שמשובצים ל-OR ולא משובצים ל-DB", r1_2:"סטודנטים שמשובצים גם ל-DB וגם ל-OR", r1_3:"סטודנטים שמשובצים ל-DB או ל-OR", r1_4:"כל הסטודנטים שמשובצים ל-DB",
-r1_e:"הפרש: מה שיש בקבוצה השמאלית ולא בימנית. על הנתונים שלנו: DB = {1,2,4,5}, OR = {1,3,4}, והתוצאה {2,5}. שימו לב ששני הצדדים חייבים אותן עמודות (SID) כדי שההפרש יהיה חוקי.",
+r1_e:"הפרש: מה שיש בקבוצה השמאלית ולא בימנית. על הנתונים שלנו: DB = {1,2,4,5}, OR = {1,3,4}, והתוצאה {2,5}. ההפרש חוקי רק אם לשני הצדדים יש אותן עמודות (SID).",
 r2_q:"מה מחזיר הביטוי π<sub>SID,CID</sub>(Enroll) ÷ π<sub>CID</sub>(Courses)?",
 r2_0:"סטודנטים שמשובצים לפחות לקורס אחד", r2_1:"סטודנטים שמשובצים לכל הקורסים", r2_2:"קורסים שכל הסטודנטים משובצים אליהם", r2_3:"סטודנטים שלא משובצים לאף קורס", r2_4:"זוגות (SID, CID) של שיבוצים",
 r2_e:"חילוק = 'לכל'. התוצאה מכילה רק את העמודות שלא נמצאות במחלק, כלומר SID. על הנתונים שלנו: {1, 4}.",
 r3_q:"נגדיר A = π<sub>Name</sub>(σ<sub>Faculty='IE'</sub>(Students)) ו-B = π<sub>Name</sub>(σ<sub>Faculty='CS'</sub>(Students)). מה מחזיר A − (A ∪ B)?",
 r3_0:"כל הסטודנטים מהנדסת תעשייה", r3_1:"סטודנטים מהנדסת תעשייה שאינם ממדעי המחשב", r3_2:"סטודנטים ממדעי המחשב שאינם מהנדסת תעשייה", r3_3:"סטודנטים מהנדסת תעשייה או ממדעי המחשב", r3_4:"סטודנטים שאינם מאף אחת מהפקולטות",
-r3_e:"A ∪ B מכיל את כל A. כשמחסרים מ-A קבוצה שמכילה אותו, לא נשאר כלום: התוצאה תמיד ריקה, בלי קשר לנתונים. אף סעיף לא אומר 'קבוצה ריקה', ולכן התשובה היא 'כל האחרות שגויות'. המלכודת הזו הופיעה במבחן.",
+r3_e:"A ∪ B מכיל את כל A. כשמחסרים מ-A קבוצה שמכילה אותו, לא נשאר כלום - התוצאה תמיד ריקה, בלי קשר לנתונים. אף סעיף לא אומר 'קבוצה ריקה', ולכן התשובה היא 'כל התשובות האחרות שגויות'. המלכודת הזו הופיעה במבחן.",
 
 t_cancel:"ביטול", 
 present_off:"סיום הצגה", pt_laser:"מצביע", pt_pen:"עט", pt_erase:"מחק", pt_undo:"בטל", pt_clear:"נקה", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"כלים",
@@ -2681,7 +2710,7 @@ nav_main_a:"ניווט ראשי", nav_home:"בית", nav_learn:"למידה", tab
 },
 en: {
 brand_sub:"Databases and SQL, from zero", tab_home:"Home", tab_intro:"Intro", tab_ra:"Relational Algebra",
-present:"Presenter mode", run:"Run", reset:"Reset", lg_pk:"Primary key", lg_fk:"Foreign key",
+present:"Presenter mode", run:"Run", reset:"Reset", lg_pk:"Primary key", dv_lg:"Enrolled in the course", lg_fk:"Foreign key",
 toc_show:"Contents", toc_hide:"Hide contents", hud_l:"You are here",
 nav_h_hello:"Hello", nav_h_stats:"My progress", nav_h_sessions:"Lessons", nav_h_tools:"Tools",
 gr_morning:"Good morning", gr_noon:"Good afternoon", gr_evening:"Good evening", gr_night:"Good night",
@@ -2695,38 +2724,38 @@ ht_h2:"Quick tools", qk_lab:"Algebra calculator", qk_lab_s:"Run expressions on t
 nav_why:"Why a database", nav_anomaly:"The experiment", nav_schema:"What is a schema", nav_decl:"Ask, don't program", nav_ind:"Where it lives", nav_map:"Course map", nav_quiz:"Self-check",
 nav_r_data:"Our tables", nav_r_sel:"σ Select", nav_r_proj:"π Project", nav_r_join:"⋈ Join", nav_r_div:"÷ Divide", nav_r_tree:"Reading an expression",
 nav_r_sets:"∪ ∩ − sets", nav_r_prod:"× product", nav_r_ren:"ρ rename & assign", nav_r_schema:"Practice schema", nav_r_lab:"Algebra calculator", nav_r_ex:"Exercises 1–6",
-st_h2:"Set operations", st_lede:"Two tables with the same columns are just two sets of rows, so you can union, intersect and subtract them. The one condition is union compatibility: same number of columns, same types, in order.", st_bad:"incompatible",
+st_h2:"Set operations", st_lede:"Two tables with the same columns are nothing more than two sets of rows, so you can union, intersect and subtract them. The only condition is union compatibility - same number of columns, same types, in order.", st_bad:"incompatible",
 st_A:"A = riders from Ariel", st_B:"B = riders on a monthly plan",
-st_msg_u:"<b>Union</b>: everyone in A or in B. A rider in both appears once, because the result is a set.", st_msg_i:"<b>Intersection</b>: only those in both A and B.", st_msg_d:"<b>Difference</b>: those in A and not in B. Direction matters: B − A gives a different result.",
-st_msg_x:"<b>Incompatible</b>: A is one column of numbers, and we tried to union it with station names. Same number of columns, different type. In exams this is the classic slip when uniting two branches that were not projected onto the same columns.",
-pr_h2:"Cartesian product", pr_lede:"Every row of the first table against every row of the second. On its own it is nearly meaningless, but it is the basis of every join: a JOIN is a product followed by σ.", pr_msg:"3 bikes × 2 stations = 6 rows. Column names get the table prefix so they cannot be confused. With 1,000 bikes and 100 stations there would be 100,000 rows, which is why in exams you always filter right after the product.",
-rn_h2:"Rename and assignment", rn_lede:"ρ gives a table or an operation another name without changing it. The main need: joining a table with itself (self-join), which requires two copies with different names. Assignment (→ or ←) stores an intermediate result under a name for reuse.",
+st_msg_u:"<b>Union</b>: everyone in A or in B. A rider in both appears once, because the result is a set.", st_msg_i:"<b>Intersection</b>: only those in both A and B.", st_msg_d:"<b>Difference</b>: those in A and not in B. Direction matters - B − A gives a different result.",
+st_msg_x:"<b>Incompatible</b>: A is a column of numbers, and we tried to union it with station names. Same number of columns, different type. It's a classic exam trap - you union two results and forget to check that π kept the same columns in both.",
+pr_h2:"Cartesian product", pr_lede:"Every row of the first table against every row of the second. On its own it's nearly meaningless, but it's the basis of every join - a JOIN is a product followed by σ.", pr_msg:"3 bikes × 2 stations = 6 rows. Column names get the table prefix so they can't be confused. With 1,000 bikes and 100 stations you'd get 100,000 rows, which is why in exams you always filter right after the product.",
+rn_h2:"Rename and assignment", rn_lede:"ρ gives a table or an operation another name without changing it. You need it mostly to join a table with itself (a self-join), which takes two copies with different names. Assignment (→ or ←) saves an intermediate result under a name so you can reuse it.",
 rn_s0:"1. Two copies", rn_s1:"2. The product", rn_s2:"3. σ: employee next to their manager",
-rn_msg0:"Staff appears twice, aliased E (employee) and M (manager). Without the aliases there would be no way to tell the employee's StaffID from the manager's.", rn_msg1:"7 × 7 = 49 pairs. Most are meaningless: an employee next to someone who is not their manager.", rn_msg2:"σ<sub>E.ManagerID = M.StaffID</sub> keeps only the right pairs: 6 employees, each next to their manager. Now π<sub>E.FullName, M.FullName</sub> gives a \"who reports to whom\" list.",
-rn_assign:"<strong>Assignment</strong> is how you break a hard question into steps. Instead of one long expression, store an intermediate result under a name and use it. For example \"staff who are not managers\": first define the set of managers, then subtract it from all staff.",
+rn_msg0:"Staff appears twice, aliased E (employee) and M (manager). Without the aliases there'd be no way to tell the employee's StaffID from the manager's.", rn_msg1:"7 × 7 = 49 pairs. Most are meaningless - an employee next to someone who isn't their manager.", rn_msg2:"σ<sub>E.ManagerID = M.StaffID</sub> keeps only the right pairs - 6 employees, each next to their manager. Now π<sub>E.FullName, M.FullName</sub> gives a 'who reports to whom' list.",
+rn_assign:"<strong>Assignment</strong> is how you break a tough question into steps. Instead of one long expression, save an intermediate result under a name and use it. Say you want 'staff who aren't managers'. First define the set of managers, then subtract it from all staff.",
 sc2_eyebrow:"Practice schema", sc2_h2:"RideOn: city bike sharing", sc2_lede:"Every exercise and the calculator work on this schema, and the same schema follows us into SQL. Six tables: stations, riders, bikes, rides, staff and maintenance.",
-sc2_bench:"The full data", sc2_hint:"The tables are small on purpose: every result can be checked by hand",
-fk_h:"How the tables connect", fk1:"Rides.RiderID → Riders.RiderID: who rode", fk2:"Rides.BikeID → Bikes.BikeID: on which bike", fk3:"Rides.FromStation and Rides.ToStation → Stations.StationID: from where to where. Two foreign keys to the same table, so a natural join will not work here: you need a join with an explicit condition", fk4:"Staff.ManagerID → Staff.StaffID: who manages whom. A foreign key to the same table, hence self-join", fk5:"Maintenance.BikeID → Bikes, Maintenance.StaffID → Staff: who serviced which bike",
-sc2_tnote:"Stop on FromStation/ToStation and ask: why does Rides ⋈ Stations not work? (No shared column name. This is the moment to teach theta join.)",
-lab_h2:"Relational algebra calculator", lab_lede:"Write an expression and run it on the schema. The parameter of π, σ and ρ goes in square brackets, the table in round ones. Assignments with ← are allowed; use the name later, separated by a semicolon.",
+sc2_bench:"The full data", sc2_hint:"The tables are small on purpose - you can check every result by hand",
+fk_h:"How the tables connect", fk1:"Rides.RiderID → Riders.RiderID: who rode", fk2:"Rides.BikeID → Bikes.BikeID: on which bike", fk3:"Rides.FromStation and Rides.ToStation → Stations.StationID: from where to where. Two foreign keys to the same table, so a natural join won't work here - you need a join with an explicit condition", fk4:"Staff.ManagerID → Staff.StaffID: who manages whom. A foreign key to the same table, so you need a self-join", fk5:"Maintenance.BikeID → Bikes, Maintenance.StaffID → Staff: who serviced which bike",
+sc2_tnote:"Pause on FromStation/ToStation and ask why Rides ⋈ Stations doesn't work. (No shared column name. This is the moment to teach theta join.)",
+lab_h2:"Relational algebra calculator", lab_lede:"Write an expression and run it on the schema. The parameter of π, σ and ρ goes in square brackets, the table in round ones. You can also write an assignment with ← and use its name later. Put a semicolon between the steps.",
 lab_tip:"Ctrl+Enter runs", lab_msg0:"Try: π[FullName](σ[City='Ariel'](Riders))",
 lab_ex0:"Examples…", lab_ex1:"σ: long rides", lab_ex2:"natural ⋈: who rode", lab_ex3:"⋈ with condition: from which station", lab_ex4:"−: bikes not ridden in 2025", lab_ex5:"ρ and ×: who reports to whom", lab_ex6:"÷: rode every type", lab_ex7:"assignment in two steps",
 lab_cols:"{c} columns", lab_cols1:"1 column",
 br_h1:"Algebra", br_h2:"Meaning", br_h3:"SQL Server",
 br1:"choose rows", br2:"choose columns (no duplicates)", br3:"join on shared columns", br4:"join with a condition", br5:"all pairs", br6:"union", br7:"intersection", br8:"difference", br9:"rename", br10:"'for all': who is connected to everyone",
 ex2_h2:"Exercises on RideOn", ex2_lede:"The first 6 of 12 exercises, easy to hard, exam style. The checker runs your expression and compares the resulting table with the correct result, so any equivalent formulation counts. Hints unlock after an attempt, the solution after two.",
-ex_check:"Check", ex_tries:"Attempts: {n}", ex_hint1_b:"Hint 1", ex_hint2_b:"Hint 2", ex_sol_b:"Solution",
+ex_check:"Check", ex_tries:"Attempts: {n}", ex_hint1_b:"Hint 1", ex_hint2_b:"Hint 2", ex_sol_b:"Full solution",
 exr_ok:"Correct! Your table equals the expected result.", exr_cols:"Different number of columns: you got {a}, expected {b}. Check the π.", exr_rows:"Columns are right, but there are {a} rows instead of {b}. {d}", exr_more:"Extra rows: probably a condition that is too weak or a missing join.", exr_less:"Missing rows: probably a condition that is too strong or a forgotten branch.", exr_err:"Error in the expression: {e}", exr_empty:"Write an expression, then Check.",
 lv1:"basic", lv2:"join", lv3:"complex", lv4:"self-join", lv5:"exam",
 q1:"Station names and the number of docks at each.", q1h1:"Columns only, no filtering: π alone.", q1h2:"π[StationName, Docks] on Stations.", q1s:"π[StationName, Docks](Stations)",
 q2:"Names of staff who report to staff member 3.", q2h1:"σ on ManagerID, then π on the name.", q2h2:"σ[ManagerID=3] inside, π[FullName] outside.", q2s:"π[FullName](σ[ManagerID=3](Staff))",
-q3:"Names of riders who made a ride of at least 45 minutes.", q3h1:"The name is in Riders, the minutes in Rides. There is a shared column, so natural join.", q3h2:"σ[Minutes>=45] on Riders ⋈ Rides, then π[FullName].", q3s:"π[FullName](σ[Minutes>=45](Riders ⋈ Rides))",
-q4:"ID and type of bikes ridden at least once in 2025.", q4h1:"Dates are 'YYYY-MM-DD' strings; they compare as text.", q4h2:"σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'] on Bikes ⋈ Rides, then π[BikeID, BikeType].", q4s:"π[BikeID, BikeType](σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'](Bikes ⋈ Rides))",
+q3:"Names of riders who made a ride of at least 45 minutes.", q3h1:"The name is in Riders, the minutes in Rides. There's a shared column, so natural join.", q3h2:"σ[Minutes>=45] on Riders ⋈ Rides, then π[FullName].", q3s:"π[FullName](σ[Minutes>=45](Riders ⋈ Rides))",
+q4:"ID and type of bikes ridden at least once in 2025.", q4h1:"Dates are 'YYYY-MM-DD' strings, so you can compare them as text.", q4h2:"σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'] on Bikes ⋈ Rides, then π[BikeID, BikeType].", q4s:"π[BikeID, BikeType](σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'](Bikes ⋈ Rides))",
 q5:"Ride numbers of rides that started at station Central, or were made by riders from the city Ariel.", q5h1:"Two branches and a union. Each branch must end with π[RideID] for the union to be legal.", q5h2:"The first branch needs a join with a condition: Rides ⋈[FromStation=StationID] Stations. The second: Rides ⋈ Riders.", q5s:"π[RideID](σ[StationName='Central'](Rides ⋈[FromStation=StationID] Stations)) ∪ π[RideID](σ[City='Ariel'](Rides ⋈ Riders))",
 q6:"IDs of bikes not yet ridden in 2025.", q6h1:"'Not' = difference: all bikes minus those that were ridden.", q6h2:"π[BikeID](Bikes) − π[BikeID](σ[…2025…](Rides)). Both sides with one column, BikeID.", q6s:"π[BikeID](Bikes) − π[BikeID](σ[RideDate>='2025-01-01' ∧ RideDate<='2025-12-31'](Rides))",
-q7:"Names of staff who report to a manager whose role is Ops Manager.", q7h1:"The table against itself: one copy for employees, one for managers, with ρ.", q7h2:"ρ[E](Staff) × ρ[M](Staff), then σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'], then π[E.FullName].", q7s:"π[E.FullName](σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'](ρ[E](Staff) × ρ[M](Staff)))",
-q8:"ID and name of staff who are not managers (nobody reports to them).", q8h1:"First find the managers (self-join), then subtract them from all staff.", q8h2:"Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))); then π[StaffID, FullName](Staff) − Managers.", q8s:"Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))); π[StaffID, FullName](Staff) − Managers",
-q9:"Names of stations with the same number of docks as station Central (excluding Central itself).", q9h1:"You need to compare a row with another row of the same table: two copies of Stations.", q9h2:"ρ[S1](Stations) × ρ[S2](Stations), σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID], π[S2.StationName].", q9s:"π[S2.StationName](σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID](ρ[S1](Stations) × ρ[S2](Stations)))",
+q7:"Names of staff who report to a manager whose role is Ops Manager.", q7h1:"The table against itself - one copy for employees, one for managers, with ρ.", q7h2:"ρ[E](Staff) × ρ[M](Staff), then σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'], then π[E.FullName].", q7s:"π[E.FullName](σ[E.ManagerID=M.StaffID ∧ M.Role='Ops Manager'](ρ[E](Staff) × ρ[M](Staff)))",
+q8:"ID and name of staff who aren't managers (nobody reports to them).", q8h1:"First find the managers (self-join), then subtract them from all staff.", q8h2:"Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))); then π[StaffID, FullName](Staff) − Managers.", q8s:"Managers ← π[M.StaffID, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))); π[StaffID, FullName](Staff) − Managers",
+q9:"Names of stations with the same number of docks as station Central (excluding Central itself).", q9h1:"You need to compare a row with another row of the same table - two copies of Stations.", q9h2:"ρ[S1](Stations) × ρ[S2](Stations), σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID], π[S2.StationName].", q9s:"π[S2.StationName](σ[S1.StationName='Central' ∧ S1.Docks=S2.Docks ∧ S1.StationID≠S2.StationID](ρ[S1](Stations) × ρ[S2](Stations)))",
 q10:"IDs of riders who rode at least once but never on an Electric bike.", q10h1:"Those who rode, minus those who rode electric.", q10h2:"π[RiderID](Rides) − π[RiderID](σ[BikeType='Electric'](Rides ⋈ Bikes)).", q10s:"π[RiderID](Rides) − π[RiderID](σ[BikeType='Electric'](Rides ⋈ Bikes))",
 q11:"IDs of riders who rode every existing bike type.", q11h1:"'Every' = division. The divisor: the set of types.", q11h2:"π[RiderID, BikeType](Rides ⋈ Bikes) ÷ π[BikeType](Bikes).", q11s:"π[RiderID, BikeType](Rides ⋈ Bikes) ÷ π[BikeType](Bikes)",
 q12:"IDs of riders who started a ride both at station Central and at station Market.", q12h1:"'Both' across two different rides = an intersection of two branches, not one σ with ∧.", q12h2:"Assignment saves repetition: T ← Rides ⋈[FromStation=StationID] Stations; then π[RiderID](σ[StationName='Central'](T)) ∩ π[RiderID](σ[StationName='Market'](T)).", q12s:"T ← Rides ⋈[FromStation=StationID] Stations; π[RiderID](σ[StationName='Central'](T)) ∩ π[RiderID](σ[StationName='Market'](T))",
@@ -2820,34 +2849,37 @@ i4_e:"You say what, the engine decides how. That is why two different queries ca
 
 ra_eyebrow:"Chapter 2 · Relational algebra",
 ra_h1:"A language of operations on tables.",
-ra_lede:"Every operation takes a table (or two) and returns a table. That is why they chain: the output of one is the input of the next. Every visualizer in this lesson works on these three tables.",
+ra_lede:"Every operation takes a table (or two) and returns a table. That's why they chain - the output of one is the input of the next. Every visualizer in this lesson works on these three tables.",
 ra_data_h:"Courses schema", ra_data_c:"Students(5) · Courses(3) · Enroll(11)",
-ra_p_sets:"In relational algebra a table is a <strong>set</strong> of rows: no duplicates, no order. That is the first difference from SQL, where a table may contain the same row twice. Remember it when we reach π.",
-ra_tnote:"Open with: what is the difference between a set and a list? Then show that Enroll is a set of triples.",
+ra_p_sets:"In relational algebra, a table is a <strong>set</strong> of rows - no duplicates, no order. That's the first difference from SQL, where a table can have the same row twice. Remember it when we reach π.",
+ra_tnote:"Open by asking how a set differs from a list. Then show that Enroll is a set of triples.",
 
 sel_h2:"Select", sel_lede:"σ picks rows. The condition goes in the subscript, the table in parentheses. The number of columns never changes, only the number of rows.",
-sel_msg0:"Choose a condition and press Run. Matching rows light up, the rest fade.",
+sel_msg0:"Pick a condition and click Run. Rows that meet it get a ✓, and the rest get crossed out.",
 sel_c0:"Grade ≥ 85", sel_c1:"CID = 'DB'", sel_c2:"CID = 'DB' ∧ Grade ≥ 90", sel_c3:"Faculty = 'IE'  (on Students)",
 sel_msg:"<b>{n}</b> of {m} rows satisfy the condition. Note: the result is a table with exactly the same columns.",
 
-prj_h2:"Project", prj_lede:"π picks columns. And because the result is a set, rows that became identical merge into one. This is where most exam mistakes begin.",
+prj_h2:"Project", prj_lede:"π picks columns. Because the result is a set, rows that become identical merge into one. This is where most exam mistakes start.",
 prj_s0:"1. Original table", prj_s1:"2. Hide columns", prj_s2:"3. Remove duplicates",
-prj_msg0:"Enroll with 11 rows. Tick the columns to keep and move through the steps.",
-prj_msg1:"Only {c} remain. {d} rows became identical to another row (struck through). In relational algebra they cannot exist.",
-prj_msg2:"Result: <b>{n}</b> unique rows. In SQL you would get {m} rows unless you write DISTINCT.",
+prj_msg0:"Enroll has 11 rows. Check the columns to keep and move through the steps.",
+prj_msg1:"Now it's just {c}. {d} rows became identical to another row (struck through). In relational algebra they can't exist.",
+prj_msg2:"Result: <b>{n}</b> unique rows. In SQL you'd get {m} rows unless you write DISTINCT.",
+prj_msg1_one:"Now it's just {c}. One row became identical to another (struck through). In relational algebra it can't exist.",
+prj_msg1_none:"You kept {c}. No row became identical to another, because every combination of values shows up once. Nothing to remove.",
+prj_msg2_none:"Result: <b>{n}</b> rows, the same as the original table. Here SQL gives you {n} rows too, with or without DISTINCT.",
 
-jn_h2:"Join", jn_lede:"⋈ combines two tables by a condition. The way to understand it: first every possible pair, then only the pairs where the condition holds.",
+jn_h2:"Join", jn_lede:"⋈ combines two tables by a condition. To understand it, start from every possible pair, then keep only the pairs where the condition holds.",
 jn_s0:"1. Cartesian product ×", jn_s1:"2. σ on the condition", jn_s2:"3. The result",
-jn_msg0:"5 students × 11 enrollments = <b>55</b> pairs. 8 are shown. Green: the keys match. Red: a meaningless pair that the product creates anyway.",
+jn_msg0:"5 students × 11 enrollments = <b>55</b> pairs. 8 are shown. Pairs with a ✓ have matching keys. The crossed-out ones are meaningless, but the product creates them anyway.",
 jn_msg1:"After σ<sub>Students.SID = Enroll.SID</sub>, <b>11</b> pairs remain, exactly the number of enrollments. Every enrollment found its student.",
 jn_msg2:"In a natural join the duplicated SID column merges into one. This is the table we keep working on with σ and π.",
 jn_lab_prod:"Students × Enroll (8 of 55)",
 
-dv_h2:"Divide", dv_lede:"÷ answers 'for all' questions: who is enrolled in every course? The visualizer shows the check the engine runs for each student. Remove a course from the divisor and watch the result change.",
+dv_h2:"Divide", dv_lede:"÷ answers 'for all' questions - who's enrolled in every course? The visualizer shows the check the engine runs for each student. Remove a course from the divisor and watch the result change.",
 dv_expr_l:"Divisor:",
-dv_msg:"A student enters the result only with a ✓ in every active column. Now: <b>{n}</b> students ({names}).",
+dv_msg:"A student makes it into the result only with a ✓ in every active column. Now: <b>{n}</b> students ({names}).",
 dv_msg_empty:"No student is enrolled in all selected courses. The result is the <b>empty set</b>, a perfectly legitimate exam answer.",
-dv_msg_none:"An empty divisor is an edge case: every student 'meets all conditions' because there are none. Select at least one course.",
+dv_msg_none:"An empty divisor is an edge case - every student 'meets all conditions' because there aren't any. Select at least one course.",
 dv_lab_sql:"The same question in SQL Server:",
 
 tr_h2:"Reading an expression inside-out", tr_lede:"A compound expression is a tree. Always start from the innermost parentheses. Click each step to see its intermediate table.",
@@ -2855,34 +2887,34 @@ tr_n0:"Students ⋈ Enroll", tr_n1:"σ<sub>Grade ≥ 85</sub>( … )", tr_n2:"π
 tr_d0:"Step 1 · innermost", tr_d1:"Step 2", tr_d2:"Step 3 · result",
 tr_rows:"{n} rows",
 
-ex_h2:"Exercise: build the expression", ex_lede:"The checker runs your expression on the tables and compares results, not text. There is more than one correct way.",
+ex_h2:"Exercise: build the expression", ex_lede:"The checker runs your expression on the tables and compares results, not text. There's more than one correct way.",
 ex_q:"What are the names of the students who scored 90 or more in Databases (DB)?",
 ex_step1:"1. Which join?", ex_step2:"2. Which σ condition?", ex_step3:"3. Which π columns?",
 ex_j0:"Students ⋈ Enroll", ex_j1:"Enroll ⋈ Courses", ex_j2:"Students × Enroll", ex_j3:"Students ⋈ Enroll ⋈ Courses",
 ex_s0:"Grade ≥ 90", ex_s1:"CID = 'DB'", ex_s2:"CID = 'DB' ∧ Grade ≥ 90", ex_s3:"Faculty = 'IE' ∧ Grade ≥ 90", ex_s4:"Title = 'Databases' ∧ Grade ≥ 90",
 ex_p0:"Name", ex_p1:"SID", ex_p2:"Name, Grade", ex_p3:"Faculty",
 ex_check:"Check", ex_tries:"Attempts: {n}",
-ex_msg0:"Choose each step and press Check.",
-ex_ok:"Correct! The result matches the expected one. Note that a different formulation can be correct too, as long as the resulting table is the same.",
-ex_bad_cols:"Wrong columns: the question asks for names only, and you produced {c}.",
+ex_msg0:"Make a choice at each step, then click Check.",
+ex_ok:"Correct! That's exactly the table the question asks for.",
+ex_bad_cols:"Wrong columns - the question asks for names only, and you produced {c}.",
 ex_bad_rows:"The columns are right, but the result has {n} rows instead of {m}. Check what the condition filters and what the join connects.",
-ex_bad_join:"The join you chose does not produce the columns the condition or projection needs. Think which table holds Name and which holds Grade.",
+ex_bad_join:"The join you chose doesn't produce the columns the condition or projection needs. Think about which table holds Name and which holds Grade.",
 ex_hint1_b:"Hint 1", ex_hint2_b:"Hint 2", ex_sol_b:"Full solution",
-ex_hint1:"Hint 1: the name lives in Students, the grade and course in Enroll. You must connect both.",
-ex_hint2:"Hint 2: the condition must mention both the course and the grade. A grade-only condition admits students who excelled in another course.",
+ex_hint1:"Hint 1: the name lives in Students, the grade and course in Enroll. You need to connect both.",
+ex_hint2:"Hint 2: the condition needs to cover both the course and the grade. A grade-only condition lets in students who excelled in another course.",
 ex_sol:"Solution: π<sub>Name</sub>(σ<sub>CID='DB' ∧ Grade≥90</sub>(Students ⋈ Enroll)). Equivalent: σ first on Enroll, then ⋈ Students, then π. Going through Courses with Title='Databases' is also correct.",
 ex_locked:"The full solution unlocks after two attempts.",
 
 
 r1_q:"What does π<sub>SID</sub>(σ<sub>CID='DB'</sub>(Enroll)) − π<sub>SID</sub>(σ<sub>CID='OR'</sub>(Enroll)) return?",
 r1_0:"Students enrolled in DB and not enrolled in OR", r1_1:"Students enrolled in OR and not enrolled in DB", r1_2:"Students enrolled in both DB and OR", r1_3:"Students enrolled in DB or OR", r1_4:"All students enrolled in DB",
-r1_e:"Difference: what is in the left set and not in the right. On our data: DB = {1,2,4,5}, OR = {1,3,4}, result {2,5}. Note both sides must have the same columns (SID) for the difference to be legal.",
+r1_e:"Difference: what's in the left set and not in the right. On our data: DB = {1,2,4,5}, OR = {1,3,4}, result {2,5}. Note both sides must have the same columns (SID) for the difference to be legal.",
 r2_q:"What does π<sub>SID,CID</sub>(Enroll) ÷ π<sub>CID</sub>(Courses) return?",
 r2_0:"Students enrolled in at least one course", r2_1:"Students enrolled in every course", r2_2:"Courses that every student is enrolled in", r2_3:"Students enrolled in no course", r2_4:"(SID, CID) enrollment pairs",
-r2_e:"Division = 'for all'. The result keeps only the columns that are not in the divisor, i.e. SID. On our data: {1, 4}.",
+r2_e:"Division = 'for all'. The result keeps only the columns that aren't in the divisor, i.e. SID. On our data: {1, 4}.",
 r3_q:"Let A = π<sub>Name</sub>(σ<sub>Faculty='IE'</sub>(Students)) and B = π<sub>Name</sub>(σ<sub>Faculty='CS'</sub>(Students)). What does A − (A ∪ B) return?",
-r3_0:"All Industrial Engineering students", r3_1:"IE students who are not CS students", r3_2:"CS students who are not IE students", r3_3:"Students from IE or CS", r3_4:"Students from neither faculty",
-r3_e:"A ∪ B contains all of A. Subtracting a superset of A from A leaves nothing: the result is always empty, regardless of data. No option says 'empty set', so the answer is 'all others are wrong'. This trap appeared in a real exam.",
+r3_0:"All Industrial Engineering students", r3_1:"IE students who aren't CS students", r3_2:"CS students who aren't IE students", r3_3:"Students from IE or CS", r3_4:"Students from neither faculty",
+r3_e:"A ∪ B contains all of A. Subtracting a superset of A from A leaves nothing - the result is always empty, regardless of data. No option says 'empty set', so the answer is 'All other answers are wrong'. This trap appeared in a real exam.",
 
 t_cancel:"Cancel", 
 present_off:"Exit presenter", pt_laser:"Pointer", pt_pen:"Pen", pt_erase:"Erase", pt_undo:"Undo", pt_clear:"Clear", pt_zout:"−", pt_zin:"+", pt_zreset:"100%", pt_tools:"Tools",
@@ -4314,13 +4346,22 @@ const productSE = () => { const out=[]; RA.students.forEach(s => RA.enroll.forEa
 const project = (rows, cols) => { const seen=new Set(), out=[]; rows.forEach(r => { const o={}; cols.forEach(c=>o[c]=r[c]); const k=JSON.stringify(o); if(!seen.has(k)){seen.add(k);out.push(o);} }); return out; };
 
 /* =========================== RENDER: GENERIC TABLE =========================== */
+/* a lesson table in the kit's recipe (design phase 2, 2026-10-18): a rounded frame with square cells, the result header and a neon
+   outline for a result (opts.res), keys as small tags, NULL on the hatch, and a mark cell at the end of every row that carries a state.
+   A row that stays or a matching pair gets a check on the selected tint; a row that leaves, a duplicate or a meaningless pair gets a
+   cross, struck through in the wrong color (Raz picked the state marks over the neutral ones). */
+const ROWMARK = { hit: 'good', good: 'good', miss: 'bad', badrow: 'bad', dup: 'bad', gone: 'bad' };
+const HEB = /[\u0590-\u05FF]/;
 function table(cols, rows, opts){
   opts = opts || {};
-  const w = el('div','tbl'); if (opts.title) w.appendChild(el('b',null,opts.title));
-  const wrap = el('div','tblwrap'); const tb = el('table','data'); const tr = el('tr');
-  cols.forEach(c => { const th = el('th', null, c); th.dataset.col = c; if (opts.keys && opts.keys[c]) th.classList.add(opts.keys[c]); if (opts.onHead) { th.classList.add('clickable'); th.addEventListener('click', ev => opts.onHead(c, th, ev)); } tr.appendChild(th); });
+  const w = el('div','tbl'); if (opts.title) w.appendChild(el('b', HEB.test(opts.title) ? 'tcap-he' : 'tcap', opts.title));
+  const states = rows.map((r, i) => opts.rowClass ? opts.rowClass(r, i) || '' : ''), marks = states.some(st => ROWMARK[st]);
+  const wrap = el('div','tblwrap tw' + (opts.res ? ' res' : '')); const tb = el('table','data'); const tr = el('tr');
+  cols.forEach(c => { const k = opts.keys && opts.keys[c], th = el('th', null, c + (k === 'pk' || k === 'fk' ? '<span class="key">' + k.toUpperCase() + '</span>' : '')); th.dataset.col = c; if (k) th.classList.add(k); if (opts.onHead) { th.classList.add('clickable'); th.addEventListener('click', ev => opts.onHead(c, th, ev)); } tr.appendChild(th); });
+  if (marks) tr.appendChild(el('th', 'm'));
   tb.appendChild(tr);
-  rows.forEach((r, i) => { const row = el('tr'); if (opts.rowClass) { const rc = opts.rowClass(r, i); if (rc) row.className = rc; } cols.forEach(c => { const v = Array.isArray(r) ? r[cols.indexOf(c)] : r[c]; const td = el('td', null, v == null ? '<i style="color:var(--muted)">NULL</i>' : String(v)); if (opts.cellClass) { const cc = opts.cellClass(r, c); if (cc) td.classList.add(cc); } row.appendChild(td); }); tb.appendChild(row); });
+  rows.forEach((r, i) => { const row = el('tr'); if (states[i]) row.className = states[i]; cols.forEach(c => { const v = Array.isArray(r) ? r[cols.indexOf(c)] : r[c]; const td = el('td', v == null ? 'nul' : null, v == null ? '<span>NULL</span>' : String(v)); if (opts.cellClass) { const cc = opts.cellClass(r, c); if (cc) td.classList.add(cc); } row.appendChild(td); });
+    if (marks) row.appendChild(el('td', 'm', ROWMARK[states[i]] ? mkCell(ROWMARK[states[i]]) : '')); tb.appendChild(row); });
   wrap.appendChild(tb); w.appendChild(wrap); return w;
 }
 
@@ -4357,7 +4398,7 @@ window.addEventListener('scroll', hidePop, {passive:true});
 function renderHero(){
   const h = $('#heroArt'); h.innerHTML = '';
   const items = [['hero_t1','Roads(road_id, name, speed_limit)'],['hero_t2','Transactions(tx_id, account, amount)'],['hero_t3','Enrollments(student_id, course_id)'],['hero_t4','Receipts(receipt_no, item, qty, price)'],['hero_t5','Sections(course_id, day, hour, room)'],['hero_t6','Messages(msg_id, chat_id, sent_at)']];
-  items.forEach((it, i) => { const d = el('div','tile' + (i===2?' on':'')); d.appendChild(el('b',null,t(it[0]))); d.appendChild(el('span',null,it[1].replace('(', '(​'))); d.addEventListener('mouseenter',()=>{$$('.tile').forEach(x=>x.classList.remove('on'));d.classList.add('on');}); h.appendChild(d); });
+  items.forEach((it, i) => { const d = el('div','tile' + (i===2?' on':'')); d.appendChild(el('b',null,t(it[0]))); d.appendChild(el('span',null,it[1].replace('(', '(​'))); h.appendChild(d); });
 }
 
 /* =========================== INTRO: ANOMALY DEMO =========================== */
@@ -4396,7 +4437,7 @@ function renderSchema(){
 
 /* =========================== INTRO: HISTORY, INDUSTRY, MAP, TIMELINE =========================== */
 function renderLists(){
-  const h = $('#hist'); h.innerHTML = ''; [1,2,3,4].forEach(i => { const d = el('div','pinnable'); d.appendChild(el('b',null,t('h'+i+'_y'))); d.appendChild(el('span',null,t('h'+i+'_t'))); h.appendChild(d); });
+  const h = $('#hist'); h.innerHTML = ''; [1,2,3,4].forEach(i => { const d = el('div','pinnable'); d.appendChild(el('b', HEB.test(t('h'+i+'_y')) ? 'he' : null, t('h'+i+'_y'))); d.appendChild(el('span',null,t('h'+i+'_t'))); h.appendChild(d); });
   const ind = $('#indCards'); ind.innerHTML = '';
   const codes = ['Transactions(TxID, FromAcct, ToAcct, Amount, At)','OrderLines(OrderID, ProductID, Qty, Price)','WorkOrders(WO_ID, Material, Qty, DueDate)','Visits(VisitID, PatientID, DoctorID, Date)','Sales(Region, Month, Revenue)','Messages(MsgID, ChatID, SentAt, Body)'];
   for (let i=1;i<=6;i++){ const c = el('div','card pinnable'); c.appendChild(el('h3',null,t('ind'+i+'_h'))); c.appendChild(el('p',null,t('ind'+i+'_p'))); c.appendChild(el('code',null,codes[i-1])); ind.appendChild(c); }
@@ -4428,7 +4469,8 @@ function renderQuiz(containerId, key){
     for (let i=0;i<6;i++){ const b = el('button','opt'); b.innerHTML = '<span class="l">'+(lang==='he'?LET[i]:LETEN[i])+'</span><span>'+(i===5 ? t('all_wrong') : t(q.id+'_'+i))+'</span>'; buttons.push(b); opts.appendChild(b);
       b.addEventListener('click', async () => { const h = await sha256(q.id+':'+i); const ok = h === q.h; state[q.id] = {i, ok}; store('dbs_quiz_'+key, state); paint(); });
     }
-    const paint = () => { const s = state[q.id]; if (!s) return; buttons.forEach(b => b.disabled = true); buttons[s.i].classList.add(s.ok ? 'correct' : 'wrong'); if (!s.ok) { sha256Index(q).then(ci => { if (ci >= 0) buttons[ci].classList.add('correct'); }); } exp.hidden = false; exp.innerHTML = '<b>'+(s.ok ? t('correct') : t('wrong'))+'</b> ' + t(q.id+'_e'); updScore(); };
+    const pmk = (b, k) => { b.classList.add(k === 'good' ? 'correct' : 'wrong'); if (!b.querySelector('.mkc')) b.insertAdjacentHTML('beforeend', mkCell(k)); };
+    const paint = () => { const s = state[q.id]; if (!s) return; buttons.forEach(b => b.disabled = true); pmk(buttons[s.i], s.ok ? 'good' : 'bad'); if (!s.ok) { sha256Index(q).then(ci => { if (ci >= 0) pmk(buttons[ci], 'good'); }); } exp.hidden = false; exp.innerHTML = '<b>'+(s.ok ? t('correct') : t('wrong'))+'</b> ' + t(q.id+'_e'); updScore(); };
     card.appendChild(opts); card.appendChild(exp); box.appendChild(card); paint();
   });
   box.appendChild(scoreBar); updScore();
@@ -4457,7 +4499,7 @@ function renderSelect(){
   const rows = RA[c.src]; const cols = Object.keys(rows[0]);
   const box = $('#selTables'); box.innerHTML = '';
   box.appendChild(table(cols, rows, {title: c.src==='enroll'?'Enroll':'Students', rowClass: r => selRan ? (c.f(r) ? 'hit' : 'miss') : ''}));
-  if (selRan) { const n = rows.filter(c.f).length; box.appendChild(table(cols, rows.filter(c.f), {title:'Result'})); $('#selMsg').innerHTML = t('sel_msg',{n, m:rows.length}); } else $('#selMsg').innerHTML = t('sel_msg0');
+  if (selRan) { const n = rows.filter(c.f).length; box.appendChild(table(cols, rows.filter(c.f), {title:'Result', res:true})); $('#selMsg').innerHTML = t('sel_msg',{n, m:rows.length}); } else $('#selMsg').innerHTML = t('sel_msg0');
 }
 $('#selCond').addEventListener('change', () => { selRan = false; renderSelect(); });
 $('#selRun').addEventListener('click', () => { selRan = true; renderSelect(); });
@@ -4475,8 +4517,8 @@ function renderProject(){
   const seen = new Set(); const dupFlags = RA.enroll.map(r => { const k = JSON.stringify(cols.map(c=>r[c])); if (seen.has(k)) return true; seen.add(k); return false; });
   const uniq = project(RA.enroll, cols);
   if (prjStep === 0) { box.appendChild(table(['SID','CID','Grade'], RA.enroll, {title:'Enroll'})); msg.innerHTML = t('prj_msg0'); }
-  else if (prjStep === 1) { box.appendChild(table(cols, RA.enroll, {title:'Enroll → ' + cols.join(', '), rowClass:(r,i) => dupFlags[i] ? 'dup' : ''})); msg.innerHTML = t('prj_msg1',{c:cols.join(', '), d:dupFlags.filter(Boolean).length}); }
-  else { box.appendChild(table(cols, uniq, {title:'Result'})); msg.innerHTML = t('prj_msg2',{n:uniq.length, m:RA.enroll.length}); }
+  else if (prjStep === 1) { box.appendChild(table(cols, RA.enroll, {title:'Enroll → ' + cols.join(', '), rowClass:(r,i) => dupFlags[i] ? 'dup' : ''})); const d = dupFlags.filter(Boolean).length; msg.innerHTML = t(d > 1 ? 'prj_msg1' : d ? 'prj_msg1_one' : 'prj_msg1_none',{c:cols.join(', '), d}); }
+  else { box.appendChild(table(cols, uniq, {title:'Result', res:true})); msg.innerHTML = t(uniq.length < RA.enroll.length ? 'prj_msg2' : 'prj_msg2_none',{n:uniq.length, m:RA.enroll.length}); }
 }
 $$('[data-prj]').forEach(b => b.addEventListener('click', () => { prjStep = +b.dataset.prj; renderProject(); }));
 
@@ -4488,7 +4530,7 @@ function renderJoin(){
   const pcols = ['SID','Name','Faculty','Enroll.SID','CID','Grade'];
   if (jnStep === 0) { const all = productSE(); const sample = [all[0],all[1],all[5],all[11],all[14],all[23],all[36],all[54]]; box.appendChild(table(pcols, sample, {title:t('jn_lab_prod'), rowClass:r => r.SID===r['Enroll.SID'] ? 'good' : 'badrow'})); msg.innerHTML = t('jn_msg0'); }
   else if (jnStep === 1) { const kept = productSE().filter(r => r.SID===r['Enroll.SID']); box.appendChild(table(pcols, kept, {title:'σ(Students × Enroll)', rowClass:()=>'good'})); msg.innerHTML = t('jn_msg1'); }
-  else { box.appendChild(table(['SID','Name','Faculty','CID','Grade'], joinSE(), {title:'Students ⋈ Enroll'})); msg.innerHTML = t('jn_msg2'); }
+  else { box.appendChild(table(['SID','Name','Faculty','CID','Grade'], joinSE(), {title:'Students ⋈ Enroll', res:true})); msg.innerHTML = t('jn_msg2'); }
 }
 $$('[data-jn]').forEach(b => b.addEventListener('click', () => { jnStep = +b.dataset.jn; renderJoin(); }));
 
@@ -4500,14 +4542,14 @@ function renderDivide(){
   const active = RA.courses.map(c=>c.CID).filter(c => dvSel[c]);
   $('#dvExpr').innerHTML = 'π<sub>SID,CID</sub>(Enroll) ÷ ' + (active.length===3 ? 'π<sub>CID</sub>(Courses)' : '{' + (active.join(', ')||' ') + '}');
   const box = $('#dvTables'); box.innerHTML = ''; const msg = $('#dvMsg');
-  const wrap = el('div','tbl'); wrap.appendChild(el('b',null,'Enroll[SID, CID]  ·  ✓ = enrolled'));
+  const wrap = el('div','tbl'); wrap.appendChild(el('b','tcap','Enroll[SID, CID]'));
   const m = el('table','matrix'); const hr = el('tr'); hr.appendChild(el('th',null,'SID')); RA.courses.forEach(c => { const th = el('th', dvSel[c.CID]?'':'off', c.CID); hr.appendChild(th); }); hr.appendChild(el('th',null,'÷')); m.appendChild(hr);
   const winners = [];
   RA.students.forEach(s => { const tr = el('tr'); tr.appendChild(el('td',null,String(s.SID)+' '+s.Name)); let win = active.length>0;
-    RA.courses.forEach(c => { const has = RA.enroll.some(e => e.SID===s.SID && e.CID===c.CID); const td = el('td', (has?'yes':'no') + (dvSel[c.CID]?'':' off'), has?'✓':'·'); tr.appendChild(td); if (dvSel[c.CID] && !has) win = false; });
-    tr.appendChild(el('td', null, win ? '✓' : '')); if (win) { tr.classList.add('win'); winners.push(s.Name); } m.appendChild(tr); });
-  const mw = el('div','tblwrap'); mw.appendChild(m); wrap.appendChild(mw); box.appendChild(wrap);
-  box.appendChild(table(['SID'], winners.map(n => ({SID: RA.students.find(s=>s.Name===n).SID})), {title:'Result'}));
+    RA.courses.forEach(c => { const has = RA.enroll.some(e => e.SID===s.SID && e.CID===c.CID); const td = el('td', (has?'yes':'no') + (dvSel[c.CID]?'':' off'), has ? mkCell('good') : ''); tr.appendChild(td); if (dvSel[c.CID] && !has) win = false; });
+    tr.appendChild(el('td', 'm', win ? mkCell('good') : '')); if (win) { tr.classList.add('win'); winners.push(s.Name); } m.appendChild(tr); });
+  const mw = el('div','tblwrap tw'); mw.appendChild(m); wrap.appendChild(mw); wrap.insertAdjacentHTML('beforeend', '<div class="legend2"><span>' + mkCell('good') + esc(t('dv_lg')) + '</span></div>'); box.appendChild(wrap);
+  box.appendChild(table(['SID'], winners.map(n => ({SID: RA.students.find(s=>s.Name===n).SID})), {title:'Result', res:true}));
   const sql = el('div','tbl'); sql.appendChild(el('b',null,t('dv_lab_sql')));
   sql.innerHTML += '<pre class="sql"><span class="k">SELECT</span> SID\n<span class="k">FROM</span> Enroll\n<span class="k">WHERE</span> CID <span class="k">IN</span> (' + (active.map(c=>"'"+c+"'").join(', ')||"''") + ')\n<span class="k">GROUP BY</span> SID\n<span class="k">HAVING COUNT</span>(<span class="k">DISTINCT</span> CID) = ' + active.length + ';</pre>';
   box.appendChild(sql);
@@ -4520,7 +4562,7 @@ function renderTree(){
   const tr = $('#tree'); tr.innerHTML = '';
   const steps = [ {rows: joinSE(), cols:['SID','Name','Faculty','CID','Grade']}, {rows: joinSE().filter(r=>r.Grade>=85), cols:['SID','Name','Faculty','CID','Grade']}, {rows: project(joinSE().filter(r=>r.Grade>=85), ['Name']), cols:['Name']} ];
   steps.forEach((s, i) => { const n = el('button','node'); n.setAttribute('aria-pressed', String(i===treeStep)); n.innerHTML = '<span class="depth">'+t('tr_d'+i)+'</span><span class="ra">'+t('tr_n'+i)+'</span><span class="count">'+t('tr_rows',{n:s.rows.length})+'</span>'; n.addEventListener('click', () => { treeStep = i; renderTree(); }); tr.appendChild(n); });
-  const out = $('#treeOut'); out.innerHTML = ''; const s = steps[treeStep]; out.appendChild(table(s.cols, s.rows, {title: t('tr_d'+treeStep)}));
+  const out = $('#treeOut'); out.innerHTML = ''; const s = steps[treeStep]; out.appendChild(table(s.cols, s.rows, {title: t('tr_d'+treeStep), res: treeStep === steps.length - 1}));
 }
 
 /* =========================== RA v2: RideOn schema, algebra engine, lab, exercises =========================== */
@@ -4703,7 +4745,7 @@ function renderSets(){
   box.appendChild(table(['RiderID'], mark(A.rows), {title: t('st_A'), rowClass: r => stMode === 'x' ? '' : (hit(r) ? 'hit' : 'miss')}));
   if (stMode === 'x') box.appendChild(table(['StationName'], RAE.run("π[StationName](Stations)").rows.map(r => ({StationName: r[0]})), {title:'π[StationName](Stations)', rowClass: () => 'badrow'}));
   else box.appendChild(table(['RiderID'], mark(B.rows), {title: t('st_B'), rowClass: r => stMode === 'u' ? (setA.has(r.RiderID) ? 'dup' : 'hit') : stMode === 'i' ? (setA.has(r.RiderID) ? 'hit' : 'miss') : 'miss'}));
-  if (res) box.appendChild(table(['RiderID'], res.rows.map(r => ({RiderID: r[0]})), {title:'Result'}));
+  if (res) box.appendChild(table(['RiderID'], res.rows.map(r => ({RiderID: r[0]})), {title:'Result', res:true}));
   msg.className = 'msg' + (stMode === 'x' ? ' bad' : ''); msg.innerHTML = t('st_msg_' + stMode);
 }
 $$('[data-st]').forEach(b => b.addEventListener('click', () => { stMode = b.dataset.st; renderSets(); }));
@@ -4711,7 +4753,7 @@ function renderProduct(){
   const box = $('#prTables'); box.innerHTML = '';
   const bikes = RAE.run("σ[BikeID<=13](Bikes)"), st = RAE.run("σ[StationID<=2](Stations)"), P = RAE.run("σ[BikeID<=13](Bikes) × σ[StationID<=2](Stations)");
   const tb = RAE.toTable(bikes), ts = RAE.toTable(st), tp = RAE.toTable(P);
-  box.appendChild(table(tb.cols, tb.rows, {title:'Bikes (3)'})); box.appendChild(table(ts.cols, ts.rows, {title:'Stations (2)'})); box.appendChild(table(tp.cols, tp.rows, {title:'Bikes × Stations'}));
+  box.appendChild(table(tb.cols, tb.rows, {title:'Bikes (3)'})); box.appendChild(table(ts.cols, ts.rows, {title:'Stations (2)'})); box.appendChild(table(tp.cols, tp.rows, {title:'Bikes × Stations', res:true}));
   $('#prCount').textContent = tb.rows.length + ' × ' + ts.rows.length + ' = ' + tp.rows.length;
 }
 function renderRename(){
@@ -4720,7 +4762,7 @@ function renderRename(){
   const E = RAE.toTable(RAE.run("ρ[E](Staff)")), M = RAE.toTable(RAE.run("ρ[M](Staff)"));
   if (rnStep === 0) { box.appendChild(table(E.cols, E.rows, {title:'ρ[E](Staff)'})); box.appendChild(table(M.cols, M.rows, {title:'ρ[M](Staff)'})); }
   else if (rnStep === 1) { const P = RAE.toTable(RAE.run("ρ[E](Staff) × ρ[M](Staff)")); const sample = [0,1,2,8,9,10,16,17,18,24,25,26]; box.appendChild(table(P.cols, sample.map(i => P.rows[i]), {title: 'E × M (12 ' + (lang === 'he' ? 'מתוך' : 'of') + ' 49)', rowClass: r => r[3] === r[4] ? 'good' : 'badrow'})); }
-  else { const J = RAE.toTable(RAE.run("σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))")); box.appendChild(table(J.cols, J.rows, {title:'σ[E.ManagerID = M.StaffID](E × M)', rowClass: () => 'good'})); const N = RAE.toTable(RAE.run("π[E.FullName, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff)))")); box.appendChild(table(N.cols, N.rows, {title:'π[E.FullName, M.FullName](…)'})); }
+  else { const J = RAE.toTable(RAE.run("σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff))")); box.appendChild(table(J.cols, J.rows, {title:'σ[E.ManagerID = M.StaffID](E × M)', rowClass: () => 'good'})); const N = RAE.toTable(RAE.run("π[E.FullName, M.FullName](σ[E.ManagerID=M.StaffID](ρ[E](Staff) × ρ[M](Staff)))")); box.appendChild(table(N.cols, N.rows, {title:'π[E.FullName, M.FullName](…)', res:true})); }
   msg.innerHTML = t('rn_msg' + rnStep);
 }
 $$('[data-rn]').forEach(b => b.addEventListener('click', () => { rnStep = +b.dataset.rn; renderRename(); }));
