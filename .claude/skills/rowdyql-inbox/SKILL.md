@@ -35,6 +35,7 @@ Talk to Raz in Hebrew. The sources below are the truth. If something here confli
 2. **Read each thread** with `get_thread`. Take:
    - the sender's name and address;
    - the subject and the body (plain text, quotes and signatures cut);
+   - a message sent with the site's buttons ("כתבו לנו" at the end of every lesson, "שליחת מייל" in the personal area) ends with "נשלח מהעמוד: <lesson>" ("Sent from: <lesson>") and the page address. Keep both lines: they tell you which lesson the student was on;
    - the student message's `Message-ID` header, so the reply threads. If the connector doesn't expose it, leave `message_id` empty: the reply still arrives, just as a new thread.
 3. **Who is it?** Look the address up in `auth.users` and `public.profiles` (read only): `user_id`, institution, field of study. Their plan is in `public.progress`, key `dbs_plan`. Don't copy more personal data than the form needs.
 4. **Find the topic on the site first.** Search the lesson titles, the section titles and the lesson text, in Hebrew and English, with synonyms (e.g. "WITH" = "CTE", "צירוף" = JOIN, "חילוק" = ÷ / "for all").
