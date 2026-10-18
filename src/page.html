@@ -1455,7 +1455,7 @@ html[dir="ltr"] .px-hl::before{transform-origin:left}
 .px-pnote{min-height:1.5rem;display:flex;align-items:center;gap:.55rem;color:var(--sky);font-size:.88rem;font-weight:500}
 .px-pnote::before{content:"";width:7px;height:7px;border-radius:1.5px;background:var(--sky);flex:none;opacity:0;transition:opacity .3s}
 .px-pnote.on::before{opacity:1}
-.px-pnote span.new{animation:pxnote .5s var(--px-ease) both}
+.px-pnote span.new{animation:pxnote .5s var(--px-ease) both,rqFlare 2.4s ease-out .2s}
 @keyframes pxnote{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
 .px-rr{position:relative;width:22px;height:18px;flex:none;direction:ltr}
 .px-rr i{position:absolute;left:1px;width:17px;height:4px;border-radius:1px;background:var(--ink)}
@@ -1843,6 +1843,15 @@ html[dir="rtl"] .cal-dlg h3{margin:0 0 .3rem 2.5rem}
 .cal-toast button{background:none;border:0;padding:0;font:inherit;color:#5CC3D9;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 @media (max-width:800px){.home-hero .cal-next{width:100%}}
 @media (max-width:760px){.cal-apps{grid-template-columns:1fr}.cal-toast{bottom:84px}}
+
+/* ---------- a line that answers a choice flares once in the neon, then settles to plain text (Raz, 2026-10-18) ----------
+   Used on: the plan's note line, the institution line, "we already know your course", and the calendar's "what changed" line. */
+@keyframes rqFlare{0%{text-shadow:0 0 0 rgba(92,195,217,0)}16%,42%{color:var(--flare-ink,#5CC3D9);text-shadow:0 0 6px rgba(92,195,217,.95),0 0 16px rgba(92,195,217,.7),0 0 32px rgba(92,195,217,.4)}100%{text-shadow:0 0 0 rgba(92,195,217,0)}}
+.cal-said{--flare-ink:var(--accent)}
+.rq-flare{animation:rqFlare 2.4s ease-out}
+.px-known{animation:rqFlare 2.4s ease-out .45s}
+.cal-said.on{animation:calSaid .5s ease,rqFlare 2.4s ease-out .15s}
+@media (prefers-reduced-motion:reduce){.rq-flare,.px-known,.cal-said.on,.px-pnote span.new{animation:none!important}}
 </style>
 
 <script>/* diagnostics: on-screen error banner only when the URL contains ?debug (otherwise errors go to the console as usual) */
@@ -2551,7 +2560,7 @@ pl_ch1:"עליכם", pl_ch2:"המבחן", pl_ch2_ns:"היעד", pl_ch3:"איך �
 pl_hi_m1:"בערך שתי דקות", pl_hi_m2:"אפשר לחזור לכל תשובה", pl_hi_m3:"אפשר לשנות אחר כך", pl_hi_go:"מתחילים", pl_hi_h_old:"{name}, הקורס נהיה אישי.", pl_hi_p_old:"חלק מהתשובות כבר אצלנו מהשאלון. נשארו כמה שאלות קצרות, והשאר עלינו.", pl_hi_m1_old:"פחות מדקה", pl_hi_go_old:"ממשיכים",
 pl_unsure:"לא בטוח/ה", pl_unsure_m:"לא בטוח", pl_unsure_f:"לא בטוחה", pl_next_ok:"נכון, המשך", pl_next_last:"לתוכנית שלי", pl_hint_num:"לחצו על מספר כדי לבחור", pl_q_studying:"אתם לומדים כרגע?", pl_q_studying_w:"ככה נדע אם לבנות את התוכנית סביב מבחן.",
 pl_o_yes:"כן", pl_o_yes_s:"בתואר, במכללה או בקורס", pl_o_no:"לא כרגע", pl_o_no_s:"לומד/ת בשביל עצמי", pl_o_no_s_m:"לומד בשביל עצמי", pl_o_no_s_f:"לומדת בשביל עצמי", pl_q_inst:"איפה אתם לומדים?", pl_q_inst_w:"כל מוסד מלמד בסדר אחר, ושואל אחרת במבחן.",
-pl_inst_ph:"הקלידו כדי לחפש", pl_inst_add:"הוספת '{q}'", pl_conf3:"את {course} {at} אנחנו מכירים מבפנים", pl_conf2:"יש לנו היכרות עם {inst} בקורס הזה", pl_conf1:"עוד לא הכרנו את הקורס שלכם. נבנה לפי מה שתספרו, ונדייק יחד בדרך", pl_q_field:"מה אתם לומדים, ובאיזו שנה?", pl_q_field_w:"מערכות מידע ומדעי המחשב לומדים את אותו קורס, עם דגשים אחרים.", pl_field_l:"תחום הלימודים",
+pl_inst_ph:"הקלידו כדי לחפש", pl_inst_add:"הוספת '{q}'", pl_conf3:"את {course} {at} אנחנו מכירים מבפנים", pl_conf2:"{at} אנחנו מכירים לעומק את הקורס של {field}", pl_conf2_other:"{at} אנחנו מכירים לעומק את הקורס של {field}. אם אצלכם הוא שונה, הסילבוס שלכם יעזור לנו להתאים את התוכנית", pl_conf1:"עוד לא הכרנו את הקורס שלכם. נבנה לפי מה שתספרו, ונדייק יחד בדרך", pl_q_field:"מה אתם לומדים, ובאיזו שנה?", pl_q_field_w:"מערכות מידע ומדעי המחשב לומדים את אותו קורס, עם דגשים אחרים.", pl_field_l:"תחום הלימודים",
 pl_field_ph:"למשל: מדעי המחשב", pl_year_l:"שנה", pl_year_more:"ה׳ ומעלה", pl_q_first:"זו הפעם הראשונה שלכם בקורס?", pl_q_first_w:"מי שכבר למד אותו מתחיל כל פרק בבדיקה קצרה, ומדלג על מה שיושב.", pl_o_first:"כן, פעם ראשונה", pl_o_again:"לומד/ת אותו שוב", pl_o_again_m:"לומד אותו שוב",
 pl_o_again_f:"לומדת אותו שוב", pl_o_examonly:"רק ניגש/ת שוב למבחן", pl_o_examonly_m:"רק ניגש שוב למבחן", pl_o_examonly_f:"רק ניגשת שוב למבחן", pl_q_why:"מה מביא אתכם?", pl_q_why_w:"כדי לשים את הדגש במקום הנכון.", pl_o_learn:"פשוט רוצה ללמוד את הנושא", pl_o_work:"צריך/ה את זה בעבודה",
 pl_o_work_m:"צריך את זה בעבודה", pl_o_work_f:"צריכה את זה בעבודה", pl_o_interview:"מתכונן/ת לראיון עבודה", pl_o_interview_m:"מתכונן לראיון עבודה", pl_o_interview_f:"מתכוננת לראיון עבודה", pl_o_pre:"לפני שאני מתחיל/ה תואר", pl_o_pre_m:"לפני שאני מתחיל תואר", pl_o_pre_f:"לפני שאני מתחילה תואר",
@@ -2574,7 +2583,7 @@ pl_n_bundle_back:"חזרנו לתוכנית שבחרנו", pl_n_nx_agree:"שאל
 pl_r_off_exam:"לא במבחן שלכם. {n} שיעורים, פתוחים, מחוץ לקצב", pl_r_off_sql:"לא חובה בשביל SQL מעשי. {n} שיעורים, פתוחים, מחוץ לקצב", pl_r_off:"לא בפוקוס. {n} שיעורים, פתוחים, מחוץ לקצב", pl_soon:"נפתח בקרוב", pl_tag_start:"מתחילים כאן", pl_tag_skip:"אפשר לדלג", pl_tag_more:"+ תרגול",
 pl_tag_hard:"+ אתגר", pl_tag_check:"כדאי להתחיל בה", pl_tag_mc:"אמריקאי", pl_tag_open:"על דף", pl_tag_both:"שני הסגנונות", pl_tag_nx:"לא במבחן", pl_tag_nx_want:"לא במבחן · ביקשתם שאלות", pl_pace:"{n} שיעורים בשבוע · מסיימים ב-{date} · {weeks} לחזרה",
 pl_pace_free:"{n} שיעורים בשבוע · בערך {n2} שבועות", pl_tl_today:"היום", pl_tl_end:"חזרה, ואז המבחן ב-{date}", pl_tl_end_goal:"חזרה, ואז היעד ב-{date}", pl_open_h:"עוד לא במקום · {n}", pl_open_s:"בינתיים החלטנו בשבילכם. נסדר את זה יחד בהמשך.", pl_o_inst_t:"הקורס שלכם", pl_o_inst_now1:"עוד לא הכרנו אותו, אז בנינו לפי מה שסיפרתם",
-pl_o_inst_now2:"יש לנו היכרות עם {inst}, אז בנינו לפי מה שכבר ידוע לנו", pl_o_files_t:"החומרים שלכם · {n}", pl_o_files_now:"קוראים אותם, ונדייק לפיהם את התוכנית", pl_o_files_auto:"בתהליך", pl_o_when_t:"מתי המבחן", pl_o_when_now:"בינתיים מניחים שבסוף הסמסטר", pl_o_style_t:"איך המבחן נראה", pl_o_style_now:"בינתיים מתרגלים את שני הסגנונות",
+pl_o_inst_now2:"{at} אנחנו מכירים לעומק את הקורס של {field}. בינתיים בנינו לפי מה שסיפרתם", pl_o_files_t:"החומרים שלכם · {n}", pl_o_files_now:"קוראים אותם, ונדייק לפיהם את התוכנית", pl_o_files_auto:"בתהליך", pl_o_when_t:"מתי המבחן", pl_o_when_now:"בינתיים מניחים שבסוף הסמסטר", pl_o_style_t:"איך המבחן נראה", pl_o_style_now:"בינתיים מתרגלים את שני הסגנונות",
 pl_o_topics_t:"מה יהיה במבחן", pl_o_topics_now:"בינתיים כל ארבעת הפרקים", pl_o_target_t:"תאריך היעד", pl_o_target_now:"בינתיים בקצב רגוע", pl_o_time_t:"כמה זמן יש לכם", pl_o_time_now:"בינתיים 2 עד 3 שעות בשבוע", pl_o_time_auto:"נכוונן לפי הקצב שלכם", pl_o_worry_t:"מה מלחיץ אתכם",
 pl_o_worry_now:"עוד לא ידוע", pl_o_worry_auto:"יתברר מהתרגול", pl_o_level_t:"הרמה שלכם", pl_o_level_now:"המלצנו לדלג על המבוא", pl_o_level_auto:"נדע אחרי בדיקת הפתיחה", pl_o_self_sh_time:"הקצב", pl_o_self_sh_worry:"מה מלחיץ", pl_o_self_sh_level:"הרמה",
 pl_o_self_now:"יסתדרו מעצמם, תוך כדי התרגול", pl_o_btn_answer:"יש לי תשובה", pl_o_btn_upload:"העלאת חומרים", pl_o_btn_choose:"בחירה", pl_o_btn_upload_s:"העלאה", pl_strip:"התוכנית שלכם", pl_close:"סגירה", pl_rv_kick:"התוכנית מוכנה",
@@ -2836,7 +2845,7 @@ me_title:"My area", me_look:"Look", me_avatar:"Avatar", me_av_ini:"Your initial"
 pl_ch1:"About you", pl_ch2:"The exam", pl_ch2_ns:"Your goal", pl_ch3:"How you learn", pl_ch4:"Your plan", pl_ch_pre:"Getting started", pl_hi_h:"Hi {name}, let's build your plan.", pl_hi_p:"A few short questions, most of them one click. Your plan changes with every answer, and anything you're not sure about, we'll decide for you.",
 pl_hi_m1:"About two minutes", pl_hi_m2:"You can go back to any answer", pl_hi_m3:"You can change it later", pl_hi_go:"Let's start", pl_hi_h_old:"{name}, the course just got personal.", pl_hi_p_old:"We already have some of your answers. Just a few short questions left, and we'll do the rest.", pl_hi_m1_old:"Under a minute", pl_hi_go_old:"Continue",
 pl_unsure:"Not sure", pl_next_ok:"That's right, next", pl_next_last:"See my plan", pl_hint_num:"Press a number to choose", pl_q_studying:"Are you studying right now?", pl_q_studying_w:"So we know whether to build your plan around an exam.", pl_o_yes:"Yes", pl_o_yes_s:"At university, college or a course",
-pl_o_no:"Not right now", pl_o_no_s:"Learning for myself", pl_q_inst:"Where do you study?", pl_q_inst_w:"Every school teaches it in its own order, and sets its own kind of exam.", pl_inst_ph:"Type to search", pl_inst_add:"Add '{q}'", pl_conf3:"We know {course} {at} from the inside", pl_conf2:"We're already familiar with {inst} in this course",
+pl_o_no:"Not right now", pl_o_no_s:"Learning for myself", pl_q_inst:"Where do you study?", pl_q_inst_w:"Every school teaches it in its own order, and sets its own kind of exam.", pl_inst_ph:"Type to search", pl_inst_add:"Add '{q}'", pl_conf3:"We know {course} {at} from the inside", pl_conf2:"We know the {field} course {at} in depth", pl_conf2_other:"We know the {field} course {at} in depth. If yours is different, your syllabus will help us fit the plan to it",
 pl_conf1:"We don't know your course yet. We'll start from what you tell us and fine-tune together as we go.", pl_q_field:"What do you study, and which year are you in?", pl_q_field_w:"Information systems and computer science take the same course, with a different emphasis.", pl_field_l:"Field of study", pl_field_ph:"e.g. Computer Science", pl_year_l:"Year", pl_year_more:"5th+", pl_q_first:"Is this your first time taking the course?",
 pl_q_first_w:"If you've been through it before, you can open each chapter with its self-check and skip what you already know.", pl_o_first:"Yes, first time", pl_o_again:"Taking it again", pl_o_examonly:"Only retaking the exam", pl_q_why:"What brings you here?", pl_q_why_w:"So we put the emphasis in the right place.", pl_o_learn:"I just want to learn it", pl_o_work:"I need it at work",
 pl_o_interview:"A job interview", pl_o_pre:"Getting ready for a degree", pl_o_other:"Something else", pl_q_work:"What do you do?", pl_q_work_w:"We'll pick examples from your world.", pl_o_dev:"Software development", pl_o_data:"Data and analytics", pl_o_product:"Product or management",
@@ -2857,7 +2866,7 @@ pl_n_goals:"Noted. We'll keep it in mind", pl_n_done:"Thanks! Your plan is ready
 pl_n_nx_want:"We'll add {topic} questions to your sample exams too", pl_r_intro:"Starting from the basics", pl_r_intro_skip:"Know the basics? You can skip it - it's off your schedule", pl_r_intro_fast:"The exam's close, so you can skip it - it's off your schedule", pl_r_inexam:"In your exam", pl_r_incourse:"In the course and the exam", pl_r_off_exam:"Not in your exam. {n} lessons, open but off your schedule",
 pl_r_off_sql:"Not needed for practical SQL. {n} lessons, open but off your schedule", pl_r_off:"Not in focus. {n} lessons, open but off your schedule", pl_soon:"Coming soon", pl_tag_start:"Start here", pl_tag_skip:"You can skip this", pl_tag_more:"+ practice", pl_tag_hard:"+ challenge", pl_tag_check:"Start with this one",
 pl_tag_mc:"Multiple choice", pl_tag_open:"On paper", pl_tag_both:"Both styles", pl_tag_nx:"Not in the exam", pl_tag_nx_want:"Not in the exam · you asked for questions", pl_pace:"{n} lessons a week · done by {date} · {weeks} to review", pl_pace_free:"{n} lessons a week · about {n2} weeks", pl_tl_today:"Today",
-pl_tl_end:"Review, then the exam on {date}", pl_tl_end_goal:"Review, then your goal on {date}", pl_open_h:"Not in place yet · {n}", pl_open_s:"We've decided for you in the meantime. We'll sort it out together.", pl_o_inst_t:"Your course", pl_o_inst_now1:"We don't know it yet, so we built from what you told us", pl_o_inst_now2:"We're familiar with {inst}, so we built from what we already know", pl_o_files_t:"Your materials · {n}",
+pl_tl_end:"Review, then the exam on {date}", pl_tl_end_goal:"Review, then your goal on {date}", pl_open_h:"Not in place yet · {n}", pl_open_s:"We've decided for you in the meantime. We'll sort it out together.", pl_o_inst_t:"Your course", pl_o_inst_now1:"We don't know it yet, so we built from what you told us", pl_o_inst_now2:"We know the {field} course {at} in depth. For now, we built from what you told us", pl_o_files_t:"Your materials · {n}",
 pl_o_files_now:"We're reading them, and we'll fine-tune your plan", pl_o_files_auto:"In progress", pl_o_when_t:"When's the exam", pl_o_when_now:"For now we're assuming the end of the semester", pl_o_style_t:"What the exam looks like", pl_o_style_now:"Practicing both styles for now", pl_o_topics_t:"What's in the exam", pl_o_topics_now:"All four chapters for now",
 pl_o_target_t:"Your goal date", pl_o_target_now:"An easy pace for now", pl_o_time_t:"How much time you have", pl_o_time_now:"Two to three hours a week for now", pl_o_time_auto:"We'll match your pace", pl_o_worry_t:"What worries you", pl_o_worry_now:"Not known yet", pl_o_worry_auto:"Practice will show",
 pl_o_level_t:"Your level", pl_o_level_now:"We suggested skipping the intro", pl_o_level_auto:"Your first self-check will confirm", pl_o_self_sh_time:"your pace", pl_o_self_sh_worry:"what worries you", pl_o_self_sh_level:"your level", pl_o_self_now:"These will sort themselves out as you practice", pl_o_btn_answer:"Answer now",
@@ -6064,7 +6073,7 @@ const PX_PLANNED = { sql: [['sql1', 15], ['sql2', 15, 'join'], ['sql3', 15, 'gro
   norm: [['n1', 15, 'norm'], ['n2', 15, 'norm'], ['n3', 15, 'norm'], ['n4', 15, 'norm'], ['n5', 12, 'norm bcnf 4nf'], ['n6', 25, 'ex']],
   erd: [['e1', 15, 'erd'], ['e2', 15, 'erd'], ['e3', 15, 'erd'], ['e4', 12, 'erd'], ['e5', 15, 'erd'], ['e6', 20, 'ex']] };
 /* what we know first hand: only Raz's own course. Knowledge is per course, so an institution we know is not a course we know */
-const PX_COURSES = [{ inst: 'אוניברסיטת אריאל', fields: ['הנדסת תעשייה וניהול'], name: { he: 'תכנון בסיסי נתונים', en: 'Database Design' }, style: 'mc', topics: ['ra', 'sql', 'norm', 'erd'] }];
+const PX_COURSES = [{ inst: 'אוניברסיטת אריאל', fields: ['הנדסת תעשייה וניהול'], field: { he: 'הנדסת תעשייה וניהול', en: 'Industrial Engineering and Management' }, name: { he: 'תכנון בסיסי נתונים', en: 'Database Design' }, style: 'mc', topics: ['ra', 'sql', 'norm', 'erd'] }];
 const PX_KNOWN = { 'אוניברסיטת אריאל': { he: 'אריאל', en: 'Ariel' } };
 const PX_BUNDLES = {
   full: { n: 'pl_bd_full', focus: ['intro', 'ra', 'sql', 'norm', 'erd'], skip: {}, inTx: 'pl_bd_full_in', outTx: 'pl_bd_full_out' },
@@ -6147,7 +6156,7 @@ function pxPace(count, mins){
 function pxOpenRows(){
   const o = [], files = PS.files || [], hasSyl = files.some(f => f.kind === 'syl' || f.kind === 'exam');
   if (files.length) o.push({ id: 'files', t: t('pl_o_files_t', { n: files.length }), now: t('pl_o_files_now'), how: 'auto', auto: t('pl_o_files_auto') });
-  else if (pxSt() && PS.inst && pxConf() < 3) o.push({ id: 'inst', t: t('pl_o_inst_t'), now: pxConf() === 2 ? t('pl_o_inst_now2', { inst: pxShort(PS.inst) }) : t('pl_o_inst_now1'), how: 'upload' });
+  else if (pxSt() && PS.inst && pxConf() < 3) o.push({ id: 'inst', t: t('pl_o_inst_t'), now: pxConf() === 2 ? pxConf2('pl_o_inst_now2') : t('pl_o_inst_now1'), how: 'upload' });
   if (pxSt() && PS.when === 'unsure' && !PS.date) o.push({ id: 'when', t: t('pl_o_when_t'), now: t('pl_o_when_now'), how: 'ask' });
   if (PS.style === 'unsure') o.push({ id: 'style', t: t('pl_o_style_t'), now: t('pl_o_style_now'), how: 'ask' });
   if (PS.topics && PS.topics.includes('unsure') && !pxCourse() && !hasSyl) o.push({ id: 'topics', t: t('pl_o_topics_t'), now: t('pl_o_topics_now'), how: 'edit' });
@@ -6307,8 +6316,9 @@ function pxShowQ(){
 function pxTimeNote(){ const P = PX.P, s = tn('pl_n_time', { n: P.pace.per }); return P.pace.tight ? s + '. ' + t('pl_n_tight') : s; }
 /* how sure we are, in the open: bars plus a warm line that promises nothing */
 const pxBars = lv => '<span class="px-lv" aria-hidden="true">' + [1, 2, 3].map(i => '<i class="' + (i <= lv ? 'on' : '') + '"></i>').join('') + '</span>';
-function pxConfLine(){ const c = $('#pxConf'); if (!c) return; if (!PS.inst) { c.innerHTML = ''; return; } const lv = pxConf();
-  const tx = lv === 3 ? t('pl_conf3', { course: pxCourseName(pxCourse()), at: pxAt(PS.inst) }) : lv === 2 ? t('pl_conf2', { inst: pxShort(PS.inst) }) : t('pl_conf1'); c.innerHTML = pxBars(lv) + '<span>' + esc(tx) + '</span>'; }
+const pxConf2 = k => { const c = PX_COURSES.find(x => x.inst === PS.inst); return t(k, { at: pxAt(PS.inst), field: c ? c.field[lang] || c.field.he : '' }); };
+function pxConfLine(){ const c = $('#pxConf'); if (!c) return; if (!PS.inst) { c.innerHTML = ''; c.dataset.tx = ''; return; } const lv = pxConf();
+  const tx = lv === 3 ? t('pl_conf3', { course: pxCourseName(pxCourse()), at: pxAt(PS.inst) }) : lv === 2 ? pxConf2(PS.field ? 'pl_conf2_other' : 'pl_conf2') : t('pl_conf1'); if (c.dataset.tx === tx) return; c.dataset.tx = tx; c.innerHTML = pxBars(lv) + '<span class="rq-flare">' + esc(tx) + '</span>'; }
 function pxInstBind(refresh, advance){
   const iq = $('#pxIq'), L = $('#pxIl'); let act = -1;
   const draw = () => { const q = iq.value.trim(); let i = 0;
