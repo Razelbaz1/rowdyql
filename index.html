@@ -6002,7 +6002,7 @@ async function meDelete(m){
   } catch (e) { msg.textContent = t('g_err_gen'); go.disabled = false; }
 }
 /* what this device keeps for the signed-in user; cleared on sign-out and account deletion, and when a different account signs in here */
-const USER_KEYS = ['dbs_plan','dbs_marks','dbs_cal','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
+const USER_KEYS = ['dbs_plan','dbs_marks','dbs_cal','dbs_cal_out','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
 function clearUserData(){ USER_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e){} }); for (const k in visited) delete visited[k]; exState = {}; applyPrefs(); }
 /* forgotten password: the email link lands here with a recovery session (?reset=1 and #...type=recovery); ask for the new password */
 const RECOVERY = (() => { try { return /(^|[#&])type=recovery(&|$)/.test(location.hash) || new URLSearchParams(location.search).get('reset') === '1'; } catch(e) { return false; } })();
