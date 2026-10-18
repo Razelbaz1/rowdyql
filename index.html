@@ -1376,10 +1376,10 @@ html[dir="ltr"] .px{--px-flow:linear-gradient(90deg,#FD977A 0%,#FAA670 28%,#E6C7
 .px-top{position:relative;display:flex;align-items:center;gap:1rem;padding:.8rem clamp(16px,3vw,40px) .95rem;border-bottom:1px solid var(--rule)}
 .px-logo{height:32px;display:block}.px-logo svg{height:32px;width:auto;display:block}
 .px-chap{display:flex;gap:.4rem;margin-inline:auto;align-items:center}
-.px-chap span{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;font-size:.78rem;color:var(--muted);padding:.28rem .75rem;border:1px solid var(--rule);border-radius:999px;transition:border-color .4s,color .4s}
-.px-chap span b{font:500 .7rem var(--px-mono)}
-.px-chap span.cur{border-color:var(--neon);color:var(--ink)}
-.px-chap span.done{color:var(--good);border-color:color-mix(in srgb,var(--good) 40%,transparent)}
+.px-chap>span{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;font-size:.78rem;color:var(--muted);padding:.28rem .75rem;border:1px solid var(--rule);border-radius:999px;transition:border-color .4s,color .4s}
+.px-chap>span b{font:500 .7rem var(--px-mono)}
+.px-chap>span.cur{border-color:var(--neon);color:var(--ink)}
+.px-chap>span.done{color:var(--good);border-color:color-mix(in srgb,var(--good) 40%,transparent)}
 .px-chap .px-mob{display:none}
 .px-out{border:1px solid transparent;background:none;color:var(--muted);border-radius:10px;padding:.35rem .7rem;font-size:.85rem;min-height:36px;transition:border-color .3s,box-shadow .4s,color .3s}
 .px-out:hover,.px-out:focus-visible{color:var(--ink);border-color:var(--neon);box-shadow:var(--px-glow)}
@@ -1600,8 +1600,23 @@ html[dir="ltr"] .px-hl::before{transform-origin:left}
   .px-side.sheet .px-pclose{display:grid}
   .px-plan{max-width:none}
   .px-logo svg{height:24px}
-  .px-chap span{display:none}.px-chap .px-mob{display:inline-flex;font-weight:500;font-size:.85rem;color:var(--ink);gap:.5rem;align-items:center}
-  .px-chap .px-mob .px-mono{color:var(--muted);font-size:.72rem}
+  .px-chap>span{display:none}.px-chap .px-mob{display:inline-flex;font-weight:500;font-size:.85rem;color:var(--ink);gap:.5rem;align-items:center;padding:.3rem .75rem;border:1px solid var(--rule);border-radius:999px;white-space:nowrap}
+  .px-chap{min-width:0}.px-chap .px-mob{min-width:0;max-width:100%}
+  .px-chap .px-mob .nm{font:inherit;font-weight:500;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .px-chap .px-mob .px-mono{color:var(--muted);font-weight:500;font-size:.78rem;font-family:inherit;direction:inherit;flex:none}
+  .px-segs{flex:none}
+  @media (max-width:400px){.px-top{gap:.5rem}.px-logo svg{height:20px}.px-chap .px-mob{gap:.35rem;padding:.3rem .6rem}}
+  @media (max-width:340px){.px-chap .px-mob .nm{display:none}}
+  .px-segs{display:inline-flex;gap:3px}.px-segs i{width:12px;height:4px;border-radius:2px;background:var(--rule)}.px-segs i.done{background:var(--good)}.px-segs i.cur{background:var(--neon)}
+  .px-desk{display:flex;gap:.7rem;align-items:flex-start;margin-top:.4rem;color:var(--muted);font-size:.92rem;line-height:1.5}
+  .px-desk svg{flex:none;width:22px;height:22px;color:var(--neon);margin-top:.1rem}
+  .px-desk p{margin:0}.px-desk p.ok{color:var(--ink)}
+  .px-strip.flare .tx span{animation:rqFlare 2.4s ease-out}
+  .px-strip.flare .up{animation:pxUpGlow 2.4s ease-out}
+  @keyframes pxUpGlow{0%{box-shadow:none}16%,42%{border-color:var(--neon);color:var(--neon);box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 16px rgba(92,195,217,.55)}100%{box-shadow:none}}
+  .px-stip{position:absolute;bottom:calc(100% + 10px);inset-inline-end:10px;max-width:min(260px,calc(100vw - 32px));padding:.55rem .8rem;border-radius:10px;background:var(--surface);border:1px solid var(--neon);box-shadow:0 0 18px rgba(92,195,217,.3);color:var(--ink);font-size:.86rem;line-height:1.4;animation:pxnote .4s var(--px-ease) both}
+  .px-stip::after{content:"";position:absolute;top:100%;inset-inline-end:18px;border:7px solid transparent;border-top-color:var(--neon)}
+  @media (prefers-reduced-motion:reduce){.px-strip.flare .tx span,.px-strip.flare .up,.px-stip{animation:none}}
   .px-opts,.px-bundles{grid-template-columns:1fr}
   .px-strip{display:flex;position:fixed;inset-inline:0;bottom:0;z-index:88;align-items:center;gap:.7rem;padding:.75rem 16px calc(.75rem + env(safe-area-inset-bottom));background:var(--surface);border:0;border-top:1px solid var(--rule);text-align:start;width:100%}
   .px-strip .tx{display:flex;flex-direction:column;line-height:1.3;min-width:0}
@@ -1713,9 +1728,10 @@ html[dir="ltr"] .px-sweep.on{-webkit-mask-position:0% 0;mask-position:0% 0}
 .abar button svg{width:24px;height:24px}
 .abar button:hover,.abar button:focus-visible{color:var(--ink);border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
 .abar button[aria-current="page"]{color:var(--accent);background:var(--accent-soft)}
-.shell{padding-inline-start:calc(2rem + var(--abw))}
+/* the page starts right after the rail, not centered away from it (Raz, 2026-10-19): the room a wide screen has left goes to the end side */
+.shell{padding-inline-start:calc(1.5rem + var(--abw));margin-inline-start:0;max-width:calc(1800px + var(--abw))}
 html.gated .abar,html.present .abar{display:none}
-html.present .shell{padding-inline-start:2rem}
+html.present .shell{padding-inline-start:2rem;margin-inline:auto}
 /* the chapter tabs belong to learn: home has no tabs row */
 html.u-home .top-sub,html.u-home .subopen{display:none}
 @media (max-width:760px){
@@ -2664,7 +2680,7 @@ pl_pace_free:"{n} שיעורים בשבוע · בערך {n2} שבועות", pl_t
 pl_o_inst_now2:"{at} אנחנו מכירים לעומק את הקורס של {field}. בינתיים בנינו לפי מה שסיפרתם", pl_o_files_t:"החומרים שלכם · {n}", pl_o_files_now:"קוראים אותם, ונדייק לפיהם את התוכנית", pl_o_files_auto:"בתהליך", pl_o_when_t:"מתי המבחן", pl_o_when_now:"בינתיים מניחים שבסוף הסמסטר", pl_o_style_t:"איך המבחן נראה", pl_o_style_now:"בינתיים מתרגלים את שני הסגנונות",
 pl_o_topics_t:"מה יהיה במבחן", pl_o_topics_now:"בינתיים כל ארבעת הפרקים", pl_o_target_t:"תאריך היעד", pl_o_target_now:"בינתיים בקצב רגוע", pl_o_time_t:"כמה זמן יש לכם", pl_o_time_now:"בינתיים 2 עד 3 שעות בשבוע", pl_o_time_auto:"נכוונן לפי הקצב שלכם", pl_o_worry_t:"מה מלחיץ אתכם",
 pl_o_worry_now:"עוד לא ידוע", pl_o_worry_auto:"יתברר מהתרגול", pl_o_level_t:"הרמה שלכם", pl_o_level_now:"המלצנו לדלג על המבוא", pl_o_level_auto:"נדע אחרי בדיקת הפתיחה", pl_o_self_sh_time:"הקצב", pl_o_self_sh_worry:"מה מלחיץ", pl_o_self_sh_level:"הרמה",
-pl_o_self_now:"יסתדרו מעצמם, תוך כדי התרגול", pl_o_btn_answer:"יש לי תשובה", pl_o_btn_upload:"העלאת חומרים", pl_o_btn_choose:"בחירה", pl_o_btn_upload_s:"העלאה", pl_strip:"התוכנית שלכם", pl_close:"סגירה", pl_rv_kick:"התוכנית מוכנה",
+pl_o_self_now:"יסתדרו מעצמם, תוך כדי התרגול", pl_o_btn_answer:"יש לי תשובה", pl_o_btn_upload:"העלאת חומרים", pl_o_btn_choose:"בחירה", pl_o_btn_upload_s:"העלאה", pl_ch_of:"{n} מתוך 4", pl_desk_p:"במחשב התוכנית נבנית ממש ליד השאלות, ורואים כל שינוי.", pl_hi_go_here:"מתחילים כאן", pl_desk_btn:"אמשיך מהמחשב", pl_desk_ok:"מעולה. נכנסים מהמחשב לאותו חשבון, וממשיכים בדיוק מכאן.", pl_strip_tip:"התוכנית השתנתה. פותחים אותה כאן.", pl_strip:"התוכנית שלכם", pl_close:"סגירה", pl_rv_kick:"התוכנית מוכנה",
 pl_rv_h:"{name}, זו התוכנית שלכם", pl_rv_course:"בנינו אותה בדיוק לפי {course} {at}, קורס שאנחנו מכירים מבפנים.", pl_rv_exam:"לפי מה שסיפרתם, בנינו אותה סביב המבחן שלכם{style}.", pl_rv_style_mc:", שהוא אמריקאי", pl_rv_style_open:", עם שאלות פתוחות על דף", pl_rv_style_both:", שמשלב שאלות פתוחות ואמריקאי", pl_rv_learn:"בנינו אותה כדי שתבינו את הנושא באמת, מהבסיס ועד הסוף.", pl_rv_work:"בנינו אותה סביב מה שבאמת משתמשים בו בעבודה.",
 pl_rv_interview:"בנינו אותה סביב מה ששואלים בראיונות.", pl_rv_pre:"בנינו אותה כדי שתגיעו לתואר עם בסיס חזק.", pl_rv_other:"בנינו אותה לפי מה שסיפרתם.", pl_rv_pace:"בקצב של {n} שיעורים בשבוע תסיימו ב-{date}, ויישארו לכם {weeks} לחזרה לפני המבחן.", pl_rv_pace_goal:"בקצב של {n} שיעורים בשבוע תסיימו ב-{date}, ויישארו לכם {weeks} לחזרה לפני היעד.", pl_rv_pace_free:"בקצב של {n} שיעורים בשבוע תסיימו ב-{date}.", pl_rv_worry:"ובנושאים שמלחיצים, סימנו איפה כדאי לתרגל עוד.", pl_rv_calm:"לא מפספסים פה כלום. כל השיעורים פתוחים לכולם, והתוכנית רק קובעת על מה להתמקד ובאיזה קצב.",
 pl_rv_calm_open1:"שורה אחת עוד לא במקום, ונסדר אותה יחד בהמשך.", pl_rv_calm_openN:"{n} שורות עוד לא במקום, ונסדר אותן יחד בהמשך.", pl_rv_s1:"שיעורים בקצב", pl_rv_s2:"בשבוע", pl_rv_s3:"מסיימים", pl_rv_first:"השיעור הראשון", pl_rv_go:"מתחילים בשיעור הראשון", pl_rv_change:"לשנות משהו?",
@@ -2947,7 +2963,7 @@ pl_tl_end:"Review, then the exam on {date}", pl_tl_end_goal:"Review, then your g
 pl_o_files_now:"We're reading them, and we'll fine-tune your plan", pl_o_files_auto:"In progress", pl_o_when_t:"When's the exam", pl_o_when_now:"For now we're assuming the end of the semester", pl_o_style_t:"What the exam looks like", pl_o_style_now:"Practicing both styles for now", pl_o_topics_t:"What's in the exam", pl_o_topics_now:"All four chapters for now",
 pl_o_target_t:"Your goal date", pl_o_target_now:"An easy pace for now", pl_o_time_t:"How much time you have", pl_o_time_now:"Two to three hours a week for now", pl_o_time_auto:"We'll match your pace", pl_o_worry_t:"What worries you", pl_o_worry_now:"Not known yet", pl_o_worry_auto:"Practice will show",
 pl_o_level_t:"Your level", pl_o_level_now:"We suggested skipping the intro", pl_o_level_auto:"Your first self-check will confirm", pl_o_self_sh_time:"your pace", pl_o_self_sh_worry:"what worries you", pl_o_self_sh_level:"your level", pl_o_self_now:"These will sort themselves out as you practice", pl_o_btn_answer:"Answer now",
-pl_o_btn_upload:"Upload materials", pl_o_btn_choose:"Choose", pl_o_btn_upload_s:"Upload", pl_strip:"Your plan", pl_close:"Close", pl_rv_kick:"All set", pl_rv_h:"{name}, here's your plan", pl_rv_course:"We built it to match {course} {at} exactly, a course we know from the inside.",
+pl_o_btn_upload:"Upload materials", pl_o_btn_choose:"Choose", pl_o_btn_upload_s:"Upload", pl_ch_of:"{n} of 4", pl_desk_p:"On a computer, your plan sits right beside the questions, so you see every change.", pl_hi_go_here:"Start here", pl_desk_btn:"Continue on a computer", pl_desk_ok:"Great. Sign in on your computer with the same account, and you'll pick up right here.", pl_strip_tip:"Your plan just changed. Open it here.", pl_strip:"Your plan", pl_close:"Close", pl_rv_kick:"All set", pl_rv_h:"{name}, here's your plan", pl_rv_course:"We built it to match {course} {at} exactly, a course we know from the inside.",
 pl_rv_exam:"Based on what you told us, we built it around your exam{style}.", pl_rv_style_mc:", which is multiple choice", pl_rv_style_open:", with open questions on paper", pl_rv_style_both:", which mixes open and multiple-choice questions", pl_rv_learn:"We built it so you really understand the subject, from the basics all the way through.", pl_rv_work:"We built it around what you'll actually use at work.", pl_rv_interview:"We built it around what interviewers actually ask.", pl_rv_pre:"We built it so you start your degree on solid ground.",
 pl_rv_other:"We built it from what you told us.", pl_rv_pace:"At {n} lessons a week you'll finish by {date}, with {weeks} left to review before the exam.", pl_rv_pace_goal:"At {n} lessons a week you'll finish by {date}, with {weeks} to review before your goal.", pl_rv_pace_free:"At {n} lessons a week you'll finish by {date}.", pl_rv_worry:"And where things feel stressful, we've marked extra practice.", pl_rv_calm:"You won't miss out on anything here. Every lesson is open to everyone - the plan only sets your focus and your pace.", pl_rv_calm_open1:"One row isn't in place yet, and we'll sort it out together.", pl_rv_calm_openN:"{n} rows aren't in place yet, and we'll sort them out together.",
 pl_rv_s1:"lessons on your schedule", pl_rv_s2:"a week", pl_rv_s3:"finish date", pl_rv_first:"Your first lesson", pl_rv_go:"Start learning", pl_rv_change:"Change something?", pl_rv_back:"Back to the questions", pl_bd_kick:"Only if you want to",
@@ -6271,14 +6287,14 @@ function pxOpen(opts){
   $('#pxStrip').addEventListener('click', () => { $('#pxSide').classList.add('sheet'); $('#pxClose').focus(); });
   $('#pxClose').addEventListener('click', () => { $('#pxSide').classList.remove('sheet'); $('#pxStrip').focus(); });
   $('#pxPlan').addEventListener('click', pxPlanClick);
-  pxRenderPlan(); pxSay(t(PX.mode === 'old' ? 'pl_n_old' : 'pl_n_default'));
+  PX.quiet = true; pxRenderPlan(); pxSay(t(PX.mode === 'old' ? 'pl_n_old' : 'pl_n_default')); PX.quiet = false;
   if (opts.view === 'change') pxShowChange(); else if (opts.view === 'reveal' || PS.done) pxShowReveal(); else if (PX.mode === 'resume') { PX.qi = pxFirstOpen(); pxShowQ(); } else pxShowHello();
 }
 function pxClose(quiet){ const m = $('#plx'); if (!m) return; m.remove(); document.documentElement.classList.remove('px-open'); const d = $('#pxDlg'); if (d) d.remove(); if (!quiet && PX.back && PX.back.focus) PX.back.focus(); }
 function pxRefresh(){ if (!$('#plx')) return; PX.first = true; $('#pxList').innerHTML = ''; pxRenderPlan(); ({ hello: pxShowHello, q: pxShowQ, reveal: pxShowReveal, change: pxShowChange })[PX.view](); }
 const pxFirstOpen = () => { const v = pxVis(), i = v.findIndex(q => !pxAnswered(q)); return i < 0 ? v.length - 1 : i; };
 function pxChap(){ const cur = PX.view === 'hello' ? -1 : PX.view === 'q' ? pxVis()[PX.qi].ch : 3, names = pxChaps();
-  $('#pxChap').innerHTML = names.map((n, i) => '<span class="' + (i < cur ? 'done' : i === cur ? 'cur' : '') + '"><b>' + (i + 1) + '</b>' + esc(n) + '</span>').join('') + '<span class="px-mob">' + esc(cur < 0 ? t('pl_ch_pre') : names[cur]) + ' <span class="px-mono">' + Math.max(1, cur + 1) + '/4</span></span>';
+  $('#pxChap').innerHTML = names.map((n, i) => '<span class="' + (i < cur ? 'done' : i === cur ? 'cur' : '') + '"><b>' + (i + 1) + '</b>' + esc(n) + '</span>').join('') + '<span class="px-mob"><span class="px-segs" aria-hidden="true">' + names.map((n, i) => '<i class="' + (i < cur ? 'done' : i === cur ? 'cur' : '') + '"></i>').join('') + '</span><b class="nm">' + esc(cur < 0 ? t('pl_ch_pre') : names[cur]) + '</b>' + (cur < 0 ? '' : '<span class="px-mono">' + t('pl_ch_of', { n: cur + 1 }) + '</span>') + '</span>';
   const v = pxVis(), done = PX.view === 'q' ? PX.qi : PX.view === 'hello' ? 0 : v.length; $('#pxTrack').style.width = (100 * done / v.length) + '%'; }
 /* only the latest swap paints and binds; the caller sets PX.bind right after */
 function pxSwap(html, cls){ const ask = $('#pxAsk'), old = ask.querySelector('.px-q'), tok = ++PX.tok, rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -6292,8 +6308,11 @@ function pxShowHello(){
   const h1 = words.map((w, i) => '<span class="w' + (i === hl ? ' px-hl' : '') + '" style="--i:' + i + '">' + esc(w) + '</span>').join(' ');
   pxSwap('<span class="px-intro" data-logo="intro" aria-hidden="true"></span><h1 class="px-rise" style="--d:1.25s;--n:' + hl + '">' + h1 + '</h1><p class="px-lede px-fade" style="--d:2.5s">' + t(old ? 'pl_hi_p_old' : 'pl_hi_p') + '</p>'
     + '<div class="px-meta px-fade" style="--d:2.75s"><span>' + t(old ? 'pl_hi_m1_old' : 'pl_hi_m1') + '</span><span>' + t('pl_hi_m2') + '</span><span>' + t('pl_hi_m3') + '</span></div>'
-    + '<div class="px-nav px-fade" style="--d:2.95s"><button class="px-btn primary big" type="button" id="pxGo">' + t(old ? 'pl_hi_go_old' : 'pl_hi_go') + '<span class="ar" aria-hidden="true">←</span></button></div>', 'px-hello');
-  PX.bind = () => { LOGO.mountAll($('#pxAsk')); pxRise(); $('#pxGo').addEventListener('click', () => { PX.qi = pxFirstOpen(); pxShowQ(); }); setTimeout(() => { const g = $('#pxGo'); if (g) g.focus({ preventScroll: true }); }, 3000); };
+    + (pxTouch() ? '<div class="px-desk px-fade" style="--d:2.85s" id="pxDesk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><p>' + t('pl_desk_p') + '</p></div>' : '')
+    + '<div class="px-nav px-fade" style="--d:2.95s"><button class="px-btn primary big" type="button" id="pxGo">' + t(old ? 'pl_hi_go_old' : pxTouch() ? 'pl_hi_go_here' : 'pl_hi_go') + '<span class="ar" aria-hidden="true">←</span></button>'
+    + (pxTouch() ? '<button class="px-link" type="button" id="pxDeskGo">' + t('pl_desk_btn') + '</button>' : '') + '</div>', 'px-hello');
+  PX.bind = () => { LOGO.mountAll($('#pxAsk')); pxRise(); $('#pxGo').addEventListener('click', () => { PX.qi = pxFirstOpen(); pxShowQ(); });
+    const dg = $('#pxDeskGo'); if (dg) dg.addEventListener('click', () => { const p = $('#pxDesk p'); p.textContent = t('pl_desk_ok'); p.className = 'ok rq-flare'; dg.remove(); }); setTimeout(() => { const g = $('#pxGo'); if (g) g.focus({ preventScroll: true }); }, 3000); };
 }
 function pxOptBtn(o, i, on, kind, unsure){ return '<button type="button" class="px-opt ' + kind + (unsure ? ' unsure' : '') + '" role="' + (kind === 'radio' ? 'radio' : 'checkbox') + '" aria-checked="' + on + '" data-v="' + o[0] + '"><span class="k">' + (i + 1) + '</span><span class="t">' + esc(tg(o[1])) + (o[2] ? '<small>' + esc(t(o[2])) + '</small>' : '') + '</span><span class="mk">' + PX_CHECK + '</span></button>'; }
 function pxShowQ(){
@@ -6418,8 +6437,15 @@ function pxFacts(){ const f = [], lab = (id, v) => { const q = PXQ.find(x => x.i
   if (pxNs() && PS.why) f.push(['why', esc(lab('why', PS.why))]);
   if (PS.time && PS.time !== 'unsure') f.push(['time', esc(lab('time', PS.time)) + ' ' + esc(t('pl_p_f_week'))]);
   const box = $('#pxFacts'); if (box) box.innerHTML = f.length ? '<span>' + esc(t('pl_p_facts')) + '</span>' + f.map(x => '<button type="button" class="px-fc" data-edit="' + x[0] + '">' + x[1] + '</button>').join('') : ''; }
+/* a phone or a narrow window: the plan is a bar at the bottom, not beside the questions (the same 900px as the CSS) */
+const pxPhone = () => innerWidth <= 900;
+const pxTouch = () => pxPhone() && (matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0);
+function pxStripFlare(){ const b = $('#pxStrip'); if (!b || $('#pxSide').classList.contains('sheet')) return; b.classList.remove('flare'); void b.offsetWidth; b.classList.add('flare');
+  const p = prefs(); if (p.pxStripTip) return; p.pxStripTip = 1; store('dbs_prefs', p);
+  const tip = el('span', 'px-stip', esc(t('pl_strip_tip'))); tip.setAttribute('role', 'status'); b.appendChild(tip); setTimeout(() => tip.remove(), 4500); }
 function pxSay(tx){ const b = $('#pxNote'); if (!b) return; b.classList.add('on'); b.innerHTML = '<span class="new">' + esc(tx) + '</span>';
-  if (innerWidth <= 900) { const s = $('#pxStripT'); s.classList.add('nt'); s.textContent = tx; clearTimeout(PX.noteT); PX.noteT = setTimeout(() => { if (!PX.P) return; s.classList.remove('nt'); s.textContent = tn('pl_p_count', { n: PX.P.count }) + ' · ' + t('pl_p_week', { n: PX.P.pace.per }); }, 2600); } }
+  if (pxPhone() && PX.view === 'q' && !PX.quiet) pxStripFlare();
+  if (pxPhone()) { const s = $('#pxStripT'); s.classList.add('nt'); s.textContent = tx; clearTimeout(PX.noteT); PX.noteT = setTimeout(() => { if (!PX.P) return; s.classList.remove('nt'); s.textContent = tn('pl_p_count', { n: PX.P.count }) + ' · ' + t('pl_p_week', { n: PX.P.pace.per }); }, 2600); } }
 
 /* ---- "the plan is ready", and changing it ---- */
 function pxReason(){ const q = PX.P.pace; let s;
