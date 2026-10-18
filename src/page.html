@@ -1674,6 +1674,175 @@ html[dir="ltr"] .px-sweep.on{-webkit-mask-position:0% 0;mask-position:0% 0}
 .sess .px-tags span.sk{background:transparent;border:1px dashed var(--line);color:var(--sky-t)}
 .sess.px-skip,.sess.px-off{opacity:.72}
 .lsn-chh .px-off-note{display:block;font-weight:400;font-size:.8rem;color:var(--muted)}
+
+/* ---------- the shell: home and learn on an icon rail (start side), a bottom bar on a phone ---------- */
+:root{--abw:84px}
+.abar{position:fixed;z-index:40;top:var(--toph,74px);bottom:0;inset-inline-start:0;width:var(--abw);display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1rem 0;background:var(--surface);border-inline-end:1px solid var(--line)}
+.abar button{width:66px;display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:.6rem 0 .5rem;border-radius:14px;border:1px solid transparent;background:none;color:var(--muted);font:inherit;font-size:.8rem;font-weight:500;cursor:pointer;transition:color .25s,border-color .3s,box-shadow .4s,background .3s}
+.abar button svg{width:24px;height:24px}
+.abar button:hover,.abar button:focus-visible{color:var(--ink);border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+.abar button[aria-current="page"]{color:var(--accent);background:var(--accent-soft)}
+.shell{padding-inline-start:calc(2rem + var(--abw))}
+html.gated .abar,html.present .abar{display:none}
+html.present .shell{padding-inline-start:2rem}
+/* the chapter tabs belong to learn: home has no tabs row */
+html.u-home .top-sub,html.u-home .subopen{display:none}
+@media (max-width:760px){
+  .abar{top:auto;bottom:0;inset-inline:0;width:auto;height:auto;flex-direction:row;gap:0;padding:.3rem 0 calc(.3rem + env(safe-area-inset-bottom));border-inline-end:0;border-top:1px solid var(--line)}
+  .abar button{flex:1;width:auto;padding:.3rem 0;gap:.1rem;font-size:.75rem;border:0;border-radius:0;background:none}
+  .abar button[aria-current="page"]{background:none}
+  .abar button[aria-current="page"] svg{background:var(--accent-soft);border-radius:999px;padding:3px 14px;width:52px;height:30px}
+  .abar button:hover,.abar button:focus-visible{box-shadow:none}
+  .shell{padding-inline-start:1rem;padding-bottom:calc(5rem + 64px)}
+  .px-tide{bottom:80px}
+}
+
+/* ---------- home: the next session, beside the greeting ---------- */
+.cal-next{width:min(420px,100%);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.5rem}
+.cal-next.miss{border-color:var(--amber)}
+.cal-next .k{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
+.cal-next .k svg{width:16px;height:16px;color:var(--accent)}
+.cal-next .when{font-family:var(--display);font-weight:700;font-size:1.05rem}
+.cal-next .ls{display:flex;gap:.55rem;align-items:baseline;text-align:start;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.cal-next .ls:hover b{text-decoration:underline;text-underline-offset:3px}
+.cal-next .cal-nt{font-size:.9rem;color:var(--muted);margin:0}
+.cal-next .row{display:flex;gap:.5rem;flex-wrap:wrap}
+.cal-id,.cal-next .ls .lsn-id{font-family:var(--mono);font-size:.78rem;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:0 .35rem;direction:ltr;unicode-bidi:isolate}
+.cal-tm{font-family:var(--mono);direction:ltr;unicode-bidi:isolate}
+/* the logo's kicked "!": something is not in place yet */
+.cal-bang{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:4px;background:var(--amber);color:#fff;font:900 .7rem 'Rubik',system-ui,sans-serif;transform:rotate(-8deg);flex:none}
+
+/* ---------- home: to sharpen (from the "not sticking yet" marks) ---------- */
+.cal-sharp{display:flex;gap:.8rem;flex-wrap:wrap}
+.cal-sharp .it{display:flex;align-items:center;gap:.8rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.8rem 1rem;flex:1;min-width:min(280px,100%)}
+.cal-sharp .dot{width:10px;height:10px;border-radius:50%;background:var(--mk-weak);flex:none}
+.cal-sharp .it div{flex:1;min-width:0}
+.cal-sharp .it small{display:block;color:var(--muted);font-size:.86rem}
+
+/* ---------- home: the calendar ---------- */
+.cal-head{max-width:none;flex-direction:row;flex-wrap:wrap;align-items:flex-end;column-gap:1.2rem}
+.cal-head h2{flex:none}
+.cal-head .lede{flex:1;min-width:240px;font-size:1rem;margin:0}
+.cal-head .controls{margin:0}
+.cal-said{min-height:1.5rem;font-size:.95rem;color:var(--muted);margin:-.5rem 0 .8rem}
+.cal-said b{color:var(--ink)}
+.cal-said.on{animation:calSaid .5s ease}
+@keyframes calSaid{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.cal-said .cal-link{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:500;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.cal-box{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.cal-bar{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.cal-bar .wk{font-family:var(--display);font-weight:700;font-size:1.02rem;min-width:9.5rem;text-align:center}
+.cal-bar .wk small{display:block;font:400 .75rem var(--body,inherit);color:var(--muted)}
+.cal-bar .sp{flex:1}
+.cal-ib{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:border-color .3s,box-shadow .4s}
+.cal-ib svg{width:18px;height:18px}
+.cal-ib:hover,.cal-ib:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+html[dir="ltr"] .cal-ib svg{transform:scaleX(-1)}
+.cal-pref{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
+.cal-chip{border:1px solid var(--line);border-radius:999px;padding:.25rem .8rem;font:inherit;font-size:.88rem;color:var(--ink);background:var(--surface);cursor:pointer;transition:border-color .3s,box-shadow .4s,background .3s}
+.cal-chip:hover,.cal-chip:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+.cal-chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:500}
+.cal-prop{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:.85rem 1rem;border-bottom:1px solid var(--line);background:var(--accent-soft)}
+.cal-prop p{margin:0;flex:1;min-width:240px;font-size:.95rem}
+.cal-grid{position:relative}
+.cal-gh,.cal-gc{display:grid;grid-template-columns:58px repeat(7,minmax(0,1fr))}
+.cal-gb{max-height:500px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.cal-dh{padding:.5rem .3rem;text-align:center;font-size:.85rem;color:var(--muted);border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line)}
+.cal-dh:first-child{border-inline-start:0}
+.cal-dh b{display:block;font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink)}
+.cal-dh.today b{color:var(--on-accent);background:var(--accent);border-radius:999px;width:2rem;height:2rem;line-height:2rem;margin:0 auto}
+.cal-dh .cal-tag{display:inline-block;margin-top:.15rem;font-size:.72rem;border-radius:999px;padding:0 .45rem;background:var(--amber-soft);color:var(--amber);font-weight:500}
+.cal-hours{position:relative}
+.cal-hours span{position:absolute;inset-inline-end:8px;transform:translateY(-50%);font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.cal-day{position:relative;border-inline-start:1px solid var(--line);background-image:linear-gradient(var(--grid) 1px,transparent 1px)}
+.cal-day.past{background-color:color-mix(in srgb,var(--surface2) 40%,transparent)}
+.cal-day.rev{background-color:color-mix(in srgb,var(--accent-soft) 45%,transparent)}
+.cal-day.exam{background-color:color-mix(in srgb,var(--amber-soft) 70%,transparent)}
+.cal-now{position:absolute;inset-inline:0;height:2px;background:var(--mk-weak);z-index:3;pointer-events:none}
+.cal-now::before{content:"";position:absolute;inset-inline-start:-4px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--mk-weak)}
+.cs{position:absolute;inset-inline:4px;user-select:none;-webkit-user-select:none;border-radius:9px;padding:.22rem .45rem;font:inherit;font-size:.8rem;line-height:1.3;overflow:hidden;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);color:var(--ink);text-align:start;cursor:grab;touch-action:none;z-index:2;transition:border-color .3s,box-shadow .4s,opacity .3s}
+.cs:hover,.cs:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+.cs .t{display:flex;justify-content:space-between;gap:.4rem;font-family:var(--mono);font-size:.72rem;color:var(--accent)}
+.cs .n{font-family:var(--mono);font-size:.72rem;color:var(--accent)}
+.cs .t .cal-tm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.cs .x{display:flex;gap:.3rem;align-items:center;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cs .x>span:last-child{overflow:hidden;text-overflow:ellipsis}
+.cs .plus{font-family:var(--body,inherit);font-size:.7rem;color:var(--mk-weak);font-weight:700;white-space:nowrap}
+.cs.ghost{background:color-mix(in srgb,var(--accent-soft) 55%,transparent);border-style:dashed}
+.cs.done{background:var(--surface2);border-color:var(--line);color:var(--muted);cursor:pointer}
+.cs.done .t{color:var(--muted)}
+.cs.miss{background:var(--amber-soft);border-color:var(--amber);cursor:pointer}
+.cs.miss .t{color:var(--amber)}
+.cs.skip{background:transparent;border-style:dashed;border-color:var(--line);color:var(--muted);cursor:pointer}
+.cs.skip .t{color:var(--muted)}
+.cs.rev{background:color-mix(in srgb,var(--accent-soft) 70%,var(--surface));border-color:color-mix(in srgb,var(--sky-t) 45%,transparent)}
+.cs.rev .t{color:var(--sky-t)}
+.cs.drag{opacity:.88;cursor:grabbing;z-index:5;border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 14px rgba(92,195,217,.3)}
+.cs.flash{animation:calFlash 1.2s ease}
+@keyframes calFlash{30%{box-shadow:0 0 0 3px rgba(92,195,217,.55),0 0 18px rgba(92,195,217,.4)}100%{box-shadow:none}}
+.cal-foot{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;padding:.7rem 1rem;border-top:1px solid var(--line);font-size:.86rem;color:var(--muted)}
+.cal-foot .lg{display:inline-flex;align-items:center;gap:.35rem}
+.cal-foot .lg i{width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid var(--line)}
+.cal-foot .sp{flex:1}
+.cal-agenda{display:none}
+@media (max-width:760px){
+  .cal-grid,.cal-foot .lg,.cal-addb{display:none}
+  .cal-agenda{display:block}
+  .cal-bar{padding:.6rem .7rem;gap:.4rem}
+  .cal-bar .wk{min-width:0;flex:1}
+  .cal-bar .cal-this{display:none}
+  .cal-prop{padding:.7rem}
+  .cal-ad{display:flex;gap:.7rem;padding:.6rem .8rem;border-top:1px solid var(--line)}
+  .cal-ad:first-child{border-top:0}
+  .cal-ad .d{width:3rem;text-align:center;flex:none;color:var(--muted);font-size:.78rem}
+  .cal-ad .d b{display:block;font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--ink)}
+  .cal-ad.today .d b{color:var(--accent)}
+  .cal-ad.exam{background:color-mix(in srgb,var(--amber-soft) 70%,transparent)}
+  .cal-ad .ss{flex:1;display:flex;flex-direction:column;gap:.4rem;min-width:0}
+  .cal-ad .cs{position:relative;inset:auto;cursor:pointer;padding:.5rem .7rem;font-size:.88rem}
+  .cal-ad .add{align-self:flex-start;color:var(--muted);font:inherit;font-size:.82rem;border:1px dashed var(--line);border-radius:8px;padding:.2rem .6rem;background:none;cursor:pointer}
+  .cal-ad .none{color:var(--muted);font-size:.85rem;padding-top:.35rem}
+}
+
+/* ---------- the session menu: glass, because it floats; a sheet from the bottom on a phone ---------- */
+.cal-pop{position:fixed;z-index:85;width:320px;background:var(--glass);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border:1px solid var(--glass-line);border-radius:16px;padding:1rem 1.1rem}
+.cal-pop h3{font-size:1.1rem;margin:0 2.2rem .15rem 0}
+html[dir="rtl"] .cal-pop h3{margin:0 0 .15rem 2.2rem}
+.cal-pop .sub{color:var(--muted);font-size:.9rem;margin:0 0 .7rem}
+.cal-pop .lsr{display:flex;align-items:center;gap:.55rem;padding:.45rem 0;border-top:1px solid var(--line)}
+.cal-pop .lsr span{flex:1;font-size:.92rem}
+.cal-pop .lsr .cal-id{flex:none}
+.cal-head .btn svg,.cal-dlg .btn svg{width:18px;height:18px;flex:none}
+.cal-pop .lab{font-size:.8rem;color:var(--muted);margin:.7rem 0 .3rem}
+.cal-pop .row{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.cal-pop .acts{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem}
+.cal-pop .soon{display:flex;align-items:center;gap:.5rem;margin-top:.8rem;padding-top:.7rem;border-top:1px dashed var(--line);font-size:.85rem;color:var(--muted)}
+.cal-pop .sw{width:30px;height:18px;border-radius:9px;background:var(--surface2);border:1px solid var(--line);position:relative;flex:none}
+.cal-pop .sw::after{content:"";position:absolute;top:2px;inset-inline-start:2px;width:12px;height:12px;border-radius:50%;background:var(--line)}
+.cal-badge{font-style:normal;font-size:.72rem;border:1px solid var(--line);border-radius:999px;padding:.05rem .5rem;color:var(--muted);white-space:nowrap;margin-inline-start:auto}
+.cal-x{position:absolute;top:.6rem;inset-inline-end:.6rem}
+@media (max-width:760px){.cal-pop{left:0!important;right:0!important;top:auto!important;bottom:0;width:auto;border-radius:18px 18px 0 0;padding-bottom:calc(1.2rem + env(safe-area-inset-bottom))}}
+
+/* ---------- the export dialog and the toast ---------- */
+.cal-scrim{position:fixed;inset:0;z-index:90;background:rgba(20,26,32,.45);display:grid;place-items:center;padding:16px}
+.cal-dlg{width:min(560px,100%);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.5rem 1.6rem;position:relative;max-height:calc(100vh - 32px);overflow:auto}
+.cal-dlg h3{font-size:1.4rem;margin:0 2.5rem .3rem 0}
+html[dir="rtl"] .cal-dlg h3{margin:0 0 .3rem 2.5rem}
+.cal-dlg>p{color:var(--muted);margin:0 0 1rem}
+.cal-apps{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem}
+.cal-app{border:1px solid var(--line);border-radius:12px;padding:.7rem;text-align:center;font:inherit;font-size:.9rem;background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .3s,box-shadow .4s}
+.cal-app:hover,.cal-app:focus-visible,.cal-app[aria-pressed="true"]{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+.cal-app b{display:block;margin-bottom:.15rem}
+.cal-app small{color:var(--muted);font-size:.78rem}
+.cal-how{background:var(--surface2);border-radius:12px;padding:.8rem 1rem;font-size:.92rem;margin-bottom:1rem}
+.cal-how ol{margin:.3rem 0 0;padding-inline-start:1.2rem}
+.cal-opt{display:flex;gap:.8rem;align-items:flex-start;border-top:1px solid var(--line);padding:.9rem 0 0;margin-top:.9rem}
+.cal-opt div{flex:1}
+.cal-opt small{display:block;color:var(--muted);font-size:.88rem}
+.cal-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:92;background:var(--ink);color:var(--ground);border-radius:12px;padding:.7rem 1rem;display:flex;gap:1rem;align-items:center;font-size:.93rem;max-width:calc(100vw - 32px)}
+.cal-toast button{background:none;border:0;padding:0;font:inherit;color:#5CC3D9;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+@media (max-width:800px){.home-hero .cal-next{width:100%}}
+@media (max-width:760px){.cal-apps{grid-template-columns:1fr}.cal-toast{bottom:84px}}
 </style>
 
 <script>/* diagnostics: on-screen error banner only when the URL contains ?debug (otherwise errors go to the console as usual) */
@@ -1758,7 +1927,7 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
   </div>
   <div class="top-sub">
     <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true" data-unit="home" data-i18n="tab_home"></button>
+      <button class="tab" role="tab" aria-selected="false" data-unit="learn" data-i18n="tab_learn"></button>
       <button class="tab" role="tab" aria-selected="false" data-unit="intro" data-i18n="tab_intro"></button>
       <button class="tab" role="tab" aria-selected="false" data-unit="ra" data-i18n="tab_ra"></button>
     </div>
@@ -1768,12 +1937,17 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
 </header>
 <div class="navmini" id="navMini" aria-hidden="true"><span class="dots" id="nmDots"></span><b id="nmTitle"></b><span class="pos" id="nmPos"></span></div>
 <div class="progress"><i id="prog"></i></div>
+<!-- the two places of the signed-in site: home (the dashboard) and learn (the plan and every lesson). A rail on the start side, a bar at the bottom on a phone -->
+<nav class="abar" id="abar">
+  <button type="button" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span data-i18n="nav_home"></span></button>
+  <button type="button" data-go="learn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5C5.5 4 9 4 12 6c3-2 6.5-2 9-.5V19c-2.5-1.5-6-1.5-9 .5-3-2-6.5-2-9-.5z"/><path d="M12 6v13.5"/></svg><span data-i18n="nav_learn"></span></button>
+</nav>
 
 <div class="shell">
   <nav class="rail" id="rail" aria-label="Sections"></nav>
   <main class="content">
 
-  <!-- =========================== UNIT: HOME =========================== -->
+  <!-- =========================== UNIT: HOME (the dashboard) =========================== -->
   <div class="unit" id="u-home" hidden>
     <section class="sec home-hero" id="h-hello" data-title="nav_h_hello">
       <div class="hello">
@@ -1783,11 +1957,26 @@ if (location.search.indexOf('debug') !== -1) window.addEventListener('unhandledr
         <div class="controls" id="helloCta"></div>
       </div>
       <div class="hello-art" aria-hidden="true"><span class="mark" data-logo="icon"></span></div>
+      <div class="cal-next" id="calNext" hidden></div>
     </section>
     <section class="sec" id="h-stats" data-title="nav_h_stats">
       <div class="sec-head"><h2 data-i18n="hs_h2"></h2></div>
       <div class="stats" id="homeStats"></div>
     </section>
+    <section class="sec" id="h-sharp" data-title="nav_h_sharp" hidden>
+      <div class="sec-head"><h2 data-i18n="sharp_h2"></h2><p class="lede" data-i18n="sharp_lede"></p></div>
+      <div class="cal-sharp" id="calSharp"></div>
+    </section>
+    <section class="sec" id="h-cal" data-title="nav_h_cal" hidden>
+      <div class="sec-head cal-head"><h2 data-i18n="cal_h2"></h2><p class="lede" id="calLede"></p>
+        <div class="controls"><button type="button" class="btn small cal-addb" id="calAdd"></button><button type="button" class="btn small" id="calExp"></button></div></div>
+      <p class="cal-said" id="calSaid" aria-live="polite"></p>
+      <div class="cal-box" id="calBox"></div>
+    </section>
+  </div>
+
+  <!-- =========================== UNIT: LEARN (the plan, every lesson, the tools) =========================== -->
+  <div class="unit" id="u-learn" hidden>
     <section class="sec" id="h-sessions" data-title="nav_h_sessions">
       <div class="sec-head"><h2 data-i18n="hsx_h2"></h2><p class="lede" data-i18n="hsx_lede"></p></div>
       <div class="mk-home" id="homeMarks" hidden></div>
@@ -2356,7 +2545,7 @@ d_c_name:"שם", d_c_email:"אימייל", d_c_year:"שנה", d_c_sem:"סמסט�
 sync_on:"ההתקדמות נשמרת לחשבון",
 
 ex3_h2:"תרגילים 7 עד 12", ex3_lede:"Self-Join ושאלות ברמת מבחן. אותם כללים: רמז אחרי ניסיון, הפתרון אחרי שניים.", nav_r_ex2:"תרגילים 7 עד 12", ref_ride:"הסכמה: RideOn", ref_toy:"הטבלאות: Students, Courses, Enroll", ls_intro1:"למה בסיס נתונים", ls_intro2:"סכמה ושאילתה ראשונה", ls_intro3:"בדיקה עצמית", ls_ra1:"σ ו-π: בחירה והטלה", ls_ra2:"∪ ∩ − ו-×: קבוצות ומכפלה", ls_ra3:"⋈ ו-ρ: צירוף וכינוי", ls_ra4:"÷ חילוק, וקריאת ביטוי", ls_ra5:"RideOn והמחשבון", ls_ra6:"תרגילים 1 עד 6", ls_ra7:"תרגילים 7 עד 12", ls_ra8:"בדיקה עצמית", ls_min:"{m} דק'", ls_upnext:"הבא בתור", ls_next:"לשיעור הבא", ls_next_ch:"לפרק הבא", ls_home:"חזרה לבית", ls_more:"זה הכל לעכשיו. השיעורים הבאים בדרך.", ls_count:"{n} שיעורים · {m} דק'", ch_n:"פרק {n}", ls_later:"בהמשך הקורס",
-me_title:"אזור אישי", me_look:"מראה", me_avatar:"אווטאר", me_av_ini:"האות הראשונה של השם", me_mode:"תצוגה", me_m_system:"כמו במכשיר", me_m_light:"יום", me_m_dark:"לילה", me_m_auto:"לפי שעה", me_m_auto_s:"יום בין 07:00 ל-19:00, לילה בשאר השעות.", me_details:"פרטים אישיים", me_save:"שמירה", me_saved:"נשמר.", me_pass:"סיסמה", me_pass_why:"נשלח קוד לאימייל שלכם, ואיתו קובעים סיסמה חדשה.", me_send:"שלחו לי קוד", me_sent:"שלחנו קוד ל-{e}.", me_resend:"שליחה מחדש", me_code:"הקוד מהאימייל", me_new:"סיסמה חדשה", me_new2:"שוב, לאימות", me_update:"עדכון סיסמה", me_pw_ok:"הסיסמה עודכנה.", me_demo:"במצב הדגמה אין סיסמה לשנות.", e_code:"הקוד לא נכון או שפג תוקפו.", e_same:"זו הסיסמה הנוכחית. בחרו אחרת.", e_match:"הסיסמאות לא זהות.", e_wait:"אפשר לבקש שוב בעוד דקה.", g_forgot:"שכחתי סיסמה", fp_h:"איפוס סיסמה", fp_why:"נשלח קישור לאיפוס לאימייל שנרשמתם איתו.", fp_go:"שליחת קישור", fp_ok:"אם האימייל רשום אצלנו, שלחנו אליו קישור לאיפוס.", fp_back:"חזרה לכניסה", fp_demo:"במצב הדגמה לא נשלחים מיילים.", fp_expired:"הקישור כבר לא בתוקף. אפשר לבקש קישור חדש.", np_h:"סיסמה חדשה", me_del:"מחיקת החשבון", me_del_why:"מוחק את החשבון, את ההתקדמות ואת כל מה שנשמר. אי אפשר לבטל את זה.", me_del_word:"מחיקה", me_del_type:"כדי לאשר, כתבו: {w}", me_del_go:"מחיקה לצמיתות", me_cancel:"ביטול", me_deleted:"החשבון נמחק.", dt_h_acc:"פתיחת חשבון", ob_eyebrow:"היכרות קצרה", ob_r2_h:"רגע, לפני שממשיכים", ob_r2_p:"יש לנו שאלון היכרות קצר, ונשמח מאוד שתענו עליו. ככה נוכל להתאים את הקורס אליכם ולבקשות שלכם.", ob_r3_h:"פעם אחרונה, מבטיחים", ob_r3_p:"מבטיחים שזו הפעם האחרונה שאנחנו מזכירים: נשמח מאוד להכיר אתכם. אם לא עכשיו, אפשר למלא בכל שלב מהאזור האישי.", ob_fill:"למלא עכשיו", ob_partial:"כבר עניתם על חלק מהשאלות. נשארו עוד {n}.", ob_goals_req:"אם עוד לא יודעים, אפשר לכתוב \"לא יודע\". העיקר שתהיה תשובה.", ob_rev_h:"רגע לפני שליחה", ob_rev_p:"אלה התשובות שלכם. אפשר לתקן כל אחת, ואחרי השליחה הסופית כבר לא ניתן לשנות אותן.", ob_fix:"תיקון", ob_submit:"שליחה סופית", ob_missing:"חסר", ob_thanks:"תודה! התשובות נשלחו.", me_ob_h:"שאלון היכרות", me_ob_todo:"עוד לא מילאתם את שאלון ההיכרות. זה לוקח פחות מדקה, ועוזר לנו להתאים את הקורס אליכם.", me_ob_partial:"נשארו עוד {n} שאלות בשאלון ההיכרות.", me_ob_go:"מילוי השאלון", me_ob_fix:"השלמת הפרטים החסרים", me_ob_done:"התשובות נשלחו. רוצים לעדכן משהו? כתבו ל-<span dir=\"ltr\">hello@rowdyql.com</span>.", ob_hi_p:"איזה כיף שהצטרפתם. לפני שמתחילים, נשמח להכיר אתכם קצת: כמה שאלות קצרות, פחות מדקה.", ob_hi_why:"התשובות עוזרות לנו להבין מי לומד כאן ולהחליט איך לפתח את הקורס בהמשך.", ob_hi_go:"בואו נתחיל", ob_field:"מה אתם לומדים?", ob_field_ph:"למשל: הנדסת תעשייה וניהול, מדעי המחשב, כלכלה", ob_field_f:"תחום לימודים", d_c_field:"תחום", ob_studying:"אתם לומדים כרגע?", ob_yes:"כן", ob_no:"לא", ob_inst:"איפה אתם לומדים?", ob_pick:"בחרו מהרשימה", ob_g_uni:"אוניברסיטאות", ob_g_col:"מכללות", ob_g_more:"לימודים אחרים", ob_other_l:"שם המוסד", ob_year:"באיזו שנה?", ob_y1:"שנה א'", ob_y2:"שנה ב'", ob_y3:"שנה ג'", ob_y4:"שנה ד'", ob_y5:"תואר שני ומעלה", ob_goals:"מה הייתם רוצים לקחת מהקורס?", ob_optional:"לא חובה, אבל זה עוזר לנו להתאים את הקורס.", ob_goals_ph:"למשל: להרגיש בטוחים בכתיבת שאילתות, לשלוט בסינטקס, לרכוש ידע חדש, לרכוש יכולות במסדי נתונים", ob_level:"לפני שמתחילים: איך הייתם מגדירים את הרמה שלכם בנושא?", ob_lv1:"הנושא חדש לי לגמרי", ob_lv2:"שמעתי עליו, בלי ניסיון", ob_lv3:"יש לי בסיס", ob_lv4:"די בנוח איתו", ob_lv5:"שליטה טובה", ob_later:"אחר כך", ob_stud_f:"לומדים כרגע?", ob_inst_f:"מוסד לימודים", ob_year_f:"שנת לימוד", ob_level_f:"רמה בנושא", ob_goals_f:"מה רוצים לקחת מהקורס", d_c_stud:"בלימודים", d_c_inst:"מוסד", d_c_lvl:"רמה", me_tour:"סיור באתר", tour_thanks:"תודה!", tour_hi_after:"<b>תודה!</b> עכשיו סיור קצר על מה שיש כאן, ואפשר להתחיל.", tour_hi:"<b>ברוכים הבאים ל-RowdyQL.</b> סיור קצר על מה שיש כאן, ואפשר להתחיל.", tour_tabs:"<b>הלשוניות.</b> בית, ופרק לכל נושא. כל פרק מחולק לשיעורים קצרים, ובסוף כל שיעור יש כפתור לשיעור הבא.", tour_start:"<b>מכאן מתחילים.</b> בפעם הבאה יופיע כאן גם כפתור שממשיך בדיוק מאיפה שעצרתם.", tour_stats:"<b>ההתקדמות שלכם.</b> סעיפים שעברתם, תרגילים שפתרתם ובדיקות עצמיות.", tour_lessons:"<b>השיעורים.</b> כל כרטיס הוא שיעור של רבע שעה בערך, והטבעת מראה כמה ממנו עברתם.", tour_quick:"<b>כלים מהירים.</b> המחשבון, התרגילים, מפת הקורס והבדיקה העצמית, בלחיצה אחת.", tour_toc:"<b>תוכן העניינים.</b> השיעורים של הפרק והסעיפים של השיעור הפתוח.", tour_me:"<b>האזור האישי.</b> לחיצה על השם פותחת אותו - אווטאר, צבע רקע, יום או לילה, שפה והפרטים שלכם.", tour_end:"<b>זהו, אפשר להתחיל.</b> את הסיור אפשר לראות שוב באזור האישי.", tour_next:"הבא", tour_prev:"הקודם", tour_go:"מתחילים", tour_skip:"דלגו על הסיור", tour_n:"{i} מתוך {n}", lv_h:"עצוב לנו שבחרתם לעזוב 🙁", lv_sub:"תוכלו לספר לנו למה? אפשר לבחור יותר מסיבה אחת.", lv_content:"אין מספיק חומר לתרגול", lv_easy:"החומר לא תואם את הרמה שציפיתי: קל מדי", lv_hard:"החומר לא תואם את הרמה שציפיתי: קשה מדי למתחילים", lv_done:"השלמתי את הקורס", lv_tech:"בעיות טכניות", lv_other:"אחר", ob_inst_ph:"הקלידו כדי לחפש", ob_inst_add:"אחר: {q}", nt_title:"התראות", nt_unread:"{n} חדשות", nt_empty:"עוד אין הודעות.", nt_now:"עכשיו", nt_ob_t:"שאלון ההיכרות מחכה לכם", nt_new:"הודעה חדשה", nt_f_title:"כותרת", nt_f_body:"תוכן ההודעה", nt_f_mail:"לשלוח גם במייל", nt_send:"שליחה", nt_conf:"ההודעה תופיע אצל כל המשתמשים באתר. לשלוח?", nt_conf_mail:"ההודעה תופיע אצל כל המשתמשים באתר, וגם תישלח אליהם במייל. לשלוח?", nt_yes:"כן, לשלוח", nt_sent:"ההודעה נשלחה", nt_mailed:"{n} מיילים בדרך", nt_nomail:"ההודעה עלתה לאתר, אבל המיילים לא יצאו.", nt_read_by:"קראו: {n}", nt_mailed_n:"נשלחו {n} מיילים", nt_del:"מחיקה", nt_del_q:"למחוק?", nt_need_sql:"כדי לשלוח הודעות, צריך להריץ קודם את קובץ ה-SQL של ההתראות.", me_nt_h:"התראות", sub_hide:"הסתרת שורת הנושאים", sub_show:"הצגת שורת הנושאים", me_nt_mail:"לקבל הודעות ועדכונים גם במייל", tour_bell:"<b>התראות.</b> כאן יופיעו הודעות ועדכונים מאיתנו.", lv_note:"רוצים לפרט? זה לא חובה, אבל זה עוזר לנו להשתפר.", lv_note_other:"מה הסיבה?", lv_trans:"התשובות נשמרות בלי שם ובלי אימייל, ומשמשות רק לשיפור הקורס.", lv_stay:"בעצם, נשארים", lq_reset:"קישור איפוס יוצא לאימייל",
+me_title:"אזור אישי", me_look:"מראה", me_avatar:"אווטאר", me_av_ini:"האות הראשונה של השם", me_mode:"תצוגה", me_m_system:"כמו במכשיר", me_m_light:"יום", me_m_dark:"לילה", me_m_auto:"לפי שעה", me_m_auto_s:"יום בין 07:00 ל-19:00, לילה בשאר השעות.", me_details:"פרטים אישיים", me_save:"שמירה", me_saved:"נשמר.", me_pass:"סיסמה", me_pass_why:"נשלח קוד לאימייל שלכם, ואיתו קובעים סיסמה חדשה.", me_send:"שלחו לי קוד", me_sent:"שלחנו קוד ל-{e}.", me_resend:"שליחה מחדש", me_code:"הקוד מהאימייל", me_new:"סיסמה חדשה", me_new2:"שוב, לאימות", me_update:"עדכון סיסמה", me_pw_ok:"הסיסמה עודכנה.", me_demo:"במצב הדגמה אין סיסמה לשנות.", e_code:"הקוד לא נכון או שפג תוקפו.", e_same:"זו הסיסמה הנוכחית. בחרו אחרת.", e_match:"הסיסמאות לא זהות.", e_wait:"אפשר לבקש שוב בעוד דקה.", g_forgot:"שכחתי סיסמה", fp_h:"איפוס סיסמה", fp_why:"נשלח קישור לאיפוס לאימייל שנרשמתם איתו.", fp_go:"שליחת קישור", fp_ok:"אם האימייל רשום אצלנו, שלחנו אליו קישור לאיפוס.", fp_back:"חזרה לכניסה", fp_demo:"במצב הדגמה לא נשלחים מיילים.", fp_expired:"הקישור כבר לא בתוקף. אפשר לבקש קישור חדש.", np_h:"סיסמה חדשה", me_del:"מחיקת החשבון", me_del_why:"מוחק את החשבון, את ההתקדמות ואת כל מה שנשמר. אי אפשר לבטל את זה.", me_del_word:"מחיקה", me_del_type:"כדי לאשר, כתבו: {w}", me_del_go:"מחיקה לצמיתות", me_cancel:"ביטול", me_deleted:"החשבון נמחק.", dt_h_acc:"פתיחת חשבון", ob_eyebrow:"היכרות קצרה", ob_r2_h:"רגע, לפני שממשיכים", ob_r2_p:"יש לנו שאלון היכרות קצר, ונשמח מאוד שתענו עליו. ככה נוכל להתאים את הקורס אליכם ולבקשות שלכם.", ob_r3_h:"פעם אחרונה, מבטיחים", ob_r3_p:"מבטיחים שזו הפעם האחרונה שאנחנו מזכירים: נשמח מאוד להכיר אתכם. אם לא עכשיו, אפשר למלא בכל שלב מהאזור האישי.", ob_fill:"למלא עכשיו", ob_partial:"כבר עניתם על חלק מהשאלות. נשארו עוד {n}.", ob_goals_req:"אם עוד לא יודעים, אפשר לכתוב \"לא יודע\". העיקר שתהיה תשובה.", ob_rev_h:"רגע לפני שליחה", ob_rev_p:"אלה התשובות שלכם. אפשר לתקן כל אחת, ואחרי השליחה הסופית כבר לא ניתן לשנות אותן.", ob_fix:"תיקון", ob_submit:"שליחה סופית", ob_missing:"חסר", ob_thanks:"תודה! התשובות נשלחו.", me_ob_h:"שאלון היכרות", me_ob_todo:"עוד לא מילאתם את שאלון ההיכרות. זה לוקח פחות מדקה, ועוזר לנו להתאים את הקורס אליכם.", me_ob_partial:"נשארו עוד {n} שאלות בשאלון ההיכרות.", me_ob_go:"מילוי השאלון", me_ob_fix:"השלמת הפרטים החסרים", me_ob_done:"התשובות נשלחו. רוצים לעדכן משהו? כתבו ל-<span dir=\"ltr\">hello@rowdyql.com</span>.", ob_hi_p:"איזה כיף שהצטרפתם. לפני שמתחילים, נשמח להכיר אתכם קצת: כמה שאלות קצרות, פחות מדקה.", ob_hi_why:"התשובות עוזרות לנו להבין מי לומד כאן ולהחליט איך לפתח את הקורס בהמשך.", ob_hi_go:"בואו נתחיל", ob_field:"מה אתם לומדים?", ob_field_ph:"למשל: הנדסת תעשייה וניהול, מדעי המחשב, כלכלה", ob_field_f:"תחום לימודים", d_c_field:"תחום", ob_studying:"אתם לומדים כרגע?", ob_yes:"כן", ob_no:"לא", ob_inst:"איפה אתם לומדים?", ob_pick:"בחרו מהרשימה", ob_g_uni:"אוניברסיטאות", ob_g_col:"מכללות", ob_g_more:"לימודים אחרים", ob_other_l:"שם המוסד", ob_year:"באיזו שנה?", ob_y1:"שנה א'", ob_y2:"שנה ב'", ob_y3:"שנה ג'", ob_y4:"שנה ד'", ob_y5:"תואר שני ומעלה", ob_goals:"מה הייתם רוצים לקחת מהקורס?", ob_optional:"לא חובה, אבל זה עוזר לנו להתאים את הקורס.", ob_goals_ph:"למשל: להרגיש בטוחים בכתיבת שאילתות, לשלוט בסינטקס, לרכוש ידע חדש, לרכוש יכולות במסדי נתונים", ob_level:"לפני שמתחילים: איך הייתם מגדירים את הרמה שלכם בנושא?", ob_lv1:"הנושא חדש לי לגמרי", ob_lv2:"שמעתי עליו, בלי ניסיון", ob_lv3:"יש לי בסיס", ob_lv4:"די בנוח איתו", ob_lv5:"שליטה טובה", ob_later:"אחר כך", ob_stud_f:"לומדים כרגע?", ob_inst_f:"מוסד לימודים", ob_year_f:"שנת לימוד", ob_level_f:"רמה בנושא", ob_goals_f:"מה רוצים לקחת מהקורס", d_c_stud:"בלימודים", d_c_inst:"מוסד", d_c_lvl:"רמה", me_tour:"סיור באתר", tour_thanks:"תודה!", tour_hi_after:"<b>תודה!</b> עכשיו סיור קצר על מה שיש כאן, ואפשר להתחיל.", tour_hi:"<b>ברוכים הבאים ל-RowdyQL.</b> סיור קצר על מה שיש כאן, ואפשר להתחיל.", tour_tabs:"<b>הלשוניות.</b> התוכנית שלכם, ופרק לכל נושא. כל פרק מחולק לשיעורים קצרים, ובסוף כל שיעור יש כפתור לשיעור הבא.", tour_start:"<b>מכאן מתחילים.</b> בפעם הבאה יופיע כאן גם כפתור שממשיך בדיוק מאיפה שעצרתם.", tour_stats:"<b>ההתקדמות שלכם.</b> סעיפים שעברתם, תרגילים שפתרתם ובדיקות עצמיות.", tour_lessons:"<b>השיעורים.</b> כל כרטיס הוא שיעור של רבע שעה בערך, והטבעת מראה כמה ממנו עברתם.", tour_quick:"<b>כלים מהירים.</b> המחשבון, התרגילים, מפת הקורס והבדיקה העצמית, בלחיצה אחת.", tour_toc:"<b>תוכן העניינים.</b> השיעורים של הפרק והסעיפים של השיעור הפתוח.", tour_me:"<b>האזור האישי.</b> לחיצה על השם פותחת אותו - אווטאר, צבע רקע, יום או לילה, שפה והפרטים שלכם.", tour_end:"<b>זהו, אפשר להתחיל.</b> את הסיור אפשר לראות שוב באזור האישי.", tour_next:"הבא", tour_prev:"הקודם", tour_go:"מתחילים", tour_skip:"דלגו על הסיור", tour_n:"{i} מתוך {n}", lv_h:"עצוב לנו שבחרתם לעזוב 🙁", lv_sub:"תוכלו לספר לנו למה? אפשר לבחור יותר מסיבה אחת.", lv_content:"אין מספיק חומר לתרגול", lv_easy:"החומר לא תואם את הרמה שציפיתי: קל מדי", lv_hard:"החומר לא תואם את הרמה שציפיתי: קשה מדי למתחילים", lv_done:"השלמתי את הקורס", lv_tech:"בעיות טכניות", lv_other:"אחר", ob_inst_ph:"הקלידו כדי לחפש", ob_inst_add:"אחר: {q}", nt_title:"התראות", nt_unread:"{n} חדשות", nt_empty:"עוד אין הודעות.", nt_now:"עכשיו", nt_ob_t:"שאלון ההיכרות מחכה לכם", nt_new:"הודעה חדשה", nt_f_title:"כותרת", nt_f_body:"תוכן ההודעה", nt_f_mail:"לשלוח גם במייל", nt_send:"שליחה", nt_conf:"ההודעה תופיע אצל כל המשתמשים באתר. לשלוח?", nt_conf_mail:"ההודעה תופיע אצל כל המשתמשים באתר, וגם תישלח אליהם במייל. לשלוח?", nt_yes:"כן, לשלוח", nt_sent:"ההודעה נשלחה", nt_mailed:"{n} מיילים בדרך", nt_nomail:"ההודעה עלתה לאתר, אבל המיילים לא יצאו.", nt_read_by:"קראו: {n}", nt_mailed_n:"נשלחו {n} מיילים", nt_del:"מחיקה", nt_del_q:"למחוק?", nt_need_sql:"כדי לשלוח הודעות, צריך להריץ קודם את קובץ ה-SQL של ההתראות.", me_nt_h:"התראות", sub_hide:"הסתרת שורת הנושאים", sub_show:"הצגת שורת הנושאים", me_nt_mail:"לקבל הודעות ועדכונים גם במייל", tour_bell:"<b>התראות.</b> כאן יופיעו הודעות ועדכונים מאיתנו.", lv_note:"רוצים לפרט? זה לא חובה, אבל זה עוזר לנו להשתפר.", lv_note_other:"מה הסיבה?", lv_trans:"התשובות נשמרות בלי שם ובלי אימייל, ומשמשות רק לשיפור הקורס.", lv_stay:"בעצם, נשארים", lq_reset:"קישור איפוס יוצא לאימייל",
 /* the first-login plan screen (2026-10-17). Keys ending _m / _f are the student's own voice in the sign-up gender; the bare key is the fallback */
 pl_ch1:"עליכם", pl_ch2:"המבחן", pl_ch2_ns:"היעד", pl_ch3:"איך לומדים", pl_ch4:"התוכנית", pl_ch_pre:"רגע לפני", pl_hi_h:"שלום {name}, בואו נבנה לכם תוכנית.", pl_hi_p:"כמה שאלות קצרות, רובן בלחיצה אחת. עם כל תשובה התוכנית משתנה מול העיניים. ואם לא בטוחים במשהו, אנחנו מחליטים בשבילכם.",
 pl_hi_m1:"בערך שתי דקות", pl_hi_m2:"אפשר לחזור לכל תשובה", pl_hi_m3:"אפשר לשנות אחר כך", pl_hi_go:"מתחילים", pl_hi_h_old:"{name}, הקורס נהיה אישי.", pl_hi_p_old:"חלק מהתשובות כבר אצלנו מהשאלון. נשארו כמה שאלות קצרות, והשאר עלינו.", pl_hi_m1_old:"פחות מדקה", pl_hi_go_old:"ממשיכים",
@@ -2399,7 +2588,8 @@ pl_mat_n_exam:"נלמד ממנו על מה שואלים ובאיזה סגנון,
 pl_mat_dlg_h:"חומרים מהקורס שלכם", pl_mat_dlg_p:"סילבוס, מבחנים קודמים, תרגילים או פתרונות. כל קובץ עוזר לנו לדייק.", pl_mat_dlg_more:"אפשר להוסיף עוד בכל רגע, באזור האישי.", pl_mat_dlg_done:"סיום", pl_me_mat:"החומרים שלי", pl_me_mat_p:"מבחנים קודמים, תרגילים, פתרונות או סילבוס מהקורס שלכם. כל קובץ עוזר לנו לדייק את התוכנית ולכתוב תרגול בסגנון של הקורס.", pl_me_plan:"התוכנית שלי", pl_me_home:"חזרה לבית",
 pl_tide_h:"יש לכם חומרים מהקורס?", pl_tide_p:"בכל רגע אפשר להעלות מבחנים קודמים, תרגילים, פתרונות או סילבוס, באזור האישי תחת 'החומרים שלי'. ככה נדייק את התוכנית ונכתוב תרגול בסגנון של הקורס שלכם.", pl_tide_h_thx:"תודה על החומרים!", pl_tide_p_thx:"אפשר להוסיף עוד בכל רגע, באזור האישי תחת 'החומרים שלי'. כל קובץ עוזר לנו לדייק את התוכנית.", pl_tide_go:"לחומרים שלי", pl_tide_ok:"הבנתי", pl_home_sub:"התוכנית שלכם מוכנה. השיעור הראשון מחכה.", pl_home_go:"לשיעור הראשון",
 pl_home_change:"שינוי התוכנית", pl_home_next:"הבא בתור", pl_nx_p:"<b>הנושא הזה לא אמור להופיע במבחן של {course} {at}.</b> אז הוא גם לא ייכנס למבחנים לדוגמה שלכם. השיעור עצמו פתוח, כמו כל השיעורים.", pl_nx_agree:"בלי שאלות כאלה", pl_nx_want:"בכל זאת, עם שאלות כאלה", pl_nx_saved:"שמרנו. אפשר לשנות כאן בכל רגע.",
-pl_ls_sql1:"SELECT, WHERE ו-ORDER BY", pl_ls_sql2:"JOIN ו-LEFT JOIN", pl_ls_sql3:"GROUP BY ו-HAVING", pl_ls_sql4:"UNION, INTERSECT ו-EXCEPT", pl_ls_sql5:"CASE", pl_ls_sql6:"שאילתות מקוננות", pl_ls_sql7:"חילוק ב-SQL", pl_ls_sql8:"CTE עם WITH", pl_ls_sql9:"NULL", pl_ls_sql10:"פונקציות חלון: OVER ו-PARTITION BY", pl_ls_sql11:"פונקציות חלון: דירוג ו-LAG", pl_ls_sql12:"תרגילים", pl_ls_n1:"מטקסט לתלויות", pl_ls_n2:"סגור ומפתחות", pl_ls_n3:"1NF עד 3NF", pl_ls_n4:"פירוק ל-3NF", pl_ls_n5:"BCNF ו-4NF", pl_ls_n6:"תרגילים", pl_ls_e1:"ישויות ותכונות", pl_ls_e2:"קשרים וריבוי", pl_ls_e3:"ישות חלשה, הכללה וקשר משולש", pl_ls_e4:"קריאת תרשים", pl_ls_e5:"מ-ERD לטבלאות", pl_ls_e6:"תרגילים", pl_mat_fail:"לא הצלחנו להעלות. אפשר לנסות שוב", pl_mat_del:"מחיקה",
+pl_ls_sql1:"SELECT, WHERE ו-ORDER BY", pl_ls_sql2:"JOIN ו-LEFT JOIN", pl_ls_sql3:"GROUP BY ו-HAVING", pl_ls_sql4:"UNION, INTERSECT ו-EXCEPT", pl_ls_sql5:"CASE", pl_ls_sql6:"שאילתות מקוננות", pl_ls_sql7:"חילוק ב-SQL", pl_ls_sql8:"CTE עם WITH", pl_ls_sql9:"NULL", pl_ls_sql10:"פונקציות חלון: OVER ו-PARTITION BY", pl_ls_sql11:"פונקציות חלון: דירוג ו-LAG", pl_ls_sql12:"תרגילים", pl_ls_n1:"מטקסט לתלויות", pl_ls_n2:"סגור ומפתחות", pl_ls_n3:"1NF עד 3NF", pl_ls_n4:"פירוק ל-3NF", pl_ls_n5:"BCNF ו-4NF", pl_ls_n6:"תרגילים", pl_ls_e1:"ישויות ותכונות", pl_ls_e2:"קשרים וריבוי", pl_ls_e3:"ישות חלשה, הכללה וקשר משולש", pl_ls_e4:"קריאת תרשים", pl_ls_e5:"מ-ERD לטבלאות", pl_ls_e6:"תרגילים",
+nav_main_a:"ניווט ראשי", nav_home:"בית", nav_learn:"למידה", tab_learn:"התוכנית שלכם", nav_h_sharp:"לחדד", nav_h_cal:"היומן", tour_abar:"<b>בית ולמידה.</b> בבית רואים מה מחכה לכם היום. בלמידה תמצאו את התוכנית, כל השיעורים והכלים.", tour_cal:"<b>היומן שלכם.</b> מתי לומדים, ומה בכל מפגש. גוררים מפגש כדי להזיז אותו, ואפשר לייצא הכול ליומן בטלפון.", hello_sub_cal:"התוכנית שלכם מוכנה. נשאר לקבוע מתי לומדים.", cal_next_k:"המפגש הבא", cal_first_k:"המפגש הראשון, לפי ההצעה", cal_first_note:"אשרו את היומן למטה, וזה נקבע.", cal_today:"היום", cal_plus_note:"ועוד 10 דקות חידוד: {topic}", cal_miss_k:"המפגש של יום {day} לא קרה", cal_miss_note:"קורה. השיעור עבר למפגש הבא, ב{day} ב-{time}. אפשר גם להשלים מחר, ב{day2} ב-{time2}.", cal_makeup:"השלמה מחר ב-{time}", cal_nomakeup:"בלי השלמה", cal_end_k:"אין עוד מפגשים ביומן", sharp_h2:"לחדד השבוע", sharp_lede:"ממה שסימנתם 'עוד לא יושב לי'. הכנסנו את זה למפגש הקרוב.", sharp_line:"סימנתם 'עוד לא יושב לי'. הוספנו 10 דקות חידוד למפגש של יום {day}.", sharp_line_nocal:"סימנתם 'עוד לא יושב לי'. כדאי לחזור אליו לפני השיעור הבא.", sharp_go:"לתרגול", cal_h2:"היומן שלכם", cal_lede:"{n} בשבוע, לפי הקצב שלכם. מסיימים את הקורס ב-<b>{date}</b>, ונשארים {w} לחזרה לפני המבחן.", cal_lede_tight:"{n} בשבוע. מסיימים את הקורס ב-<b>{date}</b>, צמוד למבחן, אז כדאי להוסיף מפגש.", cal_lede_free:"{n} בשבוע, לפי הקצב שלכם. מסיימים את הקורס ב-<b>{date}</b>.", cal_add:"הוספת מפגש", cal_export:"ייצוא ליומן", cal_prev_a:"השבוע הקודם", cal_next_a:"השבוע הבא", cal_this:"השבוע", cal_week_n:"שבוע {i} מתוך {n}", cal_pref_q:"מתי נוח ללמוד?", cal_p_morning:"בוקר", cal_p_noon:"צהריים", cal_p_evening:"ערב", cal_p_weekend:"סוף שבוע", cal_prop:"<b>זו ההצעה שלנו,</b> לפי הקצב שלכם. אפשר לגרור כל מפגש לזמן אחר, או לבחור למעלה מתי נוח לכם.", cal_prop_unsure:"<b>בחרנו ערב.</b> זו נקודת התחלה טובה, ואפשר להזיז כל מפגש. ככה זה נראה עד המבחן.", cal_confirm:"אישור היומן", cal_lg_ses:"מפגש", cal_lg_done:"הושלם", cal_lg_rev:"חזרה לפני המבחן", cal_foot:"גוררים מפגש כדי להזיז אותו. לחיצה על משבצת ריקה מוסיפה מפגש.", cal_foot_pre:"גוררים מפגש כדי להזיז אותו עוד לפני האישור.", cal_exam:"מבחן", cal_exam_day:"המבחן. בהצלחה!", cal_add_day:"+ מפגש", cal_missed:"לא קרה", cal_rev:"חזרה: מה שסימנתם", cal_plus:"+ חידוד", cal_s_pref:"הזזנו את המפגשים ל{p}.", cal_s_unsure:"בחרנו ערב בשבילכם. כל מפגש אפשר להזיז.", cal_s_finish:" עכשיו מסיימים ב-<b>{date}</b> (במקום {old}).", cal_s_move_all:"המפגש של יום {d1} ב-{t1} עבר ל{d2} ב-{t2}, בכל השבועות.", cal_s_move_one:"המפגש של יום {d1} ב-{t1} עבר ל{d2} ב-{t2}, רק השבוע.", cal_s_order:"השיעורים נשארים בסדר של התוכנית.", cal_s_add_all:"הוספנו מפגש ב{d} ב-{t}, בכל השבועות.", cal_s_add_one:"הוספנו מפגש ב{d} ב-{t}, רק השבוע.", cal_s_del:"המפגש של יום {d} ב-{t} ירד מהיומן.", cal_s_confirmed:"<b>היומן נקבע.</b> רוצים אותו גם ביומן שלכם בטלפון?", cal_s_makeup:"קבענו השלמה מחר, ב{d} ב-{t}. רק הפעם.", cal_s_back:"המפגש של יום {d1} עבר ל{d2} ב-{t2}, רק השבוע. בשבועות הבאים הוא חוזר ל{d1} ב-{t1}.", cal_t_all:"עבר בכל השבועות.", cal_t_added:"נוסף בכל השבועות.", cal_t_only:"רק השבוע", cal_pop_dur:"כמה זמן", cal_pop_go:"לשיעור", cal_pop_done:"סימון כהושלם", cal_pop_del:"הסרת המפגש", cal_pop_miss:"המפגש הזה לא קרה. השיעור שלו עבר למפגש הבא.", cal_pop_rev:"חזרה לפני המבחן - קודם מה שסימנתם 'עוד לא יושב לי', אחר כך מבחן לדוגמה.", cal_pop_push:"תזכורת חצי שעה לפני המפגש, ואחריו הצעה לקבוע את הבא", cal_soon:"בשלב הבא", cal_x_h:"ייצוא ליומן שלכם", cal_x_p:"כל המפגשים עד המבחן, {n} בסך הכול, עם תזכורת חצי שעה לפני כל אחד. היומן בטלפון יזכיר לכם, גם כשהאתר סגור.", cal_x_file:"קובץ ‎.ics", cal_x_how:"איך מכניסים ל-{app}:", cal_x_g1:"מורידים את הקובץ.", cal_x_g2:"ב-Google Calendar במחשב: הגדרות ← ייבוא וייצוא ← ייבוא.", cal_x_g3:"בוחרים את הקובץ ואת היומן שאליו הוא נכנס.", cal_x_a1:"מורידים את הקובץ באייפון או במק.", cal_x_a2:"פותחים אותו, ובוחרים 'הוספת הכול'.", cal_x_o1:"מורידים את הקובץ.", cal_x_o2:"פותחים אותו ב-Outlook. או ב-outlook.com: הוספת יומן ← העלאה מקובץ.", cal_x_dl:"הורדת הקובץ", cal_x_sub_h:"קישור שמתעדכן לבד", cal_x_sub_p:"מנוי במקום קובץ - כשתזיזו מפגש כאן, הוא יזוז גם ביומן שלכם. צריך בשבילו שרת קטן, אז הוא בשלב הבא.", cal_x_note:"קובץ שהורד לא מתעדכן לבד. שיניתם כאן משהו? מורידים אותו שוב, ומוחקים מהיומן את המפגשים הישנים.", cal_ics_rev:"חזרה לפני המבחן", cal_ics_desc:"המפגש שקבעתם ב-RowdyQL. לשיעור: {url}", cal_n1:"מפגש אחד", cal_nn:"{n} מפגשים", pl_mat_fail:"לא הצלחנו להעלות. אפשר לנסות שוב", pl_mat_del:"מחיקה",
 },
 en: {
 brand_sub:"Databases and SQL, from zero", tab_home:"Home", tab_intro:"Intro", tab_ra:"Relational Algebra",
@@ -2641,7 +2831,7 @@ d_c_name:"Name", d_c_email:"Email", d_c_year:"Year", d_c_sem:"Semester", d_c_joi
 sync_on:"Progress is saved to your account",
 
 ex3_h2:"Exercises 7 to 12", ex3_lede:"Self-joins and exam-level questions. Same rules: a hint after one attempt, the solution after two.", nav_r_ex2:"Exercises 7–12", ref_ride:"Schema: RideOn", ref_toy:"Tables: Students, Courses, Enroll", ls_intro1:"Why a database", ls_intro2:"Schema and a first query", ls_intro3:"Self-check", ls_ra1:"σ and π: select and project", ls_ra2:"∪ ∩ − and ×: sets and product", ls_ra3:"⋈ and ρ: join and rename", ls_ra4:"÷ division, and reading an expression", ls_ra5:"RideOn and the calculator", ls_ra6:"Exercises 1–6", ls_ra7:"Exercises 7–12", ls_ra8:"Self-check", ls_min:"{m} min", ls_upnext:"Up next", ls_next:"Next lesson", ls_next_ch:"Next chapter", ls_home:"Back home", ls_more:"That's all for now. More lessons are on the way.", ls_count:"{n} lessons · {m} min", ch_n:"Chapter {n}", ls_later:"Later in the course",
-me_title:"My area", me_look:"Look", me_avatar:"Avatar", me_av_ini:"Your initial", me_mode:"Display", me_m_system:"Like my device", me_m_light:"Day", me_m_dark:"Night", me_m_auto:"By the hour", me_m_auto_s:"Day from 07:00 to 19:00, night the rest of the time.", me_details:"Personal details", me_save:"Save", me_saved:"Saved.", me_pass:"Password", me_pass_why:"We'll email you a code; use it to set a new password.", me_send:"Send me a code", me_sent:"We sent a code to {e}.", me_resend:"Send again", me_code:"Code from the email", me_new:"New password", me_new2:"Again, to confirm", me_update:"Update password", me_pw_ok:"Password updated.", me_demo:"Demo mode has no password to change.", e_code:"The code is wrong or has expired.", e_same:"That's your current password. Pick another.", e_match:"The passwords don't match.", e_wait:"You can ask again in a minute.", g_forgot:"Forgot password", fp_h:"Reset password", fp_why:"We'll send a reset link to the email you signed up with.", fp_go:"Send link", fp_ok:"If this email is registered, we sent it a reset link.", fp_back:"Back to sign in", fp_demo:"Demo mode sends no emails.", fp_expired:"That link is no longer valid. You can request a new one.", np_h:"New password", me_del:"Delete account", me_del_why:"Deletes the account, the progress and everything saved. This cannot be undone.", me_del_word:"delete", me_del_type:"To confirm, type: {w}", me_del_go:"Delete for good", me_cancel:"Cancel", me_deleted:"The account was deleted.", dt_h_acc:"Create your account", ob_eyebrow:"Getting to know you", ob_r2_h:"One moment before you go on", ob_r2_p:"We have a short getting-to-know questionnaire, and we would love you to answer it. It helps us fit the course to you and to what you ask for.", ob_r3_h:"Last time, we promise", ob_r3_p:"We promise this is the last reminder: we would really like to get to know you. If not now, you can fill it in any time from your area.", ob_fill:"Fill it in now", ob_partial:"You already answered some of the questions. {n} left.", ob_goals_req:"If you do not know yet, write \"not sure\". Any answer is fine.", ob_rev_h:"Before you send", ob_rev_p:"These are your answers. You can fix any of them; after the final submit they can no longer be changed.", ob_fix:"Fix", ob_submit:"Final submit", ob_missing:"Missing", ob_thanks:"Thanks! Your answers were sent.", me_ob_h:"Getting to know you", me_ob_todo:"You have not filled in the getting-to-know questionnaire yet. It takes under a minute and helps us fit the course to you.", me_ob_partial:"{n} questions left in the getting-to-know questionnaire.", me_ob_go:"Fill in the questionnaire", me_ob_fix:"Complete the missing details", me_ob_done:"Your answers were sent. Want to update something? Write to hello@rowdyql.com.", ob_hi_p:"So glad you joined. Before you start, we would love to get to know you a little: a few short questions, under a minute.", ob_hi_why:"Your answers help us understand who learns here and decide how to grow the course.", ob_hi_go:"Let's start", ob_field:"What do you study?", ob_field_ph:"e.g. Industrial engineering, Computer science, Economics", ob_field_f:"Field of study", d_c_field:"Field", ob_studying:"Are you studying right now?", ob_yes:"Yes", ob_no:"No", ob_inst:"Where do you study?", ob_pick:"Pick from the list", ob_g_uni:"Universities", ob_g_col:"Colleges", ob_g_more:"Other studies", ob_other_l:"Name of the institution", ob_year:"Which year?", ob_y1:"Year 1", ob_y2:"Year 2", ob_y3:"Year 3", ob_y4:"Year 4", ob_y5:"Master's or higher", ob_goals:"What would you like to get from the course?", ob_optional:"Optional, but it helps us fit the course to you.", ob_goals_ph:"e.g. feel confident writing queries, master the syntax, learn something new, gain database skills", ob_level:"Before we start: how would you describe your level in this subject?", ob_lv1:"Completely new to me", ob_lv2:"Heard of it, no experience", ob_lv3:"I have the basics", ob_lv4:"Fairly comfortable", ob_lv5:"Strong command", ob_later:"Later", ob_stud_f:"Studying now?", ob_inst_f:"Institution", ob_year_f:"Year", ob_level_f:"Level", ob_goals_f:"What you want from the course", d_c_stud:"Studying", d_c_inst:"Institution", d_c_lvl:"Level", me_tour:"Site tour", tour_thanks:"Thanks!", tour_hi_after:"<b>Thanks!</b> Now a short tour of what is here, and you are ready.", tour_hi:"<b>Welcome to RowdyQL.</b> A short tour of what is here, and you are ready.", tour_tabs:"<b>Tabs.</b> Home, and a chapter per topic. Each chapter is split into short lessons, with a button to the next lesson at the end of each.", tour_start:"<b>Start here.</b> Next time there will also be a button that continues exactly where you stopped.", tour_stats:"<b>Your progress.</b> Sections you went through, exercises you solved and self-checks.", tour_lessons:"<b>Lessons.</b> Each card is a lesson of about a quarter of an hour; the ring shows how much you have covered.", tour_quick:"<b>Quick tools.</b> The calculator, the exercises, the course map and the self-check, one click away.", tour_toc:"<b>Contents.</b> The lessons of the chapter and the sections of the open lesson.", tour_me:"<b>Your area.</b> Click your name to change your avatar, background, day or night, language and details.", tour_end:"<b>That is it, you can start.</b> You can take the tour again from your area.", tour_next:"Next", tour_prev:"Back", tour_go:"Let's start", tour_skip:"Skip the tour", tour_n:"{i} of {n}", lv_h:"We are sad to see you go 🙁", lv_sub:"Could you tell us why? You can pick more than one.", lv_content:"Not enough material to practice", lv_easy:"Not the level I expected: too easy", lv_hard:"Not the level I expected: too hard for beginners", lv_done:"I finished the course", lv_tech:"Technical problems", lv_other:"Other", ob_inst_ph:"Type to search", ob_inst_add:"Other: {q}", nt_title:"Notifications", nt_unread:"{n} new", nt_empty:"No messages yet.", nt_now:"just now", nt_ob_t:"Your getting-to-know questionnaire is waiting", nt_new:"New message", nt_f_title:"Title", nt_f_body:"Message", nt_f_mail:"Also send by email", nt_send:"Send", nt_conf:"The message will show for every user on the site. Send it?", nt_conf_mail:"The message will show for every user on the site and go out by email too. Send it?", nt_yes:"Yes, send", nt_sent:"Sent", nt_mailed:"{n} emails on the way", nt_nomail:"The message is on the site, but the emails did not go out.", nt_read_by:"Read by {n}", nt_mailed_n:"{n} emails sent", nt_del:"Delete", nt_del_q:"Delete?", nt_need_sql:"To send messages, run the notifications SQL file first.", me_nt_h:"Notifications", sub_hide:"Hide the topics row", sub_show:"Show the topics row", me_nt_mail:"Also get messages and updates by email", tour_bell:"<b>Notifications.</b> Messages and updates from us show up here.", lv_note:"Want to say more? Optional, but it helps us improve.", lv_note_other:"What is the reason?", lv_trans:"Answers are stored without your name or email, and are used only to improve the course.", lv_stay:"Actually, I will stay", lq_reset:"a reset link goes out to the email",
+me_title:"My area", me_look:"Look", me_avatar:"Avatar", me_av_ini:"Your initial", me_mode:"Display", me_m_system:"Like my device", me_m_light:"Day", me_m_dark:"Night", me_m_auto:"By the hour", me_m_auto_s:"Day from 07:00 to 19:00, night the rest of the time.", me_details:"Personal details", me_save:"Save", me_saved:"Saved.", me_pass:"Password", me_pass_why:"We'll email you a code; use it to set a new password.", me_send:"Send me a code", me_sent:"We sent a code to {e}.", me_resend:"Send again", me_code:"Code from the email", me_new:"New password", me_new2:"Again, to confirm", me_update:"Update password", me_pw_ok:"Password updated.", me_demo:"Demo mode has no password to change.", e_code:"The code is wrong or has expired.", e_same:"That's your current password. Pick another.", e_match:"The passwords don't match.", e_wait:"You can ask again in a minute.", g_forgot:"Forgot password", fp_h:"Reset password", fp_why:"We'll send a reset link to the email you signed up with.", fp_go:"Send link", fp_ok:"If this email is registered, we sent it a reset link.", fp_back:"Back to sign in", fp_demo:"Demo mode sends no emails.", fp_expired:"That link is no longer valid. You can request a new one.", np_h:"New password", me_del:"Delete account", me_del_why:"Deletes the account, the progress and everything saved. This cannot be undone.", me_del_word:"delete", me_del_type:"To confirm, type: {w}", me_del_go:"Delete for good", me_cancel:"Cancel", me_deleted:"The account was deleted.", dt_h_acc:"Create your account", ob_eyebrow:"Getting to know you", ob_r2_h:"One moment before you go on", ob_r2_p:"We have a short getting-to-know questionnaire, and we would love you to answer it. It helps us fit the course to you and to what you ask for.", ob_r3_h:"Last time, we promise", ob_r3_p:"We promise this is the last reminder: we would really like to get to know you. If not now, you can fill it in any time from your area.", ob_fill:"Fill it in now", ob_partial:"You already answered some of the questions. {n} left.", ob_goals_req:"If you do not know yet, write \"not sure\". Any answer is fine.", ob_rev_h:"Before you send", ob_rev_p:"These are your answers. You can fix any of them; after the final submit they can no longer be changed.", ob_fix:"Fix", ob_submit:"Final submit", ob_missing:"Missing", ob_thanks:"Thanks! Your answers were sent.", me_ob_h:"Getting to know you", me_ob_todo:"You have not filled in the getting-to-know questionnaire yet. It takes under a minute and helps us fit the course to you.", me_ob_partial:"{n} questions left in the getting-to-know questionnaire.", me_ob_go:"Fill in the questionnaire", me_ob_fix:"Complete the missing details", me_ob_done:"Your answers were sent. Want to update something? Write to hello@rowdyql.com.", ob_hi_p:"So glad you joined. Before you start, we would love to get to know you a little: a few short questions, under a minute.", ob_hi_why:"Your answers help us understand who learns here and decide how to grow the course.", ob_hi_go:"Let's start", ob_field:"What do you study?", ob_field_ph:"e.g. Industrial engineering, Computer science, Economics", ob_field_f:"Field of study", d_c_field:"Field", ob_studying:"Are you studying right now?", ob_yes:"Yes", ob_no:"No", ob_inst:"Where do you study?", ob_pick:"Pick from the list", ob_g_uni:"Universities", ob_g_col:"Colleges", ob_g_more:"Other studies", ob_other_l:"Name of the institution", ob_year:"Which year?", ob_y1:"Year 1", ob_y2:"Year 2", ob_y3:"Year 3", ob_y4:"Year 4", ob_y5:"Master's or higher", ob_goals:"What would you like to get from the course?", ob_optional:"Optional, but it helps us fit the course to you.", ob_goals_ph:"e.g. feel confident writing queries, master the syntax, learn something new, gain database skills", ob_level:"Before we start: how would you describe your level in this subject?", ob_lv1:"Completely new to me", ob_lv2:"Heard of it, no experience", ob_lv3:"I have the basics", ob_lv4:"Fairly comfortable", ob_lv5:"Strong command", ob_later:"Later", ob_stud_f:"Studying now?", ob_inst_f:"Institution", ob_year_f:"Year", ob_level_f:"Level", ob_goals_f:"What you want from the course", d_c_stud:"Studying", d_c_inst:"Institution", d_c_lvl:"Level", me_tour:"Site tour", tour_thanks:"Thanks!", tour_hi_after:"<b>Thanks!</b> Now a short tour of what is here, and you are ready.", tour_hi:"<b>Welcome to RowdyQL.</b> A short tour of what is here, and you are ready.", tour_tabs:"<b>The tabs.</b> Your plan, then a chapter per topic. Each chapter is split into short lessons, and each lesson ends with a button to the next one.", tour_start:"<b>Start here.</b> Next time there will also be a button that continues exactly where you stopped.", tour_stats:"<b>Your progress.</b> Sections you went through, exercises you solved and self-checks.", tour_lessons:"<b>Lessons.</b> Each card is a lesson of about a quarter of an hour; the ring shows how much you have covered.", tour_quick:"<b>Quick tools.</b> The calculator, the exercises, the course map and the self-check, one click away.", tour_toc:"<b>Contents.</b> The lessons of the chapter and the sections of the open lesson.", tour_me:"<b>Your area.</b> Click your name to change your avatar, background, day or night, language and details.", tour_end:"<b>That is it, you can start.</b> You can take the tour again from your area.", tour_next:"Next", tour_prev:"Back", tour_go:"Let's start", tour_skip:"Skip the tour", tour_n:"{i} of {n}", lv_h:"We are sad to see you go 🙁", lv_sub:"Could you tell us why? You can pick more than one.", lv_content:"Not enough material to practice", lv_easy:"Not the level I expected: too easy", lv_hard:"Not the level I expected: too hard for beginners", lv_done:"I finished the course", lv_tech:"Technical problems", lv_other:"Other", ob_inst_ph:"Type to search", ob_inst_add:"Other: {q}", nt_title:"Notifications", nt_unread:"{n} new", nt_empty:"No messages yet.", nt_now:"just now", nt_ob_t:"Your getting-to-know questionnaire is waiting", nt_new:"New message", nt_f_title:"Title", nt_f_body:"Message", nt_f_mail:"Also send by email", nt_send:"Send", nt_conf:"The message will show for every user on the site. Send it?", nt_conf_mail:"The message will show for every user on the site and go out by email too. Send it?", nt_yes:"Yes, send", nt_sent:"Sent", nt_mailed:"{n} emails on the way", nt_nomail:"The message is on the site, but the emails did not go out.", nt_read_by:"Read by {n}", nt_mailed_n:"{n} emails sent", nt_del:"Delete", nt_del_q:"Delete?", nt_need_sql:"To send messages, run the notifications SQL file first.", me_nt_h:"Notifications", sub_hide:"Hide the topics row", sub_show:"Show the topics row", me_nt_mail:"Also get messages and updates by email", tour_bell:"<b>Notifications.</b> Messages and updates from us show up here.", lv_note:"Want to say more? Optional, but it helps us improve.", lv_note_other:"What is the reason?", lv_trans:"Answers are stored without your name or email, and are used only to improve the course.", lv_stay:"Actually, I will stay", lq_reset:"a reset link goes out to the email",
 /* the first-login plan screen */
 pl_ch1:"About you", pl_ch2:"The exam", pl_ch2_ns:"Your goal", pl_ch3:"How you learn", pl_ch4:"Your plan", pl_ch_pre:"Getting started", pl_hi_h:"Hi {name}, let's build your plan.", pl_hi_p:"A few short questions, most of them one click. Your plan changes with every answer, and anything you're not sure about, we'll decide for you.",
 pl_hi_m1:"About two minutes", pl_hi_m2:"You can go back to any answer", pl_hi_m3:"You can change it later", pl_hi_go:"Let's start", pl_hi_h_old:"{name}, the course just got personal.", pl_hi_p_old:"We already have some of your answers. Just a few short questions left, and we'll do the rest.", pl_hi_m1_old:"Under a minute", pl_hi_go_old:"Continue",
@@ -2682,7 +2872,8 @@ pl_mat_n_ex:"We see what you practice, and write similar exercises of our own.",
 pl_mat_dlg_more:"You can add more any time, in your personal area.", pl_mat_dlg_done:"Done", pl_me_mat:"My materials", pl_me_mat_p:"Past exams, exercises, solutions or a syllabus from your course. Every file helps us fine-tune your plan and write practice in your course's style.", pl_me_plan:"My plan", pl_me_home:"Back home", pl_tide_h:"Got materials from your course?", pl_tide_p:"You can upload past exams, exercises, solutions or a syllabus any time, under 'My materials' in your personal area. It helps us fine-tune your plan and write practice in your course's style.",
 pl_tide_h_thx:"Thanks for the materials!", pl_tide_p_thx:"You can add more any time, under 'My materials' in your personal area. Every file helps us fine-tune your plan.", pl_tide_go:"Open my materials", pl_tide_ok:"Got it", pl_home_sub:"Your plan is ready. Your first lesson is waiting.", pl_home_go:"Start learning", pl_home_change:"Change the plan", pl_home_next:"Up next",
 pl_nx_p:"<b>We know this topic isn't meant to come up in the {course} exam {at}.</b> So it won't be in your sample exams either. The lesson itself is open, like every lesson.", pl_nx_agree:"Leave them out", pl_nx_want:"Include them anyway", pl_nx_saved:"Saved. You can change this here any time.",
-pl_ls_sql1:"SELECT, WHERE and ORDER BY", pl_ls_sql2:"JOIN and LEFT JOIN", pl_ls_sql3:"GROUP BY and HAVING", pl_ls_sql4:"UNION, INTERSECT and EXCEPT", pl_ls_sql5:"CASE", pl_ls_sql6:"Nested queries", pl_ls_sql7:"Division in SQL", pl_ls_sql8:"CTEs with WITH", pl_ls_sql9:"NULL", pl_ls_sql10:"Window functions: OVER and PARTITION BY", pl_ls_sql11:"Window functions: ranking and LAG", pl_ls_sql12:"Exercises", pl_ls_n1:"From text to dependencies", pl_ls_n2:"Closure and keys", pl_ls_n3:"1NF to 3NF", pl_ls_n4:"Decomposing into 3NF", pl_ls_n5:"BCNF and 4NF", pl_ls_n6:"Exercises", pl_ls_e1:"Entities and attributes", pl_ls_e2:"Relationships and cardinality", pl_ls_e3:"Weak entities, IS-A and ternary relationships", pl_ls_e4:"Reading a diagram", pl_ls_e5:"From ERD to tables", pl_ls_e6:"Exercises", pl_mat_fail:"Couldn't upload. You can try again", pl_mat_del:"Delete",
+pl_ls_sql1:"SELECT, WHERE and ORDER BY", pl_ls_sql2:"JOIN and LEFT JOIN", pl_ls_sql3:"GROUP BY and HAVING", pl_ls_sql4:"UNION, INTERSECT and EXCEPT", pl_ls_sql5:"CASE", pl_ls_sql6:"Nested queries", pl_ls_sql7:"Division in SQL", pl_ls_sql8:"CTEs with WITH", pl_ls_sql9:"NULL", pl_ls_sql10:"Window functions: OVER and PARTITION BY", pl_ls_sql11:"Window functions: ranking and LAG", pl_ls_sql12:"Exercises", pl_ls_n1:"From text to dependencies", pl_ls_n2:"Closure and keys", pl_ls_n3:"1NF to 3NF", pl_ls_n4:"Decomposing into 3NF", pl_ls_n5:"BCNF and 4NF", pl_ls_n6:"Exercises", pl_ls_e1:"Entities and attributes", pl_ls_e2:"Relationships and cardinality", pl_ls_e3:"Weak entities, IS-A and ternary relationships", pl_ls_e4:"Reading a diagram", pl_ls_e5:"From ERD to tables", pl_ls_e6:"Exercises",
+nav_main_a:"Main navigation", nav_home:"Home", nav_learn:"Learn", tab_learn:"Your plan", nav_h_sharp:"Brush up", nav_h_cal:"Calendar", tour_abar:"<b>Home and Learn.</b> Home shows what's waiting for you today. Learn has your plan, every lesson and the tools.", tour_cal:"<b>Your calendar.</b> When you study, and what's in each session. Drag a session to move it, or send it all to your phone's calendar.", hello_sub_cal:"Your plan is ready. All that's left is picking when you study.", cal_next_k:"Next session", cal_first_k:"Your first session, as proposed", cal_first_note:"Confirm the calendar below and it's set.", cal_today:"Today", cal_plus_note:"Plus 10 minutes of practice: {topic}", cal_miss_k:"The {day} session didn't happen", cal_miss_note:"It happens. The lesson moved to the next session, on {day} at {time}. You can also make it up tomorrow, {day2} at {time2}.", cal_makeup:"Make up tomorrow at {time}", cal_nomakeup:"Not this time", cal_end_k:"Nothing left on your calendar", sharp_h2:"Brush up this week", sharp_lede:"From what you marked 'Not sticking yet'. We put it into your next session.", sharp_line:"You marked it 'Not sticking yet'. We added 10 minutes of practice to the {day} session.", sharp_line_nocal:"You marked it 'Not sticking yet'. Worth a second look before the next lesson.", sharp_go:"Practice", cal_h2:"Your calendar", cal_lede:"{n} a week, at your pace. You finish the course on <b>{date}</b>, with {w} left to review before the exam.", cal_lede_tight:"{n} a week. You finish the course on <b>{date}</b>, right before the exam, so adding a session would help.", cal_lede_free:"{n} a week, at your pace. You finish the course on <b>{date}</b>.", cal_add:"Add a session", cal_export:"Add to calendar", cal_prev_a:"Previous week", cal_next_a:"Next week", cal_this:"This week", cal_week_n:"Week {i} of {n}", cal_pref_q:"When do you like to study?", cal_p_morning:"Morning", cal_p_noon:"Afternoon", cal_p_evening:"Evening", cal_p_weekend:"Weekend", cal_prop:"<b>Here's our proposal,</b> based on your pace. Drag any session to another time, or pick a different time of day above.", cal_prop_unsure:"<b>We picked evenings.</b> It's a good place to start, and any session can move. This is how it looks until the exam.", cal_confirm:"Confirm calendar", cal_lg_ses:"Session", cal_lg_done:"Done", cal_lg_rev:"Review before the exam", cal_foot:"Drag a session to move it. Click an empty slot to add one.", cal_foot_pre:"You can drag sessions even before you confirm.", cal_exam:"Exam", cal_exam_day:"Exam day. Good luck!", cal_add_day:"+ Session", cal_missed:"Didn't happen", cal_rev:"Review: what you marked", cal_plus:"+ practice", cal_s_pref:"We moved your sessions to the {p}.", cal_s_unsure:"We picked evenings for you. Any session can move.", cal_s_finish:" You now finish on <b>{date}</b> (instead of {old}).", cal_s_move_all:"The {d1} {t1} session moved to {d2} at {t2}, every week.", cal_s_move_one:"The {d1} {t1} session moved to {d2} at {t2}, this week only.", cal_s_order:"Your lessons stay in plan order.", cal_s_add_all:"We added a session on {d} at {t}, every week.", cal_s_add_one:"We added a session on {d} at {t}, this week only.", cal_s_del:"The {d} {t} session is off your calendar.", cal_s_confirmed:"<b>Your calendar is set.</b> Want it on your phone's calendar too?", cal_s_makeup:"We set a make-up session for tomorrow, {d} at {t}. Just this once.", cal_s_back:"The {d1} session moved to {d2} at {t2} for this week only. From next week it's back on {d1} at {t1}.", cal_t_all:"Moved for every week.", cal_t_added:"Added for every week.", cal_t_only:"This week only", cal_pop_dur:"Length", cal_pop_go:"Go to lesson", cal_pop_done:"Mark as done", cal_pop_del:"Remove session", cal_pop_miss:"This session didn't happen. Its lesson moved to the next one.", cal_pop_rev:"Review before the exam: first what you marked 'Not sticking yet', then a sample exam.", cal_pop_push:"A reminder 30 minutes before, then a nudge to book the next one", cal_soon:"Coming later", cal_x_h:"Add to your calendar", cal_x_p:"Every session up to the exam, {n} in all, each with a reminder 30 minutes before. Your phone's calendar will remind you, even when the site is closed.", cal_x_file:".ics file", cal_x_how:"How to add it to {app}:", cal_x_g1:"Download the file.", cal_x_g2:"In Google Calendar on a computer: Settings → Import & export → Import.", cal_x_g3:"Choose the file and the calendar to add it to.", cal_x_a1:"Download the file on your iPhone or Mac.", cal_x_a2:"Open it and choose 'Add All'.", cal_x_o1:"Download the file.", cal_x_o2:"Open it in Outlook, or on outlook.com: Add calendar → Upload from file.", cal_x_dl:"Download file", cal_x_sub_h:"A link that updates itself", cal_x_sub_p:"A subscription instead of a file - when you move a session here, it moves in your calendar too. It needs a small server, so it's coming later.", cal_x_note:"A downloaded file doesn't update by itself. Changed something here? Download it again and delete the old sessions from your calendar.", cal_ics_rev:"Review before the exam", cal_ics_desc:"The session you set on RowdyQL. Open the lesson: {url}", cal_n1:"1 session", cal_nn:"{n} sessions", pl_mat_fail:"Couldn't upload. You can try again", pl_mat_del:"Delete",
 }};
 
 /* =========================== STATE & HELPERS =========================== */
@@ -4821,7 +5012,8 @@ function renderHome(){
   const now = new Date(); $('#helloDate').textContent = now.toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
   const last = load('dbs_last_sec', null); const lastEl = last && $('#' + last.id) ? $('#' + last.id) : null;
   const pxh = typeof pxForHome === 'function' ? pxForHome() : null, pxStart = pxh && pxh.P.start ? lessonById(pxh.P.start.id) : null;
-  $('#helloSub').innerHTML = (lastEl && last.unit !== 'home' ? t('hello_sub_back', { s: t(lastEl.dataset.title) }) : pxStart ? t('pl_home_sub') : t('hello_sub_new'));
+  const calOpen = pxh && !(load('dbs_cal', null) || {}).confirmed;
+  $('#helloSub').innerHTML = (lastEl && last.unit !== 'home' ? t('hello_sub_back', { s: t(lastEl.dataset.title) }) : pxStart ? t(calOpen ? 'hello_sub_cal' : 'pl_home_sub') : t('hello_sub_new'));
   const cta = $('#helloCta'); cta.innerHTML = '';
   if (lastEl && last.unit !== 'home') { const b = el('button', 'btn primary', t('hello_continue')); b.addEventListener('click', () => goTo(last.unit, last.id)); cta.appendChild(b); }
   const b1 = el('button', lastEl && last.unit !== 'home' ? 'btn' : 'btn primary', t(pxStart ? 'pl_home_go' : 'hello_start')); b1.addEventListener('click', () => pxStart ? goLesson(pxStart) : goTo('intro', 's-why')); cta.appendChild(b1);
@@ -4835,6 +5027,7 @@ function renderHome(){
   const grid = $('#homeSessions'); grid.innerHTML = '';
   renderHomeMarks(); lessonCards(grid, pxHomeBox(grid));
   const q = $('#homeQuick'); q.innerHTML = '';
+  calRender();
   [['qk_lab', 'qk_lab_s', 'ra', 'r-lab', 'π σ ⋈'], ['qk_ex', 'qk_ex_s', 'ra', 'r-exercises', '✓'], ['qk_map', 'qk_map_s', 'intro', 's-map', '4'], ['qk_quiz', 'qk_quiz_s', 'intro', 's-quiz-intro', '?']].forEach((x, i) => { const b = el('button', 'reveal'); b.type = 'button'; b.style.setProperty('--rd', (i * 0.06) + 's'); b.innerHTML = '<span class="ic">' + x[4] + '</span><b>' + t(x[0]) + '</b><span>' + t(x[1]) + '</span>'; b.addEventListener('click', () => goTo(x[2], x[3])); q.appendChild(b); });
   observeReveal();
 }
@@ -4916,18 +5109,19 @@ function openLesson(l, secId){
 }
 function goLesson(l, secId){ if (!l) return; if (l.unit !== unit) setUnit(l.unit, l, secId); else openLesson(l, secId); }
 /* =========================== ADDRESSES =========================== */
+const HUBS = ['home', 'learn'];
 /* Every chapter, lesson and section has a stable address: #/ is home, #/<unit> a chapter, #/<unit>/<section id> a section, with its
    lesson opened around it (a lesson's address is its first section). Opening a lesson or home adds a history entry, so the browser's
    back and forward work; scrolling inside a lesson only rewrites the address. A link opened before sign-in waits for it.
    #/terms is the terms of use: they open on top of whatever is showing, so a notice or an email can link to them. */
 const ROUTE = { busy: false, terms: location.hash === '#/terms', pending: /^#\/./.test(location.hash) && location.hash !== '#/terms' ? location.hash : null };
-function routeOf(sec){ if (unit === 'home') return '#/'; sec = sec || (lesson && lesson.secs.includes(activeSec) ? activeSec : lesson ? lesson.secs[0] : null); return '#/' + unit + (sec ? '/' + sec : ''); }
+function routeOf(sec){ if (unit === 'home') return '#/'; if (unit === 'learn') return '#/learn'; sec = sec || (lesson && lesson.secs.includes(activeSec) ? activeSec : lesson ? lesson.secs[0] : null); return '#/' + unit + (sec ? '/' + sec : ''); }
 function routeSet(push, sec){ if (ROUTE.busy || document.documentElement.classList.contains('gated')) return; const h = routeOf(sec); if (location.hash === h) return;
   try { history[push ? 'pushState' : 'replaceState']({ rq: 'app' }, '', h); } catch(e){} }
 function routeGo(h){ const m = /^#\/([a-z]+)?(?:\/([A-Za-z0-9-]+))?$/.exec(h || ''); if (!m) return false; if (m[1] === 'terms') { showTerms(); return false; }
-  const u = m[1] || 'home', sec = m[2] || null; if (u !== 'home' && !COURSE.some(c => c.unit === u)) return false;
+  const u = m[1] || 'home', sec = m[2] || null; if (!HUBS.includes(u) && !COURSE.some(c => c.unit === u)) return false;
   ROUTE.busy = true;
-  try { if (u === 'home') setUnit('home'); else { const l = sec ? lessonOf(sec) : null; if (l && l.unit === u) goLesson(l, sec); else setUnit(u); } }
+  try { if (HUBS.includes(u)) setUnit(u); else { const l = sec ? lessonOf(sec) : null; if (l && l.unit === u) goLesson(l, sec); else setUnit(u); } }
   finally { ROUTE.busy = false; }
   routeSet(false, sec && lesson && lesson.secs.includes(sec) ? sec : null); return true; }
 /* after sign-in: the address the visitor came with, otherwise home */
@@ -5036,7 +5230,7 @@ function renderLessonEnd(){
 function renderRail(){
   const rail = $('#rail'); rail.innerHTML = '';
   const secLink = (sec, cls) => { const a = el('a', cls, '<span class="dot"></span><span>' + t(sec.dataset.title) + '</span>'); a.href = '#' + sec.id; a.dataset.sec = sec.id; a.addEventListener('click', e => { e.preventDefault(); sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); rail.appendChild(a); };
-  if (unit === 'home' || !lesson) $$('#u-home section.sec').forEach(sec => secLink(sec, ''));
+  if (HUBS.includes(unit) || !lesson) $$('#u-' + (unit === 'learn' ? 'learn' : 'home') + ' section.sec:not([hidden])').forEach(sec => secLink(sec, ''));
   else LESSONS.filter(l => l.unit === unit).forEach(l => {
     const a = el('a', 'lsn-rl', '<span class="dot"></span><span><span class="lsn-id">' + l.n + '</span> ' + t('ls_' + l.id) + mkMiniHtml(l.id) + '</span>'); a.href = '#' + l.secs[0]; a.dataset.lsn = l.id; a.addEventListener('click', e => { e.preventDefault(); openLesson(l); }); rail.appendChild(a);
     if (l === lesson && l.secs.length > 1) lessonSecs(l).forEach(sec => secLink(sec, 'lsn-rs'));
@@ -5048,12 +5242,15 @@ function railState(){
   $$('#rail a[data-lsn]').forEach(a => { const l = lessonById(a.dataset.lsn); a.classList.toggle('active', l === lesson); a.classList.toggle('done', !!l && lessonDone(l)); });
 }
 function setUnit(u, l, secId){
-  unit = u; if (u === 'home') { lesson = null; if (typeof renderHome === 'function') renderHome(); }
-  $$('.unit').forEach(x => x.hidden = x.id !== 'u-'+u); $$('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.unit===u))); tabInView(); subApply(); store('dbs_unit', u);
-  if (u !== 'home') { openLesson(l || pickLesson(u), secId); return; }
+  unit = u; if (HUBS.includes(u)) { lesson = null; if (typeof renderHome === 'function') renderHome(); }
+  $$('.unit').forEach(x => x.hidden = x.id !== 'u-'+u); $$('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.unit===u))); abarState(); tabInView(); subApply(); store('dbs_unit', u); if (u === 'home') requestAnimationFrame(calScrollFix);
+  if (!HUBS.includes(u)) { openLesson(l || pickLesson(u), secId); return; }
   renderRail(); window.scrollTo({top:0}); routeSet(true); updateNav(false);
 }
 $$('.tab').forEach(b => b.addEventListener('click', () => setUnit(b.dataset.unit)));
+/* the icon bar: home is the dashboard; learn is the plan, every chapter and every lesson */
+function abarState(){ document.documentElement.classList.toggle('u-home', unit === 'home'); $$('#abar [data-go]').forEach(b => { const on = (b.dataset.go === 'home') === (unit === 'home'); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); }); $('#abar').setAttribute('aria-label', t('nav_main_a')); }
+$$('#abar [data-go]').forEach(b => b.addEventListener('click', () => { calPopClose(); if (b.dataset.go === 'home' || unit === 'home') setUnit(b.dataset.go); }));
 /* the topics row folds into a small button after the logo, and back; while folded, scrolling shows a small "where am I" that never
    takes a click: it fades 3 s after the scroll, and at once whenever the mouse is within NM.R px of it */
 const NM = { timer: 0, near: false, R: 160 };
@@ -5077,15 +5274,15 @@ function tabInView(){ const on = $('.tab[aria-selected="true"]'); if (!on) retur
 
 /* position tracking: the rail and the position pill follow the scroll position (section whose top passed 35% of the viewport), within the open lesson */
 let activeSec = null, railOn = load('dbs_rail', false), nowTimer = null, navTick = false;
-function navSecs(){ return unit === 'home' || !lesson ? $$('#u-home section.sec') : lessonSecs(lesson); }
+function navSecs(){ return HUBS.includes(unit) || !lesson ? $$('#u-' + (unit === 'learn' ? 'learn' : 'home') + ' section.sec:not([hidden])') : lessonSecs(lesson); }
 function updateNav(flash){
   if (document.documentElement.classList.contains('gated')) return; /* nothing to track while the sign-in gate covers the page */
   const secs = navSecs(); if (!secs.length) return;
   const line = window.innerHeight * 0.35; let cur = secs[0];
   secs.forEach(s => { if (s.getBoundingClientRect().top <= line) cur = s; });
   if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = secs[secs.length-1];
-  const changed = cur.id !== activeSec; activeSec = cur.id; if (unit !== 'home') store('dbs_last_sec', { unit, id: cur.id });
-  if (changed && unit !== 'home') routeSet(false);
+  const changed = cur.id !== activeSec; activeSec = cur.id; if (!HUBS.includes(unit)) store('dbs_last_sec', { unit, id: cur.id });
+  if (changed && !HUBS.includes(unit)) routeSet(false);
   if (!visited[cur.id]) { visited[cur.id] = true; store('dbs_visited', visited); }
   railState();
   const done = secs.filter(s => visited[s.id]).length; $('#prog').style.width = (100*done/secs.length) + '%'; document.documentElement.style.setProperty('--unitp', (100*done/secs.length) + '%');
@@ -5447,7 +5644,7 @@ $('#btnOut').addEventListener('click', async () => { if (sb) await sb.auth.signO
 
 async function logVisit(){ try { const last = +load('dbs_visit_at', 0); if (Date.now() - last < 30 * 60 * 1000) return; store('dbs_visit_at', Date.now()); await sb.from('events').insert({ user_id: session.user.id, kind: 'visit', meta: { lang, w: innerWidth } }); } catch(e){} }
 /* ---- progress sync: local storage stays the cache, the account is the record ---- */
-const SYNC_KEYS = ['dbs_plan','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_marks'];
+const SYNC_KEYS = ['dbs_plan','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_marks','dbs_cal'];
 const syncTimers = {};
 function syncKey(k, v){ if (!sb || !session || !session.user) return; clearTimeout(syncTimers[k]); syncTimers[k] = setTimeout(async () => { try { await sb.from('progress').upsert({ user_id: session.user.id, key: k, value: v, updated_at: new Date().toISOString() }); } catch(e){} }, 800); }
 async function pullProgress(){
@@ -5634,7 +5831,7 @@ async function meSave(){
       if (error || !data || !data.length) throw error || new Error('not saved');
     }
     profile = Object.assign(profile || {}, pay); if (!sb) store('dbs_profile', profile);
-    $('#userName').textContent = full; $('#meName').textContent = full; applyPrefs(); renderMeLook(); if (unit === 'home') renderHome();
+    $('#userName').textContent = full; $('#meName').textContent = full; applyPrefs(); renderMeLook(); if (HUBS.includes(unit)) renderHome();
     msg.textContent = t('me_saved');
   } catch (e) { msg.textContent = t('g_err_gen'); }
   btn.disabled = false;
@@ -5697,7 +5894,7 @@ async function meDelete(m){
   } catch (e) { msg.textContent = t('g_err_gen'); go.disabled = false; }
 }
 /* what this device keeps for the signed-in user; cleared on sign-out and account deletion, and when a different account signs in here */
-const USER_KEYS = ['dbs_plan','dbs_marks','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
+const USER_KEYS = ['dbs_plan','dbs_marks','dbs_cal','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
 function clearUserData(){ USER_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e){} }); for (const k in visited) delete visited[k]; exState = {}; applyPrefs(); }
 /* forgotten password: the email link lands here with a recovery session (?reset=1 and #...type=recovery); ask for the new password */
 const RECOVERY = (() => { try { return /(^|[#&])type=recovery(&|$)/.test(location.hash) || new URLSearchParams(location.search).get('reset') === '1'; } catch(e) { return false; } })();
@@ -6281,7 +6478,7 @@ function pxTide(){ const pr = prefs(); if (pr.pxTide || $('#pxTide')) return; pr
   $('#pxTideOk').addEventListener('click', () => hide()); $('#pxTideGo').addEventListener('click', () => hide(() => { openMe(); setTimeout(() => { const c = $('#pxMeMat'); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 250); })); }
 
 /* ---- the plan on home, and in the personal area ---- */
-function pxForHome(){ if (!pxDone()) return null; const keep = PS; pxLoad(); const P = pxPlan(); const out = { P, S: PS }; if ($('#plx')) PS = keep; return out; }
+function pxForHome(raw){ if (!pxDone()) return null; const keep = PS; pxLoad(); const P = pxPlan(), exam = pxExam(), out = { P, S: PS, exam }; if ($('#plx')) PS = keep; else if (!raw) calPace(P, exam); return out; }
 function pxHomeBox(grid){
   let box = $('#pxHome'); const h = pxForHome(); if (!h) { if (box) box.remove(); return null; }
   if (!box) { box = el('div', 'px-home'); box.id = 'pxHome'; grid.parentNode.insertBefore(box, grid); }
@@ -6294,6 +6491,259 @@ function pxMeCards(){ const h = pxForHome(); if (!h) return '';
   return '<section class="me-card"><h3>' + esc(t('pl_me_plan')) + '</h3><div class="px-home-h"><span class="px-bpill">' + esc(h.P.B.name) + '</span></div><div class="px-home" style="border:0;padding:0;margin:0;background:none">' + pxPaceHtml(h.P) + '</div><div class="controls"><button type="button" class="btn" id="pxMeChange">' + esc(t('pl_home_change')) + '</button></div></section>'
     + '<section class="me-card px-site" id="pxMeMat"><h3>' + esc(t('pl_me_mat')) + '</h3><p class="me-hint">' + esc(t('pl_me_mat_p')) + '</p><div id="pxMeBox"></div></section>'; }
 function pxMeBind(){ const c = $('#pxMeChange'); if (c) c.addEventListener('click', () => { closeMe(); pxOpen({ view: 'change' }); }); const b = $('#pxMeBox'); if (b) pxUpBind(b); }
+
+/* =========================== THE STUDY CALENDAR =========================== */
+/* The plan's pace as study sessions: a weekly rhythm, one-off weeks on top of it, and the plan's lessons poured into the sessions in
+   plan order (a 5-minute self-check joins the lesson before it). After the last lesson come review sessions until the exam. Until the
+   student confirms, it is a ready proposal (we lead). Kept in dbs_cal { v, pref, unsure, confirmed, since, rhythm: [{ d, t, dur }],
+   over: { weekStart: [...] }, done: { key: 1 | 'skip' } }, synced with the progress. A session that passed is done when the student
+   was active that day or marked it, otherwise missed. Once confirmed, the plan's dates come from here (calPace). */
+const CAL_TIME = { morning: '09:00', noon: '14:00', evening: '20:00' }, CAL_DAYS = [0, 2, 4, 1, 3];
+const CAL_WEEKEND = [[5, '10:00'], [6, '17:00'], [3, '20:00'], [1, '20:00'], [2, '20:00']];
+const CAL_H0 = 6, CAL_H1 = 24, CAL_HR = 60, CAL_DAY = 864e5, CAL_WK = 7 * 864e5;
+const CALV = { week: null, auto: true, scroll: true, toastT: 0, drag: null, noClick: false, said: '' };
+const calP2 = n => String(n).padStart(2, '0');
+const calDay = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+const calAdd = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+const calWk = d => calAdd(calDay(d), -new Date(d).getDay());
+const calYmd = d => d.getFullYear() + '-' + calP2(d.getMonth() + 1) + '-' + calP2(d.getDate());
+const calHm = d => calP2(d.getHours()) + ':' + calP2(d.getMinutes());
+const calAt = (day, tm) => { const x = new Date(day), [h, m] = tm.split(':').map(Number); x.setHours(h, m, 0, 0); return x; };
+const calDow = d => new Date(2026, 9, 18 + d).toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-GB', { weekday: 'long' }).replace(/^יום /, '');
+const calLong = d => d.toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+const calN = n => n === 1 ? t('cal_n1') : t('cal_nn', { n });
+const calTm = (a, b) => '<span class="cal-tm">' + calHm(a) + (b ? '–' + calHm(b) : '') + '</span>';
+const CAL_IC = { prev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
+  next: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
+  x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+  down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>' };
+function calRhythm(pref, per){ per = Math.max(1, Math.min(5, per || 3));
+  return (pref === 'weekend' ? CAL_WEEKEND : CAL_DAYS.map(d => [d, CAL_TIME[pref] || '20:00'])).slice(0, per).map(([d, tm]) => ({ d, t: tm, dur: 45 })).sort((a, b) => a.d - b.d || a.t.localeCompare(b.t)); }
+/* the saved calendar, or the proposal made from the plan; null when there is no plan */
+function calState(){ const h = pxForHome(true); if (!h) return null; const saved = load('dbs_cal', null);
+  const c = saved || { v: 1, pref: 'evening', unsure: false, confirmed: false, since: new Date().toISOString(), rhythm: calRhythm('evening', h.P.pace.per), over: {}, done: {} };
+  c.over = c.over || {}; c.done = c.done || {}; return { c, P: h.P, exam: h.exam }; }
+function calSched(st){
+  const { c, P, exam } = st, now = new Date(), since = new Date(c.since), out = [], days = new Set(load('dbs_days', []));
+  const todo = P.core.filter(r => r.soon || !lessonDone(lessonById(r.id)));
+  const weak = Object.entries(load('dbs_marks', {}) || {}).filter(e => e[1] && e[1].weak).map(e => lessonById(e[0])).filter(Boolean);
+  const endDay = exam ? calDay(exam) : null; let ws = calWk(since), q = 0, last = null;
+  for (let g = 0; g < 80; g++) {
+    const slots = (c.over[calYmd(ws)] || c.rhythm).map(r => ({ r, s: calAt(calAdd(ws, r.d), r.t) })).filter(x => x.s >= since && (!endDay || x.s < endDay)).sort((a, b) => a.s - b.s);
+    for (const { r, s: start } of slots) {
+      const key = calYmd(ws) + '#' + r.d + '@' + r.t, s = { key, ws, slot: r, start, end: new Date(start.getTime() + r.dur * 60000), ls: [] };
+      if (s.end <= now) { s.past = true; const d = c.done[key]; if (d === 'skip') s.miss = s.handled = true; else if (d === 1 || days.has(calYmd(start)) || days.has(start.toISOString().slice(0, 10))) s.done = true; else s.miss = true; }
+      else if (q < todo.length) { let m = todo[q].min; s.ls.push(todo[q++]); while (q < todo.length && (todo[q].min <= 5 || m < 10)) { m += todo[q].min; s.ls.push(todo[q++]); } last = s; }
+      else if (endDay) s.rev = true; else continue;
+      out.push(s); }
+    ws = calAdd(ws, 7); if (endDay ? ws >= endDay : q >= todo.length && ws > now) break; }
+  const nx = out.find(s => !s.past && s.ls.length); if (nx && weak.length) nx.plus = weak[0];
+  return Object.assign(out, { finish: last ? last.start : null, exam, weak, next: nx || null }); }
+/* once confirmed, the plan's pace and dates come from the calendar */
+function calPace(P, exam){ const c = load('dbs_cal', null); if (!c || !c.confirmed || !c.rhythm || !c.rhythm.length) return; const S = calSched({ c: Object.assign({ over: {}, done: {} }, c), P, exam }); if (!S.finish) return;
+  const q = P.pace, today = pxToday(); q.per = c.rhythm.length; q.finish = S.finish; q.weeks = Math.max(1, Math.ceil((calDay(S.finish) - today) / CAL_WK));
+  if (exam) { q.review = Math.max(0, Math.floor((calDay(exam) - calDay(S.finish)) / CAL_WK)); q.tight = false; } }
+const calLsTitle = r => '<span class="lsn-id">' + esc(r.n) + '</span><b>' + esc(r.title) + '</b>';
+function calGoRow(r){ const l = r && !r.soon ? lessonById(r.id) : null; if (l) goLesson(l); else setUnit('learn'); }
+
+/* ---- render: the next session beside the greeting, "to sharpen", the heading, the calendar ---- */
+function calRender(){
+  const sec = $('#h-cal'); if (!sec) return; const st = calState(), art = $('#h-hello .hello-art');
+  sec.hidden = !st; $('#calNext').hidden = !st; if (art) art.hidden = !!st;
+  if (!st) { $('#h-sharp').hidden = true; return; }
+  const S = calSched(st); CALV.st = st; CALV.S = S;
+  const minW = calWk(S.length ? S[0].start : new Date(st.c.since)), maxW = calWk(S.exam || (S.length ? S[S.length - 1].start : new Date()));
+  if (!CALV.week || CALV.auto) CALV.week = calWk((S.find(s => !s.past) || {}).start || new Date());
+  if (CALV.week < minW) CALV.week = minW; if (CALV.week > maxW) CALV.week = maxW; CALV.min = minW; CALV.max = maxW;
+  calNextRender(st, S); calSharpRender(S); calHeadRender(st, S); calBoxRender(st, S); }
+function calNextRender(st, S){
+  const box = $('#calNext'), now = new Date(), nx = S.next, miss = S.find(s => s.miss && !s.handled && s.end > new Date(now - 2 * CAL_DAY));
+  box.className = 'cal-next' + (miss && st.c.confirmed ? ' miss' : '');
+  const lsRows = s => s.ls.map((r, i) => '<button type="button" class="ls" data-row="' + i + '">' + calLsTitle(r) + '</button>').join('');
+  if (!nx) { box.innerHTML = '<div class="k">' + CAL_IC.cal + esc(t('cal_end_k')) + '</div>'; return; }
+  if (!st.c.confirmed) box.innerHTML = '<div class="k">' + CAL_IC.cal + esc(t('cal_first_k')) + '</div><div class="when">' + esc(calLong(nx.start)) + ' · ' + calTm(nx.start) + '</div>' + lsRows(nx) + '<p class="cal-nt">' + esc(t('cal_first_note')) + '</p>';
+  else if (miss) { const tm = calAdd(miss.start, 1);
+    box.innerHTML = '<div class="k"><span class="cal-bang" aria-hidden="true">!</span>' + esc(t('cal_miss_k', { day: calDow(miss.start.getDay()) })) + '</div>' + lsRows(nx)
+      + '<p class="cal-nt">' + t('cal_miss_note', { day: calDow(nx.start.getDay()), time: calHm(nx.start), day2: calDow(tm.getDay()), time2: calHm(miss.start) }) + '</p>'
+      + '<div class="row"><button type="button" class="btn small primary" id="calMkUp">' + esc(t('cal_makeup', { time: calHm(miss.start) })) + '</button><button type="button" class="btn small" id="calMkNo">' + esc(t('cal_nomakeup')) + '</button></div>';
+    $('#calMkUp').addEventListener('click', () => calMakeup(miss)); $('#calMkNo').addEventListener('click', () => { const c = st.c; c.done[miss.key] = 'skip'; store('dbs_cal', c); calRender(); }); }
+  else box.innerHTML = '<div class="k">' + CAL_IC.clock + esc(t('cal_next_k')) + '</div><div class="when">' + esc(calDay(nx.start).getTime() === calDay(now).getTime() ? t('cal_today') : calLong(nx.start)) + ' · ' + calTm(nx.start, nx.end) + '</div>' + lsRows(nx)
+    + (nx.plus ? '<p class="cal-nt">' + esc(t('cal_plus_note', { topic: t('ls_' + nx.plus.id) })) + '</p>' : '');
+  box.querySelectorAll('[data-row]').forEach(b => b.addEventListener('click', () => calGoRow(nx.ls[+b.dataset.row]))); }
+function calSharpRender(S){
+  const sec = $('#h-sharp'); sec.hidden = !S.weak.length; if (!S.weak.length) return; const nx = S.next;
+  $('#calSharp').innerHTML = S.weak.map(l => '<div class="it"><span class="dot" aria-hidden="true"></span><div><span class="cal-id">' + l.n + '</span> <b>' + esc(t('ls_' + l.id)) + '</b><small>'
+    + esc(nx && nx.plus === l && CALV.st.c.confirmed ? t('sharp_line', { day: calDow(nx.start.getDay()) }) : t('sharp_line_nocal')) + '</small></div><button type="button" class="btn small" data-lsn="' + l.id + '">' + esc(t('sharp_go')) + '</button></div>').join('');
+  $$('#calSharp [data-lsn]').forEach(b => b.addEventListener('click', () => goLesson(lessonById(b.dataset.lsn)))); }
+function calHeadRender(st, S){
+  const n = calN(st.c.rhythm.length), f = S.finish; let lede = '';
+  if (f && S.exam) { const w = Math.floor((calDay(S.exam) - calDay(f)) / CAL_WK); lede = t(w >= 1 ? 'cal_lede' : 'cal_lede_tight', { n, date: pxDate(f), w: pxWeeks(w) }); }
+  else if (f) lede = t('cal_lede_free', { n, date: pxDate(f) });
+  $('#calLede').innerHTML = lede; $('#calAdd').textContent = '+ ' + t('cal_add'); $('#calAdd').hidden = !st.c.confirmed; $('#calExp').innerHTML = CAL_IC.down + esc(t('cal_export'));
+  $('#calExp').hidden = !st.c.confirmed; const said = $('#calSaid'); if (said.dataset.v !== CALV.said) { said.innerHTML = CALV.said; said.dataset.v = CALV.said; said.classList.remove('on'); void said.offsetWidth; if (CALV.said) said.classList.add('on'); }
+  const lk = said.querySelector('.cal-link'); if (lk) lk.onclick = calExport; }
+function calSesHtml(s, ghost){
+  const cls = 'cs' + (ghost ? ' ghost' : '') + (s.done ? ' done' : '') + (s.miss && !s.handled ? ' miss' : '') + (s.handled ? ' skip' : '') + (s.rev ? ' rev' : '');
+  const body = s.done ? '<span class="x">' + esc(t('cal_lg_done')) + '</span>' : s.handled ? '<span class="x">' + esc(t('cal_missed')) + '</span>'
+    : s.miss ? '<span class="x"><span class="cal-bang" aria-hidden="true">!</span><span>' + esc(t('cal_missed')) + '</span></span>' : s.rev ? '<span class="x">' + esc(t('cal_rev')) + '</span>'
+    : s.ls.map(r => '<span class="x"><span class="n">' + esc(r.n) + '</span><span>' + esc(r.title) + '</span></span>').join('');
+  return '<button type="button" class="' + cls + '" data-k="' + esc(s.key) + '"__ST__><span class="t"><span class="cal-tm">' + calHm(s.start) + '–' + calHm(s.end) + '</span>' + (s.plus ? '<span class="plus">' + esc(t('cal_plus')) + '</span>' : '') + '</span>' + body + '</button>'; }
+function calBoxRender(st, S){
+  const box = $('#calBox'), c = st.c, ws = CALV.week, we = calAdd(ws, 6), now = new Date(), hh = CAL_H1 - CAL_H0, wk = S.filter(s => s.start >= ws && s.start < calAdd(ws, 7));
+  const old = box.querySelector('.cal-gb'), keep = old && !CALV.scroll ? old.scrollTop : null, prefs = ['morning', 'noon', 'evening', 'weekend'];
+  const i = Math.round((ws - CALV.min) / CAL_WK) + 1, n = Math.round((CALV.max - CALV.min) / CAL_WK) + 1;
+  let h = '<div class="cal-bar"><button type="button" class="cal-ib" id="calPrev" aria-label="' + esc(t('cal_prev_a')) + '"' + (ws <= CALV.min ? ' disabled' : '') + '>' + CAL_IC.prev + '</button>'
+    + '<div class="wk">' + esc(ws.getMonth() === we.getMonth() ? ws.getDate() + '–' + pxDate(we) : pxDate(ws) + ' – ' + pxDate(we)) + '<small>' + esc(t('cal_week_n', { i, n })) + '</small></div>'
+    + '<button type="button" class="cal-ib" id="calNextW" aria-label="' + esc(t('cal_next_a')) + '"' + (ws >= CALV.max ? ' disabled' : '') + '>' + CAL_IC.next + '</button>'
+    + '<button type="button" class="btn small cal-this" id="calThis">' + esc(t('cal_this')) + '</button><span class="sp"></span>'
+    + (c.confirmed ? '' : '<div class="cal-pref">' + esc(t('cal_pref_q')) + prefs.map(k => '<button type="button" class="cal-chip" data-pref="' + k + '" aria-pressed="' + (c.pref === k && !c.unsure) + '">' + esc(t('cal_p_' + k)) + '</button>').join('')
+      + '<button type="button" class="cal-chip" data-pref="unsure" aria-pressed="' + !!c.unsure + '">' + esc(tg('pl_unsure')) + '</button></div>') + '</div>';
+  if (!c.confirmed) h += '<div class="cal-prop"><p>' + t(c.unsure ? 'cal_prop_unsure' : 'cal_prop') + '</p><button type="button" class="btn primary" id="calOk">' + esc(t('cal_confirm')) + '</button></div>';
+  /* the week, on desktop */
+  h += '<div class="cal-grid"><div class="cal-gh"><div class="cal-dh"></div>';
+  for (let d = 0; d < 7; d++) { const day = calAdd(ws, d), ex = S.exam && calYmd(day) === calYmd(S.exam);
+    h += '<div class="cal-dh' + (calYmd(day) === calYmd(now) ? ' today' : '') + '">' + esc(calDow(d)) + '<b>' + day.getDate() + '</b>' + (ex ? '<span class="cal-tag">' + esc(t('cal_exam')) + '</span>' : '') + '</div>'; }
+  h += '</div><div class="cal-gb"><div class="cal-gc"><div class="cal-hours" style="height:' + hh * CAL_HR + 'px">' + Array.from({ length: hh - 1 }, (_, k) => '<span style="top:' + (k + 1) * CAL_HR + 'px">' + calP2(CAL_H0 + k + 1) + ':00</span>').join('') + '</div>';
+  for (let d = 0; d < 7; d++) { const day = calAdd(ws, d), cls = ['cal-day']; if (calAdd(day, 1) <= now) cls.push('past');
+    if (S.exam && calYmd(day) === calYmd(S.exam)) cls.push('exam'); else if (S.finish && day > S.finish && (!S.exam || day < S.exam)) cls.push('rev');
+    h += '<div class="' + cls.join(' ') + '" data-d="' + d + '" style="height:' + hh * CAL_HR + 'px;background-size:100% ' + CAL_HR + 'px">';
+    if (calYmd(day) === calYmd(now)) h += '<div class="cal-now" style="top:' + ((now.getHours() + now.getMinutes() / 60 - CAL_H0) * CAL_HR) + 'px"></div>';
+    wk.filter(s => s.start.getDay() === d).forEach(s => { const top = (s.start.getHours() + s.start.getMinutes() / 60 - CAL_H0) * CAL_HR, ht = Math.max(34, s.slot.dur / 60 * CAL_HR - 3);
+      h += calSesHtml(s, !c.confirmed).replace('__ST__', ' style="top:' + top + 'px;height:' + ht + 'px"'); });
+    h += '</div>'; }
+  h += '</div></div></div>';
+  /* the week, on a phone: a list by day */
+  h += '<div class="cal-agenda">';
+  for (let d = 0; d < 7; d++) { const day = calAdd(ws, d), ss = wk.filter(s => s.start.getDay() === d), ex = S.exam && calYmd(day) === calYmd(S.exam);
+    h += '<div class="cal-ad' + (calYmd(day) === calYmd(now) ? ' today' : '') + (ex ? ' exam' : '') + '"><div class="d">' + esc(calDow(d)) + '<b>' + day.getDate() + '</b></div><div class="ss">'
+      + (ss.length ? ss.map(s => calSesHtml(s, !c.confirmed).replace('__ST__', '')).join('') : ex ? '<span class="none">' + esc(t('cal_exam_day')) + '</span>' : '')
+      + (c.confirmed && !ex && !ss.length && calAdd(day, 1) > now ? '<button type="button" class="add" data-add="' + d + '">' + esc(t('cal_add_day')) + '</button>' : '') + '</div></div>'; }
+  h += '</div><div class="cal-foot"><span class="lg"><i style="background:var(--accent-soft);border-color:var(--accent)"></i>' + esc(t('cal_lg_ses')) + '</span><span class="lg"><i style="background:var(--surface2)"></i>' + esc(t('cal_lg_done')) + '</span>'
+    + (S.exam ? '<span class="lg"><i style="background:color-mix(in srgb,var(--accent-soft) 70%,var(--surface))"></i>' + esc(t('cal_lg_rev')) + '</span>' : '') + '<span class="sp"></span><span>' + esc(t(c.confirmed ? 'cal_foot' : 'cal_foot_pre')) + '</span></div>';
+  box.innerHTML = h;
+  /* open on the hours that hold sessions; keep the student's own scroll between changes */
+  const gb = box.querySelector('.cal-gb'), first = Math.min(...wk.map(s => s.start.getHours()).concat(c.rhythm.map(r => +r.t.slice(0, 2))));
+  CALV.pend = keep !== null ? keep : Math.max(0, (first - CAL_H0 - 1.5) * CAL_HR); calScrollFix();
+  $('#calPrev').addEventListener('click', () => calWeek(-1)); $('#calNextW').addEventListener('click', () => calWeek(1));
+  $('#calThis').addEventListener('click', () => { CALV.auto = true; CALV.scroll = true; calRender(); });
+  const ok = $('#calOk'); if (ok) ok.addEventListener('click', calConfirm); }
+function calScrollFix(){ const gb = $('#calBox .cal-gb'); if (!gb || CALV.pend == null || !gb.clientHeight) return; gb.scrollTop = CALV.pend; CALV.pend = null; CALV.scroll = false; }
+function calWeek(dir){ CALV.auto = false; CALV.scroll = true; CALV.week = calAdd(CALV.week, 7 * dir); calRender(); }
+
+/* ---- changes: each one says what it did, in the line under the heading ---- */
+function calSay(html){ CALV.said = html; }
+function calFinishLine(prev){ const f = CALV.S && CALV.S.finish; return prev && f && calYmd(prev) !== calYmd(f) ? t('cal_s_finish', { date: pxDate(f), old: pxDate(prev) }) : ''; }
+function calCommit(c, said, flashKey){ store('dbs_cal', c); const prev = CALV.S && CALV.S.finish; calRender(); calSay(typeof said === 'function' ? said(prev) : said); calHeadRender(CALV.st, CALV.S);
+  if (flashKey) requestAnimationFrame(() => $$('#calBox [data-k="' + CSS.escape(flashKey) + '"]').forEach(b => b.classList.add('flash'))); }
+/* a change to the rhythm reaches this week and on: the weeks that already passed keep what they had */
+function calFreeze(c){ for (let ws = calWk(new Date(c.since)); ws < calWk(new Date()); ws = calAdd(ws, 7)) { const k = calYmd(ws); if (!c.over[k]) c.over[k] = c.rhythm.map(r => Object.assign({}, r)); } }
+function calSetPref(k){ const st = calState(); if (!st) return; const c = st.c; c.unsure = k === 'unsure'; c.pref = c.unsure ? 'evening' : k; c.rhythm = calRhythm(c.pref, st.P.pace.per); c.over = {}; CALV.scroll = true;
+  calCommit(c, prev => c.unsure ? t('cal_s_unsure') : t('cal_s_pref', { p: lang === 'en' ? t('cal_p_' + k).toLowerCase() : t('cal_p_' + k) }) + calFinishLine(prev)); }
+function calConfirm(){ const st = calState(); if (!st) return; const c = st.c; c.confirmed = new Date().toISOString(); if (!load('dbs_cal', null)) c.since = c.confirmed;
+  calCommit(c, t('cal_s_confirmed') + ' <button type="button" class="cal-link">' + esc(t('cal_export')) + '</button>'); }
+function calMove(key, d, tm){
+  const st = calState(), s = CALV.S.find(x => x.key === key); if (!st || !s) return; const c = st.c, wsk = calYmd(s.ws), was = { d: s.slot.d, t: s.slot.t }, one = !!c.over[wsk];
+  calFreeze(c); const list = c.over[wsk] && one ? c.over[wsk] : c.rhythm, r = list.find(x => x.d === was.d && x.t === was.t); if (!r || list.some(x => x !== r && x.d === d && x.t === tm)) { calRender(); return; }
+  Object.assign(r, { d, t: tm }); if (!one) c.rhythm.sort((a, b) => a.d - b.d || a.t.localeCompare(b.t)); const nk = wsk + '#' + d + '@' + tm;
+  const v = { d1: calDow(was.d), t1: was.t, d2: calDow(d), t2: tm };
+  calCommit(c, prev => t(one ? 'cal_s_move_one' : 'cal_s_move_all', v) + calFinishLine(prev) + ' ' + t('cal_s_order'), nk);
+  if (c.confirmed && !one) calToast(t('cal_t_all'), t('cal_t_only'), () => { const st2 = calState(), c2 = st2.c, rr = c2.rhythm.find(x => x.d === d && x.t === tm); if (!rr) return; Object.assign(rr, was);
+    c2.over[wsk] = c2.rhythm.map(x => Object.assign({}, x)); Object.assign(c2.over[wsk].find(x => x.d === was.d && x.t === was.t), { d, t: tm }); calCommit(c2, t('cal_s_back', v), nk); }); }
+function calAddSes(d, tm){
+  const st = calState(); if (!st) return; const c = st.c, wsk = calYmd(CALV.week); if (c.rhythm.some(r => r.d === d && r.t === tm)) return; calFreeze(c);
+  c.rhythm.push({ d, t: tm, dur: 45 }); c.rhythm.sort((a, b) => a.d - b.d || a.t.localeCompare(b.t));
+  calCommit(c, prev => t('cal_s_add_all', { d: calDow(d), t: tm }) + calFinishLine(prev), wsk + '#' + d + '@' + tm);
+  calToast(t('cal_t_added'), t('cal_t_only'), () => { const c2 = calState().c; c2.rhythm = c2.rhythm.filter(r => !(r.d === d && r.t === tm)); c2.over[wsk] = (c2.over[wsk] || c2.rhythm.map(x => Object.assign({}, x))).concat([{ d, t: tm, dur: 45 }]);
+    calCommit(c2, t('cal_s_add_one', { d: calDow(d), t: tm }), wsk + '#' + d + '@' + tm); }); }
+function calDel(key){ const st = calState(), s = CALV.S.find(x => x.key === key); if (!st || !s || st.c.rhythm.length < 2) return; const c = st.c; calFreeze(c);
+  c.rhythm = c.rhythm.filter(r => !(r.d === s.slot.d && r.t === s.slot.t)); calPopClose(); calCommit(c, prev => t('cal_s_del', { d: calDow(s.slot.d), t: s.slot.t }) + calFinishLine(prev)); }
+function calDur(key, m){ const st = calState(), s = CALV.S.find(x => x.key === key); if (!st || !s) return; const c = st.c, wsk = calYmd(s.ws); calFreeze(c);
+  const r = (c.over[wsk] || c.rhythm).find(x => x.d === s.slot.d && x.t === s.slot.t); if (r) r.dur = m; store('dbs_cal', c); calRender(); }
+function calMakeup(miss){ const st = calState(); if (!st) return; const c = st.c, tm = calAdd(miss.start, 1), wsk = calYmd(calWk(tm)), at = calHm(miss.start);
+  const base = c.over[wsk] || c.rhythm.map(r => Object.assign({}, r)); if (!base.some(r => r.d === tm.getDay() && r.t === at)) base.push({ d: tm.getDay(), t: at, dur: miss.slot.dur }); c.over[wsk] = base; c.done[miss.key] = 'skip';
+  CALV.auto = true; calCommit(c, t('cal_s_makeup', { d: calDow(tm.getDay()), t: at }), wsk + '#' + tm.getDay() + '@' + at); }
+function calToast(msg, act, fn){ let tt = $('#calToast'); if (!tt) { tt = el('div', 'cal-toast'); tt.id = 'calToast'; tt.setAttribute('role', 'status'); document.body.appendChild(tt); }
+  tt.innerHTML = '<span>' + esc(msg) + '</span>' + (act ? '<button type="button">' + esc(act) + '</button>' : ''); tt.hidden = false;
+  if (act) tt.querySelector('button').addEventListener('click', () => { tt.hidden = true; fn(); }); clearTimeout(CALV.toastT); CALV.toastT = setTimeout(() => { tt.hidden = true; }, 6000); }
+
+/* ---- the session menu (glass: it floats) ---- */
+function calPopClose(){ const p = $('#calPop'); if (p) p.remove(); }
+function calPopOpen(key, anchor){
+  calPopClose(); const s = CALV.S && CALV.S.find(x => x.key === key); if (!s) return; const c = CALV.st.c, p = el('div', 'cal-pop'); p.id = 'calPop'; p.setAttribute('role', 'dialog');
+  const body = s.done ? '' : s.miss ? '<p class="sub">' + esc(t('cal_pop_miss')) + '</p>' : s.rev ? '<p class="sub">' + esc(t('cal_pop_rev')) + '</p>'
+    : s.ls.map((r, i) => '<div class="lsr"><span class="cal-id">' + esc(r.n) + '</span><span>' + esc(r.title) + '</span><button type="button" class="btn small" data-row="' + i + '">' + esc(t('cal_pop_go')) + '</button></div>').join('');
+  const live = c.confirmed && !s.past;
+  p.innerHTML = '<button type="button" class="cal-ib cal-x" aria-label="' + esc(t('pl_close')) + '">' + CAL_IC.x + '</button><h3>' + esc(calLong(s.start)) + '</h3><p class="sub">' + calTm(s.start, s.end) + (s.done ? ' · ' + esc(t('cal_lg_done')) : '') + '</p>' + body
+    + (live ? '<div class="lab">' + esc(t('cal_pop_dur')) + '</div><div class="row">' + [30, 45, 60, 90].map(m => '<button type="button" class="cal-chip" data-dur="' + m + '" aria-pressed="' + (s.slot.dur === m) + '">' + esc(t('ls_min', { m })) + '</button>').join('') + '</div>' : '')
+    + (c.confirmed && (live && c.rhythm.length > 1 || s.miss && !s.handled) ? '<div class="acts">' + (s.miss && !s.handled ? '<button type="button" class="btn small primary" id="calPopDone">' + esc(t('cal_pop_done')) + '</button>' : '') + (live && c.rhythm.length > 1 ? '<button type="button" class="btn small" id="calPopDel">' + esc(t('cal_pop_del')) + '</button>' : '') + '</div>' : '')
+    + (s.past ? '' : '<div class="soon"><span class="sw" aria-hidden="true"></span><span>' + esc(t('cal_pop_push')) + '</span><em class="cal-badge">' + esc(t('cal_soon')) + '</em></div>');
+  document.body.appendChild(p);
+  const r = anchor.getBoundingClientRect(), w = p.offsetWidth, rtl = document.documentElement.dir === 'rtl';
+  let x = rtl ? r.left - w - 10 : r.right + 10; if (x < 10 || x + w > innerWidth - 10) x = rtl ? r.right + 10 : r.left - w - 10; x = Math.max(10, Math.min(innerWidth - w - 10, x));
+  p.style.left = x + 'px'; p.style.top = Math.min(innerHeight - p.offsetHeight - 10, Math.max(70, r.top - 20)) + 'px';
+  p.querySelector('.cal-x').addEventListener('click', calPopClose); p.querySelector('.cal-x').focus({ preventScroll: true });
+  p.querySelectorAll('[data-row]').forEach(b => b.addEventListener('click', () => { calPopClose(); calGoRow(s.ls[+b.dataset.row]); }));
+  p.querySelectorAll('[data-dur]').forEach(b => b.addEventListener('click', () => { calDur(key, +b.dataset.dur); const a = $('#calBox [data-k="' + CSS.escape(key) + '"]'); if (a) calPopOpen(key, a); }));
+  const dl = $('#calPopDel'); if (dl) dl.addEventListener('click', () => calDel(key));
+  const dn = $('#calPopDone'); if (dn) dn.addEventListener('click', () => { const c2 = calState().c; c2.done[key] = 1; store('dbs_cal', c2); calPopClose(); calRender(); }); }
+
+/* ---- the export: an .ics file with every session up to the exam, each with a reminder 30 minutes before ---- */
+function calExport(){
+  calPopClose(); const old = $('#calDlg'); if (old) old.remove(); const back = document.activeElement, apps = { google: ['Google Calendar', ['cal_x_g1', 'cal_x_g2', 'cal_x_g3']], apple: ['Apple Calendar', ['cal_x_a1', 'cal_x_a2']], outlook: ['Outlook', ['cal_x_o1', 'cal_x_o2']] };
+  let app = /iPhone|iPad|Macintosh/.test(navigator.userAgent) ? 'apple' : 'google'; const sc = el('div', 'cal-scrim'); sc.id = 'calDlg';
+  const n = (CALV.S || []).filter(s => !s.past).length, close = () => { sc.remove(); document.removeEventListener('keydown', key, true); if (back && document.contains(back)) back.focus({ preventScroll: true }); };
+  const key = e => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
+  const draw = () => { sc.innerHTML = '<div class="cal-dlg" role="dialog" aria-modal="true" aria-labelledby="calDlgH"><button type="button" class="cal-ib cal-x" aria-label="' + esc(t('pl_close')) + '">' + CAL_IC.x + '</button><h3 id="calDlgH">' + esc(t('cal_x_h')) + '</h3><p>' + esc(t('cal_x_p', { n })) + '</p>'
+      + '<div class="cal-apps">' + Object.entries(apps).map(([k, v]) => '<button type="button" class="cal-app" data-app="' + k + '" aria-pressed="' + (k === app) + '"><b>' + v[0] + '</b><small>' + esc(t('cal_x_file')) + '</small></button>').join('') + '</div>'
+      + '<div class="cal-how">' + esc(t('cal_x_how', { app: apps[app][0] })) + '<ol>' + apps[app][1].map(k => '<li>' + esc(t(k)) + '</li>').join('') + '</ol></div>'
+      + '<button type="button" class="btn primary" id="calIcs">' + CAL_IC.down + esc(t('cal_x_dl')) + '</button>'
+      + '<div class="cal-opt"><div><b>' + esc(t('cal_x_sub_h')) + '</b><small>' + esc(t('cal_x_sub_p')) + '</small></div><span class="cal-badge">' + esc(t('cal_soon')) + '</span></div>'
+      + '<div class="cal-opt"><div><small>' + esc(t('cal_x_note')) + '</small></div></div></div>';
+    sc.querySelector('.cal-x').addEventListener('click', close); sc.querySelectorAll('[data-app]').forEach(b => b.addEventListener('click', () => { app = b.dataset.app; draw(); sc.querySelector('[data-app="' + app + '"]').focus(); }));
+    sc.querySelector('#calIcs').addEventListener('click', calDownload); };
+  draw(); sc.addEventListener('click', e => { if (e.target === sc) close(); }); document.addEventListener('keydown', key, true); document.body.appendChild(sc); $('#calIcs').focus(); }
+function calFold(line){ const enc = new TextEncoder(); if (enc.encode(line).length <= 75) return line; let out = '', cur = '', nb = 0;
+  for (const ch of line) { const b = enc.encode(ch).length; if (nb + b > (out ? 74 : 75)) { out += (out ? '\r\n ' : '') + cur; cur = ''; nb = 0; } cur += ch; nb += b; }
+  return out + '\r\n ' + cur; }
+function calIcs(){
+  const st = calState(); if (!st) return ''; const S = calSched(st), stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+  const tx = s => String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+  const dt = d => d.getFullYear() + calP2(d.getMonth() + 1) + calP2(d.getDate()) + 'T' + calP2(d.getHours()) + calP2(d.getMinutes()) + '00';
+  const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//RowdyQL//Study calendar//' + lang.toUpperCase(), 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:RowdyQL', 'X-WR-TIMEZONE:Asia/Jerusalem',
+    'BEGIN:VTIMEZONE', 'TZID:Asia/Jerusalem', 'BEGIN:STANDARD', 'DTSTART:19701025T020000', 'TZOFFSETFROM:+0300', 'TZOFFSETTO:+0200', 'TZNAME:IST', 'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU', 'END:STANDARD',
+    'BEGIN:DAYLIGHT', 'DTSTART:19700327T020000', 'TZOFFSETFROM:+0200', 'TZOFFSETTO:+0300', 'TZNAME:IDT', 'RRULE:FREQ=YEARLY;BYMONTH=3;BYMONTHDAY=23,24,25,26,27,28,29;BYDAY=FR', 'END:DAYLIGHT', 'END:VTIMEZONE'];
+  S.filter(s => !s.past).forEach(s => { const r = s.ls[0], l = r && !r.soon ? lessonById(r.id) : null, url = 'https://rowdyql.com/#/' + (l ? l.unit + '/' + l.secs[0] : 'learn');
+    const title = 'RowdyQL · ' + (s.rev ? t('cal_ics_rev') : s.ls.map(x => x.n + ' ' + x.title).join(' + '));
+    L.push('BEGIN:VEVENT', 'UID:' + s.key.replace(/[^0-9A-Za-z]/g, '') + '@rowdyql.com', 'DTSTAMP:' + stamp, 'DTSTART;TZID=Asia/Jerusalem:' + dt(s.start), 'DTEND;TZID=Asia/Jerusalem:' + dt(s.end),
+      'SUMMARY:' + tx(title), 'DESCRIPTION:' + tx(t('cal_ics_desc', { url })), 'URL:' + url, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + tx(title), 'TRIGGER:-PT30M', 'END:VALARM', 'END:VEVENT'); });
+  L.push('END:VCALENDAR'); return L.map(calFold).join('\r\n') + '\r\n'; }
+function calDownload(){ const b = new Blob([calIcs()], { type: 'text/calendar;charset=utf-8' }), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'rowdyql.ics'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
+
+/* ---- the calendar's pointer and keyboard work: drag to move (15-minute steps), click a session for its menu, click an empty slot to add ---- */
+document.addEventListener('pointerdown', e => {
+  const b = e.target.closest('#calBox .cal-grid .cs'); if (!b || e.button !== 0) return; const s = CALV.S && CALV.S.find(x => x.key === b.dataset.k); if (!s || s.past) return;
+  CALV.drag = { b, s, x0: e.clientX, y0: e.clientY, top0: parseFloat(b.style.top), moved: false }; });
+document.addEventListener('pointermove', e => { const D = CALV.drag; if (!D) return; const dy = e.clientY - D.y0;
+  if (!D.moved && Math.hypot(e.clientX - D.x0, dy) < 6) return; if (!D.moved) { D.moved = true; D.b.classList.add('drag'); calPopClose(); }
+  const col = document.elementsFromPoint(e.clientX, e.clientY).find(x => x.classList && x.classList.contains('cal-day')); if (col && col !== D.b.parentElement && calAdd(CALV.week, +col.dataset.d + 1) > new Date()) col.appendChild(D.b);
+  const q = CAL_HR / 4; D.b.style.top = Math.max(0, Math.min((CAL_H1 - CAL_H0) * CAL_HR - q, Math.round((D.top0 + dy) / q) * q)) + 'px'; });
+document.addEventListener('pointerup', () => { const D = CALV.drag; if (!D) return; CALV.drag = null; if (!D.moved) return; CALV.noClick = true; setTimeout(() => { CALV.noClick = false; }, 0); D.b.classList.remove('drag');
+  const d = +D.b.parentElement.dataset.d, mins = Math.round(parseFloat(D.b.style.top) / CAL_HR * 4) * 15 + CAL_H0 * 60, tm = calP2(Math.floor(mins / 60)) + ':' + calP2(mins % 60);
+  if (calAt(calAdd(CALV.week, d), tm) <= new Date() || (d === D.s.slot.d && tm === D.s.slot.t)) { calRender(); return; } calMove(D.s.key, d, tm); });
+document.addEventListener('click', e => {
+  const p = $('#calPop'); if (p && !p.contains(e.target) && !e.target.closest('#calBox .cs')) calPopClose();
+  if (!e.target.closest || !e.target.closest('#h-cal')) return;
+  if (CALV.noClick) { CALV.noClick = false; if (e.target.closest('.cs')) return; }
+  const pf = e.target.closest('[data-pref]'); if (pf) { calSetPref(pf.dataset.pref); return; }
+  if (e.target.closest('#calExp')) { calExport(); return; }
+  if (e.target.closest('#calAdd')) { const st = calState(); if (!st) return; const used = new Set(st.c.rhythm.map(r => r.d)), d = [1, 3, 5, 6, 0, 2, 4].find(x => !used.has(x)); if (d !== undefined) calAddSes(d, CAL_TIME[st.c.pref] || '20:00'); return; }
+  const ad = e.target.closest('[data-add]'); if (ad) { const st = calState(); if (st) calAddSes(+ad.dataset.add, CAL_TIME[st.c.pref] || '20:00'); return; }
+  const cs = e.target.closest('.cs'); if (cs) { calPopOpen(cs.dataset.k, cs); return; }
+  const day = e.target.closest('.cal-day'); if (day && CALV.st && CALV.st.c.confirmed) { const r = day.getBoundingClientRect(), mins = Math.floor((e.clientY - r.top) / CAL_HR * 2) * 30 + CAL_H0 * 60, tm = calP2(Math.floor(mins / 60)) + ':' + calP2(mins % 60);
+    if (calAt(calAdd(CALV.week, +day.dataset.d), tm) > new Date() && mins < CAL_H1 * 60) calAddSes(+day.dataset.d, tm); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('#calPop')) { calPopClose(); } });
 
 /* keys inside the plan screen: a number picks an option, Enter goes on */
 document.addEventListener('keydown', e => {
@@ -6409,11 +6859,13 @@ setInterval(() => { if (document.visibilityState === 'visible') ntLoad(false); }
 /* ---- the tour: steps are data; to change the tour when the home page changes, edit TOUR (sel = what to highlight, none = a centered note) ---- */
 const TOUR = [
   { key: 'tour_hi' },
-  { sel: '.tabs', key: 'tour_tabs' },
+  { sel: '#abar', key: 'tour_abar' },
   { sel: '#helloCta', key: 'tour_start' },
   { sel: '#homeStats', key: 'tour_stats' },
-  { sel: '#homeSessions', key: () => 'tour_lessons' },
-  { sel: '#homeQuick', key: 'tour_quick' },
+  { sel: '#calBox', key: 'tour_cal' },
+  { sel: '.tabs', key: 'tour_tabs', unit: 'learn' },
+  { sel: '#homeSessions', key: () => 'tour_lessons', unit: 'learn' },
+  { sel: '#homeQuick', key: 'tour_quick', unit: 'learn' },
   { sel: '#btnToc', key: 'tour_toc' },
   { sel: '#btnBell', key: 'tour_bell' },
   { sel: '#btnMe', key: 'tour_me' },
@@ -6422,7 +6874,7 @@ const TOUR = [
 const TR = { i: 0, steps: [], thanks: false };
 function startTour(thanks){
   closeMe(); if ($('#tour')) $('#tour').remove(); setUnit('home'); TR.i = 0; TR.thanks = !!thanks;
-  TR.steps = TOUR.filter(s => { if (!s.sel) return true; const e = document.querySelector(s.sel); return !!e && e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden'; });
+  TR.steps = TOUR.filter(s => { if (!s.sel) return true; const e = document.querySelector(s.sel); if (!e) return false; if (s.unit) return !e.closest('[hidden]:not(.unit)'); return e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden'; });
   const o = el('div', 'tour'); o.id = 'tour'; o.innerHTML = '<div class="tour-hole"></div><div class="tour-tip" role="dialog" aria-live="polite"><p id="tourTx"></p><div class="tour-foot"><span class="tour-n" id="tourN"></span><div class="controls"><button type="button" class="btn ghost small" id="tourPrev">' + t('tour_prev') + '</button><button type="button" class="btn primary small" id="tourNext"></button></div></div><button type="button" class="tour-skip" id="tourSkip">' + t('tour_skip') + '</button></div>';
   document.body.appendChild(o);
   $('#tourNext').addEventListener('click', () => { if (TR.i < TR.steps.length - 1) { TR.i++; tourShow(); } else tourEnd(); });
@@ -6434,6 +6886,7 @@ function startTour(thanks){
 }
 function tourShow(){
   const s = TR.steps[TR.i], o = $('#tour'); if (!s || !o) return; const key = typeof s.key === 'function' ? s.key() : s.key;
+  const tg0 = s.sel && document.querySelector(s.sel), want = s.unit || (tg0 && !tg0.closest('.top, #abar') ? 'home' : null); if (want && want !== unit) setUnit(want);
   $('#tourTx').innerHTML = t(TR.i === 0 && TR.thanks ? 'tour_hi_after' : key);
   $('#tourN').textContent = t('tour_n', { i: TR.i + 1, n: TR.steps.length });
   $('#tourPrev').hidden = TR.i === 0; $('#tourNext').textContent = t(TR.i === TR.steps.length - 1 ? 'tour_go' : 'tour_next');
@@ -6451,7 +6904,7 @@ function tourPlace(){
   const x = Math.min(W0 - tw - gap, Math.max(gap, r.left + r.width / 2 - tw / 2));
   tip.style.left = Math.round(x) + 'px'; tip.style.top = Math.round(y) + 'px';
 }
-function tourEnd(){ const o = $('#tour'); if (o) o.remove(); removeEventListener('resize', tourPlace); removeEventListener('scroll', tourPlace); const pr = prefs(); pr.tourDone = true; store('dbs_prefs', pr); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function tourEnd(){ const o = $('#tour'); if (o) o.remove(); if (unit !== 'home') setUnit('home'); removeEventListener('resize', tourPlace); removeEventListener('scroll', tourPlace); const pr = prefs(); pr.tourDone = true; store('dbs_prefs', pr); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 /* ---- captcha (Cloudflare Turnstile), live site only ---- */
 function ensureCaptcha(){ if (!window.turnstile || captchaWidget !== null || !$('#gCaptcha')) return; try { captchaWidget = window.turnstile.render('#gCaptcha', { sitekey: DBS_CONFIG.turnstileSiteKey, theme: 'dark', language: lang === 'he' ? 'he' : 'en', callback: tok => { captchaToken = tok; validateStep(false); }, 'expired-callback': () => { captchaToken = ''; validateStep(false); }, 'error-callback': () => { captchaToken = ''; validateStep(false); } }); } catch(e) {} }
