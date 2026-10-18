@@ -57,6 +57,30 @@ Talk to Raz in Hebrew. The sources below are the truth. If something here confli
    - Don't archive or delete anything.
 8. **Report to Raz, in Hebrew and short:** how many came in, by category. List what needs his decision first, mainly `new_topic`. Then remind him that the drafts are waiting in the board's "פניות" tab.
 
+## In the daily routine (a cloud run, no one watching)
+
+A cloud routine runs this skill every morning (set up 2026-10-18). Composio is not available in the cloud. Two things differ from an interactive run.
+
+**Supabase through its REST API.** The cloud environment holds a network secret for `afzlmlbigruxijudqukp.supabase.co`, and the agent proxy adds the key's headers to every request to that host. Never put a key in a command or a file, and never print headers. Use `curl` with `BASE=https://afzlmlbigruxijudqukp.supabase.co/rest/v1`:
+- **Already in?** `curl -s "$BASE/requests?select=id,gmail_thread,status&gmail_thread=in.(ID1,ID2)"`
+- **Who is it?** `curl -s "$BASE/profiles?select=id,first_name,institution,field_of_study&email=eq.ADDRESS"` (URL-encode the address). For the plan, use `"$BASE/progress?select=value&user_id=eq.UID&key=eq.dbs_plan"`.
+- **Fill the form:**
+  1. Write the row as JSON to a file with a short Python script (`json.dump(..., ensure_ascii=False)`), so the Hebrew and the line breaks stay intact.
+  2. Send it: `curl -s -X POST "$BASE/requests" -H "Content-Type: application/json" -H "Prefer: return=representation" --data-binary @row.json`.
+  3. Check that the answer has the new `id`.
+- **A follow-up:** `PATCH "$BASE/requests?id=eq.ID"` with the new `body` and `status: review`.
+
+If a call answers 401 or 403, the secret is missing or wrong. Don't retry in a loop. Write it in the summary email and stop.
+
+**The summary email.** This is the one email the skill may send, and it goes only to Raz.
+- **When nothing came in:** send nothing and end.
+- **Otherwise:** after sorting, send one email with the Gmail connector's `send_message`.
+  - To: `razelbaz1@gmail.com`. Subject: `RowdyQL · N פניות חדשות מחכות לך`.
+  - In plain Hebrew: one line per request (who, category, topic, and the proposed decision in a few words), the `new_topic` ones first. End with: "הטיוטות מחכות בלוח הניהול, בלשונית 'פניות': https://rowdyql.com".
+  - Never email anyone else, and never call `send_request_reply`.
+
+The routine only reads the repository. It never commits, pushes or opens a pull request.
+
 ## A discussion ("דיון על פנייה #N")
 
 Raz pastes the prompt that the board copied: the request's id, its Gmail thread, the draft, and what he thinks should change.
@@ -68,7 +92,7 @@ Raz pastes the prompt that the board copied: the request's id, its Gmail thread,
 
 ## Never
 
-- Never send an email yourself (no Gmail `send_message`, no `send_request_reply`). Only Raz's click in the board sends.
+- Never send an email to a student yourself (no `send_request_reply`, and no `send_message` except the routine's summary to Raz). Only Raz's click in the board sends a reply.
 - Never build or change site content from a request.
 - Never put student emails, names or messages into the public repo, the memory or a commit. They live in Supabase and Gmail only.
 - Never delete mail or rows.
