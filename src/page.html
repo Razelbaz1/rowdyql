@@ -228,6 +228,49 @@ html[dir="rtl"] .notice{--dir:-1}
 .bench{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:1rem;box-shadow:var(--shadow)}
 .bench-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
 .bench-head h3{margin:0}
+/* 7b: "guess first, then watch" loops, under a topic's opening paragraph */
+.lp{margin:0 0 1.4rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem 1.1rem;display:flex;flex-direction:column;gap:.8rem}
+.lp.folded{flex-direction:row;align-items:center;gap:.8rem;padding:.55rem .9rem;color:var(--muted);font-size:.92rem;flex-wrap:wrap}
+.lp-top{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.lp-eb{font-size:.8rem;font-weight:600;color:var(--accent)}
+.lp-q{margin:0;font-size:1.12rem;font-weight:600;color:var(--ink)}
+.lp-opts{display:flex;gap:.6rem;flex-wrap:wrap}
+.lp-o{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;min-width:96px;min-height:64px;padding:.4rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;transition:border-color .3s,box-shadow .4s,background-color .3s}
+.lp-o b{font-size:1.5rem;line-height:1.1;font-weight:700}
+.lp-o span{font-size:.8rem;color:var(--muted)}
+.lp-o:not(:disabled):hover,.lp-o:focus-visible{border-color:#5CC3D9;box-shadow:0 0 0 1px rgba(92,195,217,.6),0 0 12px rgba(92,195,217,.25);outline:0}
+.lp-o:disabled{cursor:default}
+.lp-o.ok{border-color:var(--good);background:var(--good-bg)}
+.lp-o.no{border-color:var(--bad);background:var(--bad-bg)}
+.lp-o:disabled:not(.ok):not(.no){opacity:.55}
+.lp-mk{position:absolute;top:-9px;inset-inline-end:-9px;display:grid;place-items:center;background:var(--surface);border-radius:7px}
+.lp-opts.tbls{align-items:stretch}
+.lp-o.lp-t{justify-content:flex-start;gap:.5rem;padding:.6rem .7rem .7rem;min-width:130px}
+.lp-o.lp-t .lp-tc{font-size:1rem;font-weight:700;color:var(--ink);text-align:center;max-width:170px}
+.lp-o.lp-t .lp-tc.meant{font-size:.84rem;font-weight:500}
+.lp-o.lp-t .tbl{pointer-events:none}
+.lp-said{margin:0;font-weight:500;color:var(--ink)}
+.lp-said:empty{display:none}
+.lp-stage{display:flex;flex-direction:column;gap:.7rem}
+.lp-beat{display:flex;align-items:center;gap:.7rem}
+.lp-cap{margin:0;color:var(--ink)}
+.lp-cap bdi{white-space:nowrap}
+.lp-dots{display:inline-flex;gap:4px;flex:none}.lp-dots i{width:16px;height:4px;border-radius:2px;background:var(--line)}.lp-dots i.done{background:var(--good)}.lp-dots i.cur{background:#5CC3D9}
+.lp-tables.in .tbl{animation:lpIn .45s ease both}.lp-tables.in .tbl:nth-child(2){animation-delay:.12s}
+.lp-tables.in table.data tr{animation:lpRow .4s ease both}
+.lp-tables.in table.data tr:nth-child(2){animation-delay:0.00s}.lp-tables.in table.data tr:nth-child(3){animation-delay:0.05s}.lp-tables.in table.data tr:nth-child(4){animation-delay:0.10s}.lp-tables.in table.data tr:nth-child(5){animation-delay:0.15s}.lp-tables.in table.data tr:nth-child(6){animation-delay:0.20s}.lp-tables.in table.data tr:nth-child(7){animation-delay:0.25s}.lp-tables.in table.data tr:nth-child(8){animation-delay:0.30s}.lp-tables.in table.data tr:nth-child(9){animation-delay:0.35s}.lp-tables.in table.data tr:nth-child(10){animation-delay:0.40s}.lp-tables.in table.data tr:nth-child(11){animation-delay:0.45s}.lp-tables.in table.data tr:nth-child(12){animation-delay:0.50s}.lp-tables.in table.data tr:nth-child(13){animation-delay:0.55s}.lp-tables.in table.data tr:nth-child(14){animation-delay:0.60s}.lp-tables.in table.data tr:nth-child(15){animation-delay:0.65s}.lp-tables.in table.data tr:nth-child(16){animation-delay:0.70s}
+@keyframes lpIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes lpRow{from{opacity:0}to{opacity:1}}
+td.lp-dim{color:var(--muted);opacity:.45}
+td.lp-col{font-weight:600;background:var(--accent-soft)}
+.lp-x{display:inline-block;margin-inline-start:.45rem;padding:0 .4rem;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-size:.78rem;font-weight:700}
+.lp-none{margin:0;color:var(--muted);font-size:.9rem;padding:.2rem .1rem}
+.lp-rule{margin:0}
+.lp .tbl>b.tcap{text-transform:none;letter-spacing:0}
+.lp-foot{display:flex;gap:.8rem;align-items:center}
+.lp-skip{background:none;border:0;color:var(--muted);font:inherit;font-size:.86rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:36px;padding:0 .2rem}
+.lp-skip:hover,.lp-skip:focus-visible{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.lp-tables.in .tbl,.lp-tables.in table.data tr{animation:none}}
 .controls{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
 select,input[type="text"]{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.45rem .6rem;min-height:44px}
 label.chk{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .6rem;border:1px solid var(--line);border-radius:8px;min-height:44px;cursor:pointer;background:var(--surface)}
@@ -2538,6 +2581,7 @@ ra_data_h:"סכמת הקורסים", ra_data_c:"Students(5) · Courses(3) · Enr
 ra_p_sets:"טבלה באלגברה רלציונית היא <strong>קבוצה</strong> של שורות - אין כפילויות ואין סדר. זה ההבדל הראשון מ-SQL, שבו טבלה יכולה להכיל את אותה שורה פעמיים. תזכרו את זה כשנגיע ל-π.",
 ra_tnote:"פותחים בשאלה: מה ההבדל בין קבוצה לרשימה? ואז מראים ש-Enroll היא קבוצה של שלשות.",
 
+lp_eb:"רגע לפני · ניחוש", lp_skip:"דילוג", lp_again:"צפייה חוזרת", lp_open:"חזרה לשאלה", lp_folded:"דילגתם על הניחוש", lp_ok:"נכון. ככה זה קורה:", lp_no:"התשובה היא {a}. ככה זה קורה:", lp_no_t:"התשובה היא הטבלה עם ה-✓. ככה זה קורה:", lp_rows:"כמה שורות יהיו בתוצאה?", lp_n:"שורות", lp_n1:"שורה", lp_ta:"א", lp_tb:"ב", lp_tc:"ג", lp_times:"×{n}", lp_empty:"אין אף שורה", lp_cond:"= '{v}'", lp_s1:"בודקים את התנאי על כל שורה לבד.", lp_s2:"כל שורה צריכה IE וגם CS באותו זמן. לאף שורה אין את שתיהן.", lp_s3:"אף שורה לא עברה, והתוצאה ריקה.", lp_sr:"∧ דורש ששני התנאים יתקיימו באותה שורה. כדי לקבל את הסטודנטים של IE וגם של CS, כותבים ∨.", lp_p1:"π משאיר רק את העמודה Faculty.", lp_p2:"שלוש שורות נהיו IE. שתיים מהן כפולות.", lp_p3:"שורות זהות מתמזגות לאחת. נשארו 3.", lp_pr:"באלגברה רלציונית התוצאה היא קבוצה, אז שורות זהות מתמזגות לאחת. ב-SQL הן נשארות, אלא אם כותבים DISTINCT.", lp_j1:"המספר ליד כל סטודנט מראה לכמה קורסים הוא רשום.", lp_j2:"דנה רשומה ל-3 קורסים, אז יש לה 3 זוגות שמתאימים.", lp_j3:"שורה לכל זוג שמתאים: <bdi>3 + 2 + 2 + 3 + 1 = 11</bdi>.", lp_jr:"צירוף יוצר שורה לכל זוג שמתאים, לא שורה לכל סטודנט. סטודנט שרשום ל-3 קורסים מופיע 3 פעמים.", lp_x1:"ל-Students ול-Courses אין אף עמודה משותפת.", lp_x2:"אין מה להשוות, אז כל סטודנט מתחבר לכל קורס. דנה לבד כבר נותנת 3 שורות.", lp_x3:"5 סטודנטים × 3 קורסים = 15 שורות.", lp_xr:"צירוף טבעי בלי עמודה משותפת הוא מכפלה קרטזית. אם יצאו הרבה יותר שורות ממה שציפיתם, כדאי לבדוק אילו עמודות משותפות לטבלאות.", lp_tq:"איזו מהן היא <bdi>A − B</bdi>?", lp_t1:"A הם הרוכבים מ-Ariel, ו-B הם בעלי מנוי חודשי. 102 ו-104 נמצאים בשתיהן.", lp_t2:"מ-A מוחקים את כל מי שמופיע גם ב-B.", lp_t3:"נשאר רק 101. <bdi>B − A</bdi> היה נותן 106.", lp_tr:"הפרש הוא לא סימטרי. <bdi>A − B</bdi> שומר את מה שיש רק ב-A, ו-<bdi>B − A</bdi> את מה שיש רק ב-B.", lp_dq:"מי רשום לכל הקורסים?", lp_d1:"בודקים כל סטודנט מול כל הקורסים.", lp_d2:"מי שחסר לו אפילו קורס אחד - נופל.", lp_d3:"נשארו רק מי שרשומים לכולם: 1 ו-4.", lp_dr:"÷ עונה על 'לכל' - נשאר רק מי שיש לו את כל הקורסים. חלק מהם לא מספיק.", lp_ca:"רשומים לפחות לקורס אחד", lp_cb:"רשומים לכל הקורסים", lp_cc:"רשומים ליותר מקורס אחד",
 sel_h2:"בחירה", sel_lede:"σ בוחרת שורות. התנאי נכתב כתחתית, הטבלה בסוגריים. מספר העמודות לא משתנה, רק מספר השורות.",
 sel_msg0:"בחרו תנאי ולחצו על 'הרצה'. שורות שמקיימות אותו יקבלו ✓, והשאר יימחקו בקו.",
 sel_c0:"Grade ≥ 85", sel_c1:"CID = 'DB'", sel_c2:"CID = 'DB' ∧ Grade ≥ 90", sel_c3:"\u2066Faculty = 'IE'\u2069  (על Students)",
@@ -2823,6 +2867,7 @@ ra_data_h:"Courses schema", ra_data_c:"Students(5) · Courses(3) · Enroll(11)",
 ra_p_sets:"In relational algebra, a table is a <strong>set</strong> of rows - no duplicates, no order. That's the first difference from SQL, where a table can have the same row twice. Remember it when we reach π.",
 ra_tnote:"Open by asking how a set differs from a list. Then show that Enroll is a set of triples.",
 
+lp_eb:"Quick guess", lp_skip:"Skip", lp_again:"Watch again", lp_open:"Show the question", lp_folded:"You skipped the guess", lp_ok:"Right. Here's how:", lp_no:"It's {a}. Here's how:", lp_no_t:"It's the one with the ✓. Here's how:", lp_rows:"How many rows will the result have?", lp_n:"rows", lp_n1:"row", lp_ta:"1", lp_tb:"2", lp_tc:"3", lp_times:"×{n}", lp_empty:"No rows at all", lp_cond:"= '{v}'", lp_s1:"Check the condition one row at a time.", lp_s2:"Each row needs IE and CS at the same time. No row has both.", lp_s3:"No row passed, so the result is empty.", lp_sr:"∧ needs both conditions to hold in the same row. To get the IE students and the CS students, write ∨.", lp_p1:"π keeps only the Faculty column.", lp_p2:"Three rows became IE. Two of them are duplicates.", lp_p3:"Identical rows merge into one. 3 are left.", lp_pr:"In relational algebra the result is a set, so identical rows merge into one. SQL keeps them unless you write DISTINCT.", lp_j1:"The number next to each student shows how many courses they're enrolled in.", lp_j2:"Dana is enrolled in 3 courses, so she has 3 matching pairs.", lp_j3:"One row per matching pair: <bdi>3 + 2 + 2 + 3 + 1 = 11</bdi>.", lp_jr:"A join makes one row per matching pair, not one row per student. A student in 3 courses shows up 3 times.", lp_x1:"Students and Courses don't share a single column.", lp_x2:"There's nothing to compare, so every student pairs with every course. Dana alone gives 3 rows.", lp_x3:"5 students × 3 courses = 15 rows.", lp_xr:"A natural join with no shared column is really a Cartesian product. If you get far more rows than you expected, check which columns the tables share.", lp_tq:"Which one is A − B?", lp_t1:"A is the riders from Ariel, and B is the monthly members. 102 and 104 are in both.", lp_t2:"From A, remove everyone who's also in B.", lp_t3:"Only 101 is left. B − A would give 106.", lp_tr:"Difference isn't symmetric. A − B keeps what's only in A, and B − A what's only in B.", lp_dq:"Who's enrolled in every course?", lp_d1:"Check every student against every course.", lp_d2:"Missing even one course? They're out.", lp_d3:"Only those enrolled in all of them are left: 1 and 4.", lp_dr:"÷ answers 'for all' questions - only students with every course stay. Having some of them isn't enough.", lp_ca:"Enrolled in at least one course", lp_cb:"Enrolled in every course", lp_cc:"Enrolled in more than one course",
 sel_h2:"Select", sel_lede:"σ picks rows. The condition goes in the subscript, the table in parentheses. The number of columns never changes, only the number of rows.",
 sel_msg0:"Pick a condition and click Run. Rows that meet it get a ✓, and the rest get crossed out.",
 sel_c0:"Grade ≥ 85", sel_c1:"CID = 'DB'", sel_c2:"CID = 'DB' ∧ Grade ≥ 90", sel_c3:"Faculty = 'IE'  (on Students)",
@@ -4541,7 +4586,9 @@ const RIDE = {
 };
 /* ---- relation helpers: {cols:[{name, rel}], rows:[[...]]} with set semantics ---- */
 const RAE = (() => {
-  const base = (name, db) => { const t = RIDE[name], src = (db && db[name]) || t; return { cols: t.cols.map(c => ({name:c, rel:name})), rows: src.rows.map(r => r.slice()) }; };
+  /* tables other than RideOn's, registered with add() (the chapter's Students, Courses and Enroll, for the loops) */
+  const EXTRA = {}, tbl = name => RIDE[name] || EXTRA[name], add = (name, t) => { EXTRA[name] = t; };
+  const base = (name, db) => { const t = tbl(name), src = (db && db[name]) || t; return { cols: t.cols.map(c => ({name:c, rel:name})), rows: src.rows.map(r => r.slice()) }; };
   /* every result row keeps where it came from: src[i] lists [input, row] pairs (input 0 is the only or the left one, 1 the right one) */
   const dedupe = R => { const at = new Map(), rows = [], src = R.src ? [] : null; R.rows.forEach((r, i) => { const k = JSON.stringify(r), j = at.get(k); if (j !== undefined) { if (src) src[j] = src[j].concat(R.src[i]); return; } at.set(k, rows.length); rows.push(r); if (src) src.push(R.src[i]); }); R.rows = rows; if (src) R.src = src; return R; };
   const own = R => R.rows.map((r, i) => [[0, i]]);
@@ -4590,7 +4637,7 @@ const RAE = (() => {
   function evalCond(c, R, row){ const val = o => o.a !== undefined ? row[findCol(R, o.a)] : o.v; switch (c.c) { case 'AND': return evalCond(c.l, R, row) && evalCond(c.r, R, row); case 'OR': return evalCond(c.l, R, row) || evalCond(c.r, R, row); case 'NOT': return !evalCond(c.e, R, row); default: { const a = val(c.l), b = val(c.r); if (a == null || b == null) return false; switch (c.c) { case 'EQ': return a === b; case 'NE': return a !== b; case 'LT': return a < b; case 'GT': return a > b; case 'LE': return a <= b; case 'GE': return a >= b; } } } }
   /* db: an optional subset of the RideOn rows ({Table: {rows}}); trace: an optional list that collects every step with its result */
   function evalNode(n, env, db, trace){ const ev = c => evalNode(c, env, db, trace); let R;
-    switch (n.op) { case 'REL': R = env[n.name] || (RIDE[n.name] ? base(n.name, db) : null); if (!R) throw new Error((lang === 'he' ? 'טבלה לא קיימת: ' : 'unknown table: ') + n.name); n._R = R; return R;
+    switch (n.op) { case 'REL': R = env[n.name] || (tbl(n.name) ? base(n.name, db) : null); if (!R) throw new Error((lang === 'he' ? 'טבלה לא קיימת: ' : 'unknown table: ') + n.name); n._R = R; return R;
       case 'PI': R = ops.project(ev(n.e), n.attrs); break; case 'SIG': { const A = ev(n.e); R = ops.select(A, (Rr, row) => evalCond(n.cond, Rr, row)); break; } case 'RHO': R = ops.rename(ev(n.e), n.name, n.attrs); break;
       case 'TIMES': R = ops.product(ev(n.left), ev(n.right)); break; case 'JOIN': { const A = ev(n.left), B = ev(n.right); R = n.cond ? ops.thetajoin(A, B, (P, row) => evalCond(n.cond, P, row)) : ops.natjoin(A, B); break; }
       case 'DIV': R = ops.divide(ev(n.left), ev(n.right)); break; case 'UNION': R = ops.union(ev(n.left), ev(n.right)); break; case 'INTER': R = ops.intersect(ev(n.left), ev(n.right)); break; case 'MINUS': R = ops.minus(ev(n.left), ev(n.right)); break;
@@ -4624,7 +4671,7 @@ const RAE = (() => {
       const R = m.R; if (!R || !Array.isArray(R.rows) || !Array.isArray(R.cols)) { no(m, 'no table'); return; }
       if (R.rows.some(r => !Array.isArray(r) || r.length !== R.cols.length)) no(m, 'a row does not fit the columns');
       if (setOf(R.rows).size !== R.rows.length) no(m, 'the same row twice');
-      if (m.op === 'REL') { rels++; if (m.kids.length) no(m, 'a table with inputs'); if (!RIDE[m.name]) no(m, 'not a table'); else if (seq(R.rows) !== seq(base(m.name, db).rows)) no(m, 'not the table\'s rows'); return; }
+      if (m.op === 'REL') { rels++; if (m.kids.length) no(m, 'a table with inputs'); if (!tbl(m.name)) no(m, 'not a table'); else if (seq(R.rows) !== seq(base(m.name, db).rows)) no(m, 'not the table\'s rows'); return; }
       ops++; const ar = ['PI','SIG','RHO'].includes(m.op) ? 1 : 2; if (m.kids.length !== ar) { no(m, 'wrong number of inputs'); return; }
       if (m.kids.some((k, i) => k.ast !== (m.n.e ? [m.n.e] : [m.n.left, m.n.right])[i])) no(m, 'inputs out of order');
       if (!(m.step >= 1 && T.trace[m.step - 1] && T.trace[m.step - 1].n === m.n)) no(m, 'not the same step as the step list');
@@ -4692,7 +4739,7 @@ const RAE = (() => {
   function stepLabel(n){ const ref = c => c.op === 'REL' ? c.name : circ(c._step); const bin = { TIMES:'×', UNION:'∪', INTER:'∩', MINUS:'−', DIV:'÷' };
     if (n.op === 'PI') return 'π[' + n.attrs.join(', ') + '](' + ref(n.e) + ')'; if (n.op === 'SIG') return 'σ[' + condStr(n.cond) + '](' + ref(n.e) + ')'; if (n.op === 'RHO') return 'ρ[' + n.name + (n.attrs ? '(' + n.attrs.join(', ') + ')' : '') + '](' + ref(n.e) + ')';
     if (n.op === 'JOIN') return ref(n.left) + ' ⋈' + (n.cond ? '[' + condStr(n.cond) + ']' : '') + ' ' + ref(n.right); return ref(n.left) + ' ' + bin[n.op] + ' ' + ref(n.right); }
-  return { run, toTable, key, base, align, same, counterexample, stepLabel, circ, mapOf, checkMap, condStr };
+  return { run, toTable, key, base, align, same, counterexample, stepLabel, circ, mapOf, checkMap, condStr, add };
 })();
 
 /* ---- visualizers: set operations, product, rename/self-join ---- */
@@ -5089,6 +5136,108 @@ function openMap(T, q, o){ closeMap(true); o = o || {};
 function closeMap(now){ const S = MAP; if (!S) return; MAP = null; S.playing++; S.tour = null; if (S.ro) S.ro.disconnect(); document.removeEventListener('keydown', S.key, true); removeEventListener('resize', S.rs);
   document.documentElement.style.overflow = S.ovf; if (now || mapCalm()) S.ov.remove(); else { S.ov.classList.remove('on'); setTimeout(() => S.ov.remove(), 260); }
   if (!now && S.opener && document.contains(S.opener)) S.opener.focus({ preventScroll: true }); }
+/* =========================== 7b: "GUESS FIRST, THEN WATCH" LOOPS ===========================
+   Under a topic's opening paragraph in the relational algebra chapter (Raz, 2026-10-19). One question with three one-click answers,
+   each aimed at a mistake students make (π keeps duplicates, a join keeps one row per student, ∧ reads as "and also", a join with no
+   shared column shrinks, difference works both ways, ÷ means "at least one"). Only after the answer do the rows move, in beats drawn
+   by the lesson's table renderer from the engine's results; then one rule line. The answer is kept (dbs_loops, synced); "skip" folds
+   the loop into a line that opens it again. */
+RAE.add('Students', { cols: ['SID', 'Name', 'Faculty'], keys: { SID: 'pk' }, rows: RA.students.map(x => [x.SID, x.Name, x.Faculty]) });
+RAE.add('Courses', { cols: ['CID', 'Title'], keys: { CID: 'pk' }, rows: RA.courses.map(x => [x.CID, x.Title]) });
+RAE.add('Enroll', { cols: ['SID', 'CID', 'Grade'], keys: { SID: 'fk', CID: 'fk' }, rows: RA.enroll.map(x => [x.SID, x.CID, x.Grade]) });
+/* a result with the column names the lesson writes (SID, not Students.SID), unless two of them would clash */
+const lpT = q => { const R = RAE.toTable(RAE.run(q)), sh = R.cols.map(c => String(c).split('.').pop()); R.cols = R.cols.map((c, i) => sh.filter(x => x === sh[i]).length > 1 ? c : sh[i]); return R; };
+const lpTag = n => '<span class="lp-x">' + t('lp_times', { n }) + '</span>';
+const lpKeysS = { SID: 'pk' }, lpKeysE = { SID: 'fk', CID: 'fk' };
+const LP_JOIN = 'Students ⋈[Students.SID = Enroll.SID] Enroll', LP_A = "π[RiderID](σ[City='Ariel'](Riders))", LP_B = "π[RiderID](σ[Plan='Monthly'](Riders))";
+function lpDivMatrix(strike){ const C = RA.courses.map(c => c.CID), has = (s, c) => RA.enroll.some(e => e.SID === s && e.CID === c), all = s => C.every(c => has(s, c));
+  return table(['SID', 'Name'].concat(C), RA.students.map(x => [x.SID, x.Name].concat(C.map(c => mkCell(has(x.SID, c) ? 'good' : 'bad')))), { title: 'Enroll · Courses', rowClass: r => strike ? (all(r[0]) ? 'hit' : 'gone') : '' }); }
+const LOOPS = {
+  sel: { sec: 'r-select', show: 'σ<sub>Faculty = \'IE\' ∧ Faculty = \'CS\'</sub>(Students)', q: 'lp_rows', opts: [5, 4, 0], ans: 0,
+    beats: [
+      { cap: 'lp_s1', draw: () => { const S = lpT('Students'); return [table(S.cols, S.rows, { title: 'Students', keys: lpKeysS, cellClass: (r, c) => c === 'Faculty' ? 'lp-col' : 'lp-dim' })]; } },
+      { cap: 'lp_s2', draw: () => [table(['SID', 'Name', 'Faculty', t('lp_cond', { v: 'IE' }), t('lp_cond', { v: 'CS' })], RA.students.map(x => [x.SID, x.Name, x.Faculty, mkCell(x.Faculty === 'IE' ? 'good' : 'bad'), mkCell(x.Faculty === 'CS' ? 'good' : 'bad')]), { title: 'Students', rowClass: () => 'gone' })] },
+      { cap: 'lp_s3', draw: () => { const R = lpT("σ[Faculty='IE' ∧ Faculty='CS'](Students)"), w = table(R.cols, R.rows, { title: "σ[Faculty = 'IE' ∧ Faculty = 'CS'](Students)", res: true }); w.appendChild(el('p', 'lp-none', t('lp_empty'))); return [w]; } } ],
+    rule: 'lp_sr' },
+  prj: { sec: 'r-project', show: 'π<sub>Faculty</sub>(Students)', q: 'lp_rows', opts: [5, 3, 1], ans: 3,
+    beats: [
+      { cap: 'lp_p1', draw: () => { const S = lpT('Students'); return [table(S.cols, S.rows, { title: 'Students', keys: lpKeysS, cellClass: (r, c) => c === 'Faculty' ? 'lp-col' : 'lp-dim' })]; } },
+      { cap: 'lp_p2', draw: () => { const seen = {}; return [table(['Faculty'], RA.students.map(x => [x.Faculty]), { title: 'π[Faculty](Students)', rowClass: r => seen[r[0]] ? 'dup' : (seen[r[0]] = 1, 'hit') })]; } },
+      { cap: 'lp_p3', draw: () => { const R = lpT('π[Faculty](Students)'), n = {}; RA.students.forEach(x => n[x.Faculty] = (n[x.Faculty] || 0) + 1);
+        const w = table(R.cols, R.rows, { title: 'π[Faculty](Students)', res: true }); w.querySelectorAll('tr td:first-child').forEach(td => { if (n[td.textContent] > 1) td.insertAdjacentHTML('beforeend', lpTag(n[td.textContent])); }); return [w]; } } ],
+    rule: 'lp_pr' },
+  jn: { sec: 'r-join', show: 'Students ⋈<sub>Students.SID = Enroll.SID</sub> Enroll', q: 'lp_rows', opts: [5, 11, 55], ans: 11,
+    beats: [
+      { cap: 'lp_j1', draw: () => { const S = lpT('Students'), E = lpT('Enroll'), c = {}; RA.enroll.forEach(e => c[e.SID] = (c[e.SID] || 0) + 1);
+        const a = table(S.cols, S.rows, { title: 'Students', keys: lpKeysS }); a.querySelectorAll('tr td:nth-child(2)').forEach((td, i) => td.insertAdjacentHTML('beforeend', lpTag(c[S.rows[i][0]])));
+        return [a, table(E.cols, E.rows, { title: 'Enroll', keys: lpKeysE })]; } },
+      { cap: 'lp_j2', draw: () => { const S = lpT('Students'), E = lpT('Enroll'); return [table(S.cols, S.rows, { title: 'Students', keys: lpKeysS, rowClass: r => r[0] === 1 ? 'hit' : '' }), table(E.cols, E.rows, { title: 'Enroll', keys: lpKeysE, rowClass: r => r[0] === 1 ? 'hit' : '' })]; } },
+      { cap: 'lp_j3', draw: () => { const R = lpT(LP_JOIN); return [table(R.cols, R.rows, { title: LP_JOIN, res: true, rowClass: r => r[0] === 1 ? 'hit' : '' })]; } } ],
+    rule: 'lp_jr' },
+  dv: { sec: 'r-divide', show: 'π<sub>SID,CID</sub>(Enroll) ÷ π<sub>CID</sub>(Courses)', q: 'lp_dq', table: true, col: 'SID',
+    opts: [{ k: 'lp_ca', rows: [[1], [2], [3], [4], [5]] }, { k: 'lp_cb', rows: [[1], [4]] }, { k: 'lp_cc', rows: [[1], [2], [3], [4]] }], ans: 1,
+    beats: [
+      { cap: 'lp_d1', draw: () => [lpDivMatrix(false)] },
+      { cap: 'lp_d2', draw: () => [lpDivMatrix(true)] },
+      { cap: 'lp_d3', draw: () => { const R = lpT('π[SID,CID](Enroll) ÷ π[CID](Courses)'); return [table(R.cols, R.rows, { title: 'π[SID,CID](Enroll) ÷ π[CID](Courses)', res: true })]; } } ],
+    rule: 'lp_dr' },
+  pr: { sec: 'r-product', show: 'Students ⋈ Courses', q: 'lp_rows', opts: [0, 3, 15], ans: 15,
+    beats: [
+      { cap: 'lp_x1', draw: () => { const S = lpT('Students'), C = lpT('Courses'); return [table(S.cols, S.rows, { title: 'Students', keys: lpKeysS }), table(C.cols, C.rows, { title: 'Courses', keys: { CID: 'pk' } })]; } },
+      { cap: 'lp_x2', draw: () => { const R = lpT('Students ⋈ Courses'); return [table(R.cols, R.rows.filter(r => r[0] === 1), { title: 'Students ⋈ Courses', rowClass: () => 'hit' })]; } },
+      { cap: 'lp_x3', draw: () => { const R = lpT('Students ⋈ Courses'); return [table(R.cols, R.rows, { title: 'Students ⋈ Courses', res: true, rowClass: r => r[0] === 1 ? 'hit' : '' })]; } } ],
+    rule: 'lp_xr' },
+  st: { sec: 'r-sets', show: 'A − B', q: 'lp_tq', table: true, col: 'RiderID',
+    opts: [{ k: 'B − A', q: LP_B + ' − ' + LP_A }, { k: 'A − B', q: LP_A + ' − ' + LP_B }, { k: 'A ∩ B', q: LP_A + ' ∩ ' + LP_B }], ans: 1,
+    beats: [
+      { cap: 'lp_t1', draw: () => { const A = lpT(LP_A), B = lpT(LP_B), inB = new Set(B.rows.map(r => r[0])), inA = new Set(A.rows.map(r => r[0]));
+        return [table(A.cols, A.rows, { title: 'A', rowClass: r => inB.has(r[0]) ? 'hit' : '' }), table(B.cols, B.rows, { title: 'B', rowClass: r => inA.has(r[0]) ? 'hit' : '' })]; } },
+      { cap: 'lp_t2', draw: () => { const A = lpT(LP_A), inB = new Set(lpT(LP_B).rows.map(r => r[0])); return [table(A.cols, A.rows, { title: 'A', rowClass: r => inB.has(r[0]) ? 'gone' : 'hit' })]; } },
+      { cap: 'lp_t3', draw: () => { const R = lpT(LP_A + ' − ' + LP_B); return [table(R.cols, R.rows, { title: 'A − B', res: true })]; } } ],
+    rule: 'lp_tr' } };
+const lpState = () => load('dbs_loops', {}) || {};
+function lpSave(id, v){ const s = lpState(); s[id] = Object.assign({}, s[id], v, { at: new Date().toISOString() }); store('dbs_loops', s); }
+function lpRender(id){
+  const L = LOOPS[id], sec = document.getElementById(L.sec); if (!sec) return; let box = sec.querySelector('.lp');
+  if (!box) { box = el('div', 'lp'); box.dataset.lp = id; sec.querySelector('.sec-head').after(box); }
+  clearTimeout(box._t); box._tok = (box._tok || 0) + 1;
+  const st = lpState()[id] || {};
+  if (st.skip && st.pick == null) { box.className = 'lp folded'; box.innerHTML = '<span class="lp-eb">' + t('lp_eb') + '</span><span>' + t('lp_folded') + '</span><button type="button" class="btn small ghost lp-open">' + t('lp_open') + '</button>';
+    box.querySelector('.lp-open').addEventListener('click', () => { lpSave(id, { skip: false }); lpRender(id); }); return; }
+  box.className = 'lp';
+  const rows = o => o.rows || lpT(o.q).rows;
+  const opt = (o, i) => L.table ? '<button type="button" class="lp-o lp-t" data-i="' + i + '"><span class="lp-tc">' + t(['lp_ta', 'lp_tb', 'lp_tc'][i]) + '</span>' + table([L.col], rows(o), {}).outerHTML + '</button>'
+    : '<button type="button" class="lp-o" data-i="' + i + '"><b>' + o + '</b><span>' + t(o === 1 ? 'lp_n1' : 'lp_n') + '</span></button>';
+  box.innerHTML = '<div class="lp-top"><span class="lp-eb">' + t('lp_eb') + '</span><span class="ra">' + L.show + '</span></div><p class="lp-q">' + t(L.q) + '</p>'
+    + '<div class="lp-opts' + (L.table ? ' tbls' : '') + '" role="group" aria-label="' + esc(t(L.q).replace(/<[^>]+>/g, '')) + '">' + L.opts.map(opt).join('') + '</div><p class="lp-said" aria-live="polite"></p>'
+    + '<div class="lp-stage" hidden><div class="lp-beat"><div class="lp-dots" aria-hidden="true"></div><p class="lp-cap" aria-live="polite"></p></div><div class="tables lp-tables"></div></div>'
+    + '<p class="msg good lp-rule" hidden></p><div class="lp-foot"><button type="button" class="btn small lp-again" hidden>' + t('lp_again') + '</button><button type="button" class="lp-skip">' + t('lp_skip') + '</button></div>';
+  box.querySelectorAll('.lp-o').forEach(b => b.addEventListener('click', () => lpAnswer(id, +b.dataset.i, true)));
+  box.querySelector('.lp-skip').addEventListener('click', () => { lpSave(id, { skip: true }); lpRender(id); });
+  box.querySelector('.lp-again').addEventListener('click', () => lpPlay(id, 0));
+  if (st.pick != null) lpAnswer(id, st.pick, false);
+}
+function lpAnswer(id, i, fresh){
+  const L = LOOPS[id], box = document.querySelector('.lp[data-lp="' + id + '"]'), ai = L.table ? L.ans : L.opts.indexOf(L.ans), ok = i === ai;
+  if (fresh) lpSave(id, { pick: i, ok, skip: false });
+  box.querySelectorAll('.lp-o').forEach((b, j) => { b.disabled = true; b.classList.toggle('ok', j === ai); b.classList.toggle('no', j === i && !ok);
+    if (j === ai || (j === i && !ok)) b.insertAdjacentHTML('beforeend', '<span class="lp-mk">' + mkCell(j === ai ? 'good' : 'bad') + '</span>'); });
+  if (L.table) box.querySelectorAll('.lp-tc').forEach((c, j) => { c.textContent = L.opts[j].k.startsWith('lp_') ? t(L.opts[j].k) : L.opts[j].k; c.classList.add('meant'); });
+  const said = box.querySelector('.lp-said'); said.textContent = ok ? t('lp_ok') : L.table ? t('lp_no_t') : t('lp_no', { a: L.ans }); if (fresh) said.classList.add('rq-flare');
+  box.querySelector('.lp-skip').hidden = true; box.querySelector('.lp-again').hidden = false; box.querySelector('.lp-stage').hidden = false;
+  lpPlay(id, fresh && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : L.beats.length - 1);
+}
+function lpPlay(id, from){
+  const L = LOOPS[id], box = document.querySelector('.lp[data-lp="' + id + '"]'); if (!box) return;
+  const stage = box.querySelector('.lp-tables'), cap = box.querySelector('.lp-cap'), dots = box.querySelector('.lp-dots'), rule = box.querySelector('.lp-rule');
+  clearTimeout(box._t); const tok = (box._tok = (box._tok || 0) + 1); rule.hidden = true;
+  const show = k => { if (tok !== box._tok || !box.isConnected) return; const b = L.beats[k]; cap.innerHTML = t(b.cap);
+    dots.innerHTML = L.beats.map((x, j) => '<i class="' + (j < k ? 'done' : j === k ? 'cur' : '') + '"></i>').join('');
+    stage.innerHTML = ''; b.draw().forEach(w => stage.appendChild(w)); stage.classList.remove('in'); void stage.offsetWidth; stage.classList.add('in');
+    if (k < L.beats.length - 1) box._t = setTimeout(() => show(k + 1), 2300); else { rule.innerHTML = t(L.rule); rule.hidden = false; } };
+  show(matchMedia('(prefers-reduced-motion: reduce)').matches ? L.beats.length - 1 : from);
+}
+function lpAll(){ Object.keys(LOOPS).forEach(lpRender); }
 function renderRaV2(){ renderSets(); renderProduct(); renderRename(); renderRideSchema(); renderLab(); renderExercises(); renderRefs(); }
 /* reference tables for lessons that use a schema introduced in an earlier lesson (exercises: RideOn, algebra self-check: the three toy tables) */
 function renderRefs(){
@@ -5418,7 +5567,7 @@ function applyLang(){
   $$('[data-tnote]').forEach(e => { e.innerHTML = '<b>'+t('an_note_t')+':</b> ' + t(e.dataset.tnote+'_tnote'); e.hidden = !teacher; });
   $('#btnPresent').textContent = document.documentElement.classList.contains('present') ? t('present_off') : t('present');
   renderHero(); renderAnomaly(); renderSchema(); renderLists(); renderQuiz('quizIntro','intro');
-  renderRaData(); renderSelect(); renderProject(); renderJoin(); renderDivide(); renderTree(); renderRaV2(); renderQuiz('quizRa','ra'); renderHome();
+  renderRaData(); renderSelect(); renderProject(); renderJoin(); renderDivide(); renderTree(); renderRaV2(); lpAll(); renderQuiz('quizRa','ra'); renderHome();
   renderRail(); renderLessonBar(); renderLessonEnd(); applyRail(); applyPrefs(); $('#btnMe').title = t('me_title'); store('dbs_lang', lang); updateNav(false);
   gateRefresh(); if (typeof pxRefresh === 'function') pxRefresh();
 }
@@ -5738,7 +5887,7 @@ $('#btnOut').addEventListener('click', async () => { if (sb) { await Promise.rac
 
 async function logVisit(){ try { const last = +load('dbs_visit_at', 0); if (Date.now() - last < 30 * 60 * 1000) return; store('dbs_visit_at', Date.now()); await sb.from('events').insert({ user_id: session.user.id, kind: 'visit', meta: { lang, w: innerWidth } }); } catch(e){} }
 /* ---- progress sync: local storage stays the cache, the account is the record ---- */
-const SYNC_KEYS = ['dbs_plan','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_marks','dbs_cal','dbs_cal_out'];
+const SYNC_KEYS = ['dbs_loops','dbs_plan','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_marks','dbs_cal','dbs_cal_out'];
 const syncTimers = {};
 function syncKey(k, v){ if (!sb || !session || !session.user) return; clearTimeout(syncTimers[k]); syncTimers[k] = setTimeout(async () => { try { await sb.from('progress').upsert({ user_id: session.user.id, key: k, value: v, updated_at: new Date().toISOString() }); } catch(e){} }, 800); }
 async function pullProgress(){
@@ -6027,7 +6176,7 @@ async function meDelete(m){
   } catch (e) { msg.textContent = t('g_err_gen'); go.disabled = false; }
 }
 /* what this device keeps for the signed-in user; cleared on sign-out and account deletion, and when a different account signs in here */
-const USER_KEYS = ['dbs_plan','dbs_marks','dbs_cal','dbs_cal_out','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
+const USER_KEYS = ['dbs_loops','dbs_plan','dbs_marks','dbs_cal','dbs_cal_out','dbs_visited','dbs_quiz_intro','dbs_quiz_ra','dbs_ra_ex','dbs_days','dbs_last_sec','dbs_prefs','dbs_profile','dbs_unit','dbs_saved_shown','dbs_visit_at','dbs_uid'];
 function clearUserData(){ USER_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e){} }); for (const k in visited) delete visited[k]; exState = {}; applyPrefs(); }
 /* forgotten password: the email link lands here with a recovery session (?reset=1 and #...type=recovery); ask for the new password */
 const RECOVERY = (() => { try { return /(^|[#&])type=recovery(&|$)/.test(location.hash) || new URLSearchParams(location.search).get('reset') === '1'; } catch(e) { return false; } })();
