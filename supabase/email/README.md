@@ -36,3 +36,7 @@ Supabase → Authentication → Emails → Templates. בוחרים תבנית, �
 
 ## מייל ההודעות (הפעמון)
 לא מדביקים אותו ב-Supabase. הוא נמצא בתוך `send_notice()` בקובץ `supabase/migration_2026-09-27_notices.sql`, כמו מייל הפרידה. אחרי שינוי ב-`notice.html` מריצים `python tools/gen_notice_sql.py`, ואז מריצים את ה-SQL שוב.
+
+## תשובה לפנייה (תיבת הפניות)
+תשובות לפניות ל-hello@rowdyql.com נשלחות מ-`send_request_reply()` בקובץ `supabase/migration_2026-10-18_requests.sql`, כשרז לוחץ "אישור ושליחה" בלשונית "פניות" בלוח הניהול. השליחה עוברת דרך Resend, מ-`hello@rowdyql.com`, בתוך השרשור של הסטודנט, עם עותק ל-hello@. התבנית היא `reply.html`. אחרי שינוי בה מריצים `python tools/build_emails.py` ואז `python tools/gen_requests_sql.py`, ומריצים את ה-SQL שוב. את הפניות ממיין הסקיל `rowdyql-inbox`.
+
