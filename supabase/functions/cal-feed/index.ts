@@ -11,7 +11,8 @@ export function fold(line: string) {
   for (const ch of line) { const b = enc.encode(ch).length; if (nb + b > (out ? 74 : 75)) { out += (out ? '\r\n ' : '') + cur; cur = ''; nb = 0; } cur += ch; nb += b; }
   return out + '\r\n ' + cur;
 }
-const tx = (s: unknown) => String(s).slice(0, 300).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+/* any line break (also a lone \r) becomes \n, and other control characters go, so a title can never start a line of its own */
+const tx = (s: unknown) => String(s).slice(0, 300).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r\n|\r|\n/g, '\\n').replace(/[\u0000-\u001f\u007f]/g, '');
 const dt = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
 
 /* feed = { v, lang, d: description with {url}, s: [{ k: key, a: start, b: end, t: title, u: lesson address }] } */

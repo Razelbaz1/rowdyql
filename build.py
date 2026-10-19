@@ -18,10 +18,35 @@ if not voice.gate(verbose=False):
 body = pathlib.Path("src/page.html").read_text(encoding="utf-8")
 m = re.search(r"<title>(.*?)</title>", body); title = m.group(1) if m else "RowdyQL"
 body = body.replace(m.group(0), "", 1) if m else body
+
+# Not inside a frame of another site (clickjacking): the page stays hidden unless it is the top window.
+# GitHub Pages can't send X-Frame-Options or frame-ancestors, so this is the in-page guard.
+FRAME_GUARD = "if(self===top){var g=document.getElementById('fg');g.parentNode.removeChild(g)}else{try{top.location.replace(location.href)}catch(e){}}"
+
+# Content-Security-Policy: scripts only from this page (by hash), the pinned supabase-js and Turnstile.
+# An injected <script> or onerror="" never runs, and data can only be sent to our own hosts.
+# A new inline <script> in src/page.html gets its hash here automatically; a new outside host must be added below.
+import hashlib, base64
+def sha(s): return "'sha256-" + base64.b64encode(hashlib.sha256(s.encode("utf-8")).digest()).decode() + "'"
+inline = [sha(FRAME_GUARD)] + [sha(s) for s in re.findall(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>", body, re.S)]
+SB = "afzlmlbigruxijudqukp.supabase.co"
+CSP = "; ".join([
+    "default-src 'self'",
+    "script-src 'self' " + " ".join(inline) + " https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/ https://challenges.cloudflare.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    f"img-src 'self' data: blob: https://{SB}",
+    f"connect-src 'self' https://{SB} wss://{SB} https://challenges.cloudflare.com",
+    "frame-src https://challenges.cloudflare.com",
+    "worker-src 'self'", "manifest-src 'self'", "media-src 'self' data: blob:",
+    "object-src 'none'", "base-uri 'none'", "form-action 'self'",
+])
 html = f"""<!doctype html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="{CSP}">
+<style id="fg">html{{display:none!important}}</style><script>{FRAME_GUARD}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="RowdyQL: SQL בגובה העיניים. הקורס שהופך את SQL לשפה שלכם.">

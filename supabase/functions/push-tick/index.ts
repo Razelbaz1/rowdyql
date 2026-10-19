@@ -45,11 +45,17 @@ export async function vapidJwt(aud: string, subject: string, pub: string, priv: 
   return head + '.' + body + '.' + b64u.enc(sig);
 }
 
+/* only the browsers' own push services (Chrome and most others: FCM; Firefox; Safari and iPhone; Edge). push_sub_save checks the same list */
+export const PUSH_HOST = /^(fcm\.googleapis\.com|updates\.push\.services\.mozilla\.com|web\.push\.apple\.com|[a-z0-9-]+\.notify\.windows\.com)$/;
 export async function send(sub: { e: string; p: string; a: string }, msg: object, vapid: { pub: string; priv: string; subject: string }, get = fetch) {
-  const body = await encrypt(utf8(JSON.stringify(msg)), sub.p, sub.a), jwt = await vapidJwt(new URL(sub.e).origin, vapid.subject, vapid.pub, vapid.priv);
-  const r = await get(sub.e, { method: 'POST', headers: { TTL: '1800', Urgency: 'high', 'Content-Encoding': 'aes128gcm', 'Content-Type': 'application/octet-stream', Authorization: 'vapid t=' + jwt + ', k=' + vapid.pub }, body });
+  const host = new URL(sub.e); if (host.protocol !== 'https:' || !PUSH_HOST.test(host.hostname)) return 410; /* not a push service: dropped like a gone subscription */
+  const body = await encrypt(utf8(JSON.stringify(msg)), sub.p, sub.a), jwt = await vapidJwt(host.origin, vapid.subject, vapid.pub, vapid.priv);
+  const r = await get(sub.e, { method: 'POST', headers: { TTL: '1800', Urgency: 'high', 'Content-Encoding': 'aes128gcm', 'Content-Type': 'application/octet-stream', Authorization: 'vapid t=' + jwt + ', k=' + vapid.pub }, body, signal: AbortSignal.timeout(8000) });
   return r.status;
 }
+/* the shared secret, compared without an early exit */
+export const same = (a: string, b: string) => { if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false; let x = 0; for (let i = 0; i < a.length; i++) x |= a.charCodeAt(i) ^ b.charCodeAt(i); return x === 0; };
+const clip = (s: string, n: number) => String(s || '').slice(0, n);
 
 /* ---- what is due now. rows: [{ u, subs: [{ e, p, a }], cal: dbs_cal_out, days: dbs_days }]. The list's x holds the texts:
    pre_t / pre_b before a session; done_t / done_b (done_today when the next one is the same day, done_end when nothing is left) after
@@ -86,14 +92,18 @@ export async function tick(secret: string, vapid: { pub: string; priv: string; s
   const rows = await rpc('push_data', { p_secret: secret }, get), todo = due(rows, now); if (!todo.length) return { due: 0, sent: 0, gone: 0 };
   const won = await rpc('push_claim', { p_secret: secret, p_items: todo.map(d => ({ u: d.u, k: d.k, kind: d.kind === 'pre' ? 'pre' : 'post' })) }, get);
   const ok = new Set((won || []).map((w: any) => w.u + '|' + w.k + '|' + w.kind)), gone: string[] = []; let sent = 0;
+  /* all at once, each with its own time limit: a slow or silent endpoint never holds up anyone else's reminder */
+  const jobs: Promise<void>[] = [];
   for (const d of todo) { if (!ok.has(d.u + '|' + d.k + '|' + (d.kind === 'pre' ? 'pre' : 'post'))) continue;
-    for (const s of d.subs) { try { const st = await send(s, d.msg, vapid, get); if (st === 404 || st === 410) gone.push(s.e); else if (st < 300) sent++; } catch (_) { /* one bad push never stops the rest */ } } }
+    const msg = Object.assign({}, d.msg, { title: clip(d.msg.title, 120), body: clip(d.msg.body, 300) });
+    for (const s of d.subs.slice(0, 5)) jobs.push(send(s, msg, vapid, get).then(st => { if (st === 404 || st === 410) gone.push(s.e); else if (st < 300) sent++; }, () => { /* one bad push never stops the rest */ })); }
+  await Promise.allSettled(jobs);
   if (gone.length) await rpc('push_gone', { p_secret: secret, p_endpoints: gone }, get);
   return { due: todo.length, sent, gone: gone.length };
 }
 
 export async function handle(req: Request) {
-  const secret = ENV('PUSH_TICK'); if (!secret || req.headers.get('x-tick') !== secret) return new Response('Not found\n', { status: 404 });
+  const secret = ENV('PUSH_TICK'); if (!secret || !same(req.headers.get('x-tick') || '', secret)) return new Response('Not found\n', { status: 404 });
   const res = await tick(secret, { pub: ENV('VAPID_PUBLIC'), priv: ENV('VAPID_PRIVATE'), subject: ENV('VAPID_SUBJECT') || 'mailto:hello@rowdyql.com' });
   return new Response(JSON.stringify(res), { headers: { 'content-type': 'application/json' } });
 }

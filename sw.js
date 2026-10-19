@@ -8,7 +8,8 @@ self.addEventListener('push', e => {
     lang: d.lang || 'he', dir: d.lang === 'en' ? 'ltr' : 'rtl', data: { url: d.url || './' } }));
 });
 self.addEventListener('notificationclick', e => {
-  e.notification.close(); const url = new URL((e.notification.data && e.notification.data.url) || './', self.location.href).href;
+  e.notification.close(); let url = new URL((e.notification.data && e.notification.data.url) || './', self.location.href).href;
+  if (new URL(url).origin !== self.location.origin) url = self.registration.scope; /* only our own pages, whatever the payload says */
   e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(ws => {
     const w = ws.find(c => new URL(c.url).origin === self.location.origin);
     return w ? w.focus().then(c => (c || w).navigate(url)).catch(() => self.clients.openWindow(url)) : self.clients.openWindow(url);
