@@ -20,7 +20,7 @@ alter table public.events add constraint events_meta_size check (meta is null or
 
 -- 3. A Message-ID goes into mail headers as is, so it must look like one.
 alter table public.requests drop constraint if exists requests_message_id_shape;
-alter table public.requests add constraint requests_message_id_shape check (message_id is null or message_id = '' or message_id ~ '^<[^<>[:space:]]{1,300}>$');
+alter table public.requests add constraint requests_message_id_shape check (message_id is null or message_id = '' or (message_id ~ '^<[^<>[:space:]]+>$' and length(message_id) <= 300));
 
 -- 4. A blocked account: no profile edits, no uploads, no new calendar link or push device, no reminders, no feed.
 alter policy profiles_update_own on public.profiles using (id = auth.uid() and public.is_active());
