@@ -7599,7 +7599,7 @@ function resetCaptcha(){ captchaToken = ''; if (captchaWidget !== null && window
 
 async function initAuth(){
   startGateBg(); startDemo();
-  const LIVE_HOSTS = ['rowdyql.com','www.rowdyql.com','razelbaz1.github.io','localhost','127.0.0.1'];
+  const LIVE_HOSTS = ['rowdyql.com','www.rowdyql.com','rowdyql.pages.dev','razelbaz1.github.io','localhost','127.0.0.1'];
   if (DBS_CONFIG.supabaseUrl && DBS_CONFIG.supabaseAnonKey && LIVE_HOSTS.includes(location.hostname)) {
     /* PKCE: an email link carries a one-time code that only the browser that asked for it can use, so a link with someone else's tokens can't sign a visitor into a foreign account */
     try { await loadScript(SB_JS.src, SB_JS.sri); sb = window.supabase.createClient(DBS_CONFIG.supabaseUrl, DBS_CONFIG.supabaseAnonKey, { auth: { flowType: 'pkce' } }); const { data } = await withTimeout(sb.auth.getSession(), 8000); session = data.session; await withTimeout(loadProfile(), 8000); sb.auth.onAuthStateChange(async (ev, s2) => { const was = session && session.user && session.user.id, now = s2 && s2.user && s2.user.id; if (was && was !== now && !authQuiet) { location.replace(location.origin + location.pathname); return; } /* another account, or signed out in another tab: start clean (our own sign-outs set authQuiet and handle the page themselves) */ if (!!s2 !== !!session) { session = s2; await loadProfile(); onSession(); } if (ev === 'PASSWORD_RECOVERY') setTimeout(newPasswordPrompt, 700); }); }
