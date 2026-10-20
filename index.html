@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-L5XrZC3ZjnjK0wiiOYywWjJCFb2cVEuqPaau9BBxO4E=' 'sha256-3uSAkQ2yE0z7i2OXYELI/EbNOlvn6S2f4Y+NCwOA6hA=' 'sha256-xhA7H+6D6ELIXVem3g7fI6kkbAMci7bRIm7qqtdP6Fc=' 'sha256-IlbIr5S67WvYPo2ikGcip8+1Pr7v47DYvcaUPm3rk5A=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/ https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://afzlmlbigruxijudqukp.supabase.co; connect-src 'self' https://afzlmlbigruxijudqukp.supabase.co wss://afzlmlbigruxijudqukp.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-L5XrZC3ZjnjK0wiiOYywWjJCFb2cVEuqPaau9BBxO4E=' 'sha256-3uSAkQ2yE0z7i2OXYELI/EbNOlvn6S2f4Y+NCwOA6hA=' 'sha256-xhA7H+6D6ELIXVem3g7fI6kkbAMci7bRIm7qqtdP6Fc=' 'sha256-WG2l6uyDs5KcpEND9WRHhFbZWMJJ5GYUcpNqrYTRv+A=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/ https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://afzlmlbigruxijudqukp.supabase.co; connect-src 'self' https://afzlmlbigruxijudqukp.supabase.co wss://afzlmlbigruxijudqukp.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'none'; form-action 'self'">
 <style id="fg">html{display:none!important}</style><script>if(self===top){var g=document.getElementById('fg');g.parentNode.removeChild(g)}else{try{top.location.replace(location.href)}catch(e){}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RowdyQL · SQL בגובה העיניים</title>
@@ -6231,15 +6231,15 @@ async function meUpdatePw(){
 }
 /* two-step verification for staff (TOTP). Staff tools open only after a code from the app (aal2); the database checks the same, since is_teacher() requires aal2.
    No recovery codes in Supabase, so a second device is the backup. Students never see any of it. */
-const MFA = { cur: 'aal1', list: [], stale: [], later: false, need: false, enr: null };
+const MFA = { cur: 'aal1', list: [], later: false, need: false };
 const MFA_CODE = 'inputmode="numeric" autocomplete="one-time-code" dir="ltr" maxlength="6"';
 const mfaOn = () => MFA.list.length > 0;
 const staffOn = () => !!(profile && profile.role === 'teacher' && mfaOn() && MFA.cur === 'aal2');
 async function mfaLoad(){
-  MFA.cur = 'aal1'; MFA.list = []; MFA.stale = []; if (!sb || !session) return;
+  MFA.cur = 'aal1'; MFA.list = []; if (!sb || !session) return;
   try { const { data } = await sb.auth.mfa.getAuthenticatorAssuranceLevel(); if (data && data.currentLevel) MFA.cur = data.currentLevel; } catch(e) {}
   try { const { data } = await sb.auth.mfa.listFactors(); const all = ((data && data.all) || []).filter(f => f.factor_type === 'totp');
-    MFA.list = all.filter(f => f.status === 'verified').sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)); MFA.stale = all.filter(f => f.status !== 'verified'); } catch(e) {}
+    MFA.list = all.filter(f => f.status === 'verified').sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)); } catch(e) {}
 }
 /* on sign-in and on load: a staff account with a device and no code yet gets the code window, once per page */
 async function mfaCheck(){ await mfaLoad(); if (staffOn()) { dashCount(); ntLoad(true); } else if (mfaOn() && !MFA.later) mfaGate(); }
@@ -6269,7 +6269,7 @@ function mfaGate(after){
 const mfaHigh = fn => MFA.cur === 'aal2' ? fn() : mfaGate(fn);
 const mfaDate = v => { const d = new Date(v); return isNaN(d) ? '' : d.getDate() + '.' + (d.getMonth() + 1) + '.' + d.getFullYear(); };
 function mfaCard(){
-  const box = $('#meMfa'); if (!box) return; MFA.enr = null;
+  const box = $('#meMfa'); if (!box) return;
   if (!mfaOn()) { box.innerHTML = '<p class="me-hint">' + t(MFA.need ? 'mfa_need' : 'mfa_off') + '</p><div class="controls"><button type="button" class="btn primary" id="mfaStart">' + t('mfa_start') + '</button><span class="me-hint" id="mfaMsg" role="status"></span></div>'; $('#mfaStart').addEventListener('click', mfaEnroll); return; }
   box.innerHTML = '<p class="me-hint">' + t('mfa_on') + '</p><ul class="mfa-devs">' + MFA.list.map((f, i) => '<li data-f="' + esc(f.id) + '"><span>' + t('mfa_dev', { n: i + 1, d: mfaDate(f.created_at) }) + '</span><button type="button" class="btn small ghost" data-rm>' + t('mfa_rm') + '</button></li>').join('') + '</ul>'
     + (MFA.list.length === 1 ? '<p class="me-hint">' + t('mfa_backup') + '</p>' : '')
@@ -6280,17 +6280,18 @@ function mfaCard(){
 async function mfaEnroll(){
   const msg = $('#mfaMsg'); if (msg) msg.textContent = t('g_working');
   try {
-    for (const f of MFA.stale) { try { await sb.auth.mfa.unenroll({ factorId: f.id }); } catch(e) {} } MFA.stale = []; /* a setup left halfway, on any device */
+    /* a setup left halfway is never unenrolled here: Supabase emails "a device was removed" for any unenroll, verified or not.
+       It drops unverified devices by itself (expired ones on the next enroll, the rest on the next verify). */
     const { data, error } = await sb.auth.mfa.enroll({ factorType: 'totp', issuer: 'RowdyQL', friendlyName: 'RowdyQL ' + new Date().toISOString().slice(0, 19) }); if (error) throw error;
-    const box = $('#meMfa'); if (!box) return; MFA.enr = data.id;
+    const box = $('#meMfa'); if (!box) return;
     box.innerHTML = '<p class="me-hint">' + t('mfa_scan') + '</p><div class="mfa-qr"><img alt="" width="180" height="180"></div>'
       + '<p class="me-hint">' + t('mfa_key') + '</p><code class="mfa-key" dir="ltr">' + esc(String(data.totp.secret || '').replace(/(.{4})/g, '$1 ').trim()) + '</code>'
       + '<div class="me-row">' + meField('mfaC', 'mfa_code', 'text', '', MFA_CODE) + '</div>'
       + '<div class="controls"><button type="button" class="btn primary" id="mfaOk">' + t('mfa_confirm') + '</button><button type="button" class="btn ghost" id="mfaNo">' + t('t_cancel') + '</button></div>';
     box.querySelector('.mfa-qr img').src = data.totp.qr_code;
-    const go = async () => { if (!(await mfaVerify('mfaC', $('#mfaOk'), data.id))) return; MFA.enr = null; MFA.need = false; await mfaDone(); const m = $('#mfaMsg'); if (m) m.textContent = t('mfa_ok'); };
+    const go = async () => { if (!(await mfaVerify('mfaC', $('#mfaOk'), data.id))) return; MFA.need = false; await mfaDone(); const m = $('#mfaMsg'); if (m) m.textContent = t('mfa_ok'); };
     $('#mfaOk').addEventListener('click', go); $('#mfaC').addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
-    $('#mfaNo').addEventListener('click', async () => { const id = MFA.enr; mfaCard(); if (id) { try { await sb.auth.mfa.unenroll({ factorId: id }); } catch(e) {} } });
+    $('#mfaNo').addEventListener('click', mfaCard);
     setTimeout(() => { const c = $('#mfaC'); if (c) c.focus(); }, 60);
   } catch(e) { const m = $('#mfaMsg'); if (m) m.textContent = t('g_err_gen'); }
 }
