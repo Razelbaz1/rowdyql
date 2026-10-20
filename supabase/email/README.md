@@ -43,7 +43,7 @@ Supabase → Authentication → Emails → Templates. בוחרים תבנית, �
 
 ## מייל הפרידה ותשובות אליו
 מייל הפרידה נשלח מהפונקציה `delete_my_account` (Resend דרך `pg_net`, המפתח ב-Vault בשם `resend_api_key`). התבנית: `goodbye.html`; ה-SQL נבנה ממנה ב-`python tools/gen_goodbye_sql.py`.
-תשובות למייל הולכות ל-`hello@rowdyql.com` (המשתנה `v_reply` בפונקציה). כדי שהכתובת תקלוט דואר: Cloudflare → `rowdyql.com` → Email → Email Routing → הפעלה (מוסיף רשומות MX שלא נוגעות באתר) → Routing rules → כתובת `hello` → Send to: תיבת הג'ימייל שלך (מאשרים את המייל שמגיע אליה).
+תשובות למייל הולכות ל-`hello@rowdyql.com` (המשתנה `v_reply` בפונקציה). מאז 2026-10-20 כלל הניתוב של `hello` ב-Cloudflare Email Routing שולח כל מייל ל-Worker `rowdyql-mail-in` (`cloudflare/mail-in/worker.js`). הוא שומר עותק בג'ימייל של רז ומעביר את המייל לפונקציה `mail-in`, שמתייקת אותו כפנייה בטבלה `requests` (`supabase/migration_2026-10-20_mail_in.sql`).
 
 ## מייל ההודעות (הפעמון)
 לא מדביקים אותו ב-Supabase. הוא נמצא בתוך `send_notice()` בקובץ `supabase/migration_2026-09-27_notices.sql`, כמו מייל הפרידה. אחרי שינוי ב-`notice.html` מריצים `python tools/gen_notice_sql.py`, ואז מריצים את ה-SQL שוב.
