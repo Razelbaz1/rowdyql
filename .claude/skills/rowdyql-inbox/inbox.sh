@@ -6,8 +6,8 @@
 BASE=https://afzlmlbigruxijudqukp.supabase.co/rest/v1/rpc
 KEY=sb_publishable_VqElbkoG6ZWGI4VtWEZ7Tw_Quqxv1fR
 case "$1" in
-  inbox_seen|inbox_who|inbox_add|inbox_followup|inbox_pending|inbox_draft|inbox_summary) ;;
-  *) echo "usage: inbox.sh inbox_pending|inbox_draft|inbox_who|inbox_summary|inbox_seen|inbox_add|inbox_followup [json | @file]" >&2; exit 2 ;;
+  inbox_seen|inbox_who|inbox_add|inbox_followup|inbox_pending|inbox_draft|inbox_summary|inbox_news_state|inbox_news) ;;
+  *) echo "usage: inbox.sh inbox_pending|inbox_draft|inbox_who|inbox_summary|inbox_news_state|inbox_news|inbox_seen|inbox_add|inbox_followup [json | @file]" >&2; exit 2 ;;
 esac
 DATA=${2:-'{}'}
 curl -s -X POST "$BASE/$1" -H "apikey: $KEY" -H "Content-Type: application/json" --data-binary "$DATA"

@@ -10,3 +10,7 @@ Course site in Hebrew and English. Source is `src/page.html`; `python build.py` 
 - `python build.py` runs `raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py` and stops on new voice errors. Fix the text. Never pass `--allow-voice` unless Raz explicitly approved that text.
 - Before committing copy changes, run `python raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py --changed` and review every changed string with the skill's review mode. Show Raz new or changed copy before it ships.
 - Never edit the voice profiles without Raz. His corrections go into `copy/examples.md`, and a profile change gets a new version line.
+
+## What's new
+
+- When a change students will notice goes live, offer Raz a "מה חדש" proposal with the `rowdyql-news` skill. It waits in the staff board's "פרסום הודעות" tab, and only Raz publishes it. Students see it once in a small window, then in the bell. Never by email.
