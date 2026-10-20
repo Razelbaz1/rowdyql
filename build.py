@@ -1,4 +1,5 @@
-"""Wraps src/page.html (the artifact body) into a standalone index.html for GitHub Pages.
+"""Wraps src/page.html (the artifact body) into a standalone index.html (the full build, for the local tests), and writes the
+public build to dist/ and the paid chapter packs to dist-packs/ (see the end of this file).
 
 First runs the voice check (the site's official voice, raz-elbaz-brand-identity-kit/voice/voice-profile.md) and stops on
 new voice errors. --allow-voice builds anyway; use it only when Raz approved that text.
@@ -66,3 +67,54 @@ html = f"""<!doctype html>
 """
 pathlib.Path("index.html").write_text(html, encoding="utf-8")
 print("index.html written,", len(html), "chars")
+
+# ---- The public build (dist/) and the chapter packs (dist-packs/) ----
+# index.html above is the full build: every pack inline, for the local tests. The public build cuts each region marked
+# /*@pack <chapter>*/ … /*@/pack*/ out of the page and writes it to dist-packs/<chapter>.js; the page then loads a pack from the
+# server (pack_tickets → the pack Edge Function) only for an account that has that chapter. dist/ is what the host publishes;
+# dist-packs/ is uploaded to the database and never published.
+import json, shutil
+PACK_RE = re.compile(r"/\*@pack (\w+)\*/\n(.*?)/\*@/pack\*/\n?", re.S)
+i0 = body.index("const I18N = {"); he0 = body.index("he: {", i0); en0 = body.index("\nen: {", he0)
+i1 = body.index("/* =========================== STATE & HELPERS", en0)
+packs = {}
+for m in PACK_RE.finditer(body):
+    part = "he" if he0 < m.start() < en0 else "en" if en0 < m.start() < i1 else "code"
+    packs.setdefault(m.group(1), {"he": [], "en": [], "code": []})[part].append(m.group(2))
+public = PACK_RE.sub("", body)
+if "/*@pack" in public or "/*@/pack" in public:
+    sys.exit("build stopped: an unmatched pack mark is left in the public build")
+out_packs = pathlib.Path("dist-packs"); shutil.rmtree(out_packs, ignore_errors=True); out_packs.mkdir()
+sri = {}
+for name, p in sorted(packs.items()):
+    js = (f"/* RowdyQL pack: {name} */\nObject.assign(I18N.he, {{\n{''.join(p['he'])}}});\nObject.assign(I18N.en, {{\n{''.join(p['en'])}}});\n"
+          + "".join(p["code"]))
+    if f"PACKS.have.add('{name}')" not in js:
+        sys.exit(f"build stopped: the {name} pack never marks itself loaded (PACKS.have.add('{name}'))")
+    (out_packs / f"{name}.js").write_bytes(js.encode("utf-8"))   # bytes as hashed: no newline translation on Windows
+    sri[name] = "sha384-" + base64.b64encode(hashlib.sha384(js.encode("utf-8")).digest()).decode()
+(out_packs / "manifest.json").write_text(json.dumps(sri, indent=1) + "\n", encoding="utf-8")
+if public.count("const PACK_SRI = {};") != 1:
+    sys.exit("build stopped: the PACK_SRI placeholder is missing")
+public = public.replace("const PACK_SRI = {};", "const PACK_SRI = " + json.dumps(sri) + ";", 1)
+PACK_SRC = f"https://{SB}/functions/v1/pack"
+pub_inline = [sha(FRAME_GUARD)] + [sha(s) for s in re.findall(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>", public, re.S)]
+pub_csp = CSP.replace(" ".join(inline), " ".join(pub_inline), 1).replace("script-src 'self' ", "script-src 'self' " + PACK_SRC + " ", 1)
+pub_html = html.replace(CSP, pub_csp, 1).replace(body, public, 1)
+out = pathlib.Path("dist"); shutil.rmtree(out, ignore_errors=True); out.mkdir()
+(out / "index.html").write_text(pub_html, encoding="utf-8")
+for f in ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "manifest.json", "sw.js", "icon-192.png", "icon-512.png", "badge-72.png",
+          "og.jpg", "og.png", "email-logo.png", "email-logo-light.png"]:
+    shutil.copy(f, out / f)
+shutil.copytree("email-titles", out / "email-titles")
+# Response headers on the host (Cloudflare): what a <meta> can't do (frame-ancestors, HSTS) plus the usual hardening.
+(out / "_headers").write_text("""/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+""", encoding="utf-8")
+print("dist/ written (public build,", len(pub_html), "chars); packs:", ", ".join(f"{k} {len((out_packs / (k + '.js')).read_text(encoding='utf-8'))} chars" for k in sri))
