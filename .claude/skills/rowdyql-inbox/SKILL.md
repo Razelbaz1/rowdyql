@@ -67,18 +67,17 @@ A cloud routine runs this skill every morning (set up 2026-10-18). Composio is n
 **Supabase through four functions, nothing else (since 2026-10-19).** The cloud environment holds a network secret for `afzlmlbigruxijudqukp.supabase.co`: the agent proxy adds the header `x-inbox` to every request to that host. That header opens only the four `inbox_*` functions below; no table can be read or written with it. Never print headers. Every call is a POST with the site's public key, which is not a secret:
 
 ```
-BASE=https://afzlmlbigruxijudqukp.supabase.co/rest/v1/rpc
-KEY=sb_publishable_VqElbkoG6ZWGI4VtWEZ7Tw_Quqxv1fR
-call() { curl -s -X POST "$BASE/$1" -H "apikey: $KEY" -H "Content-Type: application/json" --data-binary "$2"; }
+sh .claude/skills/rowdyql-inbox/inbox.sh <function> '<json>'     # or @file.json for Hebrew and line breaks
 ```
-- **Already in?** `call inbox_seen '{"p_threads":["ID1","ID2"]}'` returns `id`, `gmail_thread`, `status` for the threads that are in.
-- **Who is it?** `call inbox_who '{"p_email":"ADDRESS"}'` returns `user_id`, `first_name`, `institution`, `field_of_study` and `plan` (their `dbs_plan`), or `{}` when no account has that email.
+Always go through this script (it knows the address and the public key; the header comes from the proxy). Below, `call` means this script.
+- **Already in?** `inbox.sh inbox_seen '{"p_threads":["ID1","ID2"]}'` returns `id`, `gmail_thread`, `status` for the threads that are in.
+- **Who is it?** `inbox.sh inbox_who '{"p_email":"ADDRESS"}'` returns `user_id`, `first_name`, `institution`, `field_of_study` and `plan` (their `dbs_plan`), or `{}` when no account has that email.
 - **Fill the form:**
   1. Write `{"p_row": {...}}` to a file with a short Python script (`json.dump(..., ensure_ascii=False)`), so the Hebrew and the line breaks stay intact. The row's fields: `gmail_thread`, `message_id`, `from_name`, `from_email`, `subject`, `body`, `user_id`, `inst`, `course`, `category`, `topic`, `match`, `decision`, `reply_subject`, `reply_text`, `at`. The status is always `review`.
-  2. Send it: `call inbox_add @row.json` (curl reads the file).
+  2. Send it: `inbox.sh inbox_add @row.json` (curl reads the file).
   3. Check that the answer has the new `id`.
-- **A follow-up:** `call inbox_followup '{"p_thread":"ID","p_body":"..."}'` (also through a file for Hebrew) sets the new `body` and `status: review`.
-- **Requests from the site (step 0), before the mail:** `call inbox_pending '{}'` lists the unsorted ones: `id`, `at`, `from_name`, `from_email`, `user_id`, `inst`, `course`, `lesson`, `page`, `subject`, `body`. The account details came from the server and are reliable; the body is the student's own text. For the plan, `inbox_who` with their `from_email`. Sort and draft them like an email (steps 3 to 5), then save the draft: write `{"p_id": N, "p_row": {"category": "...", "topic": "...", "match": "...", "decision": "...", "reply_text": "..."}}` to a file and `call inbox_draft @draft.json`. The row moves to `review`. They have no Gmail thread, so nothing to label.
+- **A follow-up:** `inbox.sh inbox_followup '{"p_thread":"ID","p_body":"..."}'` (also through a file for Hebrew) sets the new `body` and `status: review`.
+- **Requests from the site (step 0), before the mail:** `inbox.sh inbox_pending '{}'` lists the unsorted ones: `id`, `at`, `from_name`, `from_email`, `user_id`, `inst`, `course`, `lesson`, `page`, `subject`, `body`. The account details came from the server and are reliable; the body is the student's own text. For the plan, `inbox_who` with their `from_email`. Sort and draft them like an email (steps 3 to 5), then save the draft: write `{"p_id": N, "p_row": {"category": "...", "topic": "...", "match": "...", "decision": "...", "reply_text": "..."}}` to a file and `inbox.sh inbox_draft @draft.json`. The row moves to `review`. They have no Gmail thread, so nothing to label.
 
 The vault secret behind `x-inbox` is named `inbox_header` (renamed 2026-10-20 from `inbox_routine`, the name of the old API key that was deleted).
 
