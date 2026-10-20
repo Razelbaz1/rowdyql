@@ -1,6 +1,6 @@
 # המיילים של RowdyQL
 
-חמשת המיילים בנויים על תבנית המייל של הערכה (`raz-elbaz-brand-identity-kit/templates/email-shell.html`). לא עורכים אותם ביד: משנים את `tools/build_emails.py` ומריצים `python tools/build_emails.py`. שלושה מודבקים ב-Supabase (הטבלה למטה), ושניים יושבים בתוך פונקציות SQL (מייל הפרידה ומייל ההודעות, בהמשך). תצוגה מקדימה: לפתוח את `preview.html` בדפדפן (לבנות מחדש: `node tools/emailpreview.js`).
+המיילים בנויים על תבנית המייל של הערכה (`raz-elbaz-brand-identity-kit/templates/email-shell.html`). לא עורכים אותם ביד: משנים את `tools/build_emails.py` ומריצים `python tools/build_emails.py`. שלושה מודבקים ב-Supabase (הטבלה למטה), ושניים יושבים בתוך פונקציות SQL (מייל הפרידה ומייל ההודעות, בהמשך). תצוגה מקדימה: לפתוח את `preview.html` בדפדפן (לבנות מחדש: `node tools/emailpreview.js`).
 
 | תבנית ב-Supabase | קובץ | נושא (Subject) |
 |---|---|---|
@@ -11,6 +11,17 @@
 ## הדבקה
 Supabase → Authentication → Emails → Templates. בוחרים תבנית, מדביקים את הנושא, ואת כל תוכן הקובץ בגוף ההודעה (Message body), ושומרים.
 הלוגו נטען מ-`https://rowdyql.com/email-logo-light.png` (הקובץ בשורש הריפו, נוצר ב-`node tools/emaillogolight.js`). הלוגו הכהה הישן, `email-logo.png`, נשאר בשרת בשביל מיילים שכבר נשלחו. הברכה בשם הפרטי מגיעה מ-`first_name` שנשמר בהרשמה.
+
+## התראות אבטחה
+שלושה מיילים ש-Supabase שולח לבד, מיד אחרי שינוי בחשבון של הקורא עצמו (Authentication → Emails → Security notifications). הם מרגיעים קודם ("שיניתם בעצמכם? אין צורך לעשות כלום"), ואחר כך אומרים מה עושים אם לא. אין בהם שם (לתבניות האלה אין `first_name`) ואין כפתור כניסה, כי כפתור כזה בתוך מייל אבטחה הוא הצורה שפישינג מחקה.
+
+| התראה ב-Supabase | קובץ | נושא (Subject) |
+|---|---|---|
+| Password changed | `password_changed.html` | הסיסמה שלכם ב-RowdyQL שונתה |
+| MFA factor enrolled | `mfa_factor_enrolled.html` | נוסף מכשיר לאימות הדו-שלבי ב-RowdyQL |
+| MFA factor unenrolled | `mfa_factor_unenrolled.html` | הוסר מכשיר מהאימות הדו-שלבי ב-RowdyQL |
+
+מדליקים דרך ה-Management API (`PATCH /v1/projects/<ref>/config/auth`): `mailer_notifications_<name>_enabled`, `mailer_subjects_<name>_notification` ו-`mailer_templates_<name>_notification_content`. הכותרות הן תמונות ב-`email-titles/` (password_changed, mfa_enrolled, mfa_unenrolled), ולכן הן צריכות להיות באתר לפני שהמיילים נדלקים.
 
 ## מייל האישור לפי מגדר
 מייל האישור פונה ביחיד לפי המגדר שנבחר בהרשמה (`gender`, M או F), ובלי מגדר ברבים (פרופיל הקול 1.2). משתנים הכותרת (תמונה: `confirm_signup_m.png`, `confirm_signup_f.png` או `confirm_signup.png`), שורת התצוגה המקדימה ו"שבחרת/שבחרתם". הנושא, שמודבק כמו שהוא:
