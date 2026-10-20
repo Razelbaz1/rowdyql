@@ -4,7 +4,7 @@ public build to dist/ and the paid chapter packs to dist-packs/ (see the end of 
 First runs the voice check (the site's official voice, raz-elbaz-brand-identity-kit/voice/voice-profile.md) and stops on
 new voice errors. --allow-voice builds anyway; use it only when Raz approved that text.
 """
-import re, pathlib, sys, importlib.util
+import re, os, pathlib, sys, importlib.util
 
 VOICE_CHECK = "raz-elbaz-brand-identity-kit/voice/scripts/voice_check.py"   # update if the voice folder moves
 spec = importlib.util.spec_from_file_location("voice_check", VOICE_CHECK)
@@ -117,4 +117,18 @@ shutil.copytree("email-titles", out / "email-titles")
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
 """, encoding="utf-8")
+# On the host's build (Cloudflare), the packs go up to the database before the page that needs them is published. The deploy key
+# is a secret of the build (PACK_DEPLOY_KEY); the database holds only its sha256 (deploy_ok). A failed upload stops the build,
+# so a page never points at a pack the server doesn't have. Local builds have no key and skip this.
+if os.environ.get("PACK_DEPLOY_KEY"):
+    import urllib.request
+    for name in sorted(sri):
+        req = urllib.request.Request(f"https://{SB}/rest/v1/rpc/pack_put", method="POST",
+              data=json.dumps({"p_chapter": name, "p_sri": sri[name], "p_body": (out_packs / f"{name}.js").read_bytes().decode("utf-8")}).encode("utf-8"),
+              headers={"apikey": "sb_publishable_VqElbkoG6ZWGI4VtWEZ7Tw_Quqxv1fR", "content-type": "application/json", "x-deploy": os.environ["PACK_DEPLOY_KEY"]})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                print("pack uploaded:", name, r.status)
+        except Exception as e:
+            sys.exit(f"build stopped: uploading the {name} pack failed ({e})")
 print("dist/ written (public build,", len(pub_html), "chars); packs:", ", ".join(f"{k} {len((out_packs / (k + '.js')).read_text(encoding='utf-8'))} chars" for k in sri))
