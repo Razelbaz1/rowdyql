@@ -689,6 +689,25 @@ svg.mwires path.draw{animation:mwire .6s ease-out}
 .rq-card input[readonly]{background:var(--surface2)}
 .nw-card textarea{min-height:6.5rem}
 .nw-guide{display:flex;align-items:flex-end;gap:.6rem;flex-wrap:wrap}
+/* the coupons tab */
+.cp-top{display:flex}
+.cp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem 1rem}
+.rq-card .cp-grid input,.rq-card .cp-fs input[type=date],.rq-card .cp-fs input[type=number]{font:inherit;font-size:.95rem;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:.45rem .7rem;min-height:40px}
+.cp-fs{border:1px solid var(--line);border-radius:12px;padding:.5rem .9rem .7rem;margin:0;display:flex;flex-wrap:wrap;gap:.45rem 1.1rem}
+.cp-fs legend{font-size:.86rem;color:var(--muted);padding:0 .3rem}
+.rq-card label.cp-chk{flex-direction:row;align-items:center;gap:.4rem;color:var(--ink);font-size:.93rem;cursor:pointer}
+.rq-card .cp-fs input.cp-num{width:4.8rem;min-height:36px;padding:.3rem .5rem}
+.cp-code{font-family:var(--mono);font-size:1.12rem;letter-spacing:.05em;direction:ltr;unicode-bidi:isolate}
+.cp-chips{display:flex;gap:.4rem;flex-wrap:wrap}
+.cp-chip{font-size:.8rem;border-radius:999px;padding:.1rem .65rem;background:var(--surface2);color:var(--ink)}
+.cp-st.on{color:var(--good)}.cp-st.done{color:var(--amber)}
+.rq-card.cp-card.off,.rq-card.cp-card.done{opacity:.72}
+.cp-who{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.cp-who li{display:flex;align-items:center;gap:.4rem .8rem;flex-wrap:wrap;padding:.5rem 0;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+.cp-who li b{color:var(--ink)}
+.cp-who .em{font-family:var(--mono);direction:ltr;unicode-bidi:isolate;font-size:.82rem}
+.cp-who .cp-acc{color:var(--ink)}
+.cp-who li .btn{margin-inline-start:auto}
 .rq-card select{font:inherit;font-size:.95rem;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:.45rem .7rem;min-width:12rem}
 .rq-card.published{opacity:.8}
 .dsec{font-family:var(--body);font-size:.85rem;font-weight:700;color:var(--muted);letter-spacing:.04em;margin:1rem 0 -.3rem}
@@ -1299,6 +1318,20 @@ button.chb-tog:hover .chb-t b,button.chb-tog:focus-visible .chb-t b{color:var(--
 .buy-nudge{margin:0;font-size:.9rem;color:var(--accent);font-weight:600}
 .buy-nudge.fl{animation:rqFlare 2.4s ease-out}
 .buy-cart > .btn{justify-content:center}
+/* a promo code: the form at the bottom of the cart and in the personal area */
+.cp-form{display:flex;flex-direction:column;gap:.45rem}
+.buy-cart .cp-form{border-top:1px solid var(--line);padding-top:.8rem;margin-top:.2rem}
+.cp-l{display:flex;flex-direction:column;gap:.4rem;font-size:.9rem;font-weight:600}
+.cp-row{display:flex;gap:.5rem;align-items:stretch}
+.cp-in{flex:1;min-width:0;font:inherit;font-family:var(--mono);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:.45rem .7rem;min-height:42px;direction:ltr;text-align:left}
+.cp-in:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cp-msg{margin:0;font-size:.88rem;line-height:1.5;color:var(--muted)}
+.cp-msg:empty{display:none}
+.cp-msg.ok{color:var(--good);animation:rqFlare 2.4s ease-out}
+.cp-msg.bad{color:var(--amber)}
+.chb-tag.acc,.mpc-st.acc{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.chb-tag.acc.warn,.mpc-st.acc.warn{background:var(--amber-soft);color:var(--amber)}
+.buy-ch-t .chb-tag{align-self:flex-start;margin-top:.2rem}
 .buy-done{color:var(--muted)}
 @media (max-width:900px){
   .buy{grid-template-columns:minmax(0,1fr)}
@@ -2885,6 +2918,7 @@ ex3_h2:"תרגילים 7 עד 12", ex3_lede:"Self-Join ושאלות ברמת מ�
 ask_h:"חסר לכם משהו?", ask_p:"נושא שלא מצאתם, עוד תרגול על שיעור, רעיון לשיפור - כתבו לנו.", ask_btn:"פנייה אלינו", ask_direct:"אפשר גם לכתוב ישירות ל-{mail}", ask_end:"יש בעיה או חסר לכם משהו בשיעור הזה?", ask_write:"כתבו לנו", ask_subj:"פנייה ל-RowdyQL", ask_from:"נשלח מהעמוד: {page}", ask_f_h:"כתבו לנו על השיעור הזה", ask_f_h_gen:"כתבו לנו", ask_f_ctx:"הפנייה תגיע אלינו יחד עם שיעור {l}, כדי שנדע על מה מדובר.", ask_f_ctx_link:"משהו אחר? לפנייה כללית", ask_f_who:"מאת {name} · {email}", ask_f_ph:"כתבו כאן את הפנייה שלכם", ask_f_send:"שליחה", ask_f_cancel:"ביטול", ask_f_wait:"שולחים…", ask_f_empty:"כתבו כמה מילים קודם.", ask_f_ok_h:"פנייתכם התקבלה", ask_f_ok_p:"נחזור אליכם בהקדם לכתובת {email}.", ask_f_ok_close:"סגירה", ask_f_limit:"הגעתם היום למגבלה היומית של פניות מהאתר. אפשר להמשיך לכתוב לנו ישירות לכתובת {mail}.", ask_f_err:"השליחה לא הצליחה. אפשר לנסות שוב, או לכתוב ל-{mail}.", rq_src_site:"מהאתר · {l}", d_req_st_new:"עוד לא מוינה",
 me_title:"אזור אישי", me_look:"מראה", me_avatar:"אווטאר", me_av_ini:"האות הראשונה של השם", me_mode:"תצוגה", me_m_system:"כמו במכשיר", me_m_light:"יום", me_m_dark:"לילה", me_m_auto:"לפי השעה", me_m_auto_s:"יום בין 07:00 ל-19:00, לילה בשאר השעות.", me_details:"פרטים אישיים", me_save:"שמירה", me_saved:"נשמר.", me_pass:"סיסמה", me_pass_why:"נשלח קוד לאימייל שלכם, ואיתו קובעים סיסמה חדשה.", me_send:"שליחת קוד", me_sent:"שלחנו קוד ל-{e}.", me_resend:"שליחה מחדש", me_code:"הקוד מהאימייל", me_new:"סיסמה חדשה", me_new2:"שוב, לאימות", me_update:"עדכון סיסמה", me_pw_ok:"הסיסמה עודכנה.", mfa_h:"אימות דו-שלבי", mfa_off:"עוד לא פעיל. אחרי שמפעילים, בכל כניסה לחשבון הצוות צריך גם קוד מאפליקציה בטלפון.", mfa_need:"כלי הצוות נפתחים רק עם אימות דו-שלבי. מפעילים אותו כאן, פעם אחת.", mfa_start:"הפעלת אימות דו-שלבי", mfa_scan:"סורקים את הקוד באפליקציית אימות, כמו Google Authenticator או Microsoft Authenticator.", mfa_key:"לא מצליחים לסרוק? מקלידים באפליקציה את המפתח הזה:", mfa_code:"הקוד מהאפליקציה", mfa_confirm:"אישור", mfa_bad:"הקוד לא נכון. הקוד באפליקציה מתחלף כל 30 שניות, אז מקלידים את מה שמופיע עכשיו.", mfa_ok:"המכשיר נוסף.", mfa_on:"פעיל. בכל כניסה לחשבון הצוות צריך גם קוד מהאפליקציה.", mfa_dev:"מכשיר {n} · נוסף ב-{d}", mfa_backup:"כדאי להוסיף מכשיר שני - אם הטלפון ילך לאיבוד, עדיין תוכלו להגיע לכלי הצוות.", mfa_add:"הוספת מכשיר", mfa_rm:"הסרה", mfa_rm_q:"להסיר את המכשיר הזה? הקודים שלו כבר לא יעבדו.", mfa_rm_last:"זה המכשיר האחרון. בלעדיו כלי הצוות ייסגרו עד שתפעילו שוב אימות דו-שלבי.", mfa_rm_yes:"כן, להסיר", mfa_ch_h:"קוד אימות", mfa_ch_p:"מקלידים את הקוד בן 6 הספרות מאפליקציית האימות.", mfa_ch_later:"לא עכשיו", mfa_ch_note:"בלי הקוד ממשיכים באתר כרגיל, רק בלי כלי הצוות.", pk_wait:"טוענים את הפרק", ofr_h:"כל הקורס ביחד יוצא זול יותר", ofr_p:"{n} פרקים ב-{p} במקום {s}", ofr_go:"לכל הקורס", buy_h:"רכישה", buy_lede:"בוחרים פרקים, או לוקחים את כל הקורס ומשלמים פחות.", buy_all_badge:"הכי משתלם", buy_all_h:"כל הקורס", buy_all_meta:"{n} פרקים · {l} שיעורים", buy_all_save:"חוסכים {s} לעומת קנייה בנפרד", buy_all_pick:"בחירה בכל הקורס", buy_or:"או פרקים לבחירה", buy_add:"הוספה לסל", buy_in:"בסל ✓", buy_own:"כבר שלכם", buy_in_all:"כלול", buy_cart_h:"הסל", buy_empty:"הסל ריק. בחרו פרק, או את כל הקורס.", buy_total:"סך הכול", buy_nudge:"עוד {d} ומקבלים את כל הקורס", buy_nudge_over:"כל הקורס זול יותר ממה שבסל", buy_switch:"מעבר לכל הקורס", buy_go:"לתשלום", buy_soon:"התשלום באתר נפתח בקרוב.", buy_have_all:"כל הקורס כבר שלכם.", nav_h_plan:"התוכנית", chb_out:"לא כלול", chb_out_s:"לא כלול", chb_buy:"לרכישה", chb_what:"מה בפרק?", cmap_h:"מפת הקורס", map_lede:"כל הפרקים והשיעורים בקורס, ומה כבר פתוח לכם.", map_d_intro:"למה צריך בסיס נתונים, ומה זה טבלה, מפתח ושאילתה", map_own:"פתוח לכם", map_out:"לא כלול", hp_h:"התוכנית שלכם", hp_all:"לכל השיעורים", pk_lock_h:"הפרק הזה עוד לא פתוח לכם", pk_lock_p:"הוא נפתח עם קוד קופון או ברכישה. בקרוב אפשר יהיה לעשות את זה ממש כאן.", me_demo:"במצב הדגמה אין סיסמה לשנות.", e_code:"הקוד לא נכון, או שהוא כבר לא בתוקף.", e_same:"זו הסיסמה הנוכחית. בחרו אחרת.", e_match:"הסיסמאות לא זהות.", e_wait:"אפשר לבקש שוב בעוד דקה.", g_forgot:"שכחתי סיסמה", fp_h:"איפוס סיסמה", fp_why:"נשלח קישור לאיפוס לאימייל שנרשמתם איתו.", fp_go:"שליחת קישור", fp_ok:"אם האימייל רשום אצלנו, שלחנו אליו קישור לאיפוס.", fp_back:"חזרה לכניסה", fp_demo:"במצב הדגמה לא נשלחים מיילים.", fp_expired:"הקישור כבר לא בתוקף. אפשר לבקש קישור חדש.", fp_device:"הקישור הזה עובד רק בדפדפן שבו ביקשתם אותו. אפשר לפתוח אותו שם, או לבקש כאן קישור חדש.", g_conf_in:"האימייל אושר. נשאר רק להיכנס.", np_h:"סיסמה חדשה", me_del:"מחיקת החשבון", me_del_why:"מוחק את החשבון, את ההתקדמות ואת כל מה שנשמר. אי אפשר לבטל את זה.", me_del_word:"מחיקה", me_del_type:"כדי לאשר, כתבו: {w}", me_del_go:"מחיקה לצמיתות", me_deleted:"החשבון נמחק.", dt_h_acc:"פתיחת חשבון", d_c_field:"תחום", ob_yes:"כן", ob_no:"לא", ob_pick:"בחרו מהרשימה", ob_g_uni:"אוניברסיטאות", ob_g_col:"מכללות", ob_g_more:"לימודים אחרים", ob_year:"באיזו שנה?", ob_y1:"שנה א'", ob_y2:"שנה ב'", ob_y3:"שנה ג'", ob_y4:"שנה ד'", ob_y5:"תואר שני ומעלה", ob_level:"כמה אתם כבר מכירים את הנושא?", ob_lv1:"הנושא חדש לי לגמרי", ob_lv2:"שמעתי עליו, בלי ניסיון", ob_lv3:"יש לי בסיס", ob_lv4:"די בנוח איתו", ob_lv5:"שליטה טובה", ob_year_f:"שנת לימוד", ob_level_f:"רמה בנושא", d_c_stud:"בלימודים", d_c_inst:"מוסד", d_c_lvl:"רמה", me_tour:"סיור באתר", tour_hi_after:"<b>תודה!</b> עכשיו סיור קצר על מה שיש כאן, ואפשר להתחיל.", tour_hi:"<b>ברוכים הבאים ל-RowdyQL.</b> סיור קצר על מה שיש כאן, ואפשר להתחיל.", tour_tabs:"<b>הלשוניות.</b> התוכנית שלכם, ופרק לכל נושא. כל פרק מחולק לשיעורים קצרים, ובסוף כל שיעור יש כפתור לשיעור הבא.", tour_start:"<b>מכאן מתחילים.</b> בפעם הבאה יופיע כאן גם כפתור שממשיך בדיוק מאיפה שעצרתם.", tour_stats:"<b>ההתקדמות שלכם.</b> סעיפים שעברתם, תרגילים שפתרתם ובדיקות עצמיות.", tour_lessons:"<b>השיעורים.</b> כל כרטיס הוא שיעור של רבע שעה בערך, והטבעת מראה כמה ממנו עברתם.", tour_quick:"<b>כלים מהירים.</b> המחשבון, התרגילים, מפת הקורס והבדיקה העצמית, בלחיצה אחת.", tour_toc:"<b>תוכן העניינים.</b> השיעורים של הפרק והסעיפים של השיעור הפתוח.", tour_me:"<b>האזור האישי.</b> לחיצה על השם פותחת אותו - אווטאר, צבע רקע, יום או לילה, שפה והפרטים שלכם.", tour_end:"<b>זהו, אפשר להתחיל.</b> את הסיור אפשר לראות שוב באזור האישי.", tour_next:"הבא", tour_prev:"הקודם", tour_go:"מתחילים", tour_skip:"דילוג על הסיור", tour_n:"{i} מתוך {n}", lv_h:"חבל לנו שאתם עוזבים.", lv_sub:"תוכלו לספר לנו למה? אפשר לבחור יותר מסיבה אחת.", lv_content:"אין מספיק חומר לתרגול", lv_easy:"החומר קל מדי בשבילי", lv_hard:"החומר קשה מדי למתחילים", lv_done:"סיימתי את הקורס", lv_tech:"בעיות טכניות", lv_other:"אחר", nt_title:"התראות", nt_unread:"{n} חדשות", nt_empty:"עוד אין הודעות.", nt_now:"עכשיו", nt_new:"הודעה חדשה", nt_f_title:"כותרת", nt_f_body:"תוכן ההודעה", nt_f_mail:"לשלוח גם במייל", nt_send:"שליחה", nt_conf:"ההודעה תופיע אצל כל המשתמשים באתר. לשלוח?", nt_conf_mail:"ההודעה תופיע אצל כל המשתמשים באתר, וגם תישלח אליהם במייל. לשלוח?", nt_yes:"כן, לשלוח", nt_sent:"ההודעה נשלחה", nt_mailed:"{n} מיילים בדרך", nt_nomail:"ההודעה עלתה לאתר, אבל המיילים לא יצאו.", nt_read_by:"קראו: {n}", nt_mailed_n:"נשלחו {n} מיילים", nt_del:"מחיקה", nt_del_q:"למחוק?", nt_need_sql:"כדי לשלוח הודעות, צריך להריץ קודם את קובץ ה-SQL של ההתראות.", me_nt_h:"התראות", sub_hide:"הסתרת שורת הנושאים", sub_show:"הצגת שורת הנושאים", me_nt_mail:"לקבל הודעות ועדכונים גם במייל", tour_bell:"<b>התראות.</b> כאן יופיעו הודעות ועדכונים מאיתנו.", lv_note:"רוצים לפרט? זה לא חובה, אבל זה עוזר לנו להשתפר.", lv_note_other:"מה הסיבה?", lv_trans:"התשובות נשמרות בלי שם ובלי אימייל, ומשמשות רק לשיפור הקורס.", lv_stay:"בעצם, נשארים", lq_reset:"קישור איפוס יוצא לאימייל",
 nn_tag:"מה חדש", nn_ok:"הבנתי", nn_show:"רוצה לראות איך", gd_exit:"יציאה מההדרכה", gd_map1:"מפת הקורס נמצאת כאן, בכלים המהירים. לחצו עליה.", gd_map2:"כל פרק מקבל כרטיס משלו - מה לומדים בו, וכל השיעורים שלו לפי הסדר.", gd_map3:"רוצים לקפוץ לשיעור? לחצו עליו, והוא נפתח.", d_news_guide:"הדרכה", d_news_guide_none:"בלי הדרכה", d_news_try:"תצוגה מקדימה", d_tab_news:"פרסום הודעות", d_news_waiting:"{n} הצעות לפרסום מחכות לך", d_news_empty:"אין הצעות כרגע. כשעולה לאתר משהו שהסטודנטים ירגישו, הסוכן מציע כאן הודעה.", d_news_src_routine:"הסוכן היומי", d_news_src_session:"סשן עם Claude", d_news_note:"מה השתנה", d_news_pub:"פרסום", d_news_sure:"כל הסטודנטים יראו את ההודעה פעם אחת בחלון קטן, והיא תישאר אצלם בפעמון. לפרסם?", d_news_st_published:"פורסם ב-{d}", d_news_err:"הפרסום לא הצליח: {e}",
+cp_h:"יש לכם קוד הטבה?", cp_go:"מימוש", cp_me_h:"קוד הטבה", cp_bad:"בקוד יש רק אותיות באנגלית, ספרות ומקפים.", cp_unknown:"לא מצאנו את הקוד הזה. כדאי לבדוק שלא נפלה טעות הקלדה.", cp_expired:"הקוד הזה כבר לא בתוקף.", cp_used_up:"כל המקומות בקוד הזה כבר נתפסו.", cp_again:"כבר מימשתם את הקוד הזה.", cp_slow:"היו כאן כמה ניסיונות ברצף. נסו שוב בעוד כמה דקות.", cp_ok:"פתחנו לכם את {list}, עד {d}.", cp_ok_ever:"פתחנו לכם את {list}.", cp_all_in:"כל הקורס", cp_have:"כל מה שהקוד הזה פותח כבר פתוח לכם.", acc_until:"פתוח עד {d}", acc_days:"עוד {n} ימים", acc_2days:"עוד יומיים", acc_today:"נשאר פחות מיום", acc_ended:"הגישה הסתיימה", d_tab_cp:"קופונים", cp_new:"קופון חדש", cp_f_code:"קוד", cp_f_rand:"הגרלת קוד", cp_f_note:"שם פנימי", cp_f_note_ph:"למשל: שבוע ניסיון, פייסבוק", cp_f_what:"מה הוא פותח", cp_f_all:"כל הקורס", cp_f_for:"לכמה זמן", cp_f_days:"ימים מרגע המימוש", cp_f_until:"עד תאריך", cp_f_ever:"לתמיד", cp_f_quota:"כמה אנשים יכולים לממש", cp_f_quota_ph:"בלי הגבלה", cp_f_by:"אפשר לממש עד", cp_create:"יצירה", cp_save:"שמירה", cp_err_code:"קוד: 4 עד 24 תווים, אותיות באנגלית, ספרות ומקפים.", cp_err_what:"צריך לבחור לפחות פרק אחד.", cp_err_days:"מספר הימים: בין 1 ל-365.", cp_err_until:"צריך תאריך עתידי.", cp_err_quota:"מספר האנשים: 1 ומעלה, או ריק בלי הגבלה.", cp_err_dup:"הקוד הזה כבר קיים.", cp_list_empty:"עוד אין קופונים.", cp_st_on:"פעיל", cp_st_off:"מושבת", cp_st_done:"נגמר", cp_days_n:"{n} ימים מהמימוש", cp_day_1:"יום אחד מהמימוש", cp_until_d:"עד {d}", cp_ever:"לתמיד", cp_used:"{u} מתוך {q} מימשו", cp_used_n:"מימשו: {u}", cp_by:"אפשר לממש עד {d}", cp_link:"העתקת קישור", cp_link_ok:"הקישור הועתק", cp_off:"השבתה", cp_on:"הפעלה", cp_edit:"עריכה", cp_who:"מי מימש ({n})", cp_who_empty:"עוד אף אחד.", cp_who_rev:"הגישה בוטלה", cp_rev:"ביטול הגישה", cp_rev_q:"לבטל?",
 /* the first-login plan screen (2026-10-17). Keys ending _m / _f are the student's own voice in the sign-up gender; the bare key is the fallback */
 pl_ch1:"עליכם", pl_ch2:"המבחן", pl_ch2_ns:"היעד", pl_ch3:"איך לומדים", pl_ch4:"התוכנית", pl_ch_pre:"רגע לפני", pl_hi_h:"שלום {name}, בואו נבנה לכם תוכנית.", pl_hi_p:"כמה שאלות קצרות, רובן בלחיצה אחת. עם כל תשובה התוכנית משתנה מול העיניים. ואם לא בטוחים במשהו, אנחנו מחליטים בשבילכם.",
 pl_hi_m1:"בערך שתי דקות", pl_hi_m2:"אפשר לחזור לכל תשובה", pl_hi_m3:"אפשר לשנות אחר כך", pl_hi_go:"מתחילים", pl_hi_h_old:"{name}, הקורס נהיה אישי.", pl_hi_p_old:"חלק מהתשובות כבר אצלנו מהשאלון. נשארו כמה שאלות קצרות, והשאר עלינו.", pl_hi_m1_old:"פחות מדקה", pl_hi_go_old:"ממשיכים",
@@ -3181,6 +3215,7 @@ ex3_h2:"Exercises 7 to 12", ex3_lede:"Self-joins and exam-level questions. Same 
 ask_h:"Missing something?", ask_p:"A topic you couldn't find, more practice on a lesson, an idea for the site - write to us.", ask_btn:"Send a message", ask_direct:"Or write straight to {mail}", ask_end:"Found a problem, or missing something in this lesson?", ask_write:"Write to us", ask_subj:"A message for RowdyQL", ask_from:"Sent from: {page}", ask_f_h:"Write to us about this lesson", ask_f_h_gen:"Write to us", ask_f_ctx:"Your message comes with lesson {l}, so we know what you're looking at.", ask_f_ctx_link:"Something else? Write a general message", ask_f_who:"From {name} · {email}", ask_f_ph:"Write your message here", ask_f_send:"Send", ask_f_cancel:"Cancel", ask_f_wait:"Sending…", ask_f_empty:"Write a few words first.", ask_f_ok_h:"We got your message", ask_f_ok_p:"We'll get back to you soon at {email}.", ask_f_ok_close:"Close", ask_f_limit:"You've reached today's limit for messages from the site. You can keep writing to us at {mail}.", ask_f_err:"That didn't go through. Try again, or write to {mail}.", rq_src_site:"From the site · {l}", d_req_st_new:"Not sorted yet",
 me_title:"My area", me_look:"Look", me_avatar:"Avatar", me_av_ini:"Your initial", me_mode:"Display", me_m_system:"Like my device", me_m_light:"Day", me_m_dark:"Night", me_m_auto:"By time of day", me_m_auto_s:"Day from 07:00 to 19:00, night the rest of the time.", me_details:"Personal details", me_save:"Save", me_saved:"Saved.", me_pass:"Password", me_pass_why:"We'll email you a code; use it to set a new password.", me_send:"Send me a code", me_sent:"We sent a code to {e}.", me_resend:"Send again", me_code:"Code from the email", me_new:"New password", me_new2:"Again, to confirm", me_update:"Update password", me_pw_ok:"Password updated.", mfa_h:"Two-step verification", mfa_off:"Not on yet. Once it's on, you'll also need a code from an app on your phone to sign in to the staff account.", mfa_need:"Staff tools open only with two-step verification. Turn it on here - it's a one-time setup.", mfa_start:"Turn on", mfa_scan:"Scan the code with an authenticator app, like Google Authenticator or Microsoft Authenticator.", mfa_key:"Can't scan? Type this key into the app:", mfa_code:"Code from the app", mfa_confirm:"Confirm", mfa_bad:"That code doesn't match. The code changes every 30 seconds, so enter the one showing now.", mfa_ok:"Device added.", mfa_on:"On. Every sign-in to the staff account also needs a code from the app.", mfa_dev:"Device {n} · added {d}", mfa_backup:"Worth adding a second device - if your phone gets lost, the second one still gets you into the staff tools.", mfa_add:"Add a device", mfa_rm:"Remove", mfa_rm_q:"Remove this device? Its codes won't work anymore.", mfa_rm_last:"This is the last device. Without it, the staff tools close until you turn verification on again.", mfa_rm_yes:"Yes, remove", mfa_ch_h:"Verification code", mfa_ch_p:"Enter the 6-digit code from your authenticator app.", mfa_ch_later:"Not now", mfa_ch_note:"Without the code, you can keep using the site as usual, just without the staff tools.", pk_wait:"Loading the chapter", ofr_h:"The whole course, for less", ofr_p:"{n} chapters for {p} instead of {s}", ofr_go:"Get the course", buy_h:"Purchase", buy_lede:"Pick chapters, or take the whole course for less.", buy_all_badge:"Best value", buy_all_h:"The whole course", buy_all_meta:"{n} chapters · {l} lessons", buy_all_save:"{s} less than buying separately", buy_all_pick:"Pick this one", buy_or:"Or pick chapters", buy_add:"Add to cart", buy_in:"In the cart ✓", buy_own:"Already yours", buy_in_all:"Included", buy_cart_h:"Cart", buy_empty:"Your cart is empty. Pick a chapter, or the whole course.", buy_total:"Total", buy_nudge:"{d} more gets you the whole course", buy_nudge_over:"The whole course costs less than this", buy_switch:"Switch to it", buy_go:"Checkout", buy_soon:"Payment on the site opens soon.", buy_have_all:"The whole course is already yours.", nav_h_plan:"Your plan", chb_out:"Not included", chb_out_s:"Not included", chb_buy:"Get it", chb_what:"What's inside?", cmap_h:"Course map", map_lede:"Every chapter and lesson in the course, and what's already open to you.", map_d_intro:"Why we need databases, and what tables, keys and queries are", map_own:"Open to you", map_out:"Not included", hp_h:"Your plan", hp_all:"See all lessons", pk_lock_h:"This chapter isn't open to you yet", pk_lock_p:"It opens with a coupon code or a purchase. Soon you'll be able to do that right here.", me_demo:"Demo mode doesn't have a password to change.", e_code:"The code is wrong or has expired.", e_same:"That's your current password. Pick another.", e_match:"The passwords don't match.", e_wait:"You can ask again in a minute.", g_forgot:"Forgot password", fp_h:"Reset password", fp_why:"We'll send a reset link to the email you signed up with.", fp_go:"Send link", fp_ok:"If this email is registered, a reset link is on its way.", fp_back:"Back to sign in", fp_demo:"Demo mode doesn't send emails.", fp_expired:"That link isn't valid anymore. You can request a new one.", fp_device:"This link only works in the browser where you asked for it. Open it there, or request a new one here.", g_conf_in:"Your email is confirmed. All that's left is to sign in.", np_h:"New password", me_del:"Delete account", me_del_why:"Deletes your account, progress, and everything saved. This can't be undone.", me_del_word:"delete", me_del_type:"To confirm, type: {w}", me_del_go:"Delete for good", me_deleted:"The account was deleted.", dt_h_acc:"Create your account", d_c_field:"Field", ob_yes:"Yes", ob_no:"No", ob_pick:"Pick from the list", ob_g_uni:"Universities", ob_g_col:"Colleges", ob_g_more:"Other studies", ob_year:"Which year?", ob_y1:"Year 1", ob_y2:"Year 2", ob_y3:"Year 3", ob_y4:"Year 4", ob_y5:"Master's or higher", ob_level:"How well do you already know this subject?", ob_lv1:"Completely new to me", ob_lv2:"Heard of it, no experience", ob_lv3:"I have the basics", ob_lv4:"Fairly comfortable", ob_lv5:"Strong command", ob_year_f:"Year", ob_level_f:"Level", d_c_stud:"Studying", d_c_inst:"Institution", d_c_lvl:"Level", me_tour:"Site tour", tour_hi_after:"<b>Thanks!</b> A quick tour of what's here, and you're good to go.", tour_hi:"<b>Welcome to RowdyQL.</b> A quick tour of what's here, and you're good to go.", tour_tabs:"<b>The tabs.</b> Your plan, then a chapter per topic. Each chapter is split into short lessons, and each lesson ends with a button to the next one.", tour_start:"<b>Start here.</b> Next time, a button will appear here to pick up right where you left off.", tour_stats:"<b>Your progress.</b> Sections you went through, exercises you solved and self-checks.", tour_lessons:"<b>Lessons.</b> Each card is a lesson of about 15 minutes, and the ring shows how much of it you've covered.", tour_quick:"<b>Quick tools.</b> The calculator, the exercises, the course map, and the self-check - one click away.", tour_toc:"<b>Contents.</b> The chapter's lessons and the sections of the open lesson.", tour_me:"<b>Your area.</b> Click your name to change your avatar, background, day or night, language and details.", tour_end:"<b>That's it, you're ready.</b> You can take the tour again anytime from your area.", tour_next:"Next", tour_prev:"Back", tour_go:"Let's start", tour_skip:"Skip tour", tour_n:"{i} of {n}", lv_h:"Sorry to see you go.", lv_sub:"Could you tell us why? You can pick more than one.", lv_content:"Not enough material to practice", lv_easy:"Not the level I expected - too easy", lv_hard:"Not the level I expected - too hard for beginners", lv_done:"I finished the course", lv_tech:"Technical problems", lv_other:"Other", nt_title:"Notifications", nt_unread:"{n} new", nt_empty:"No messages yet.", nt_now:"just now", nt_new:"New message", nt_f_title:"Title", nt_f_body:"Message", nt_f_mail:"Also send by email", nt_send:"Send", nt_conf:"The message will show for everyone on the site. Send it?", nt_conf_mail:"The message will show for everyone on the site and go out by email too. Send it?", nt_yes:"Yes, send", nt_sent:"Sent", nt_mailed:"{n} emails on the way", nt_nomail:"The message is on the site, but the emails didn't go out.", nt_read_by:"Read by {n}", nt_mailed_n:"{n} emails sent", nt_del:"Delete", nt_del_q:"Delete?", nt_need_sql:"To send messages, run the notifications SQL file first.", me_nt_h:"Notifications", sub_hide:"Hide the topics row", sub_show:"Show the topics row", me_nt_mail:"Also get messages and updates by email", tour_bell:"<b>Notifications.</b> Messages and updates from us show up here.", lv_note:"Want to say more? Optional, but it helps us improve.", lv_note_other:"What's the reason?", lv_trans:"Answers are saved without your name or email, and only used to improve the course.", lv_stay:"Actually, I'll stay", lq_reset:"A reset link goes out to the email",
 nn_tag:"What's new", nn_ok:"Got it", nn_show:"Show me how", gd_exit:"Exit the guide", gd_map1:"The course map lives here, in the quick tools. Open it.", gd_map2:"Each chapter gets its own card - what it covers, and all its lessons in order.", gd_map3:"Want to jump to a lesson? Pick one and it opens.", d_news_guide:"Guide", d_news_guide_none:"No guide", d_news_try:"Preview", d_tab_news:"Announcements", d_news_waiting:"{n} announcements waiting for you", d_news_empty:"Nothing to review. When something students will notice goes live, the agent suggests an announcement here.", d_news_src_routine:"The daily agent", d_news_src_session:"A Claude session", d_news_note:"What changed", d_news_pub:"Publish", d_news_sure:"Every student sees it once in a small window, then it stays in their notifications. Publish it?", d_news_st_published:"Published {d}", d_news_err:"It wasn't published: {e}",
+cp_h:"Got a promo code?", cp_go:"Redeem", cp_me_h:"Promo code", cp_bad:"Codes only use English letters, numbers, and dashes.", cp_unknown:"We couldn't find this code. Worth checking for a typo.", cp_expired:"This code has expired.", cp_used_up:"Every spot on this code is taken.", cp_again:"You've already used this code.", cp_slow:"That's a few tries in a row. Try again in a few minutes.", cp_ok:"Now open: {list}, until {d}.", cp_ok_ever:"Now open: {list}.", cp_all_in:"the whole course", cp_have:"Everything this code opens is already yours.", acc_until:"Open until {d}", acc_days:"{n} days left", acc_2days:"2 days left", acc_today:"Less than a day left", acc_ended:"Access ended", d_tab_cp:"Coupons", cp_new:"New coupon", cp_f_code:"Code", cp_f_rand:"Generate code", cp_f_note:"Internal name", cp_f_note_ph:"e.g. one-week trial, Facebook", cp_f_what:"What it opens", cp_f_all:"The whole course", cp_f_for:"For how long", cp_f_days:"days from redeeming", cp_f_until:"Until a date", cp_f_ever:"Forever", cp_f_quota:"How many people can redeem it", cp_f_quota_ph:"No limit", cp_f_by:"Redeem by", cp_create:"Create", cp_save:"Save", cp_err_code:"Code: 4 to 24 characters, English letters, numbers, and dashes.", cp_err_what:"Pick at least one chapter.", cp_err_days:"Days: between 1 and 365.", cp_err_until:"Pick a future date.", cp_err_quota:"People: 1 or more, or empty for no limit.", cp_err_dup:"That code already exists.", cp_list_empty:"No coupons yet.", cp_st_on:"Active", cp_st_off:"Off", cp_st_done:"Ended", cp_days_n:"{n} days from redeeming", cp_day_1:"1 day from redeeming", cp_until_d:"Until {d}", cp_ever:"Forever", cp_used:"{u} of {q} redeemed", cp_used_n:"{u} redeemed", cp_by:"Redeem by {d}", cp_link:"Copy link", cp_link_ok:"Link copied", cp_off:"Turn off", cp_on:"Turn on", cp_edit:"Edit", cp_who:"Who redeemed ({n})", cp_who_empty:"Nobody yet.", cp_who_rev:"Access revoked", cp_rev:"Revoke access", cp_rev_q:"Revoke?",
 /* the first-login plan screen */
 pl_ch1:"About you", pl_ch2:"The exam", pl_ch2_ns:"Your goal", pl_ch3:"How you learn", pl_ch4:"Your plan", pl_ch_pre:"Getting started", pl_hi_h:"Hi {name}, let's build your plan.", pl_hi_p:"A few short questions, most of them one click. Your plan changes with every answer, and anything you're not sure about, we'll decide for you.",
 pl_hi_m1:"About two minutes", pl_hi_m2:"You can go back to any answer", pl_hi_m3:"You can change it later", pl_hi_go:"Let's start", pl_hi_h_old:"{name}, the course just got personal.", pl_hi_p_old:"We already have some of your answers. Just a few short questions left, and we'll do the rest.", pl_hi_m1_old:"Under a minute", pl_hi_go_old:"Continue",
@@ -5524,8 +5559,8 @@ function lessonCards(grid, plan){
       + (own ? '<button type="button" class="chb-tog" aria-expanded="' + open + '" aria-controls="chb-' + c + '">' : '<div class="chb-tog">')
       + '<span class="chb-n">' + String(ci + 1).padStart(2, '0') + '</span><span class="chb-t"><b>' + t(PX_CHNAME[c]) + '</b><small>' + meta + '</small></span>'
       + (c === 'intro' ? '' : '<span class="chb-glyph" aria-hidden="true">' + esc(PX_GLYPH[c] || '') + '</span>')
-      + (own ? (soon ? '<span class="chb-tag">' + t('sx_soon') + '</span>' : '') + '<svg class="chb-chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' : '</div>')
-      + (own ? '' : '<div class="chb-out"><span class="chb-tag">' + t('chb_out') + '</span><button type="button" class="chb-buy">' + t('chb_buy') + '</button><button type="button" class="chb-what">' + t('chb_what') + '</button></div>')
+      + (own ? accHtml(c, 'chb-tag') + (soon ? '<span class="chb-tag">' + t('sx_soon') + '</span>' : '') + '<svg class="chb-chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' : '</div>')
+      + (own ? '' : '<div class="chb-out"><span class="chb-tag">' + t(ACCESS.ended.has(c) ? 'acc_ended' : 'chb_out') + '</span><button type="button" class="chb-buy">' + t('chb_buy') + '</button><button type="button" class="chb-what">' + t('chb_what') + '</button></div>')
       + '</div>';
     if (own) { const body = el('div', 'chb-body'); body.id = 'chb-' + c; body.hidden = !open; const g = el('div', 'sessions'); body.appendChild(g); blk.appendChild(body);
       ls.forEach((x, i) => { if (x.soon) { const cs = el('button', 'sess soon'); cs.type = 'button'; cs.disabled = true; cs.innerHTML = '<div class="sess-top"><span class="num">' + x.n + '</span><span class="lsn-dur">' + t('ls_min', { m: x.min }) + '</span></div><b>' + x.title + '</b><div class="st"><span class="pill">' + t('sx_soon') + '</span></div>'; g.appendChild(cs); return; }
@@ -5546,7 +5581,7 @@ function renderMap(){ const box = $('#mapBox'); if (!box) return; box.innerHTML 
   CH_ALL.forEach((c, ci) => { const ls = chLessons(c), own = owns(c), soon = ls.length && ls[0].soon;
     const d = el('section', 'mpc-ch ' + (own ? 'own' : 'out')); d.id = 'map-' + c; d.style.setProperty('--hue', chHue(c));
     d.innerHTML = '<div class="mpc-h"><span class="chb-n">' + String(ci + 1).padStart(2, '0') + '</span><div><b>' + t(PX_CHNAME[c]) + '</b><p>' + t(c === 'intro' ? 'map_d_intro' : 'st' + ci + '_p') + '</p></div>'
-      + '<span class="mpc-st">' + t(own ? (soon ? 'sx_soon' : 'map_own') : 'map_out') + '</span>' + (own ? '' : '<button type="button" class="chb-buy mpc-buy">' + t('chb_buy') + '</button>') + '</div>'
+      + (own && accTag(c) ? accHtml(c, 'mpc-st') : '<span class="mpc-st">' + t(own ? (soon ? 'sx_soon' : 'map_own') : ACCESS.ended.has(c) ? 'acc_ended' : 'map_out') + '</span>') + (own ? '' : '<button type="button" class="chb-buy mpc-buy">' + t('chb_buy') + '</button>') + '</div>'
       + '<ol class="mpc-ls">' + ls.map(x => '<li><span class="num">' + x.n + '</span><span>' + x.title + '</span><span class="lsn-dur">' + t('ls_min', { m: x.min }) + '</span></li>').join('') + '</ol>';
     if (own && !soon) d.querySelectorAll('.mpc-ls li').forEach((li, i) => { li.classList.add('go'); li.tabIndex = 0; li.setAttribute('role', 'link'); const go = () => setUnit(c, ls[i].l); li.addEventListener('click', go); li.addEventListener('keydown', e => { if (e.key === 'Enter') go(); }); });
     if (!own) d.querySelector('.mpc-buy').addEventListener('click', () => buyGo(c));
@@ -5559,10 +5594,10 @@ const PRICES = { intro: 29, ra: 99, sql: 149, norm: 89, erd: 89, all: 279 };
 const BUY = { cart: new Set(), all: false, nudge: '' };
 const money = n => '<span class="money" dir="' + (lang === 'he' ? 'rtl">' + n + ' ₪' : 'ltr">₪' + n) + '</span>';
 const chSum = cs => cs.reduce((a, c) => a + PRICES[c], 0);
-function buyPick(c){ if (c === 'all') { BUY.all = true; BUY.cart.clear(); } else if (CH_ALL.includes(c) && !owns(c)) { BUY.all = false; BUY.cart.add(c); } }
+function buyPick(c){ if (c === 'all') { BUY.all = true; BUY.cart.clear(); } else if (CH_ALL.includes(c) && !ownsKeep(c)) { BUY.all = false; BUY.cart.add(c); } }
 function buyGo(c){ buyPick(c); setUnit('buy'); }
 function renderBuy(){ const box = $('#buyBox'); if (!box) return;
-  const miss = CH_ALL.filter(c => !owns(c)), full = chSum(CH_ALL), lessons = CH_ALL.reduce((a, c) => a + chLessons(c).length, 0);
+  const miss = CH_ALL.filter(c => !ownsKeep(c)), full = chSum(CH_ALL), lessons = CH_ALL.reduce((a, c) => a + chLessons(c).length, 0);
   if (!miss.length) { box.innerHTML = '<p class="buy-done">' + t('buy_have_all') + '</p>'; return; }
   const sel = BUY.all ? CH_ALL.slice() : [...BUY.cart].filter(c => miss.includes(c)), sum = BUY.all ? PRICES.all : chSum(sel);
   const nudge = BUY.all || !sel.length ? '' : sum >= PRICES.all ? t('buy_nudge_over') : sel.length >= 2 || sum * 2 >= PRICES.all ? t('buy_nudge', { d: money(PRICES.all - sum) }) : '';
@@ -5572,9 +5607,9 @@ function renderBuy(){ const box = $('#buyBox'); if (!box) return;
     + '<div class="buy-all-t"><b>' + t('buy_all_h') + '</b><span>' + t('buy_all_meta', { n: CH_ALL.length, l: lessons }) + '</span></div>'
     + '<div class="buy-all-p"><s>' + money(full) + '</s><b>' + money(PRICES.all) + '</b><small>' + t('buy_all_save', { s: money(full - PRICES.all) }) + '</small></div>'
     + '<button type="button" class="btn' + (BUY.all ? ' on' : ' primary') + '" id="buyAll" aria-pressed="' + BUY.all + '">' + t(BUY.all ? 'buy_in' : 'buy_all_pick') + '</button></div>'
-    + '<h3 class="buy-or">' + t('buy_or') + '</h3><ul class="buy-chs">' + CH_ALL.map((c, i) => { const ls = chLessons(c), own = owns(c), inC = sel.includes(c), soon = ls.length && ls[0].soon;
+    + '<h3 class="buy-or">' + t('buy_or') + '</h3><ul class="buy-chs">' + CH_ALL.map((c, i) => { const ls = chLessons(c), own = ownsKeep(c), inC = sel.includes(c), soon = ls.length && ls[0].soon;
       return '<li class="buy-ch' + (own ? ' own' : '') + (inC ? ' in' : '') + '" style="--hue:' + chHue(c) + '"><span class="chb-n">' + String(i + 1).padStart(2, '0') + '</span>'
-        + '<div class="buy-ch-t"><b>' + t(PX_CHNAME[c]) + '</b><span>' + t('ls_count', { n: ls.length, m: ls.reduce((a, x) => a + x.min, 0) }) + (soon ? ' · ' + t('sx_soon') : '') + '</span></div>'
+        + '<div class="buy-ch-t"><b>' + t(PX_CHNAME[c]) + '</b><span>' + t('ls_count', { n: ls.length, m: ls.reduce((a, x) => a + x.min, 0) }) + (soon ? ' · ' + t('sx_soon') : '') + '</span>' + accHtml(c, 'chb-tag') + '</div>'
         + (own ? '<span class="buy-tag">' + t('buy_own') + '</span>' : '<span class="buy-ch-p">' + money(PRICES[c]) + '</span>'
           + (BUY.all ? '<span class="buy-tag on">' + t('buy_in_all') + '</span>' : '<button type="button" class="btn small' + (inC ? ' on' : '') + '" data-c="' + c + '" aria-pressed="' + inC + '">' + t(inC ? 'buy_in' : 'buy_add') + '</button>'))
         + '</li>'; }).join('') + '</ul></div>'
@@ -5582,12 +5617,43 @@ function renderBuy(){ const box = $('#buyBox'); if (!box) return;
     + (sel.length ? '<ul class="buy-items">' + (BUY.all ? '<li><span>' + t('buy_all_h') + '</span>' + money(PRICES.all) + '</li>' : sel.map(c => '<li><span>' + t(PX_CHNAME[c]) + '</span>' + money(PRICES[c]) + '</li>').join('')) + '</ul>' : '<p class="buy-empty">' + t('buy_empty') + '</p>')
     + '<div class="buy-sum"><span>' + t('buy_total') + '</span><b>' + money(sum) + '</b></div>'
     + (nudge ? '<p class="buy-nudge' + (fl ? ' fl' : '') + '">' + nudge + '</p><button type="button" class="btn small" id="buySwitch">' + t('buy_switch') + '</button>' : '')
-    + '<button type="button" class="btn primary buy-go" id="buyCheck"' + (sel.length ? '' : ' disabled') + '>' + t('buy_go') + '</button></aside>';
+    + '<button type="button" class="btn primary buy-go" id="buyCheck"' + (sel.length ? '' : ' disabled') + '>' + t('buy_go') + '</button>' + codeHtml() + '</aside>';
   $('#buyAll').addEventListener('click', () => { BUY.all = !BUY.all; if (BUY.all) BUY.cart.clear(); renderBuy(); });
   box.querySelectorAll('.buy-ch button[data-c]').forEach(b => b.addEventListener('click', () => { const c = b.dataset.c; if (BUY.cart.has(c)) BUY.cart.delete(c); else BUY.cart.add(c); renderBuy(); }));
   const sw = $('#buySwitch'); if (sw) sw.addEventListener('click', () => { BUY.all = true; BUY.cart.clear(); renderBuy(); $('.buy-all').scrollIntoView({ block: 'center', behavior: 'smooth' }); });
   $('#buyCheck').addEventListener('click', () => toast(t('buy_soon')));
+  codeBind(box.querySelector('.cp-form'));
 }
+/* ---- a promo code: the student types it (the purchase page, the personal area) or opens a link that fills it in (#/code/<CODE>).
+   coupon_redeem checks it on the server (it exists, is on, not past its date or quota, not used by this account, and not too many
+   tries), opens its chapters and says until when. The line that answers flares once. ---- */
+const CPF = { code: '', msg: null };
+const codeNorm = s => String(s || '').toUpperCase().replace(/[\s_]+/g, '').replace(/[\u2010-\u2015]/g, '-');
+/* chapter names as one phrase; inline: inside a sentence ("the whole course" in lowercase). Hebrew writes ו- before a Latin name (ו-SQL) */
+const chList = (cs, inline) => { const n = cs.map(c => t(PX_CHNAME[c])), last = n[n.length - 1] || '';
+  return cs.length >= CH_ALL.length ? t(inline ? 'cp_all_in' : 'cp_f_all') : n.length < 2 ? n.join('') : n.slice(0, -1).join(', ') + (lang === 'he' ? ' ו' + (/^[A-Za-z]/.test(last) ? '-' : '') : ' and ') + last; };
+/* bare: under a card title that already says it (the personal area), so no question above the field */
+function codeHtml(bare){ const m = CPF.msg; CPF.msg = null;
+  return '<form class="cp-form" novalidate><label class="cp-l">' + (bare ? '' : t('cp_h')) + '<span class="cp-row"><input type="text" class="cp-in" maxlength="24" dir="ltr" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="' + esc(t('cp_me_h')) + '" value="' + esc(CPF.code) + '"><button type="submit" class="btn small">' + t('cp_go') + '</button></span></label>'
+    + '<p class="cp-msg' + (m ? (m.ok ? ' ok' : ' bad') : '') + '" role="status">' + (m ? esc(m.text) : '') + '</p></form>'; }
+function codeBind(f){ if (!f) return; const inp = f.querySelector('.cp-in'), msg = f.querySelector('.cp-msg'), btn = f.querySelector('button');
+  const say = (text, ok) => { msg.className = 'cp-msg ' + (ok ? 'ok' : 'bad'); msg.textContent = text; };
+  inp.addEventListener('input', () => { CPF.code = inp.value; msg.className = 'cp-msg'; msg.textContent = ''; });
+  f.addEventListener('submit', async ev => { ev.preventDefault(); const code = codeNorm(inp.value); inp.value = code; CPF.code = code;
+    if (!/^[A-Z0-9-]+$/.test(code)) return say(t('cp_bad'));
+    if (code.length < 4 || code.length > 24) return say(t('cp_unknown'));
+    if (!sb || !session || !session.user) { toast(t('d_demo')); return; }
+    btn.disabled = true; msg.className = 'cp-msg'; msg.textContent = t('g_working');
+    let res; try { res = await sb.rpc('coupon_redeem', { p_code: code }); } catch(e) { res = { error: e }; } btn.disabled = false;
+    /* the server answers a wrong code with {error} rather than failing, so the try still counts toward the limit */
+    const d = res.data || {}, em = res.error ? String(res.error.message || res.error) : d.error ? String(d.error) : '';
+    if (em) { const k = (/\b(unknown|expired|used_up|again|slow)\b/.exec(em) || [])[1]; if (k && k !== 'slow') store('dbs_promo', null); return say(t(k ? 'cp_' + k : 'g_err_gen')); }
+    const cs = [].concat(d.chapters || []).filter(c => CH_ALL.includes(c)); store('dbs_promo', null); CPF.code = '';
+    if (!cs.length) return say(t('cp_have'), true);
+    cs.forEach(c => { ACCESS.have.add(c); ACCESS.ended.delete(c); if (d.expires_at) ACCESS.exp[c] = d.expires_at; else delete ACCESS.exp[c]; }); accessKeep();
+    const text = d.expires_at ? t('cp_ok', { list: chList(cs, true), d: fmtDay(d.expires_at) }) : t('cp_ok_ever', { list: chList(cs, true) });
+    CPF.msg = { text, ok: true }; await packLoad(); applyLang(); if (unit === 'buy') renderBuy(); else if (unit === 'map') renderMap();
+    if (f.isConnected) { CPF.msg = null; inp.value = ''; say(text, true); } }); }
 /* a chapter of the map lights up for a moment when a chapter block sent the student here */
 function mapFocus(c){ const d = document.getElementById('map-' + c); if (!d) return; requestAnimationFrame(() => { d.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash'); setTimeout(() => d.classList.remove('flash'), 2600); }); }
@@ -5597,7 +5663,7 @@ function homePlan(pxh){ const box = $('#homePlan'); if (!box) return;
   const rows = CH_ALL.map(c => { const ls = chLessons(c), own = owns(c), built = ls.filter(x => !x.soon), done = built.filter(x => lessonDone(x.l)).length;
     const st = !own ? 'out' : !built.length ? 'soon' : done >= built.length ? 'done' : done || built.some(x => lessonPct(x.l) > 0) ? 'mid' : 'todo';
     return '<button type="button" class="hp-row ' + st + '" data-ch="' + c + '" style="--hue:' + chHue(c) + '"><span class="hp-dot" aria-hidden="true"></span><b>' + t(PX_CHNAME[c]) + '</b><span class="hp-n' + (st === 'out' || st === 'soon' ? ' tx' : '') + '">'
-      + (st === 'out' ? t('chb_out_s') : st === 'soon' ? t('sx_soon') : done + '/' + built.length) + '</span></button>'; }).join('');
+      + (st === 'out' ? t(ACCESS.ended.has(c) ? 'acc_ended' : 'chb_out_s') : st === 'soon' ? t('sx_soon') : done + '/' + built.length) + '</span></button>'; }).join('');
   box.innerHTML = '<div class="hp-h"><span class="hp-ic">' + ICON + '</span><b>' + t('hp_h') + '</b><button type="button" class="btn small ghost" id="hpAll">' + t('hp_all') + '</button></div><div class="hp-rows">' + rows + '</div>';
   $('#hpAll').addEventListener('click', () => setUnit('learn'));
   box.querySelectorAll('.hp-row').forEach(b => b.addEventListener('click', () => { const c = b.dataset.ch; if (!owns(c)) { setUnit('map'); mapFocus(c); routeSet(true); return; }
@@ -5677,8 +5743,24 @@ const packOn = c => PACKS.have.has(c);
    with the right chapters before the server answers (it only shapes the screens; the content itself comes only with a ticket);
    every chapter in the full build */
 const CH_ALL = ['intro', 'ra', 'sql', 'norm', 'erd'];
-const ACCESS = { have: new Set(Object.keys(PACK_SRI).length ? [].concat(load('dbs_access', []) || []).filter(c => CH_ALL.includes(c)) : CH_ALL) };
+/* a coupon may open a chapter for a while: exp holds when it ends, and a chapter whose time ran out is 'ended' (it shows closed, with
+   "הגישה הסתיימה", and the purchase page still sells it). dbs_access was a plain list before coupons; both shapes load. */
+const ACCESS = (() => { const raw = load('dbs_access', []) || [], o = Array.isArray(raw) ? { have: raw } : raw, ok = x => [].concat(x || []).filter(c => CH_ALL.includes(c));
+  return Object.keys(PACK_SRI).length ? { have: new Set(ok(o.have)), exp: o.exp || {}, ended: new Set(ok(o.ended)) } : { have: new Set(CH_ALL), exp: {}, ended: new Set() }; })();
 const owns = c => ACCESS.have.has(c);
+/* owned for good: a chapter open for a while is still on sale */
+const ownsKeep = c => owns(c) && !ACCESS.exp[c];
+/* the server's rows (my_access: chapter + expires_at, the ended ones too; or my_chapters' plain names) */
+function accessSet(rows){ const now = Date.now(); ACCESS.have = new Set(); ACCESS.exp = {}; ACCESS.ended = new Set();
+  (rows || []).forEach(r => { const c = typeof r === 'string' ? r : r && r.chapter, x = r && r.expires_at ? Date.parse(r.expires_at) : 0; if (!CH_ALL.includes(c)) return;
+    if (x && x <= now) ACCESS.ended.add(c); else { ACCESS.have.add(c); if (x) ACCESS.exp[c] = r.expires_at; } });
+  ACCESS.have.forEach(c => ACCESS.ended.delete(c)); accessKeep(); }
+const accessKeep = () => store('dbs_access', { have: [...ACCESS.have], exp: ACCESS.exp, ended: [...ACCESS.ended] });
+const fmtDay = iso => new Date(iso).toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-GB', { day: 'numeric', month: 'long' });
+/* the tag on a chapter open for a while: its last day, or how long is left once it's close */
+function accTag(c){ const x = ACCESS.exp[c]; if (!x) return null; const ms = Date.parse(x) - Date.now(), d = Math.ceil(ms / 864e5);
+  return { warn: d <= 3, text: ms < 864e5 ? t('acc_today') : d === 2 ? t('acc_2days') : d <= 3 ? t('acc_days', { n: d }) : t('acc_until', { d: fmtDay(x) }) }; }
+const accHtml = (c, cls) => { const a = accTag(c); return a ? '<span class="' + cls + ' acc' + (a.warn ? ' warn' : '') + '">' + esc(a.text) + '</span>' : ''; };
 function packGate(){
   ['intro', 'ra'].forEach(c => { const u = document.getElementById('u-' + c); if (!u) return; const on = packOn(c); u.classList.toggle('locked', !on);
     let box = u.querySelector(':scope > .pack-lock'); if (on) { if (box) box.remove(); return; }
@@ -5689,7 +5771,7 @@ function packGate(){
    chapter's script, checked against the hash it was built with, so a stale or altered pack never runs */
 async function packLoad(){
   const want = Object.keys(PACK_SRI).filter(c => !packOn(c));
-  if (Object.keys(PACK_SRI).length && sb && session && session.user) { try { const { data, error } = await sb.rpc('my_chapters'); if (!error && Array.isArray(data)) { ACCESS.have = new Set(data.filter(c => CH_ALL.includes(c))); store('dbs_access', [...ACCESS.have]); } } catch(e) {} }
+  if (Object.keys(PACK_SRI).length && sb && session && session.user) { try { let { data, error } = await sb.rpc('my_access'); if (error || !Array.isArray(data)) ({ data, error } = await sb.rpc('my_chapters')); if (!error && Array.isArray(data)) accessSet(data); } catch(e) {} }
   if (!want.length || !sb || !session || !session.user) { PACKS.pending = false; packGate(); return; }
   let rows = [];
   try { const { data, error } = await sb.rpc('pack_tickets', { p_packs: want.map(c => ({ c, s: PACK_SRI[c] })) }); if (error) throw error; rows = (data || []).filter(r => r && want.includes(r.c) && typeof r.url === 'string' && (/^https:\/\//.test(r.url) || r.url.startsWith(location.origin + '/'))); } catch(e) {}
@@ -5703,17 +5785,24 @@ async function packLoad(){
    back and forward work; scrolling inside a lesson only rewrites the address. A link opened before sign-in waits for it.
    #/terms is the terms of use: they open on top of whatever is showing, so a notice or an email can link to them. */
 const ROUTE = { busy: false, terms: location.hash === '#/terms', pending: /^#\/./.test(location.hash) && location.hash !== '#/terms' ? location.hash : null };
+/* a code link (#/code/<CODE>) is kept right away, so it survives signing up in another tab (SYNC_KEYS isn't defined yet here, so no store()) */
+(m => { if (m) try { localStorage.setItem('dbs_promo', JSON.stringify({ code: codeNorm(m[1]), at: Date.now() })); } catch(e) {} })(/^#\/code\/([A-Za-z0-9-]{4,24})$/.exec(location.hash));
 function routeOf(sec){ if (unit === 'home') return '#/'; if (unit === 'learn') return '#/learn'; if (unit === 'map') return '#/map'; if (unit === 'buy') return '#/buy'; sec = sec || (lesson && lesson.secs.includes(activeSec) ? activeSec : lesson ? lesson.secs[0] : null); return '#/' + unit + (sec ? '/' + sec : ''); }
 function routeSet(push, sec){ if (ROUTE.busy || document.documentElement.classList.contains('gated')) return; const h = routeOf(sec); if (location.hash === h) return;
   try { history[push ? 'pushState' : 'replaceState']({ rq: 'app' }, '', h); } catch(e){} }
 function routeGo(h){ const m = /^#\/([a-z]+)?(?:\/([A-Za-z0-9-]+))?$/.exec(h || ''); if (!m) return false; if (m[1] === 'terms') { showTerms(); return false; }
+  if (m[1] === 'code') { if (m[2]) CPF.code = codeNorm(m[2]); ROUTE.busy = true; try { setUnit('buy'); } finally { ROUTE.busy = false; } routeSet(false);
+    setTimeout(() => { const i = $('#buyBox .cp-in'); if (i) { i.scrollIntoView({ block: 'center' }); i.focus({ preventScroll: true }); } }, 300); return true; }
   const u = m[1] || 'home', sec = m[2] || null; if (!HUBS.includes(u) && !COURSE.some(c => c.unit === u)) return false;
   ROUTE.busy = true;
   try { if (u === 'map') { setUnit('map'); if (sec) mapFocus(sec); } else if (u === 'buy') { if (sec) buyPick(sec); setUnit('buy'); } else if (HUBS.includes(u)) setUnit(u); else { const l = sec ? lessonOf(sec) : null; if (l && l.unit === u) goLesson(l, sec); else setUnit(u); } }
   finally { ROUTE.busy = false; }
   routeSet(false, sec && lesson && lesson.secs.includes(sec) ? sec : null); return true; }
 /* after sign-in: the address the visitor came with, otherwise home */
-function routeStart(){ const h = ROUTE.pending; ROUTE.pending = null; if (!(h && routeGo(h))) { setUnit('home'); routeSet(false); } }
+function routeStart(){ let h = ROUTE.pending; ROUTE.pending = null;
+  /* a code from a link opened before signing up (maybe in another tab): once the first steps are done, it waits on the purchase page */
+  const pm = load('dbs_promo', null); if (!h && pm && pm.code && Date.now() - pm.at < 14 * 864e5 && pxDone() && prefs().tourDone) h = '#/code/' + pm.code;
+  if (!(h && routeGo(h))) { setUnit('home'); routeSet(false); } }
 addEventListener('popstate', () => { if (!$('#gate').hidden || !/^#\//.test(location.hash)) return; routeGo(location.hash); });
 /* =========================== LESSON MARKS =========================== */
 /* three flags a student can put on a lesson, plus two that set whether it counts as done: "not done yet" keeps it unfinished even after
@@ -6351,9 +6440,9 @@ function editStatus(id){ const r = D.rows.find(x => x.id === id); if (!r) return
 async function openDash(){
   if (!sb) { toast(t('d_demo')); return; }
   if (!staffOn()) { await mfaLoad(); if (!staffOn()) { if (mfaOn()) mfaGate(openDash); else { MFA.need = true; openMe(); setTimeout(() => { const c = $('#meMfaCard'); if (c) c.scrollIntoView({ block: 'center' }); }, 80); } return; } }
-  let dash = $('#dash'); if (!dash) { dash = el('div','dash'); dash.id = 'dash'; dash.innerHTML = '<div class="dwrap"><div class="dtop"><h2>' + t('d_title') + '<span class="dtabs" role="tablist"><button type="button" role="tab" data-dt="users" aria-selected="true">' + t('d_tab_users') + '</button><button type="button" role="tab" data-dt="req" aria-selected="false">' + t('d_tab_req') + '<b id="dReqN"></b></button><button type="button" role="tab" data-dt="news" aria-selected="false">' + t('d_tab_news') + '<b id="dNewsN"></b></button></span></h2><div class="controls"><button type="button" class="btn small" id="dashCsv">' + t('d_export') + '</button><button type="button" class="btn small primary" id="dashClose">' + t('d_close') + '</button></div></div>'
+  let dash = $('#dash'); if (!dash) { dash = el('div','dash'); dash.id = 'dash'; dash.innerHTML = '<div class="dwrap"><div class="dtop"><h2>' + t('d_title') + '<span class="dtabs" role="tablist"><button type="button" role="tab" data-dt="users" aria-selected="true">' + t('d_tab_users') + '</button><button type="button" role="tab" data-dt="req" aria-selected="false">' + t('d_tab_req') + '<b id="dReqN"></b></button><button type="button" role="tab" data-dt="news" aria-selected="false">' + t('d_tab_news') + '<b id="dNewsN"></b></button><button type="button" role="tab" data-dt="cp" aria-selected="false">' + t('d_tab_cp') + '</button></span></h2><div class="controls"><button type="button" class="btn small" id="dashCsv">' + t('d_export') + '</button><button type="button" class="btn small primary" id="dashClose">' + t('d_close') + '</button></div></div>'
     + '<div class="filters"><input type="text" id="dfQ" placeholder="' + esc(t('d_f_search')) + '"><label>' + t('d_f_from') + ' <input type="date" id="dfFrom"></label><label>' + t('d_f_to') + ' <input type="date" id="dfTo"></label><label>' + t('d_f_active') + ' <select id="dfActive"><option value="all">' + t('d_f_any') + '</option><option value="7">' + t('d_f_7') + '</option><option value="30">' + t('d_f_30') + '</option></select></label><label>' + t('d_f_sem') + ' <select id="dfSem"><option value="all">' + t('d_f_all') + '</option><option value="A">A</option><option value="B">B</option></select></label><label>' + t('d_f_year') + ' <select id="dfYear"><option value="all">' + t('d_f_all') + '</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label><label>' + t('d_f_minex') + ' <input type="number" id="dfMinex" min="0" max="12" value="0" style="width:4.5rem"></label></div>'
-    + '<div id="dashBody" class="count">' + t('g_working') + '</div><div id="dashReq" class="rq-list" hidden></div><div id="dashNews" class="rq-list" hidden></div></div><div class="tip" id="dashTip" hidden></div>'; document.body.appendChild(dash);
+    + '<div id="dashBody" class="count">' + t('g_working') + '</div><div id="dashReq" class="rq-list" hidden></div><div id="dashNews" class="rq-list" hidden></div><div id="dashCp" class="rq-list" hidden></div></div><div class="tip" id="dashTip" hidden></div>'; document.body.appendChild(dash);
     dash.querySelectorAll('[data-dt]').forEach(b => b.addEventListener('click', () => dashTab(b.dataset.dt)));
     $('#dashClose').addEventListener('click', () => { dash.remove(); document.documentElement.classList.remove('gated'); });
     const rf = () => { D.f = { q: $('#dfQ').value.trim(), from: $('#dfFrom').value, to: $('#dfTo').value, active: $('#dfActive').value, sem: $('#dfSem').value, year: $('#dfYear').value, minex: $('#dfMinex').value }; renderDash(); };
@@ -6362,10 +6451,10 @@ async function openDash(){
   }
   document.documentElement.classList.add('gated');
   try { await loadDash(); renderDash(); } catch(e) { $('#dashBody').textContent = t('g_err_gen') + ' (' + ((e && e.message) || e) + ')'; }
-  reqLoad().catch(() => {}); newsLoad().catch(() => {});
+  reqLoad().catch(() => {}); newsLoad().catch(() => {}); cpLoad().catch(() => {});
 }
-function dashTab(k){ $$('#dash [data-dt]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.dt === k))); const req = k === 'req', nw = k === 'news', side = req || nw;
-  $('#dash .filters').hidden = side; $('#dashBody').hidden = side; $('#dashCsv').hidden = side; $('#dashReq').hidden = !req; $('#dashNews').hidden = !nw; if (req) reqRender(); if (nw) newsRender(); }
+function dashTab(k){ $$('#dash [data-dt]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.dt === k))); const req = k === 'req', nw = k === 'news', cp = k === 'cp', side = k !== 'users';
+  $('#dash .filters').hidden = side; $('#dashBody').hidden = side; $('#dashCsv').hidden = side; $('#dashReq').hidden = !req; $('#dashNews').hidden = !nw; $('#dashCp').hidden = !cp; if (req) reqRender(); if (nw) newsRender(); if (cp) cpRender(); }
 
 /* ---- the requests desk: messages to hello@, sorted by the inbox agent (the rowdyql-inbox skill), each with a drafted reply.
    Raz reads it here, edits if needed, and sends with one click (send_request_reply: Resend from hello@, in the student's thread).
@@ -6458,6 +6547,76 @@ async function newsAct(card, act, btn){
     await sb.from('news_drafts').update(patch).eq('id', r.id); ok.textContent = t('d_req_copied'); Object.assign(r, patch); card.className = 'rq-card nw-card discussion';
     const st = card.querySelector('.rq-st'); if (st) st.textContent = t('d_req_st_discussion'); } }
 
+/* ---- coupons: Raz's codes for trials, gifts and promotions. A code opens chapters (or the whole course) for N days from redeeming,
+   until a date, or forever; a quota and a last day to redeem are optional. The tab lists them with their use, copies a link that fills
+   the code in (#/code/<CODE>), turns one off or edits it, and shows who redeemed it, with a revoke for each person. ---- */
+const CP = { rows: [], who: {}, open: null, edit: null, form: false };
+async function cpLoad(){ const { data, error } = await sb.rpc('coupon_list'); if (error) throw error; CP.rows = data || []; if ($('#dashCp') && !$('#dashCp').hidden) cpRender(); }
+const cpLink = code => 'https://rowdyql.com/#/code/' + code;
+function cpRand(){ const A = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789', b = new Uint8Array(6); crypto.getRandomValues(b); return 'RQ-' + [...b].map(x => A[x % A.length]).join(''); }
+const cpDay = v => v ? new Date(v + 'T23:59:59').toISOString() : null; /* a date field means the end of that day, here */
+const cpDate = iso => { if (!iso) return ''; const d = new Date(iso); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+function cpState(r){ if (!r.active) return 'off'; if ((r.redeem_by && Date.parse(r.redeem_by) < Date.now()) || (r.quota != null && r.used >= r.quota)) return 'done'; return 'on'; }
+const cpFor = r => r.days ? t(r.days === 1 ? 'cp_day_1' : 'cp_days_n', { n: r.days }) : r.until ? t('cp_until_d', { d: fmtDay(r.until) }) : t('cp_ever');
+function cpFormHtml(){
+  return '<article class="rq-card cp-new"><div class="cp-grid">'
+    + '<label>' + esc(t('cp_f_code')) + '<span class="cp-row"><input type="text" class="cp-in" data-f="code" maxlength="24" dir="ltr" autocomplete="off" value="' + cpRand() + '"><button type="button" class="btn small" data-cp="rand">' + esc(t('cp_f_rand')) + '</button></span></label>'
+    + '<label>' + esc(t('cp_f_note')) + '<input type="text" data-f="note" maxlength="120" dir="auto" placeholder="' + esc(t('cp_f_note_ph')) + '"></label></div>'
+    + '<fieldset class="cp-fs"><legend>' + esc(t('cp_f_what')) + '</legend><label class="cp-chk"><input type="checkbox" data-ch="all"> <b>' + esc(t('cp_f_all')) + '</b></label>'
+      + CH_ALL.map(c => '<label class="cp-chk"><input type="checkbox" data-ch="' + c + '"> ' + esc(t(PX_CHNAME[c])) + '</label>').join('') + '</fieldset>'
+    + '<fieldset class="cp-fs"><legend>' + esc(t('cp_f_for')) + '</legend>'
+      + '<label class="cp-chk"><input type="radio" name="cpFor" value="days" checked> <input type="number" class="cp-num" data-f="days" min="1" max="365" value="7"> ' + esc(t('cp_f_days')) + '</label>'
+      + '<label class="cp-chk"><input type="radio" name="cpFor" value="until"> ' + esc(t('cp_f_until')) + ' <input type="date" data-f="until"></label>'
+      + '<label class="cp-chk"><input type="radio" name="cpFor" value="ever"> ' + esc(t('cp_f_ever')) + '</label></fieldset>'
+    + '<div class="cp-grid"><label>' + esc(t('cp_f_quota')) + '<input type="number" data-f="quota" min="1" max="100000" placeholder="' + esc(t('cp_f_quota_ph')) + '"></label>'
+    + '<label>' + esc(t('cp_f_by')) + '<input type="date" data-f="by"></label></div>'
+    + '<p class="cp-msg bad" role="status"></p><div class="controls"><button type="button" class="btn small primary" data-cp="save">' + esc(t('cp_create')) + '</button><button type="button" class="btn small" data-cp="cancel">' + esc(t('t_cancel')) + '</button></div></article>'; }
+function cpWhoHtml(rows){ if (!rows) return '<p class="count">' + esc(t('g_working')) + '</p>'; if (!rows.length) return '<p class="count">' + esc(t('cp_who_empty')) + '</p>';
+  return '<ul class="cp-who">' + rows.map(u => '<li data-id="' + u.id + '"><b>' + esc(u.name || u.email) + '</b><span class="em">' + esc(u.email) + '</span><span>' + esc(fmtDay(u.at)) + '</span><span class="cp-acc">'
+    + esc(u.revoked_at ? t('cp_who_rev') : u.expires_at ? (Date.parse(u.expires_at) < Date.now() ? t('acc_ended') : t('acc_until', { d: fmtDay(u.expires_at) })) : t('cp_ever')) + '</span>'
+    + (u.revoked_at ? '' : '<button type="button" class="btn small" data-cp="rev">' + esc(t('cp_rev')) + '</button>') + '</li>').join('') + '</ul>'; }
+function cpCardHtml(r){ const st = cpState(r), open = CP.open === r.code, ed = CP.edit === r.code, cs = r.chapters || [];
+  return '<article class="rq-card cp-card ' + st + '" data-code="' + esc(r.code) + '"><div class="rq-h"><b class="cp-code">' + esc(r.code) + '</b>' + (r.note ? '<span>' + esc(r.note) + '</span>' : '') + '<span class="rq-st cp-st ' + st + '">' + esc(t('cp_st_' + st)) + '</span></div>'
+    + '<div class="cp-chips"><span class="cp-chip">' + esc(chList(cs)) + '</span><span class="cp-chip">' + esc(cpFor(r)) + '</span><span class="cp-chip">' + esc(r.quota != null ? t('cp_used', { u: r.used, q: r.quota }) : t('cp_used_n', { u: r.used })) + '</span>' + (r.redeem_by ? '<span class="cp-chip">' + esc(t('cp_by', { d: fmtDay(r.redeem_by) })) + '</span>' : '') + '</div>'
+    + (ed ? '<div class="cp-grid"><label>' + esc(t('cp_f_note')) + '<input type="text" data-f="note" maxlength="120" dir="auto" value="' + esc(r.note || '') + '"></label><label>' + esc(t('cp_f_quota')) + '<input type="number" data-f="quota" min="1" max="100000" placeholder="' + esc(t('cp_f_quota_ph')) + '" value="' + (r.quota != null ? r.quota : '') + '"></label><label>' + esc(t('cp_f_by')) + '<input type="date" data-f="by" value="' + cpDate(r.redeem_by) + '"></label></div>' : '')
+    + '<div class="controls">' + (ed ? '<button type="button" class="btn small primary" data-cp="esave">' + esc(t('cp_save')) + '</button><button type="button" class="btn small" data-cp="ecancel">' + esc(t('t_cancel')) + '</button>'
+      : '<button type="button" class="btn small" data-cp="link">' + esc(t('cp_link')) + '</button><button type="button" class="btn small" data-cp="who" aria-expanded="' + open + '">' + esc(t('cp_who', { n: r.used })) + '</button><button type="button" class="btn small" data-cp="edit">' + esc(t('cp_edit')) + '</button><button type="button" class="btn small" data-cp="toggle">' + esc(t(r.active ? 'cp_off' : 'cp_on')) + '</button>')
+    + '<span class="rq-ok" aria-live="polite"></span></div>'
+    + (open ? cpWhoHtml(CP.who[r.code]) : '') + '</article>'; }
+function cpRender(){ const box = $('#dashCp'); if (!box) return;
+  box.innerHTML = (CP.form ? cpFormHtml() : '<div class="cp-top"><button type="button" class="btn small primary" data-cp="new">' + esc(t('cp_new')) + '</button></div>')
+    + (CP.rows.length ? CP.rows.map(cpCardHtml).join('') : '<p class="count">' + esc(t('cp_list_empty')) + '</p>');
+  box.querySelectorAll('[data-cp]').forEach(b => b.addEventListener('click', () => cpAct(b.closest('.cp-card, .cp-new, .cp-top'), b.dataset.cp, b)));
+  const nw = box.querySelector('.cp-new'); if (nw) { const all = nw.querySelector('[data-ch="all"]'), chs = [...nw.querySelectorAll('[data-ch]:not([data-ch="all"])')];
+    all.addEventListener('change', () => chs.forEach(x => { x.checked = all.checked; })); chs.forEach(x => x.addEventListener('change', () => { all.checked = chs.every(y => y.checked); }));
+    nw.querySelectorAll('[data-f="days"], [data-f="until"]').forEach(i => i.addEventListener('focus', () => { nw.querySelector('input[name="cpFor"][value="' + i.dataset.f + '"]').checked = true; })); } }
+async function cpAct(card, act, btn){
+  if (act === 'new') { CP.form = true; cpRender(); const i = $('#dashCp .cp-new [data-f="note"]'); if (i) i.focus(); return; }
+  if (act === 'cancel') { CP.form = false; cpRender(); return; }
+  if (act === 'rand') { card.querySelector('[data-f="code"]').value = cpRand(); return; }
+  if (act === 'save') { const f = k => card.querySelector('[data-f="' + k + '"]'), msg = card.querySelector('.cp-msg'), code = codeNorm(f('code').value), mode = card.querySelector('input[name="cpFor"]:checked').value;
+    const chapters = CH_ALL.filter(c => card.querySelector('[data-ch="' + c + '"]').checked), days = parseInt(f('days').value, 10), quota = f('quota').value ? parseInt(f('quota').value, 10) : null;
+    const bad = !/^[A-Z0-9-]{4,24}$/.test(code) ? 'cp_err_code' : !chapters.length ? 'cp_err_what' : mode === 'days' && !(days >= 1 && days <= 365) ? 'cp_err_days' : mode === 'until' && !(f('until').value && Date.parse(cpDay(f('until').value)) > Date.now()) ? 'cp_err_until' : quota !== null && !(quota >= 1) ? 'cp_err_quota' : '';
+    if (bad) { msg.textContent = t(bad); return; } btn.disabled = true; msg.textContent = '';
+    const row = { code, note: f('note').value.trim(), chapters, days: mode === 'days' ? days : null, until: mode === 'until' ? cpDay(f('until').value) : null, quota, redeem_by: cpDay(f('by').value), active: true };
+    const { error } = await sb.from('coupons').insert(row); btn.disabled = false;
+    if (error) { msg.textContent = t(/duplicate|23505|unique/i.test(String(error.code + ' ' + error.message)) ? 'cp_err_dup' : 'g_err_gen'); return; }
+    CP.form = false; await cpLoad(); cpRender(); return; }
+  const r = CP.rows.find(x => x.code === card.dataset.code); if (!r) return; const ok = card.querySelector('.rq-ok');
+  if (act === 'link') { await clipCopy(cpLink(r.code)); ok.textContent = t('cp_link_ok'); return; }
+  if (act === 'who') { CP.open = CP.open === r.code ? null : r.code; cpRender(); if (CP.open && !CP.who[r.code]) { const { data } = await sb.rpc('coupon_users', { p_code: r.code }); CP.who[r.code] = data || []; cpRender(); } return; }
+  if (act === 'edit') { CP.edit = r.code; cpRender(); return; }
+  if (act === 'ecancel') { CP.edit = null; cpRender(); return; }
+  if (act === 'esave') { const f = k => card.querySelector('[data-f="' + k + '"]'), quota = f('quota').value ? parseInt(f('quota').value, 10) : null;
+    if (quota !== null && !(quota >= 1)) { ok.textContent = t('cp_err_quota'); return; }
+    const { error } = await sb.from('coupons').update({ note: f('note').value.trim(), quota, redeem_by: cpDay(f('by').value) }).eq('code', r.code);
+    if (error) { ok.textContent = t('g_err_gen'); return; } CP.edit = null; await cpLoad(); cpRender(); return; }
+  if (act === 'toggle') { const { error } = await sb.from('coupons').update({ active: !r.active }).eq('code', r.code); if (error) { ok.textContent = t('g_err_gen'); return; } await cpLoad(); cpRender(); return; }
+  if (act === 'rev') { if (!btn.dataset.arm) { btn.dataset.arm = '1'; btn.textContent = t('cp_rev_q'); return; } btn.disabled = true;
+    const { error } = await sb.rpc('coupon_revoke', { p_id: +btn.closest('li').dataset.id }); if (error) { btn.disabled = false; ok.textContent = t('g_err_gen'); return; }
+    const { data } = await sb.rpc('coupon_users', { p_code: r.code }); CP.who[r.code] = data || []; cpRender(); }
+}
+
 /* =========================== PERSONAL AREA: look, details, password =========================== */
 /* look (avatar, page background, day/night) lives in dbs_prefs, which syncs with the account like the progress does */
 const AVATARS = [['ini',''],['sigma','σ'],['pi','π'],['join','⋈'],['div','÷'],['union','∪'],['inter','∩'],['rho','ρ'],['gamma','γ'],['times','×'],['empty','∅'],['sum','∑']];
@@ -6506,6 +6665,8 @@ function renderMe(){
     + '</div>'
     + '<div class="controls"><button type="button" class="btn primary" id="meSave">' + t('me_save') + '</button><span class="me-hint" id="meMsg" role="status"></span></div></section>'
     + (!staff ? pxMeCards() : '')
+    /* promo codes only where access is per chapter (the public build); the full build opens everything, so a code means nothing there */
+    + (!staff && Object.keys(PACK_SRI).length ? '<section class="me-card"><h3>' + t('cp_me_h') + '</h3>' + codeHtml(true) + '</section>' : '')
     + (!staff ? '<section class="me-card"><h3>' + t('ask_h') + '</h3><p class="me-hint">' + t('ask_p') + '</p><div class="controls"><a class="btn ask-link" id="meAsk" href="' + esc(askHref()) + '">' + t('ask_btn') + '</a></div>'
       + '<p class="me-hint">' + t('ask_direct', { mail: '<span dir="ltr">' + ASK_MAIL + '</span>' }) + '</p></section>' : '')
     + '<section class="me-card"><h3>' + t('me_nt_h') + '</h3><label class="nt-chk"><input type="checkbox" id="meNtMail"' + (pr.notify_email === false ? '' : ' checked') + '> ' + t('me_nt_mail') + '</label><span class="me-hint" id="meNtMsg" role="status"></span>'
@@ -6515,7 +6676,7 @@ function renderMe(){
     + (staff ? '' : '<section class="me-card"><h3>' + t('me_del') + '</h3><p class="me-hint">' + t('me_del_why') + '</p><div id="meDel"></div></section>')
     + '</div>';
   $('#meClose').addEventListener('click', closeMe); $('#meSave').addEventListener('click', meSave); $('#meTour').addEventListener('click', () => startTour(false));
-  pxMeBind();
+  pxMeBind(); codeBind(pg.querySelector('.cp-form'));
   $('#meNtMail').addEventListener('change', meNtMail); pushPaint();
   renderMeLook(); if (live) mePwStart(); if (!staff) meDelStart(); if (staff && live) mfaLoad().then(mfaCard);
 }
