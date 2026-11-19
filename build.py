@@ -104,7 +104,7 @@ pub_html = html.replace(CSP, pub_csp, 1).replace(body, public, 1)
 out = pathlib.Path("dist"); shutil.rmtree(out, ignore_errors=True); out.mkdir()
 (out / "index.html").write_text(pub_html, encoding="utf-8")
 for f in ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "manifest.json", "sw.js", "icon-192.png", "icon-512.png", "badge-72.png",
-          "og.jpg", "og.png", "email-logo.png", "email-logo-light.png"]:
+          "og.jpg", "og.png", "email-logo.png", "email-logo-light.png", "robots.txt"]:
     shutil.copy(f, out / f)
 shutil.copytree("email-titles", out / "email-titles")
 # Response headers on the host (Cloudflare): what a <meta> can't do (frame-ancestors, HSTS) plus the usual hardening.
